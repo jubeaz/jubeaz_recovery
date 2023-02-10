@@ -1,0 +1,21 @@
+---
+
+- name: assert proper distribution
+  assert:
+    that:
+      - ansible_distribution in ['Kali', 'Ubuntu', 'Archlinux']
+    quiet: true
+
+- include_tasks: "{{ ansible_distribution }}.yml" 
+
+- name: ufw add ssh in rule
+  ufw:
+    rule: allow
+    direction: in
+    src: "{{ item }}"
+    to_port: 22
+  loop: "{{ ufw_in_ssh_ip }}"
+  notify: 
+    - enable ufw service
+    - enable ufw
+

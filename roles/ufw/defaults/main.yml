@@ -1,0 +1,4 @@
+---
+# defaults file for ufw
+ufw_in_ssh_ip:
+  - 192.168.2.0/24

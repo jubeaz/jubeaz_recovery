@@ -1,0 +1,32 @@
+- name: Set servers for pacman
+  lineinfile:
+    path: /etc/pacman.conf
+    state: present
+    line: "# seblu: virtualbox ext oracle"
+
+- name: Set servers for pacman
+  lineinfile:
+    path: /etc/pacman.conf
+    state: present
+    line: "[seblu]"
+    insertafter: "# seblu: virtualbox ext oracle"
+
+- name: Set servers for pacman
+  lineinfile:
+    path: /etc/pacman.conf
+    state: present
+    line: "Server={{ item }}"
+    insertafter: "[seblu]"
+  with_items: "{{ vbox_extra_repos }}"
+
+- name: Install virtualbox
+  pacman:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  register: __pacman
+  changed_when: (__pacman.packages | default([]))| length >0 
+  loop:
+    - virtualbox
+    - virtualbox-ext-oracle
+    - virtualbox-host-dkms
