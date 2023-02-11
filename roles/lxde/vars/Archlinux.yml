@@ -9,4 +9,5 @@ lxde_pkgs:
   - i3-wm
   - rofi
   - light
+  - ttf-font-awesome
     #  - openbox
