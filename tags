@@ -1,0 +1,1559 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/etc/ansible/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20220828.0/
+.travis.yml	roles/docker/.travis.yml	1;"	F	language:Yaml	epoch:1676118750
+.travis.yml	roles/gen-locale/.travis.yml	1;"	F	language:Yaml	epoch:1676118739
+.travis.yml	roles/minidlna/.travis.yml	1;"	F	language:Yaml	epoch:1676118739
+.travis.yml	roles/pgsql/.travis.yml	1;"	F	language:Yaml	epoch:1676118740
+.travis.yml	roles/time-sync/.travis.yml	1;"	F	language:Yaml	epoch:1676118745
+.travis.yml	roles/ufw/.travis.yml	1;"	F	language:Yaml	epoch:1676118746
+.travis.yml	roles/unused/dns-server/.travis.yml	1;"	F	language:Yaml	epoch:1676118743
+.travis.yml	roles/unused/elasticsearch/.travis.yml	1;"	F	language:Yaml	epoch:1676118742
+.travis.yml	roles/unused/libvirt/.travis.yml	1;"	F	language:Yaml	epoch:1676118744
+.travis.yml	roles/unused/pki/.travis.yml	1;"	F	language:Yaml	epoch:1676118742
+.travis.yml	roles/unused/trust-certs/.travis.yml	1;"	F	language:Yaml	epoch:1676118743
+.travis.yml	roles/unused/vault/.travis.yml	1;"	F	language:Yaml	epoch:1676118742
+.travis.yml	roles/unused/zabbix-client/.travis.yml	1;"	F	language:Yaml	epoch:1676118744
+.travis.yml	roles/unused/zabbix-server/.travis.yml	1;"	F	language:Yaml	epoch:1676118745
+.travis.yml	roles/update-pkgs/.travis.yml	1;"	F	language:Yaml	epoch:1676118751
+.travis.yml	roles/virtualbox/.travis.yml	1;"	F	language:Yaml	epoch:1676118752
+AUR | assert proper answer	roles/aur-install/tasks/main.yml	/^- name: AUR | assert proper answer$/;"	p	language:AnsiblePlaybook
+AUR | assert proper answer	roles/unused/elasticsearch/tasks/arch.yml	/^- name: AUR | assert proper answer$/;"	p	language:AnsiblePlaybook
+AUR | get metadata from AurJson api	roles/unused/elasticsearch/tasks/arch.yml	/^- name: AUR | get metadata from AurJson api$/;"	p	language:AnsiblePlaybook
+AUR | get metadata from AurJson api for {{ aur_pkg_name }}	roles/aur-install/tasks/main.yml	/^- name: AUR | get metadata from AurJson api for {{ aur_pkg_name }}$/;"	p	language:AnsiblePlaybook
+AUR | {{ _pkg_name }} | build package, including missing dependencies	roles/unused/elasticsearch/tasks/arch.yml	/^- name: AUR | {{ _pkg_name }} | build package, including missing dependencies$/;"	p	language:AnsiblePlaybook
+AUR | {{ _pkg_name }} | download tarball	roles/unused/elasticsearch/tasks/arch.yml	/^- name: AUR | {{ _pkg_name }} | download tarball$/;"	p	language:AnsiblePlaybook
+AUR | {{ _pkg_name }} | install newly-built aur package with pacman	roles/unused/elasticsearch/tasks/arch.yml	/^- name: AUR | {{ _pkg_name }} | install newly-built aur package with pacman$/;"	p	language:AnsiblePlaybook
+AUR | {{ _pkg_name }} | unarchive tarball	roles/unused/elasticsearch/tasks/arch.yml	/^- name: AUR | {{ _pkg_name }} | unarchive tarball$/;"	p	language:AnsiblePlaybook
+AUR | {{ aur_pkg_name }} | build package, including missing dependencies	roles/aur-install/tasks/main.yml	/^- name: AUR | {{ aur_pkg_name }} | build package, including missing dependencies$/;"	p	language:AnsiblePlaybook
+AUR | {{ aur_pkg_name }} | download tarball	roles/aur-install/tasks/main.yml	/^- name: AUR | {{ aur_pkg_name }} | download tarball$/;"	p	language:AnsiblePlaybook
+AUR | {{ aur_pkg_name }} | install newly-built aur package with pacman	roles/aur-install/tasks/main.yml	/^- name: AUR | {{ aur_pkg_name }} | install newly-built aur package with pacman$/;"	p	language:AnsiblePlaybook
+AUR | {{ aur_pkg_name }} | unarchive tarball	roles/aur-install/tasks/main.yml	/^- name: AUR | {{ aur_pkg_name }} | unarchive tarball$/;"	p	language:AnsiblePlaybook
+Add "{{ front.name }}" front ufw allow rules	roles/unused/haproxy/tasks/ufw_frontend.yml	/^- name: Add "{{ front.name }}" front ufw allow rules$/;"	p	language:AnsiblePlaybook
+Add Docker apt key (alternative for older systems without SNI).	roles/docker/tasks/ubuntu.yml	/^- name: Add Docker apt key (alternative for older systems without SNI).$/;"	p	language:AnsiblePlaybook
+Add Docker apt key.	roles/docker/tasks/ubuntu.yml	/^- name: Add Docker apt key.$/;"	p	language:AnsiblePlaybook
+Add Docker repository.	roles/docker/tasks/ubuntu.yml	/^- name: Add Docker repository.$/;"	p	language:AnsiblePlaybook
+Add Elasticsearch apt key.	roles/unused/elasticsearch/tasks/ubuntu.yml	/^- name: Add Elasticsearch apt key.$/;"	p	language:AnsiblePlaybook
+Add Elasticsearch repository.	roles/unused/elasticsearch/tasks/ubuntu.yml	/^- name: Add Elasticsearch repository.$/;"	p	language:AnsiblePlaybook
+Add login/password file ref	roles/nordvpn/tasks/main.yml	/^- name: Add login\/password file ref$/;"	p	language:AnsiblePlaybook
+Add ufw allow rndc rules	roles/unused/dns-server/tasks/main.yml	/^- name: Add ufw allow rndc rules$/;"	p	language:AnsiblePlaybook
+Add ufw allow rules	roles/rsyncd/tasks/main.yml	/^- name: Add ufw allow rules$/;"	p	language:AnsiblePlaybook
+Add ufw allow rules	roles/unused/dns-server/tasks/main.yml	/^- name: Add ufw allow rules $/;"	p	language:AnsiblePlaybook
+Add users	roles/virtualbox/tasks/main.yml	/^- name: Add users$/;"	p	language:AnsiblePlaybook
+Add users to docker group	roles/docker/tasks/main.yml	/^- name: Add users to docker group$/;"	p	language:AnsiblePlaybook
+Add users to light	roles/lxde/tasks/main.yml	/^- name: Add users to light$/;"	p	language:AnsiblePlaybook
+Apt add repository	roles/unused/vault/tasks/ubuntu.yml	/^- name: Apt add repository$/;"	p	language:AnsiblePlaybook
+Apt install key	roles/unused/vault/tasks/ubuntu.yml	/^- name: Apt install key$/;"	p	language:AnsiblePlaybook
+Archlinux	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647205722" LAST_MODIFIED="1667460355">Archlinux<\/H3>$/;"	j	language:HTML
+Archlinux.yml	role_skeleton/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118739
+Archlinux.yml	role_skeleton/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118739
+Archlinux.yml	roles/grub/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118746
+Archlinux.yml	roles/grub/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118746
+Archlinux.yml	roles/lxde/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118741
+Archlinux.yml	roles/lxde/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676120154
+Archlinux.yml	roles/mlocate/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118739
+Archlinux.yml	roles/mlocate/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118739
+Archlinux.yml	roles/nordvpn/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118752
+Archlinux.yml	roles/nordvpn/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118752
+Archlinux.yml	roles/opensshd/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118740
+Archlinux.yml	roles/opensshd/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118740
+Archlinux.yml	roles/time-sync/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118745
+Archlinux.yml	roles/ufw/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118746
+Archlinux.yml	roles/unused/zabbix-client/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118745
+Archlinux.yml	roles/unused/zabbix-client/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118745
+Archlinux.yml	roles/update-pkgs/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118751
+Archlinux.yml	roles/virtualbox/tasks/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118752
+Archlinux.yml	roles/virtualbox/vars/Archlinux.yml	1;"	F	language:Yaml	epoch:1676118752
+Assert ca_signing_ca is defined and sety	roles/unused/pki/tasks/asserts-intermediate.yml	/^- name: Assert ca_signing_ca is defined and sety$/;"	p	language:AnsiblePlaybook
+Assert proper distribution	roles/unused/pki/tasks/asserts.yml	/^- name: Assert proper distribution$/;"	p	language:AnsiblePlaybook
+Assert supported templates	roles/unused/pki/tasks/asserts.yml	/^- name: Assert supported templates$/;"	p	language:AnsiblePlaybook
+Author Information	role_skeleton/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/ansible/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/aur-install/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/blackarch/README.md	/^Author Information$/;"	s	language:Markdown	chapter:pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3
+Author Information	roles/bluetooth-headset/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/cups/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/docker/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/gen-locale/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/grub/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/lxde/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/minidlna/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/mlocate/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/nordvpn/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/opensshd/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/pacman/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/pgsql/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/rclone-backup/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/rclone/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/reflector/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/rsync-backup/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/rsyncd/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/sane/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/time-sync/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/ufw/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/dns-server/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/elasticsearch/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/haproxy/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/libvirt/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/pki-get-signed/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/pki-request-cert/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/pki-sign-csr/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/pki/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/trust-certs/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/vault/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/zabbix-client/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/unused/zabbix-server/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/update-pkgs/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+Author Information	roles/virtualbox/README.md	/^Author Information$/;"	s	language:Markdown	chapter:Role Name
+AutoStart {{ network.name }} network	roles/unused/libvirt/tasks/network.yml	/^- name: AutoStart {{ network.name }} network$/;"	p	language:AnsiblePlaybook
+AutoStart {{ pool.name }} pool	roles/unused/libvirt/tasks/dir_pool.yml	/^- name: AutoStart {{ pool.name }} pool$/;"	p	language:AnsiblePlaybook
+Binary	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1669460116" LAST_MODIFIED="1670241353">Binary<\/H3>$/;"	j	language:HTML
+Bookmarks	playbooks/endpoint/to_sort/files/bookmarks.html	/^<TITLE>Bookmarks<\/TITLE>$/;"	j	language:HTML
+Bookmarks Menu	playbooks/endpoint/to_sort/files/bookmarks.html	/^<H1>Bookmarks Menu<\/H1>$/;"	h	language:HTML
+Bookmarks Toolbar	playbooks/endpoint/to_sort/files/bookmarks.html	/^    <DT><H3 ADD_DATE="1640617910" LAST_MODIFIED="1670241359" PERSONAL_TOOLBAR_FOLDER="true">Book/;"	j	language:HTML
+Boxes	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1666626320" LAST_MODIFIED="1666626464">Boxes<\/H3>$/;"	j	language:HTML
+CertValidityDays	playbooks/windows/scripts/winrm.ps1	/^    [int]$CertValidityDays = 1095,$/;"	v	language:PowerShell
+Check ca_crlnumber	roles/unused/pki/tasks/create-structure.yml	/^- name: Check ca_crlnumber$/;"	p	language:AnsiblePlaybook
+Check ca_database	roles/unused/pki/tasks/create-structure.yml	/^- name: Check ca_database$/;"	p	language:AnsiblePlaybook
+Check ca_serial	roles/unused/pki/tasks/create-structure.yml	/^- name: Check ca_serial$/;"	p	language:AnsiblePlaybook
+Check if PostgreSQL database is initialized.	roles/pgsql/tasks/init.yml	/^- name: Check if PostgreSQL database is initialized.$/;"	p	language:AnsiblePlaybook
+Check if a reboot is needed on all servers	roles/update-pkgs/tasks/Ubuntu.yml	/^- name: Check if a reboot is needed on all servers$/;"	p	language:AnsiblePlaybook
+Check if intermediate certificate file exist	playbooks/endpoint/to_sort/certs_creator/_haproxy-cert.yml	/^- name: Check if intermediate certificate file exist$/;"	p	language:AnsiblePlaybook
+Check if intermediate certificate file exist	roles/unused/haproxy/tasks/tls.yml	/^- name: Check if intermediate certificate file exist$/;"	p	language:AnsiblePlaybook
+Check if intermediate certificate file exist	roles/unused/pki/tasks/intermediate-create-csr.yml	/^- name: Check if intermediate certificate file exist$/;"	p	language:AnsiblePlaybook
+Check if root certificate file exist	roles/unused/pki/tasks/root-create-cert.yml	/^- name: Check if root certificate file exist$/;"	p	language:AnsiblePlaybook
+Cleanup	playbooks/windows/scripts/cleanup.ps1	/^Function Cleanup { $/;"	f	language:PowerShell
+Configure "{{ __libvirt_driver.key }}"	roles/unused/libvirt/tasks/config_driver.yml	/^- name: Configure "{{ __libvirt_driver.key }}"$/;"	p	language:AnsiblePlaybook
+Configure Locking Daemon	roles/unused/libvirt/tasks/config.yml	/^- name: Configure Locking Daemon$/;"	p	language:AnsiblePlaybook
+Configure Logging Daemon	roles/unused/libvirt/tasks/config.yml	/^- name: Configure Logging Daemon$/;"	p	language:AnsiblePlaybook
+Configure Proxy Daemon	roles/unused/libvirt/tasks/config.yml	/^- name: Configure Proxy Daemon$/;"	p	language:AnsiblePlaybook
+Configure global settings.	roles/pgsql/tasks/config.yml	/^- name: Configure global settings.$/;"	p	language:AnsiblePlaybook
+Configure host based authentication (if entries are configured).	roles/pgsql/tasks/config.yml	/^- name: Configure host based authentication (if entries are configured).$/;"	p	language:AnsiblePlaybook
+Converge	roles/gen-locale/molecule/default/converge.yml	/^- name: Converge$/;"	p	language:AnsiblePlaybook
+Copy HAProxy configuration in place.	roles/unused/haproxy/tasks/main.yml	/^- name: Copy HAProxy configuration in place.$/;"	p	language:AnsiblePlaybook
+Copy base config as model	roles/nordvpn/tasks/main.yml	/^- name: Copy base config as model$/;"	p	language:AnsiblePlaybook
+Copy csr on ca	roles/unused/pki-request-cert/tasks/main.yml	/^- name: Copy csr on ca$/;"	p	language:AnsiblePlaybook
+Copy csr readable by everyone	roles/unused/pki-request-cert/tasks/main.yml	/^- name: Copy csr readable by everyone$/;"	p	language:AnsiblePlaybook
+Copy csrs to signed_csr	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Copy csrs to signed_csr$/;"	p	language:AnsiblePlaybook
+Copy custom	roles/grub/tasks/main.yml	/^- name: Copy custom$/;"	p	language:AnsiblePlaybook
+Copy fonts	roles/grub/tasks/main.yml	/^- name: Copy fonts$/;"	p	language:AnsiblePlaybook
+Copy issue file	roles/opensshd/tasks/main.yml	/^- name: Copy issue file$/;"	p	language:AnsiblePlaybook
+Copy nord.sh	roles/nordvpn/tasks/main.yml	/^- name: Copy nord.sh$/;"	p	language:AnsiblePlaybook
+Copy nordvpn resolv.conf	roles/nordvpn/tasks/main.yml	/^- name: Copy nordvpn resolv.conf$/;"	p	language:AnsiblePlaybook
+Copy std zone files	roles/unused/dns-server/tasks/ubuntu.yml	/^- name: Copy std zone files$/;"	p	language:AnsiblePlaybook
+Copy theme images	roles/grub/tasks/main.yml	/^- name: Copy theme images$/;"	p	language:AnsiblePlaybook
+Copy theme.txt	roles/grub/tasks/main.yml	/^- name: Copy theme.txt $/;"	p	language:AnsiblePlaybook
+Create .ansible.cfg	roles/ansible/tasks/main.yml	/^- name: Create .ansible.cfg$/;"	p	language:AnsiblePlaybook
+Create .d config dir	roles/minidlna/tasks/main.yml	/^- name: Create .d config dir$/;"	p	language:AnsiblePlaybook
+Create /etc/docker	roles/docker/tasks/main.yml	/^- name: Create \/etc\/docker$/;"	p	language:AnsiblePlaybook
+Create AUR directory	roles/pacman/tasks/main.yml	/^- name: Create AUR directory$/;"	p	language:AnsiblePlaybook
+Create CA crlnumber	roles/unused/pki/tasks/create-structure.yml	/^- name: Create CA crlnumber$/;"	p	language:AnsiblePlaybook
+Create CA directories	roles/unused/pki/tasks/create-structure.yml	/^- name: Create CA directories$/;"	p	language:AnsiblePlaybook
+Create CA serial	roles/unused/pki/tasks/create-structure.yml	/^- name: Create CA serial$/;"	p	language:AnsiblePlaybook
+Create Create modules config	roles/rsyncd/tasks/main.yml	/^- name: Create Create modules config$/;"	p	language:AnsiblePlaybook
+Create Exchange directory	roles/ansible/tasks/main.yml	/^- name: Create Exchange directory$/;"	p	language:AnsiblePlaybook
+Create PK	roles/unused/pki-request-cert/tasks/main.yml	/^- name: Create PK$/;"	p	language:AnsiblePlaybook
+Create TLS ca dir	roles/unused/libvirt/tasks/tls.yml	/^- name: Create TLS ca dir$/;"	p	language:AnsiblePlaybook
+Create TLS cert dir	roles/unused/libvirt/tasks/tls.yml	/^- name: Create TLS cert dir$/;"	p	language:AnsiblePlaybook
+Create TLS certificate	playbooks/endpoint/to_sort/certs_creator/haproxy-cert.yml	/^- name: Create TLS certificate$/;"	p	language:AnsiblePlaybook
+Create TLS certificate	playbooks/endpoint/to_sort/certs_creator/libvirt-cert.yml	/^- name: Create TLS certificate$/;"	p	language:AnsiblePlaybook
+Create TLS certificate	playbooks/endpoint/to_sort/certs_creator/test-terraform-cert.yml	/^- name: Create TLS certificate$/;"	p	language:AnsiblePlaybook
+Create TLS certificate	playbooks/endpoint/to_sort/hc_vault/hcv_create_cert.yml	/^- name: Create TLS certificate$/;"	p	language:AnsiblePlaybook
+Create TLS key dir	roles/unused/libvirt/tasks/tls.yml	/^- name: Create TLS key dir$/;"	p	language:AnsiblePlaybook
+Create TLS_client CSR	roles/unused/pki-request-cert/tasks/csrs/TLS_client_csr.yml	/^- name: Create TLS_client CSR$/;"	p	language:AnsiblePlaybook
+Create TLS_client_server CSR	roles/unused/pki-request-cert/tasks/csrs/TLS_client_server_csr.yml	/^- name: Create TLS_client_server CSR$/;"	p	language:AnsiblePlaybook
+Create TLS_libvirt CSR	roles/unused/pki-request-cert/tasks/csrs/TLS_libvirt_csr.yml	/^- name: Create TLS_libvirt CSR$/;"	p	language:AnsiblePlaybook
+Create TLS_server CSR	roles/unused/pki-request-cert/tasks/csrs/TLS_server_csr.yml	/^- name: Create TLS_server CSR$/;"	p	language:AnsiblePlaybook
+Create TLS_terraform CSR	roles/unused/pki-request-cert/tasks/csrs/TLS_terraform_csr.yml	/^- name: Create TLS_terraform CSR$/;"	p	language:AnsiblePlaybook
+Create base dir	roles/virtualbox/tasks/main.yml	/^- name: Create base dir$/;"	p	language:AnsiblePlaybook
+Create bundle files	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Create bundle files$/;"	p	language:AnsiblePlaybook
+Create ca templates	roles/unused/pki/tasks/create-configs.yml	/^- name: Create ca templates$/;"	p	language:AnsiblePlaybook
+Create ca-root-ca.cnf	roles/unused/pki/tasks/create-configs.yml	/^- name: Create ca-root-ca.cnf$/;"	p	language:AnsiblePlaybook
+Create cache dir	roles/minidlna/tasks/main.yml	/^- name: Create cache dir$/;"	p	language:AnsiblePlaybook
+Create cert directory form "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: Create cert directory form "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+Create chroot directory	roles/unused/haproxy/tasks/main.yml	/^- name: Create chroot directory$/;"	p	language:AnsiblePlaybook
+Create cleaner service	roles/rsyncd/tasks/main.yml	/^- name: Create cleaner service$/;"	p	language:AnsiblePlaybook
+Create cleaner timer	roles/rsyncd/tasks/main.yml	/^- name: Create cleaner timer$/;"	p	language:AnsiblePlaybook
+Create cluster rndc key	roles/unused/dns-server/tasks/main.yml	/^- name: Create cluster rndc key$/;"	p	language:AnsiblePlaybook
+Create config	roles/unused/dns-server/tasks/main.yml	/^- name: Create config$/;"	p	language:AnsiblePlaybook
+Create config directory	roles/rclone/tasks/main.yml	/^- name: Create config directory$/;"	p	language:AnsiblePlaybook
+Create config drop-in	roles/unused/vault/tasks/configure.yml	/^- name: Create config drop-in$/;"	p	language:AnsiblePlaybook
+Create crl.cnf	roles/unused/pki/tasks/create-configs.yml	/^- name: Create crl.cnf$/;"	p	language:AnsiblePlaybook
+Create csr	roles/unused/pki/tasks/intermediate-create-csr.yml	/^- name: Create csr$/;"	p	language:AnsiblePlaybook
+Create csr_template directories	roles/unused/pki/tasks/create-structure.yml	/^- name: Create csr_template directories$/;"	p	language:AnsiblePlaybook
+Create data base dir	roles/unused/vault/tasks/configure.yml	/^- name: Create data base dir$/;"	p	language:AnsiblePlaybook
+Create data dir	roles/minidlna/tasks/main.yml	/^- name: Create data dir$/;"	p	language:AnsiblePlaybook
+Create data dir	roles/unused/vault/tasks/configure.yml	/^- name: Create data dir$/;"	p	language:AnsiblePlaybook
+Create databases	roles/pgsql/tasks/main.yml	/^- name: Create databases$/;"	p	language:AnsiblePlaybook
+Create diff backup service	roles/rsync-backup/tasks/main.yml	/^- name: Create diff backup service$/;"	p	language:AnsiblePlaybook
+Create diff backup timer	roles/rsync-backup/tasks/main.yml	/^- name: Create diff backup timer$/;"	p	language:AnsiblePlaybook
+Create directories	roles/virtualbox/tasks/main.yml	/^- name: Create directories$/;"	p	language:AnsiblePlaybook
+Create dropIn directory	roles/rsyncd/tasks/main.yml	/^- name: Create dropIn directory$/;"	p	language:AnsiblePlaybook
+Create filter conf dir	roles/rsync-backup/tasks/main.yml	/^- name: Create filter conf dir$/;"	p	language:AnsiblePlaybook
+Create full backup service	roles/rsync-backup/tasks/main.yml	/^- name: Create full backup service$/;"	p	language:AnsiblePlaybook
+Create full backup timer	roles/rsync-backup/tasks/main.yml	/^- name: Create full backup timer$/;"	p	language:AnsiblePlaybook
+Create group	roles/minidlna/tasks/main.yml	/^- name: Create group$/;"	p	language:AnsiblePlaybook
+Create grub config file	roles/grub/tasks/main.yml	/^- name: Create grub config file$/;"	p	language:AnsiblePlaybook
+Create hooks directory	roles/pacman/tasks/main.yml	/^- name: Create hooks directory$/;"	p	language:AnsiblePlaybook
+Create identity CSR	roles/unused/pki-request-cert/tasks/csrs/identity_csr.yml	/^- name: Create identity CSR$/;"	p	language:AnsiblePlaybook
+Create key directory form "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: Create key directory form "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+Create key+file directory form "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: Create key+file directory form "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+Create local rndc key	roles/unused/dns-server/tasks/main.yml	/^- name: Create local rndc key$/;"	p	language:AnsiblePlaybook
+Create local zone files	roles/unused/dns-server/tasks/main.yml	/^- name: Create local zone files$/;"	p	language:AnsiblePlaybook
+Create local_dirs	roles/rclone-backup/tasks/main.yml	/^- name: Create local_dirs$/;"	p	language:AnsiblePlaybook
+Create log dir	roles/minidlna/tasks/main.yml	/^- name: Create log dir$/;"	p	language:AnsiblePlaybook
+Create log directory	roles/update-pkgs/tasks/Archlinux.yml	/^- name: Create log directory$/;"	p	language:AnsiblePlaybook
+Create modules directories	roles/rsyncd/tasks/main.yml	/^- name: Create modules directories$/;"	p	language:AnsiblePlaybook
+Create openssl-base.cnf	roles/unused/pki/tasks/create-configs.yml	/^- name: Create openssl-base.cnf$/;"	p	language:AnsiblePlaybook
+Create pgsql users	roles/pgsql/tasks/main.yml	/^- name: Create pgsql users$/;"	p	language:AnsiblePlaybook
+Create pgsql users postgresql_user	roles/unused/zabbix-server/tasks/main.yml	/^ name: Create pgsql users$/;"	p	language:AnsiblePlaybook
+Create req templates	roles/unused/pki/tasks/create-configs.yml	/^- name: Create req templates$/;"	p	language:AnsiblePlaybook
+Create req-intermediate-ca.cnf	roles/unused/pki/tasks/create-configs.yml	/^- name: Create req-intermediate-ca.cnf$/;"	p	language:AnsiblePlaybook
+Create rndc.conf	roles/unused/dns-server/tasks/main.yml	/^- name: Create rndc.conf$/;"	p	language:AnsiblePlaybook
+Create rndc.key	roles/unused/dns-server/tasks/main.yml	/^- name: Create rndc.key$/;"	p	language:AnsiblePlaybook
+Create root certificate	roles/unused/pki/tasks/root-create-cert.yml	/^- name: Create root certificate$/;"	p	language:AnsiblePlaybook
+Create root key directories	roles/unused/vault/tasks/main.yml	/^- name: Create root key directories$/;"	p	language:AnsiblePlaybook
+Create rsyncd.conf	roles/rsyncd/tasks/main.yml	/^- name: Create rsyncd.conf$/;"	p	language:AnsiblePlaybook
+Create service	roles/rclone-backup/tasks/main.yml	/^- name: Create service$/;"	p	language:AnsiblePlaybook
+Create sshd_config file	roles/opensshd/tasks/main.yml	/^- name: Create sshd_config file$/;"	p	language:AnsiblePlaybook
+Create timer	roles/rclone-backup/tasks/main.yml	/^- name: Create timer$/;"	p	language:AnsiblePlaybook
+Create unseal directories	roles/unused/vault/tasks/main.yml	/^- name: Create unseal directories$/;"	p	language:AnsiblePlaybook
+Create user	roles/minidlna/tasks/main.yml	/^- name: Create user$/;"	p	language:AnsiblePlaybook
+Create {{ network.name }} network	roles/unused/libvirt/tasks/network.yml	/^- name: Create {{ network.name }} network$/;"	p	language:AnsiblePlaybook
+Create {{ pool.name }} pool	roles/unused/libvirt/tasks/dir_pool.yml	/^- name: Create {{ pool.name }} pool$/;"	p	language:AnsiblePlaybook
+Create {{ pool.name }} pool dir	roles/unused/libvirt/tasks/dir_pool.yml	/^- name: Create {{ pool.name }} pool dir$/;"	p	language:AnsiblePlaybook
+CreateSelfSignedCert	playbooks/windows/scripts/winrm.ps1	/^    $CreateSelfSignedCert = $true,$/;"	v	language:PowerShell
+Createi CA database	roles/unused/pki/tasks/create-structure.yml	/^- name: Createi CA database$/;"	p	language:AnsiblePlaybook
+Delete /etc/vault.d/vault.env	roles/unused/vault/tasks/ubuntu.yml	/^- name: Delete \/etc\/vault.d\/vault.env$/;"	p	language:AnsiblePlaybook
+Delete /etc/vault.d/vault.hcl	roles/unused/vault/tasks/ubuntu.yml	/^- name: Delete \/etc\/vault.d\/vault.hcl$/;"	p	language:AnsiblePlaybook
+Delete /opt/vault/	roles/unused/vault/tasks/ubuntu.yml	/^- name: Delete \/opt\/vault\/$/;"	p	language:AnsiblePlaybook
+Delete csr	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Delete csr$/;"	p	language:AnsiblePlaybook
+Delete obsolete modules	roles/rsyncd/tasks/main.yml	/^- name: Delete obsolete modules$/;"	p	language:AnsiblePlaybook
+Dependencies	role_skeleton/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/ansible/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/aur-install/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/blackarch/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3
+Dependencies	roles/bluetooth-headset/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/cups/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/docker/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/gen-locale/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/grub/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/lxde/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/minidlna/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/mlocate/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/nordvpn/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/opensshd/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/pacman/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/pgsql/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/rclone-backup/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/rclone/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/reflector/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/rsync-backup/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/rsyncd/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/sane/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/time-sync/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/ufw/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/dns-server/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/elasticsearch/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/haproxy/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/libvirt/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/pki-get-signed/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/pki-request-cert/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/pki-sign-csr/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/pki/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/trust-certs/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/vault/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/zabbix-client/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/unused/zabbix-server/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/update-pkgs/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+Dependencies	roles/virtualbox/README.md	/^Dependencies$/;"	s	language:Markdown	chapter:Role Name
+DisableBasicAuth	playbooks/windows/scripts/winrm.ps1	/^    [switch]$DisableBasicAuth = $false,$/;"	v	language:PowerShell
+Dump upgraded list into file	roles/update-pkgs/tasks/Archlinux.yml	/^- name: Dump upgraded list into file$/;"	p	language:AnsiblePlaybook
+Enable systemd-timesyncd	roles/time-sync/handlers/main.yml	/^- name: "Enable systemd-timesyncd"$/;"	p	language:AnsiblePlaybook
+Enable-GlobalHttpFirewallAccess	playbooks/windows/scripts/winrm.ps1	/^Function Enable-GlobalHttpFirewallAccess$/;"	f	language:PowerShell
+Ensure HAProxy is started and enabled on boot.	roles/unused/haproxy/tasks/main.yml	/^- name: Ensure HAProxy is started and enabled on boot.$/;"	p	language:AnsiblePlaybook
+Ensure PostgreSQL Python libraries are installed.	roles/pgsql/tasks/ubuntu.yml	/^- name: Ensure PostgreSQL Python libraries are installed.$/;"	p	language:AnsiblePlaybook
+Ensure PostgreSQL data directory exists.	roles/pgsql/tasks/init.yml	/^- name: Ensure PostgreSQL data directory exists.$/;"	p	language:AnsiblePlaybook
+Ensure PostgreSQL database is initialized.	roles/pgsql/tasks/init.yml	/^- name: Ensure PostgreSQL database is initialized.$/;"	p	language:AnsiblePlaybook
+Ensure PostgreSQL is started and enabled on boot.	roles/pgsql/tasks/config.yml	/^- name: Ensure PostgreSQL is started and enabled on boot.$/;"	p	language:AnsiblePlaybook
+Ensure PostgreSQL packages are installed.	roles/pgsql/tasks/ubuntu.yml	/^- name: Ensure PostgreSQL packages are installed.$/;"	p	language:AnsiblePlaybook
+Ensure PostgreSQL unix socket dirs exist.	roles/pgsql/tasks/config.yml	/^- name: Ensure PostgreSQL unix socket dirs exist.$/;"	p	language:AnsiblePlaybook
+Ensure additional dependencies are installed (on Ubuntu >= 20.04).	roles/docker/tasks/ubuntu.yml	/^- name: Ensure additional dependencies are installed (on Ubuntu >= 20.04).$/;"	p	language:AnsiblePlaybook
+Ensure curl is present (on older systems without SNI).	roles/docker/tasks/ubuntu.yml	/^- name: Ensure curl is present (on older systems without SNI).$/;"	p	language:AnsiblePlaybook
+Ensure dependencies are installed.	roles/docker/tasks/ubuntu.yml	/^- name: Ensure dependencies are installed.$/;"	p	language:AnsiblePlaybook
+Ensure entry	roles/grub/tasks/main.yml	/^- name: Ensure entry$/;"	p	language:AnsiblePlaybook
+Ensure old versions of Docker are not installed.	roles/docker/tasks/ubuntu.yml	/^- name: Ensure old versions of Docker are not installed.$/;"	p	language:AnsiblePlaybook
+ErrorActionPreference	playbooks/windows/scripts/winrm.ps1	/^$ErrorActionPreference = "Stop"$/;"	v	language:PowerShell
+EventSource	playbooks/windows/scripts/winrm.ps1	/^    $EventSource = "Powershell CLI"$/;"	v	language:PowerShell
+EventSource	playbooks/windows/scripts/winrm.ps1	/^$EventSource = $MyInvocation.MyCommand.Name$/;"	v	language:PowerShell
+Example Playbook	role_skeleton/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/ansible/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/aur-install/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/blackarch/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3
+Example Playbook	roles/bluetooth-headset/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/cups/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/docker/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/gen-locale/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/grub/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/lxde/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/minidlna/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/mlocate/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/nordvpn/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/opensshd/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/pacman/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/pgsql/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/rclone-backup/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/rclone/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/reflector/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/rsync-backup/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/rsyncd/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/sane/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/time-sync/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/ufw/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/dns-server/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/elasticsearch/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/haproxy/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/libvirt/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/pki-get-signed/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/pki-request-cert/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/pki-sign-csr/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/pki/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/trust-certs/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/vault/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/zabbix-client/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/unused/zabbix-server/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/update-pkgs/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Example Playbook	roles/virtualbox/README.md	/^Example Playbook$/;"	s	language:Markdown	chapter:Role Name
+Extract ovpn configs	roles/nordvpn/tasks/main.yml	/^- name: Extract ovpn configs$/;"	p	language:AnsiblePlaybook
+Finish users config	roles/pgsql/tasks/main.yml	/^- name: Finish users config $/;"	p	language:AnsiblePlaybook
+Firefox plugins	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1647205979" LAST_MODIFIED="1667460203">Firefox plugins<\/H3>$/;"	j	language:HTML
+Forensics	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1668314501" LAST_MODIFIED="1669460161">Forensics<\/H3>$/;"	j	language:HTML
+Generate CA	roles/unused/libvirt/tasks/tls.yml	/^- name: Generate CA$/;"	p	language:AnsiblePlaybook
+Generate TLS	roles/unused/vault/tasks/configure.yml	/^- name: Generate TLS$/;"	p	language:AnsiblePlaybook
+Generate cert	roles/unused/libvirt/tasks/tls.yml	/^- name: Generate cert$/;"	p	language:AnsiblePlaybook
+Generate csr for "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: Generate csr for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+Generate locale	roles/gen-locale/handlers/main.yml	/^- name: Generate locale$/;"	p	language:AnsiblePlaybook
+Generate private key for "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: Generate private key for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+Generate ssh key for rclone keepass	roles/rclone-backup/tasks/main.yml	/^- name: Generate ssh key for rclone keepass$/;"	p	language:AnsiblePlaybook
+Get back cert bundle in csr dir	roles/unused/pki/tasks/intermediate-get-cert.yml	/^- name: Get back cert bundle in csr dir$/;"	p	language:AnsiblePlaybook
+Get back cert bundle in tmp dir	roles/unused/pki-get-signed/tasks/main.yml	/^- name: Get back cert bundle in tmp dir$/;"	p	language:AnsiblePlaybook
+Get back cert in csr dir	roles/unused/pki/tasks/intermediate-get-cert.yml	/^- name: Get back cert in csr dir$/;"	p	language:AnsiblePlaybook
+Get back cert in tmp dir	roles/unused/pki-get-signed/tasks/main.yml	/^- name: Get back cert in tmp dir$/;"	p	language:AnsiblePlaybook
+Get certificate	roles/unused/trust-certs/tasks/process_ca.yml	/^- name: Get certificate$/;"	p	language:AnsiblePlaybook
+Get init results	roles/unused/vault/tasks/main.yml	/^- name: Get init results$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/grub/tasks/asserts.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/minidlna/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/opensshd/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/pacman/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/rsyncd/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/unused/dns-server/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/unused/haproxy/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/unused/vault/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get installed packages	roles/unused/zabbix-client/tasks/main.yml	/^- name: Get installed packages$/;"	p	language:AnsiblePlaybook
+Get localectl	roles/lxde/tasks/main.yml	/^- name: Get localectl$/;"	p	language:AnsiblePlaybook
+Get ovpn.zip	roles/nordvpn/tasks/main.yml	/^- name: Get ovpn.zip$/;"	p	language:AnsiblePlaybook
+Get timezone	roles/time-sync/tasks/main.yml	/^- name: Get timezone$/;"	p	language:AnsiblePlaybook
+Get {{ network.name }} network status	roles/unused/libvirt/tasks/network.yml	/^- name: Get {{ network.name }} network status$/;"	p	language:AnsiblePlaybook
+Get {{ pool.name }} pool status	roles/unused/libvirt/tasks/dir_pool.yml	/^- name: Get {{ pool.name }} pool status$/;"	p	language:AnsiblePlaybook
+HEREDOC	roles/nordvpn/files/nordvpn.sh	/^   cat << HEREDOC$/;"	h	language:Sh
+HEREDOC	roles/rclone-backup/files/rclone-backup.sh	/^   cat << HEREDOC$/;"	h	language:Sh
+HEREDOC	roles/rclone-backup/files/rclone-restore.sh	/^   cat << HEREDOC$/;"	h	language:Sh
+Include "csrs/{{ _csr_template_name }}_csr.yml"	roles/unused/pki-request-cert/tasks/main.yml	/^- name: Include "csrs\/{{ _csr_template_name }}_csr.yml" $/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	role_skeleton/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/grub/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/lxde/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/mlocate/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/nordvpn/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/opensshd/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/unused/zabbix-client/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables	roles/virtualbox/tasks/main.yml	/^- name: Include OS-specific variables$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/ansible/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/bluetooth-headset/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/cups/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/grub/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/lxde/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/minidlna/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/opensshd/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/pgsql/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/rclone-backup/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/rclone/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/reflector/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/rsync-backup/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/rsyncd/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/sane/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/unused/dns-server/tasks/main.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/unused/haproxy/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/unused/libvirt/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Archlinux)	roles/unused/vault/tasks/variables.yml	/^- name: Include OS-specific variables (Archlinux)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/ansible/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/bluetooth-headset/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/cups/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/grub/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/lxde/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/minidlna/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/opensshd/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/pgsql/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/rclone-backup/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/rclone/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/reflector/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/rsync-backup/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/rsyncd/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/sane/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/unused/dns-server/tasks/main.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/unused/haproxy/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/unused/libvirt/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include OS-specific variables (Ubuntu)	roles/unused/vault/tasks/variables.yml	/^- name: Include OS-specific variables (Ubuntu)$/;"	p	language:AnsiblePlaybook
+Include arch	roles/unused/pki/tasks/main.yml	/^- name: Include arch$/;"	p	language:AnsiblePlaybook
+Include asserts	roles/unused/pki/tasks/main.yml	/^- name: Include asserts$/;"	p	language:AnsiblePlaybook
+Include asserts-intermediate	roles/unused/pki/tasks/main.yml	/^- name: Include asserts-intermediate$/;"	p	language:AnsiblePlaybook
+Include asserts-root	roles/unused/pki/tasks/main.yml	/^- name: Include asserts-root$/;"	p	language:AnsiblePlaybook
+Include ca_sign	roles/unused/pki-sign-csr/tasks/main.yml	/^- name: Include ca_sign$/;"	p	language:AnsiblePlaybook
+Include common variables	role_skeleton/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/ansible/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/bluetooth-headset/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/cups/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/grub/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/grub/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/lxde/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/lxde/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/minidlna/tasks/variables.yml	/^- name: Include common variables $/;"	p	language:AnsiblePlaybook
+Include common variables	roles/mlocate/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/nordvpn/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/opensshd/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/opensshd/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/pgsql/tasks/variables.yml	/^- name: Include common variables $/;"	p	language:AnsiblePlaybook
+Include common variables	roles/rclone-backup/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/rclone/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/reflector/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/rsync-backup/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/rsyncd/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/sane/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/unused/dns-server/tasks/main.yml	/^- name: Include common variables $/;"	p	language:AnsiblePlaybook
+Include common variables	roles/unused/haproxy/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/unused/libvirt/tasks/variables.yml	/^- name: Include common variables $/;"	p	language:AnsiblePlaybook
+Include common variables	roles/unused/vault/tasks/variables.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/unused/zabbix-client/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include common variables	roles/virtualbox/tasks/main.yml	/^- name: Include common variables$/;"	p	language:AnsiblePlaybook
+Include config	roles/unused/libvirt/tasks/main.yml	/^- name: Include config$/;"	p	language:AnsiblePlaybook
+Include create-config	roles/unused/pki/tasks/main.yml	/^- name: Include create-config$/;"	p	language:AnsiblePlaybook
+Include create-structure	roles/unused/pki/tasks/main.yml	/^- name: Include create-structure$/;"	p	language:AnsiblePlaybook
+Include intermediate-create-csr	roles/unused/pki/tasks/main.yml	/^- name: Include intermediate-create-csr$/;"	p	language:AnsiblePlaybook
+Include intermediate-get-cert	roles/unused/pki/tasks/main.yml	/^- name: Include intermediate-get-cert$/;"	p	language:AnsiblePlaybook
+Include root-create-cert	roles/unused/pki/tasks/main.yml	/^- name: Include root-create-cert$/;"	p	language:AnsiblePlaybook
+Include root-sign-csr	roles/unused/pki/tasks/main.yml	/^- name: Include root-sign-csr$/;"	p	language:AnsiblePlaybook
+Include tls	roles/unused/libvirt/tasks/main.yml	/^- name: Include tls$/;"	p	language:AnsiblePlaybook
+Include ubuntu	roles/unused/pki/tasks/main.yml	/^- name: Include ubuntu$/;"	p	language:AnsiblePlaybook
+Install	role_skeleton/tasks/Archlinux.yml	/^- name: Install$/;"	p	language:AnsiblePlaybook
+Install AUR Archlinux packages {{ item.name }}	playbooks/install_aur_task.yml	/^- name: Install AUR Archlinux packages {{ item.name }}$/;"	p	language:AnsiblePlaybook
+Install BlackArch	roles/blackarch/tasks/main.yml	/^- name: Install BlackArch$/;"	p	language:AnsiblePlaybook
+Install Docker.	roles/docker/tasks/ubuntu.yml	/^- name: Install Docker.$/;"	p	language:AnsiblePlaybook
+Install Elasticsearch.	roles/unused/elasticsearch/tasks/ubuntu.yml	/^- name: Install Elasticsearch.$/;"	p	language:AnsiblePlaybook
+Install OpenJDK	roles/unused/elasticsearch/tasks/arch.yml	/^- name: Install OpenJDK$/;"	p	language:AnsiblePlaybook
+Install Rsync	roles/rsyncd/tasks/arch.yml	/^- name: Install Rsync$/;"	p	language:AnsiblePlaybook
+Install backup script	roles/rclone-backup/tasks/main.yml	/^- name: Install backup script$/;"	p	language:AnsiblePlaybook
+Install bind lastest	roles/unused/dns-server/tasks/arch.yml	/^- name: Install bind lastest$/;"	p	language:AnsiblePlaybook
+Install config	roles/unused/vault/tasks/configure.yml	/^- name: Install config$/;"	p	language:AnsiblePlaybook
+Install cron	roles/rclone-backup/tasks/main.yml	/^- name: Install cron$/;"	p	language:AnsiblePlaybook
+Install cups	roles/cups/tasks/ubuntu.yml	/^- name: Install cups$/;"	p	language:AnsiblePlaybook
+Install daemon template	roles/docker/tasks/main.yml	/^- name: Install daemon template$/;"	p	language:AnsiblePlaybook
+Install env	roles/unused/vault/tasks/configure.yml	/^- name: Install env$/;"	p	language:AnsiblePlaybook
+Install haproxy	roles/unused/haproxy/tasks/arch.yml	/^- name: Install haproxy$/;"	p	language:AnsiblePlaybook
+Install haproxy	roles/unused/haproxy/tasks/ubuntu.yml	/^- name: Install haproxy$/;"	p	language:AnsiblePlaybook
+Install hashicorp vault	roles/unused/vault/tasks/ubuntu.yml	/^- name: Install hashicorp vault$/;"	p	language:AnsiblePlaybook
+Install keepassxc	roles/rclone-backup/tasks/arch.yml	/^- name: Install keepassxc$/;"	p	language:AnsiblePlaybook
+Install keepassxc	roles/rclone-backup/tasks/ubuntu.yml	/^- name: Install keepassxc$/;"	p	language:AnsiblePlaybook
+Install login/password file	roles/nordvpn/tasks/main.yml	/^- name: Install login\/password file$/;"	p	language:AnsiblePlaybook
+Install minidlna	roles/minidlna/tasks/arch.yml	/^- name: Install minidlna$/;"	p	language:AnsiblePlaybook
+Install minidlna config	roles/minidlna/tasks/main.yml	/^- name: Install minidlna config$/;"	p	language:AnsiblePlaybook
+Install minidlna run as config	roles/minidlna/tasks/main.yml	/^- name: Install minidlna run as config$/;"	p	language:AnsiblePlaybook
+Install mlocate	roles/mlocate/tasks/Archlinux.yml	/^- name: Install mlocate$/;"	p	language:AnsiblePlaybook
+Install mlocate	roles/mlocate/tasks/Ubuntu.yml	/^- name: Install mlocate$/;"	p	language:AnsiblePlaybook
+Install mlocate hook	roles/pacman/tasks/main.yml	/^- name: Install mlocate hook$/;"	p	language:AnsiblePlaybook
+Install openssl	roles/unused/pki/tasks/ubuntu.yml	/^- name: Install openssl$/;"	p	language:AnsiblePlaybook
+Install packages	roles/ansible/tasks/arch.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/bluetooth-headset/tasks/arch.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/cups/tasks/arch.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/lxde/tasks/Archlinux.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/nordvpn/tasks/Archlinux.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/pacman/tasks/main.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/sane/tasks/arch.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/sane/tasks/ubuntu.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/unused/libvirt/tasks/arch.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install packages	roles/unused/libvirt/tasks/ubuntu.yml	/^- name: Install packages$/;"	p	language:AnsiblePlaybook
+Install pgsql lastest	roles/pgsql/tasks/arch.yml	/^- name: Install pgsql lastest$/;"	p	language:AnsiblePlaybook
+Install rclone	roles/rclone/tasks/arch.yml	/^- name: Install rclone$/;"	p	language:AnsiblePlaybook
+Install rclone	roles/rclone/tasks/ubuntu.yml	/^- name: Install rclone $/;"	p	language:AnsiblePlaybook
+Install reboot-required hook	roles/pacman/tasks/main.yml	/^- name: Install reboot-required hook$/;"	p	language:AnsiblePlaybook
+Install reboot-required script	roles/pacman/tasks/main.yml	/^- name: Install reboot-required script$/;"	p	language:AnsiblePlaybook
+Install reflector	roles/reflector/tasks/main.yml	/^- name: Install reflector$/;"	p	language:AnsiblePlaybook
+Install retore script	roles/rclone-backup/tasks/main.yml	/^- name: Install retore script$/;"	p	language:AnsiblePlaybook
+Install rsync	roles/rsyncd/tasks/ubuntu.yml	/^- name: Install rsync$/;"	p	language:AnsiblePlaybook
+Install script	roles/rsync-backup/tasks/main.yml	/^- name: Install script$/;"	p	language:AnsiblePlaybook
+Install script	roles/rsyncd/tasks/main.yml	/^- name: Install script$/;"	p	language:AnsiblePlaybook
+Install socket service	roles/docker/tasks/main.yml	/^- name: Install socket service$/;"	p	language:AnsiblePlaybook
+Install timesyncd config	roles/time-sync/tasks/main.yml	/^- name: Install timesyncd config$/;"	p	language:AnsiblePlaybook
+Install to do	roles/minidlna/tasks/ubuntu.yml	/^- name: Install to do$/;"	p	language:AnsiblePlaybook
+Install to do	roles/unused/dns-server/tasks/ubuntu.yml	/^- name: Install to do$/;"	p	language:AnsiblePlaybook
+Install to do	roles/unused/zabbix-server/tasks/ubuntu.yml	/^- name: Install to do$/;"	p	language:AnsiblePlaybook
+Install ufw	roles/ufw/tasks/Archlinux.yml	/^- name: "Install ufw"$/;"	p	language:AnsiblePlaybook
+Install ufw	roles/ufw/tasks/Ubuntu.yml	/^- name: "Install ufw"$/;"	p	language:AnsiblePlaybook
+Install vault lastest	roles/unused/vault/tasks/arch.yml	/^- name: Install vault lastest$/;"	p	language:AnsiblePlaybook
+Install vault.service	roles/unused/vault/tasks/configure.yml	/^- name: Install vault.service$/;"	p	language:AnsiblePlaybook
+Install virtualbox	roles/virtualbox/tasks/Archlinux.yml	/^- name: Install virtualbox$/;"	p	language:AnsiblePlaybook
+Install vm service	roles/virtualbox/tasks/main.yml	/^- name: Install vm service$/;"	p	language:AnsiblePlaybook
+Install zabbix agent	roles/unused/zabbix-client/tasks/Ubuntu.yml	/^- name: Install zabbix agent$/;"	p	language:AnsiblePlaybook
+Install zabbix server	roles/unused/zabbix-server/tasks/arch.yml	/^- name: Install zabbix server$/;"	p	language:AnsiblePlaybook
+Insure systemd-timesyncd install	roles/time-sync/tasks/Ubuntu.yml	/^- name: Insure systemd-timesyncd install$/;"	p	language:AnsiblePlaybook
+Insure zabbix agent is started	roles/unused/zabbix-client/handlers/main.yml	/^- name: Insure zabbix agent is started$/;"	p	language:AnsiblePlaybook
+Kali.yml	role_skeleton/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118739
+Kali.yml	role_skeleton/vars/Kali.yml	1;"	F	language:Yaml	epoch:1676118739
+Kali.yml	roles/grub/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118746
+Kali.yml	roles/grub/vars/Kali.yml	1;"	F	language:Yaml	epoch:1676118746
+Kali.yml	roles/mlocate/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118739
+Kali.yml	roles/mlocate/vars/Kali.yml	1;"	F	language:Yaml	epoch:1676118739
+Kali.yml	roles/nordvpn/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118752
+Kali.yml	roles/nordvpn/vars/Kali.yml	1;"	F	language:Yaml	epoch:1676118751
+Kali.yml	roles/opensshd/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118740
+Kali.yml	roles/opensshd/vars/Kali.yml	1;"	F	language:Yaml	epoch:1676118740
+Kali.yml	roles/time-sync/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118745
+Kali.yml	roles/ufw/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118746
+Kali.yml	roles/unused/zabbix-client/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118745
+Kali.yml	roles/unused/zabbix-client/vars/Kali.yml	1;"	F	language:Yaml	epoch:1676118745
+Kali.yml	roles/update-pkgs/tasks/Kali.yml	1;"	F	language:Yaml	epoch:1676118751
+License	role_skeleton/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/ansible/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/aur-install/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/blackarch/README.md	/^License$/;"	s	language:Markdown	chapter:pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3
+License	roles/bluetooth-headset/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/cups/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/docker/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/gen-locale/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/grub/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/lxde/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/minidlna/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/mlocate/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/nordvpn/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/opensshd/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/pacman/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/pgsql/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/rclone-backup/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/rclone/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/reflector/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/rsync-backup/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/rsyncd/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/sane/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/time-sync/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/ufw/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/dns-server/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/elasticsearch/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/haproxy/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/libvirt/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/pki-get-signed/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/pki-request-cert/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/pki-sign-csr/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/pki/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/trust-certs/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/vault/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/zabbix-client/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/unused/zabbix-server/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/update-pkgs/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+License	roles/virtualbox/README.md	/^License$/;"	s	language:Markdown	chapter:Role Name
+List Native Users	roles/unused/elasticsearch/tasks/main.yml	/^- name: List Native Users$/;"	p	language:AnsiblePlaybook
+List all the csr to sign	roles/unused/pki/tasks/root-sign-csr.yml	/^- name: List all the csr to sign$/;"	p	language:AnsiblePlaybook
+List all the csr to sign with {{ template }}	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: List all the csr to sign with {{ template }}$/;"	p	language:AnsiblePlaybook
+List files to delete	roles/unused/dns-server/tasks/ubuntu.yml	/^- name: List files to delete$/;"	p	language:AnsiblePlaybook
+Makefile	Makefile	1;"	F	language:Make	epoch:1676118737
+Manage certificates	roles/unused/haproxy/tasks/main.yml	/^- name: Manage certificates$/;"	p	language:AnsiblePlaybook
+Move cert bundle in certs dir	roles/unused/pki/tasks/intermediate-get-cert.yml	/^- name: Move cert bundle in certs dir$/;"	p	language:AnsiblePlaybook
+Move cert in certs dir	roles/unused/pki/tasks/intermediate-get-cert.yml	/^- name: Move cert in certs dir$/;"	p	language:AnsiblePlaybook
+Movies	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1666626509" LAST_MODIFIED="1667460359">Movies<\/H3>$/;"	j	language:HTML
+Mozilla Firefox	playbooks/endpoint/to_sort/files/bookmarks.html	/^    <DT><H3 ADD_DATE="1640617911" LAST_MODIFIED="1640617911">Mozilla Firefox<\/H3>$/;"	j	language:HTML
+Name	playbooks/windows/scripts/sysprep.ps1	/^$Name         = 'reinitVM'$/;"	v	language:PowerShell
+New-LegacySelfSignedCert	playbooks/windows/scripts/winrm.ps1	/^Function New-LegacySelfSignedCert$/;"	f	language:PowerShell
+OS	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1667460341" LAST_MODIFIED="1667460355">OS<\/H3>$/;"	j	language:HTML
+Open firewall ports	roles/minidlna/tasks/main.yml	/^- name: Open firewall ports$/;"	p	language:AnsiblePlaybook
+Open firewall ports	roles/unused/vault/tasks/main.yml	/^- name: Open firewall ports$/;"	p	language:AnsiblePlaybook
+Parse 'X11 Layout' from current locale	roles/lxde/tasks/main.yml	/^- name: Parse 'X11 Layout' from current locale$/;"	p	language:AnsiblePlaybook
+Privilege Escalation	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647228759" LAST_MODIFIED="1667460187">Privilege Escalation<\/H3>$/;"	j	language:HTML
+README.md	role_skeleton/README.md	1;"	F	language:Markdown	epoch:1676118739
+README.md	roles/ansible/README.md	1;"	F	language:Markdown	epoch:1676118752
+README.md	roles/aur-install/README.md	1;"	F	language:Markdown	epoch:1676118740
+README.md	roles/blackarch/README.md	1;"	F	language:Markdown	epoch:1676118745
+README.md	roles/bluetooth-headset/README.md	1;"	F	language:Markdown	epoch:1676118740
+README.md	roles/cups/README.md	1;"	F	language:Markdown	epoch:1676118751
+README.md	roles/docker/README.md	1;"	F	language:Markdown	epoch:1676118750
+README.md	roles/gen-locale/README.md	1;"	F	language:Markdown	epoch:1676118739
+README.md	roles/grub/README.md	1;"	F	language:Markdown	epoch:1676118746
+README.md	roles/lxde/README.md	1;"	F	language:Markdown	epoch:1676118741
+README.md	roles/minidlna/README.md	1;"	F	language:Markdown	epoch:1676118739
+README.md	roles/mlocate/README.md	1;"	F	language:Markdown	epoch:1676118739
+README.md	roles/nordvpn/README.md	1;"	F	language:Markdown	epoch:1676118751
+README.md	roles/opensshd/README.md	1;"	F	language:Markdown	epoch:1676118740
+README.md	roles/pacman/README.md	1;"	F	language:Markdown	epoch:1676118750
+README.md	roles/pgsql/README.md	1;"	F	language:Markdown	epoch:1676118740
+README.md	roles/rclone-backup/README.md	1;"	F	language:Markdown	epoch:1676118741
+README.md	roles/rclone/README.md	1;"	F	language:Markdown	epoch:1676118749
+README.md	roles/reflector/README.md	1;"	F	language:Markdown	epoch:1676118740
+README.md	roles/rsync-backup/README.md	1;"	F	language:Markdown	epoch:1676118741
+README.md	roles/rsyncd/README.md	1;"	F	language:Markdown	epoch:1676118748
+README.md	roles/sane/README.md	1;"	F	language:Markdown	epoch:1676118746
+README.md	roles/time-sync/README.md	1;"	F	language:Markdown	epoch:1676118745
+README.md	roles/ufw/README.md	1;"	F	language:Markdown	epoch:1676118746
+README.md	roles/unused/dns-server/README.md	1;"	F	language:Markdown	epoch:1676118743
+README.md	roles/unused/elasticsearch/README.md	1;"	F	language:Markdown	epoch:1676118742
+README.md	roles/unused/haproxy/README.md	1;"	F	language:Markdown	epoch:1676118745
+README.md	roles/unused/libvirt/README.md	1;"	F	language:Markdown	epoch:1676118744
+README.md	roles/unused/pki-get-signed/README.md	1;"	F	language:Markdown	epoch:1676118743
+README.md	roles/unused/pki-request-cert/README.md	1;"	F	language:Markdown	epoch:1676118742
+README.md	roles/unused/pki-sign-csr/README.md	1;"	F	language:Markdown	epoch:1676118741
+README.md	roles/unused/pki/README.md	1;"	F	language:Markdown	epoch:1676118742
+README.md	roles/unused/trust-certs/README.md	1;"	F	language:Markdown	epoch:1676118743
+README.md	roles/unused/vault/README.md	1;"	F	language:Markdown	epoch:1676118742
+README.md	roles/unused/zabbix-client/README.md	1;"	F	language:Markdown	epoch:1676118744
+README.md	roles/unused/zabbix-server/README.md	1;"	F	language:Markdown	epoch:1676118745
+README.md	roles/update-pkgs/README.md	1;"	F	language:Markdown	epoch:1676118751
+README.md	roles/virtualbox/README.md	1;"	F	language:Markdown	epoch:1676118752
+Read certificates for bundle files creation	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Read certificates for bundle files creation$/;"	p	language:AnsiblePlaybook
+Reboot Required	roles/update-pkgs/tasks/Archlinux.yml	/^- name: Reboot Required$/;"	p	language:AnsiblePlaybook
+RegistryPath	playbooks/windows/scripts/sysprep.ps1	/^$RegistryPath = 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce'$/;"	v	language:PowerShell
+Reload systemd	roles/docker/handlers/main.yml	/^- name: Reload systemd$/;"	p	language:AnsiblePlaybook
+Requirements	role_skeleton/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/ansible/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/aur-install/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/blackarch/README.md	/^Requirements$/;"	s	language:Markdown	chapter:pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3
+Requirements	roles/bluetooth-headset/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/cups/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/docker/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/gen-locale/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/grub/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/lxde/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/minidlna/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/mlocate/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/nordvpn/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/opensshd/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/pacman/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/pgsql/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/rclone-backup/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/rclone/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/reflector/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/rsync-backup/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/rsyncd/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/sane/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/time-sync/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/ufw/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/dns-server/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/elasticsearch/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/haproxy/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/libvirt/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/pki-get-signed/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/pki-request-cert/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/pki-sign-csr/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/pki/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/trust-certs/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/vault/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/zabbix-client/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/unused/zabbix-server/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/update-pkgs/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Requirements	roles/virtualbox/README.md	/^Requirements$/;"	s	language:Markdown	chapter:Role Name
+Restart bind	roles/unused/dns-server/handlers/main.yml	/^- name: Restart bind$/;"	p	language:AnsiblePlaybook
+Restart bind	roles/virtualbox/handlers/main.yml	/^- name: Restart bind$/;"	p	language:AnsiblePlaybook
+Restart elasticsearch	roles/unused/elasticsearch/handlers/main.yml	/^- name: Restart elasticsearch$/;"	p	language:AnsiblePlaybook
+Restart minidlna	roles/minidlna/handlers/main.yml	/^- name: Restart minidlna$/;"	p	language:AnsiblePlaybook
+Role Name	role_skeleton/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/ansible/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/aur-install/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/blackarch/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/bluetooth-headset/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/cups/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/docker/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/gen-locale/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/grub/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/lxde/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/minidlna/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/mlocate/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/nordvpn/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/opensshd/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/pacman/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/pgsql/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/rclone-backup/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/rclone/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/reflector/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/rsync-backup/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/rsyncd/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/sane/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/time-sync/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/ufw/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/dns-server/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/elasticsearch/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/haproxy/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/libvirt/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/pki-get-signed/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/pki-request-cert/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/pki-sign-csr/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/pki/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/trust-certs/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/vault/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/zabbix-client/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/unused/zabbix-server/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/update-pkgs/README.md	/^Role Name$/;"	c	language:Markdown
+Role Name	roles/virtualbox/README.md	/^Role Name$/;"	c	language:Markdown
+Role Variables	role_skeleton/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/ansible/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/aur-install/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/blackarch/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3
+Role Variables	roles/bluetooth-headset/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/cups/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/docker/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/gen-locale/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/grub/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/lxde/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/minidlna/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/mlocate/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/nordvpn/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/opensshd/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/pacman/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/pgsql/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/rclone-backup/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/rclone/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/reflector/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/rsync-backup/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/rsyncd/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/sane/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/time-sync/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/ufw/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/dns-server/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/elasticsearch/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/haproxy/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/libvirt/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/pki-get-signed/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/pki-request-cert/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/pki-sign-csr/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/pki/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/trust-certs/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/vault/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/zabbix-client/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/unused/zabbix-server/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/update-pkgs/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Role Variables	roles/virtualbox/README.md	/^Role Variables$/;"	s	language:Markdown	chapter:Role Name
+Set CA base params	roles/unused/pki-request-cert/tasks/variables.yml	/^- name: Set CA base params$/;"	p	language:AnsiblePlaybook
+Set CA template parameters	roles/unused/pki-request-cert/tasks/variables.yml	/^- name: Set CA template parameters$/;"	p	language:AnsiblePlaybook
+Set PostgreSQL environment variables.	roles/pgsql/tasks/init.yml	/^- name: Set PostgreSQL environment variables.$/;"	p	language:AnsiblePlaybook
+Set ca csr_dir	roles/unused/pki-sign-csr/tasks/variables.yml	/^- name: Set ca csr_dir$/;"	p	language:AnsiblePlaybook
+Set ca new_certs_dir	roles/unused/pki-get-signed/tasks/variables.yml	/^- name: Set ca new_certs_dir$/;"	p	language:AnsiblePlaybook
+Set ca new_certs_dir	roles/unused/pki-sign-csr/tasks/variables.yml	/^- name: Set ca new_certs_dir$/;"	p	language:AnsiblePlaybook
+Set csr_list	roles/unused/pki/tasks/root-sign-csr.yml	/^- name: Set csr_list$/;"	p	language:AnsiblePlaybook
+Set csr_list to sign with {{ template }}	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Set csr_list to sign with {{ template }}$/;"	p	language:AnsiblePlaybook
+Set empty csr_list to sign with {{ template }}	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Set empty csr_list to sign with {{ template }}$/;"	p	language:AnsiblePlaybook
+Set keyboard map	roles/lxde/tasks/main.yml	/^- name: Set keyboard map$/;"	p	language:AnsiblePlaybook
+Set locale	roles/gen-locale/tasks/main.yml	/^- name: Set locale$/;"	p	language:AnsiblePlaybook
+Set ntp on	roles/time-sync/tasks/main.yml	/^- name: Set ntp on$/;"	p	language:AnsiblePlaybook
+Set servers for pacman	roles/virtualbox/tasks/Archlinux.yml	/^- name: Set servers for pacman$/;"	p	language:AnsiblePlaybook
+Set timezone	roles/time-sync/tasks/main.yml	/^- name: Set timezone$/;"	p	language:AnsiblePlaybook
+Set up rclone config	roles/rclone/tasks/main.yml	/^- name: Set up rclone config$/;"	p	language:AnsiblePlaybook
+Set vconsole	roles/gen-locale/tasks/main.yml	/^- name: Set vconsole$/;"	p	language:AnsiblePlaybook
+Sign csr for "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: Sign csr for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+Sign csrs	roles/unused/pki/tasks/root-sign-csr.yml	/^- name: Sign csrs$/;"	p	language:AnsiblePlaybook
+Sign csrs with {{ template }}	roles/unused/pki-sign-csr/tasks/ca_sign.yml	/^- name: Sign csrs with {{ template }}$/;"	p	language:AnsiblePlaybook
+Specify locale	roles/gen-locale/tasks/main.yml	/^- name: Specify locale$/;"	p	language:AnsiblePlaybook
+Start and enable containerd	roles/docker/handlers/main.yml	/^- name: Start and enable containerd$/;"	p	language:AnsiblePlaybook
+Start and enable docker	roles/docker/handlers/main.yml	/^- name: Start and enable docker$/;"	p	language:AnsiblePlaybook
+Start {{ network.name }} network	roles/unused/libvirt/tasks/network.yml	/^- name: Start {{ network.name }} network$/;"	p	language:AnsiblePlaybook
+Start {{ pool.name }} pool	roles/unused/libvirt/tasks/dir_pool.yml	/^- name: Start {{ pool.name }} pool$/;"	p	language:AnsiblePlaybook
+Stat CA cert	roles/unused/libvirt/tasks/tls.yml	/^- name: Stat CA cert$/;"	p	language:AnsiblePlaybook
+Stat TLS key	roles/unused/vault/tasks/configure.yml	/^- name: Stat TLS key$/;"	p	language:AnsiblePlaybook
+Stat cert	roles/unused/libvirt/tasks/tls.yml	/^- name: Stat cert$/;"	p	language:AnsiblePlaybook
+SubjectName	playbooks/windows/scripts/winrm.ps1	/^    [string]$SubjectName = $env:COMPUTERNAME,$/;"	v	language:PowerShell
+TLS_client_csr.yml	roles/unused/pki-request-cert/tasks/csrs/TLS_client_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+TLS_client_server_csr.yml	roles/unused/pki-request-cert/tasks/csrs/TLS_client_server_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+TLS_libvirt_csr.yml	roles/unused/pki-request-cert/tasks/csrs/TLS_libvirt_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+TLS_server_csr.yml	roles/unused/pki-request-cert/tasks/csrs/TLS_server_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+TLS_terraform_csr.yml	roles/unused/pki-request-cert/tasks/csrs/TLS_terraform_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+TODO	roles/unused/pki/README.md	/^TODO$/;"	s	language:Markdown	chapter:Role Name
+Tools	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647577978" LAST_MODIFIED="1667460178">Tools<\/H3>$/;"	j	language:HTML
+Tools List	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647665427" LAST_MODIFIED="1667460217">Tools List<\/H3>$/;"	j	language:HTML
+Trust root ca Archlinux	roles/unused/trust-certs/handlers/main.yml	/^- name: Trust root ca Archlinux$/;"	p	language:AnsiblePlaybook
+Trust root ca Ubuntu	roles/unused/trust-certs/handlers/main.yml	/^- name: Trust root ca Ubuntu$/;"	p	language:AnsiblePlaybook
+Try init Vault	roles/unused/vault/tasks/main.yml	/^- name: Try init Vault$/;"	p	language:AnsiblePlaybook
+Ubuntu.yml	role_skeleton/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118739
+Ubuntu.yml	role_skeleton/vars/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118739
+Ubuntu.yml	roles/grub/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118746
+Ubuntu.yml	roles/grub/vars/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118746
+Ubuntu.yml	roles/mlocate/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118739
+Ubuntu.yml	roles/mlocate/vars/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118739
+Ubuntu.yml	roles/nordvpn/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118752
+Ubuntu.yml	roles/nordvpn/vars/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118752
+Ubuntu.yml	roles/opensshd/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118740
+Ubuntu.yml	roles/opensshd/vars/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118740
+Ubuntu.yml	roles/time-sync/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118745
+Ubuntu.yml	roles/ufw/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118746
+Ubuntu.yml	roles/unused/zabbix-client/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118745
+Ubuntu.yml	roles/unused/zabbix-client/vars/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118745
+Ubuntu.yml	roles/update-pkgs/tasks/Ubuntu.yml	1;"	F	language:Yaml	epoch:1676118751
+Uninstall ntp	roles/time-sync/tasks/Archlinux.yml	/^- name: Uninstall ntp$/;"	p	language:AnsiblePlaybook
+Uninstall ntp	roles/time-sync/tasks/Ubuntu.yml	/^- name: Uninstall ntp$/;"	p	language:AnsiblePlaybook
+Update repo and cache	roles/update-pkgs/tasks/Ubuntu.yml	/^- name: Update repo and cache$/;"	p	language:AnsiblePlaybook
+Upgrade all packages on servers	roles/update-pkgs/tasks/Archlinux.yml	/^- name: Upgrade all packages on servers$/;"	p	language:AnsiblePlaybook
+Upgrade all packages on servers	roles/update-pkgs/tasks/Ubuntu.yml	/^- name: Upgrade all packages on servers$/;"	p	language:AnsiblePlaybook
+Value	playbooks/windows/scripts/sysprep.ps1	/^$Value        = 'C:\\Windows\\System32\\Sysprep\\sysprep.exe \/oobe \/reboot \/generalize \/unat/;"	v	language:PowerShell
+Verify	roles/gen-locale/molecule/default/verify.yml	/^- name: Verify$/;"	p	language:AnsiblePlaybook
+Vulnerability Databases	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647205853" LAST_MODIFIED="1666626471">Vulnerability Databases<\/H/;"	j	language:HTML
+Windows	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647446766" LAST_MODIFIED="1667460351">Windows<\/H3>$/;"	j	language:HTML
+Write-HostLog	playbooks/windows/scripts/winrm.ps1	/^Function Write-HostLog$/;"	f	language:PowerShell
+Write-Log	playbooks/windows/scripts/winrm.ps1	/^Function Write-Log$/;"	f	language:PowerShell
+Write-VerboseLog	playbooks/windows/scripts/winrm.ps1	/^Function Write-VerboseLog$/;"	f	language:PowerShell
+_haproxy-cert.yml	playbooks/endpoint/to_sort/certs_creator/_haproxy-cert.yml	1;"	F	language:Yaml	epoch:1676118738
+_haproxy-csr.yml	playbooks/endpoint/to_sort/certs_creator/_haproxy-csr.yml	1;"	F	language:Yaml	epoch:1676118738
+add pulseaudio switch on connect	roles/bluetooth-headset/tasks/main.yml	/^- name: add pulseaudio switch on connect$/;"	p	language:AnsiblePlaybook
+add users to group	roles/minidlna/tasks/main.yml	/^- name: add users to group$/;"	p	language:AnsiblePlaybook
+add users to group	roles/unused/libvirt/tasks/main.yml	/^- name: add users to group$/;"	p	language:AnsiblePlaybook
+add_vpn_rule	roles/nordvpn/files/nordvpn.sh	/^add_vpn_rule () {$/;"	f	language:Sh
+adds_root.yml	playbooks/windows/adds_root.yml	1;"	F	language:Yaml	epoch:1676118738
+adminRole	playbooks/windows/scripts/winrm.ps1	/^$adminRole=[System.Security.Principal.WindowsBuiltInRole]::Administrator$/;"	v	language:PowerShell
+akamatsu.jinteki.yaml	playbooks/endpoint/to_sort/akamatsu.jinteki.yaml	1;"	F	language:Yaml	epoch:1676118738
+ansible.yml	inventory/group_vars/all/ansible.yml	1;"	F	language:Yaml	epoch:1676118737
+arch.yml	roles/ansible/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118753
+arch.yml	roles/ansible/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118753
+arch.yml	roles/bluetooth-headset/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118741
+arch.yml	roles/bluetooth-headset/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118741
+arch.yml	roles/cups/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118751
+arch.yml	roles/cups/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118751
+arch.yml	roles/docker/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118750
+arch.yml	roles/minidlna/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118739
+arch.yml	roles/minidlna/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118739
+arch.yml	roles/pgsql/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118740
+arch.yml	roles/pgsql/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118740
+arch.yml	roles/rclone-backup/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118741
+arch.yml	roles/rclone-backup/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118741
+arch.yml	roles/rclone/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118750
+arch.yml	roles/rclone/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118750
+arch.yml	roles/reflector/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118740
+arch.yml	roles/rsync-backup/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118741
+arch.yml	roles/rsync-backup/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118741
+arch.yml	roles/rsyncd/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118749
+arch.yml	roles/rsyncd/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118749
+arch.yml	roles/sane/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118746
+arch.yml	roles/sane/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118746
+arch.yml	roles/unused/dns-server/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118743
+arch.yml	roles/unused/dns-server/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118743
+arch.yml	roles/unused/elasticsearch/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118742
+arch.yml	roles/unused/haproxy/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118745
+arch.yml	roles/unused/haproxy/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118745
+arch.yml	roles/unused/libvirt/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118744
+arch.yml	roles/unused/libvirt/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118744
+arch.yml	roles/unused/pki/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118742
+arch.yml	roles/unused/vault/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118742
+arch.yml	roles/unused/vault/vars/arch.yml	1;"	F	language:Yaml	epoch:1676118742
+arch.yml	roles/unused/zabbix-server/tasks/arch.yml	1;"	F	language:Yaml	epoch:1676118745
+archlinux_pkgs.yml	inventory/host_vars/akamatsu.jinteki.lan/archlinux_pkgs.yml	1;"	F	language:Yaml	epoch:1676118737
+archlinux_pkgs.yml	inventory/host_vars/honbu.jinteki.lan/archlinux_pkgs.yml	1;"	F	language:Yaml	epoch:1676177933
+archlinux_pkgs.yml	inventory/host_vars/yoki.jinteki.lan/archlinux_pkgs.yml	1;"	F	language:Yaml	epoch:1676118738
+assert aur_pkg is well defined	roles/aur-install/tasks/asserts.yml	/^- name: assert aur_pkg is well defined$/;"	p	language:AnsiblePlaybook
+assert es_deployment_type is well set	roles/unused/elasticsearch/tasks/asserts.yml	/^- name: assert es_deployment_type is well set$/;"	p	language:AnsiblePlaybook
+assert es_init_master_method is well set	roles/unused/elasticsearch/tasks/asserts.yml	/^- name: assert es_init_master_method is well set$/;"	p	language:AnsiblePlaybook
+assert es_master_list is well set	roles/unused/elasticsearch/tasks/asserts.yml	/^- name: assert es_master_list is well set$/;"	p	language:AnsiblePlaybook
+assert every locales_gen is well defined	roles/gen-locale/tasks/asserts.yml	/^- name: assert every locales_gen is well defined$/;"	p	language:AnsiblePlaybook
+assert every locales_gen is well defined	roles/virtualbox/tasks/asserts.yml	/^- name: assert every locales_gen is well defined$/;"	p	language:AnsiblePlaybook
+assert grub installed for Archlinux	roles/grub/tasks/asserts.yml	/^- name: assert grub installed for Archlinux$/;"	p	language:AnsiblePlaybook
+assert grub installed for Ubuntu	roles/grub/tasks/asserts.yml	/^- name: assert grub installed for Ubuntu$/;"	p	language:AnsiblePlaybook
+assert local_lang is well defined	roles/gen-locale/tasks/asserts.yml	/^- name: assert local_lang is well defined$/;"	p	language:AnsiblePlaybook
+assert local_lang is well defined	roles/virtualbox/tasks/asserts.yml	/^- name: assert local_lang is well defined$/;"	p	language:AnsiblePlaybook
+assert locales_gen is well defined	roles/gen-locale/tasks/asserts.yml	/^- name: assert locales_gen is well defined$/;"	p	language:AnsiblePlaybook
+assert locales_gen is well defined	roles/virtualbox/tasks/asserts.yml	/^- name: assert locales_gen is well defined$/;"	p	language:AnsiblePlaybook
+assert proper distribution	role_skeleton/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/ansible/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/blackarch/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/bluetooth-headset/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/cups/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/gen-locale/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/grub/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/grub/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/lxde/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/lxde/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/minidlna/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/mlocate/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/nordvpn/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/opensshd/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/pacman/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/pgsql/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/rclone-backup/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/rclone/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/reflector/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/rsync-backup/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/rsyncd/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/sane/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/time-sync/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/ufw/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/dns-server/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/elasticsearch/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/haproxy/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/libvirt/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/libvirt/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/pki-get-signed/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/pki-request-cert/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/pki-sign-csr/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/vault/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/zabbix-client/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/unused/zabbix-server/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/update-pkgs/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/virtualbox/tasks/asserts.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert proper distribution	roles/virtualbox/tasks/main.yml	/^- name: assert proper distribution$/;"	p	language:AnsiblePlaybook
+assert vconsole_content is well defined	roles/gen-locale/tasks/asserts.yml	/^- name: assert vconsole_content is well defined$/;"	p	language:AnsiblePlaybook
+assert vconsole_content is well defined	roles/virtualbox/tasks/asserts.yml	/^- name: assert vconsole_content is well defined$/;"	p	language:AnsiblePlaybook
+asserts-intermediate.yml	roles/unused/pki/tasks/asserts-intermediate.yml	1;"	F	language:Yaml	epoch:1676118743
+asserts-root.yml	roles/unused/pki/tasks/asserts-root.yml	1;"	F	language:Yaml	epoch:1676118743
+asserts.yml	role_skeleton/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118739
+asserts.yml	roles/ansible/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118753
+asserts.yml	roles/aur-install/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118740
+asserts.yml	roles/blackarch/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118745
+asserts.yml	roles/bluetooth-headset/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118741
+asserts.yml	roles/cups/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118751
+asserts.yml	roles/gen-locale/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118739
+asserts.yml	roles/grub/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118746
+asserts.yml	roles/lxde/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118741
+asserts.yml	roles/minidlna/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118739
+asserts.yml	roles/mlocate/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118739
+asserts.yml	roles/nordvpn/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118752
+asserts.yml	roles/opensshd/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118740
+asserts.yml	roles/pacman/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118750
+asserts.yml	roles/pgsql/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118740
+asserts.yml	roles/rclone-backup/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118741
+asserts.yml	roles/rclone/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118750
+asserts.yml	roles/reflector/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118740
+asserts.yml	roles/rsync-backup/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118741
+asserts.yml	roles/rsyncd/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118749
+asserts.yml	roles/sane/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118746
+asserts.yml	roles/unused/dns-server/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118743
+asserts.yml	roles/unused/elasticsearch/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118742
+asserts.yml	roles/unused/haproxy/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118745
+asserts.yml	roles/unused/libvirt/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118744
+asserts.yml	roles/unused/pki-get-signed/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118743
+asserts.yml	roles/unused/pki-request-cert/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118742
+asserts.yml	roles/unused/pki-sign-csr/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118742
+asserts.yml	roles/unused/pki/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118743
+asserts.yml	roles/unused/vault/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118742
+asserts.yml	roles/unused/zabbix-server/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118745
+asserts.yml	roles/virtualbox/tasks/asserts.yml	1;"	F	language:Yaml	epoch:1676118752
+aur.yml	inventory/group_vars/all/aur.yml	1;"	F	language:Yaml	epoch:1676118737
+autounattend.xml	playbooks/windows/scripts/autounattend.xml	1;"	F	language:XML	epoch:1676118738
+backup_dirs=	roles/rclone-backup/files/rclone-backup.sh	/^backup_dirs=()$/;"	f	language:Sh
+basicAuthSetting	playbooks/windows/scripts/winrm.ps1	/^$basicAuthSetting = Get-ChildItem WSMan:\\localhost\\Service\\Auth | Where-Object {$_.Name -eq "/;"	v	language:PowerShell
+blackarch.yml	inventory/group_vars/all/blackarch.yml	1;"	F	language:Yaml	epoch:1676118737
+blackarch_pkgs.yml	inventory/host_vars/akamatsu.jinteki.lan/blackarch_pkgs.yml	1;"	F	language:Yaml	epoch:1676118737
+blackarch_pkgs.yml	inventory/host_vars/honbu.jinteki.lan/blackarch_pkgs.yml	1;"	F	language:Yaml	epoch:1676177934
+blackarch_pkgs.yml	inventory/host_vars/zenshou.jinteki.lan/blackarch_pkgs.yml	1;"	F	language:Yaml	epoch:1676118737
+bookmarks.html	playbooks/endpoint/to_sort/files/bookmarks.html	1;"	F	language:HTML	epoch:1676118738
+ca_sign.yml	roles/unused/pki-sign-csr/tasks/ca_sign.yml	1;"	F	language:Yaml	epoch:1676118742
+check	roles/rclone-backup/files/rclone-backup.sh	/^check() {$/;"	f	language:Sh
+check	roles/rclone-backup/files/rclone-restore.sh	/^check() {$/;"	f	language:Sh
+check blackarch repo absent	roles/blackarch/tasks/main.yml	/^- name: check blackarch repo absent$/;"	p	language:AnsiblePlaybook
+check_kernel	roles/pacman/files/reboot-required.sh	/^check_kernel() {$/;"	f	language:Sh
+check_libs	roles/pacman/files/reboot-required.sh	/^check_libs() {$/;"	f	language:Sh
+clean_up	roles/rclone-backup/files/rclone-backup.sh	/^clean_up() {$/;"	f	language:Sh
+cleanup.ps1	playbooks/windows/scripts/cleanup.ps1	1;"	F	language:PowerShell	epoch:1676118738
+close_tunnel	roles/nordvpn/files/nordvpn.sh	/^close_tunnel() {$/;"	f	language:Sh
+cloud_backup	roles/rclone-backup/files/rclone-backup.sh	/^cloud_backup() {$/;"	f	language:Sh
+cloud_paths=	roles/rclone-backup/files/rclone-backup.sh	/^cloud_paths=()$/;"	f	language:Sh
+cloud_sync	roles/rclone-backup/files/rclone-backup.sh	/^cloud_sync() {$/;"	f	language:Sh
+common.yml	role_skeleton/vars/common.yml	1;"	F	language:Yaml	epoch:1676118739
+common.yml	roles/ansible/vars/common.yml	1;"	F	language:Yaml	epoch:1676118753
+common.yml	roles/bluetooth-headset/vars/common.yml	1;"	F	language:Yaml	epoch:1676118741
+common.yml	roles/cups/vars/common.yml	1;"	F	language:Yaml	epoch:1676118751
+common.yml	roles/grub/vars/common.yml	1;"	F	language:Yaml	epoch:1676118746
+common.yml	roles/lxde/vars/common.yml	1;"	F	language:Yaml	epoch:1676118741
+common.yml	roles/minidlna/vars/common.yml	1;"	F	language:Yaml	epoch:1676118739
+common.yml	roles/mlocate/vars/common.yml	1;"	F	language:Yaml	epoch:1676118739
+common.yml	roles/nordvpn/vars/common.yml	1;"	F	language:Yaml	epoch:1676118751
+common.yml	roles/opensshd/vars/common.yml	1;"	F	language:Yaml	epoch:1676118740
+common.yml	roles/pgsql/vars/common.yml	1;"	F	language:Yaml	epoch:1676118740
+common.yml	roles/rclone-backup/vars/common.yml	1;"	F	language:Yaml	epoch:1676118741
+common.yml	roles/rclone/vars/common.yml	1;"	F	language:Yaml	epoch:1676118750
+common.yml	roles/rsync-backup/vars/common.yml	1;"	F	language:Yaml	epoch:1676118741
+common.yml	roles/rsyncd/vars/common.yml	1;"	F	language:Yaml	epoch:1676118749
+common.yml	roles/sane/vars/common.yml	1;"	F	language:Yaml	epoch:1676118746
+common.yml	roles/unused/dns-server/vars/common.yml	1;"	F	language:Yaml	epoch:1676118743
+common.yml	roles/unused/haproxy/vars/common.yml	1;"	F	language:Yaml	epoch:1676118745
+common.yml	roles/unused/libvirt/vars/common.yml	1;"	F	language:Yaml	epoch:1676118744
+common.yml	roles/unused/vault/vars/common.yml	1;"	F	language:Yaml	epoch:1676118742
+common.yml	roles/unused/zabbix-client/vars/common.yml	1;"	F	language:Yaml	epoch:1676118745
+common.yml	roles/virtualbox/vars/common.yml	1;"	F	language:Yaml	epoch:1676118752
+config	roles/reflector/tasks/main.yml	/^- name: config$/;"	p	language:AnsiblePlaybook
+config bluetooth autoEnable	roles/bluetooth-headset/tasks/main.yml	/^- name: config bluetooth autoEnable$/;"	p	language:AnsiblePlaybook
+config.yml	roles/pgsql/tasks/config.yml	1;"	F	language:Yaml	epoch:1676118740
+config.yml	roles/unused/libvirt/tasks/config.yml	1;"	F	language:Yaml	epoch:1676118744
+config_driver.yml	roles/unused/libvirt/tasks/config_driver.yml	1;"	F	language:Yaml	epoch:1676118744
+configless_pkgs.yml	inventory/host_vars/akamatsu.jinteki.lan/configless_pkgs.yml	1;"	F	language:Yaml	epoch:1676118737
+configless_pkgs.yml	inventory/host_vars/zenshou.jinteki.lan/configless_pkgs.yml	1;"	F	language:Yaml	epoch:1676151145
+configure.yml	roles/unused/vault/tasks/configure.yml	1;"	F	language:Yaml	epoch:1676118742
+construct_db	roles/nordvpn/files/nordvpn.sh	/^construct_db() {$/;"	f	language:Sh
+content=	roles/rclone-backup/files/rclone-backup.sh	/^  local content=()$/;"	f	language:Sh
+converge.yml	roles/gen-locale/molecule/default/converge.yml	1;"	F	language:Yaml	epoch:1676118739
+copy bundle file on destination dir	roles/unused/pki-get-signed/tasks/main.yml	/^- name: copy bundle file on destination dir$/;"	p	language:AnsiblePlaybook
+copy file on destination dir	roles/unused/pki-get-signed/tasks/main.yml	/^- name: copy file on destination dir$/;"	p	language:AnsiblePlaybook
+copy root ca certificate on archlinux hosts	roles/unused/trust-certs/tasks/process_ca.yml	/^- name: copy root ca certificate on archlinux hosts$/;"	p	language:AnsiblePlaybook
+cpi	playbooks/windows/scripts/autounattend.xml	/^    <cpi:offlineImage xmlns:cpi="urn:schemas-microsoft-com:cpi" cpi:source=""\/>$/;"	n	language:XML	uri:urn:schemas-microsoft-com:cpi
+create directory for docker service drop-in	roles/docker/tasks/main.yml	/^- name: create directory for docker service drop-in$/;"	p	language:AnsiblePlaybook
+create encryption CSR	roles/unused/pki-request-cert/tasks/csrs/encryption_csr.yml	/^- name: create encryption CSR$/;"	p	language:AnsiblePlaybook
+create key and cert bundle file for "{{ cert.name }}"	playbooks/endpoint/to_sort/certs_creator/_haproxy-cert.yml	/^- name: create key and cert bundle file for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+create key and cert bundle file for "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: create key and cert bundle file for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+create reboot requiered file	roles/update-pkgs/tasks/Archlinux.yml	/^- name:  create reboot requiered file$/;"	p	language:AnsiblePlaybook
+create zone dir "{{ _named_zone_dir }}"	roles/unused/dns-server/tasks/ubuntu.yml	/^- name: create zone dir "{{ _named_zone_dir }}"$/;"	p	language:AnsiblePlaybook
+create-configs.yml	roles/unused/pki/tasks/create-configs.yml	1;"	F	language:Yaml	epoch:1676118743
+create-structure.yml	roles/unused/pki/tasks/create-structure.yml	1;"	F	language:Yaml	epoch:1676118743
+create_keepass_db	roles/rclone-backup/files/rclone-backup.sh	/^create_keepass_db() {$/;"	f	language:Sh
+create_keepass_entry	roles/rclone-backup/files/rclone-backup.sh	/^create_keepass_entry() {$/;"	f	language:Sh
+create_keepass_group	roles/rclone-backup/files/rclone-backup.sh	/^create_keepass_group() {$/;"	f	language:Sh
+credsspAuthSetting	playbooks/windows/scripts/winrm.ps1	/^    $credsspAuthSetting = Get-ChildItem WSMan:\\localhost\\Service\\Auth | Where {$_.Name -eq "C/;"	v	language:PowerShell
+crypt	Makefile	/^crypt:$/;"	t	language:Make
+cups_servers.yml	inventory/group_vars/all/cups_servers.yml	1;"	F	language:Yaml	epoch:1676118737
+decrypt	Makefile	/^decrypt:$/;"	t	language:Make
+del_vpn_rule	roles/nordvpn/files/nordvpn.sh	/^del_vpn_rule () {$/;"	f	language:Sh
+delete cert bundle from tmp	roles/unused/pki-get-signed/tasks/main.yml	/^- name: delete cert bundle from tmp$/;"	p	language:AnsiblePlaybook
+delete cert from tmp	roles/unused/pki-get-signed/tasks/main.yml	/^- name: delete cert from tmp$/;"	p	language:AnsiblePlaybook
+delete_empty_dirs	roles/rclone-backup/files/rclone-backup.sh	/^delete_empty_dirs() {$/;"	f	language:Sh
+dev-arch.jinteki.lan.yml	playbooks/endpoint/to_sort/dev-arch.jinteki.lan.yml	1;"	F	language:Yaml	epoch:1676118738
+dir_pool.yml	roles/unused/libvirt/tasks/dir_pool.yml	1;"	F	language:Yaml	epoch:1676118744
+dns-master-server.yml	inventory/host_vars/_templates/dns-master-server.yml	1;"	F	language:Yaml	epoch:1676118738
+dns-master-server.yml	inventory/host_vars/honbu.jinteki.lan/dns-master-server.yml	1;"	F	language:Yaml	epoch:1676118737
+dns-slave-server.yml	inventory/host_vars/_templates/dns-slave-server.yml	1;"	F	language:Yaml	epoch:1676118738
+dns-slave-server.yml	inventory/host_vars/honkyo.jinteki.lan/dns-slave-server.yml	1;"	F	language:Yaml	epoch:1676118737
+dns_servers.yml	inventory/group_vars/all/dns_servers.yml	1;"	F	language:Yaml	epoch:1676118737
+docker.yml	inventory/group_vars/all/docker.yml	1;"	F	language:Yaml	epoch:1676118737
+docker.yml	playbooks/dev/docker.yml	1;"	F	language:Yaml	epoch:1676118738
+doppelganger.yml	playbooks/endpoint/to_sort/doppelganger.yml	1;"	F	language:Yaml	epoch:1676118738
+elasticsearch.yml	inventory/group_vars/all/elasticsearch.yml	1;"	F	language:Yaml	epoch:1676118737
+elasticsearch.yml	playbooks/dev/elasticsearch.yml	1;"	F	language:Yaml	epoch:1676118738
+enable ufw	roles/ufw/handlers/main.yml	/^- name: enable ufw$/;"	p	language:AnsiblePlaybook
+enable ufw service	roles/ufw/handlers/main.yml	/^- name: enable ufw service$/;"	p	language:AnsiblePlaybook
+enc_directory	roles/rclone-backup/files/rclone-backup.sh	/^enc_directory() {$/;"	f	language:Sh
+enc_file	roles/rclone-backup/files/rclone-backup.sh	/^enc_file() {$/;"	f	language:Sh
+encryption_csr.yml	roles/unused/pki-request-cert/tasks/csrs/encryption_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+fetch_keepass_entry	roles/rclone-backup/files/rclone-backup.sh	/^fetch_keepass_entry () {$/;"	f	language:Sh
+fetch_keepass_entry	roles/rclone-backup/files/rclone-restore.sh	/^fetch_keepass_entry () {$/;"	f	language:Sh
+ffox-l.jinteki.lan.yml	playbooks/endpoint/to_sort/ffox-l.jinteki.lan.yml	1;"	F	language:Yaml	epoch:1676118738
+ffox-r.jinteki.lan.yml	playbooks/endpoint/to_sort/ffox-r.jinteki.lan.yml	1;"	F	language:Yaml	epoch:1676118738
+find_keepass_entry_from_url	roles/rclone-backup/files/rclone-backup.sh	/^find_keepass_entry_from_url() {$/;"	f	language:Sh
+find_keepass_entry_from_url	roles/rclone-backup/files/rclone-restore.sh	/^find_keepass_entry_from_url() {$/;"	f	language:Sh
+firefox.yml	inventory/group_vars/all/firefox.yml	1;"	F	language:Yaml	epoch:1676118737
+firefox_plugins.html	playbooks/endpoint/to_sort/files/firefox_plugins.html	1;"	F	language:HTML	epoch:1676118738
+flush_handlers	roles/unused/vault/tasks/configure.yml	/^- name: flush_handlers$/;"	p	language:AnsiblePlaybook
+fwtest1	playbooks/windows/scripts/winrm.ps1	/^$fwtest1 = netsh advfirewall firewall show rule name="Allow WinRM HTTPS"$/;"	v	language:PowerShell
+fwtest2	playbooks/windows/scripts/winrm.ps1	/^$fwtest2 = netsh advfirewall firewall show rule name="Allow WinRM HTTPS" profile=any$/;"	v	language:PowerShell
+gen-locale.yml	inventory/group_vars/all/gen-locale.yml	1;"	F	language:Yaml	epoch:1676118737
+get back cert {{ item.name }}	playbooks/endpoint/to_sort/certs_creator/_haproxy-cert.yml	/^- name: get back cert {{ item.name }}$/;"	p	language:AnsiblePlaybook
+get_db_server	roles/nordvpn/files/nordvpn.sh	/^get_db_server() {$/;"	f	language:Sh
+get_openvpn_server	roles/nordvpn/files/nordvpn.sh	/^get_openvpn_server() {$/;"	f	language:Sh
+grub.yml	inventory/group_vars/all/grub.yml	1;"	F	language:Yaml	epoch:1676118737
+grub.yml	inventory/host_vars/honbu.jinteki.lan/grub.yml	1;"	F	language:Yaml	epoch:1676118737
+grub.yml	inventory/host_vars/zenshou.jinteki.lan/grub.yml	1;"	F	language:Yaml	epoch:1676150302
+grub.yml	playbooks/dev/std-server/grub.yml	1;"	F	language:Yaml	epoch:1676118738
+hacking	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1666626343" LAST_MODIFIED="1668314501">hacking<\/H3>$/;"	j	language:HTML
+haproxy-cert.yml	playbooks/endpoint/to_sort/certs_creator/haproxy-cert.yml	1;"	F	language:Yaml	epoch:1676118738
+haproxy.yml	inventory/group_vars/all/haproxy.yml	1;"	F	language:Yaml	epoch:1676118737
+hcv_create_cert.yml	playbooks/endpoint/to_sort/hc_vault/hcv_create_cert.yml	1;"	F	language:Yaml	epoch:1676118738
+hcv_unseal.yml	playbooks/endpoint/to_sort/hc_vault/hcv_unseal.yml	1;"	F	language:Yaml	epoch:1676118738
+hcv_vault.yml	playbooks/endpoint/to_sort/hc_vault/hcv_vault.yml	1;"	F	language:Yaml	epoch:1676118738
+hcv_vault_clean.yml	playbooks/endpoint/to_sort/hc_vault/hcv_vault_clean.yml	1;"	F	language:Yaml	epoch:1676118738
+hcv_vault_init.yml	playbooks/endpoint/to_sort/hc_vault/hcv_vault_init.yml	1;"	F	language:Yaml	epoch:1676118738
+honbu.yml	playbooks/endpoint/to_sort/honbu.yml	1;"	F	language:Yaml	epoch:1676118738
+honkyo.yml	playbooks/endpoint/to_sort/honkyo.yml	1;"	F	language:Yaml	epoch:1676118738
+httpResult	playbooks/windows/scripts/winrm.ps1	/^$httpResult = Invoke-Command -ComputerName "localhost" -ScriptBlock {$env:COMPUTERNAME} -ErrorVa/;"	v	language:PowerShell
+httpsOptions	playbooks/windows/scripts/winrm.ps1	/^$httpsOptions = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck$/;"	v	language:PowerShell
+httpsResult	playbooks/windows/scripts/winrm.ps1	/^$httpsResult = New-PSSession -UseSSL -ComputerName "localhost" -SessionOption $httpsOptions -Err/;"	v	language:PowerShell
+identity_csr.yml	roles/unused/pki-request-cert/tasks/csrs/identity_csr.yml	1;"	F	language:Yaml	epoch:1676118742
+init-endpoint.yml	playbooks/init-endpoint.yml	1;"	F	language:Yaml	epoch:1676151860
+init.yml	roles/pgsql/tasks/init.yml	1;"	F	language:Yaml	epoch:1676118740
+install desktop {{ item.name }}	playbooks/install_aur_task.yml	/^- name: install desktop {{ item.name }}$/;"	p	language:AnsiblePlaybook
+install docker	roles/docker/tasks/arch.yml	/^- name: install docker$/;"	p	language:AnsiblePlaybook
+install openssl	roles/unused/pki/tasks/arch.yml	/^- name: install openssl$/;"	p	language:AnsiblePlaybook
+install zabbix agent	roles/unused/zabbix-client/tasks/Archlinux.yml	/^- name: install zabbix agent$/;"	p	language:AnsiblePlaybook
+install_aur_task.yml	playbooks/install_aur_task.yml	1;"	F	language:Yaml	epoch:1676118738
+install_pkgs.yml	playbooks/install_pkgs.yml	1;"	F	language:Yaml	epoch:1676118738
+intermediate-create-csr.yml	roles/unused/pki/tasks/intermediate-create-csr.yml	1;"	F	language:Yaml	epoch:1676118743
+intermediate-get-cert.yml	roles/unused/pki/tasks/intermediate-get-cert.yml	1;"	F	language:Yaml	epoch:1676118743
+inventory.yml	inventory/inventory.yml	1;"	F	language:Yaml	epoch:1676152088
+jinteki-bios-kali.yml	playbooks/endpoint/to_sort/jinteki-bios-kali.yml	1;"	F	language:Yaml	epoch:1676118738
+join domain	playbooks/windows/join_domain.yml	/^- name: join domain$/;"	p	language:AnsiblePlaybook
+join_domain.yml	playbooks/windows/join_domain.yml	1;"	F	language:Yaml	epoch:1676118738
+libvirt-cert.yml	playbooks/endpoint/to_sort/certs_creator/libvirt-cert.yml	1;"	F	language:Yaml	epoch:1676118738
+libvirt.yml	inventory/group_vars/all/libvirt.yml	1;"	F	language:Yaml	epoch:1676118737
+list files to delete	roles/rsyncd/tasks/main.yml	/^- name: list files to delete$/;"	p	language:AnsiblePlaybook
+listeners	playbooks/windows/scripts/winrm.ps1	/^$listeners = Get-ChildItem WSMan:\\localhost\\Listener$/;"	v	language:PowerShell
+lxde.yml	inventory/group_vars/all/lxde.yml	1;"	F	language:Yaml	epoch:1676118737
+lxde.yml	inventory/host_vars/honbu.jinteki.lan/lxde.yml	1;"	F	language:Yaml	epoch:1676118737
+lxde.yml	inventory/host_vars/zenshou.jinteki.lan/lxde.yml	1;"	F	language:Yaml	epoch:1676118737
+main	roles/nordvpn/files/nordvpn.sh	/^main() {$/;"	f	language:Sh
+main	roles/pacman/files/reboot-required.sh	/^main() {$/;"	f	language:Sh
+main	roles/rclone-backup/files/rclone-backup.sh	/^main() {$/;"	f	language:Sh
+main	roles/rclone-backup/files/rclone-restore.sh	/^main() {$/;"	f	language:Sh
+main.yml	role_skeleton/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	role_skeleton/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	role_skeleton/meta/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	role_skeleton/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/ansible/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/ansible/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/ansible/meta/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/ansible/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118753
+main.yml	roles/aur-install/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/aur-install/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/aur-install/meta/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/aur-install/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/aur-install/vars/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/blackarch/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/blackarch/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/blackarch/meta/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/blackarch/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/blackarch/vars/main.yml	1;"	F	language:Yaml	epoch:1676188090
+main.yml	roles/bluetooth-headset/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/bluetooth-headset/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/bluetooth-headset/meta/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/bluetooth-headset/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/cups/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/cups/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/cups/meta/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/cups/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/docker/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/docker/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/docker/meta/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/docker/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/docker/vars/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/gen-locale/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/gen-locale/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/gen-locale/meta/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/gen-locale/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/gen-locale/vars/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/grub/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/grub/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/grub/meta/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/grub/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/lxde/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/lxde/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/lxde/meta/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/lxde/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/minidlna/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/minidlna/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/minidlna/meta/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/minidlna/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/minidlna/vars/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/mlocate/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/mlocate/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/mlocate/meta/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/mlocate/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118739
+main.yml	roles/nordvpn/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/nordvpn/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/nordvpn/meta/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/nordvpn/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/opensshd/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/opensshd/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/opensshd/meta/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/opensshd/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/pacman/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/pacman/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/pacman/meta/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/pacman/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/pacman/vars/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/pgsql/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/pgsql/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/pgsql/meta/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/pgsql/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/rclone-backup/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rclone-backup/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rclone-backup/meta/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rclone-backup/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rclone/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118749
+main.yml	roles/rclone/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118749
+main.yml	roles/rclone/meta/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/rclone/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118750
+main.yml	roles/reflector/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/reflector/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/reflector/meta/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/reflector/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/reflector/vars/main.yml	1;"	F	language:Yaml	epoch:1676118740
+main.yml	roles/rsync-backup/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rsync-backup/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rsync-backup/meta/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rsync-backup/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/rsyncd/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118748
+main.yml	roles/rsyncd/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118748
+main.yml	roles/rsyncd/meta/main.yml	1;"	F	language:Yaml	epoch:1676118749
+main.yml	roles/rsyncd/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118749
+main.yml	roles/sane/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/sane/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/sane/meta/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/sane/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/time-sync/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/time-sync/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/time-sync/meta/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/time-sync/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/time-sync/vars/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/ufw/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/ufw/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/ufw/meta/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/ufw/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/ufw/vars/main.yml	1;"	F	language:Yaml	epoch:1676118746
+main.yml	roles/unused/dns-server/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/dns-server/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/dns-server/meta/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/dns-server/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/elasticsearch/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/elasticsearch/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/elasticsearch/meta/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/elasticsearch/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/elasticsearch/vars/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/haproxy/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/haproxy/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/haproxy/meta/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/haproxy/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/libvirt/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/libvirt/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/libvirt/meta/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/libvirt/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/pki-get-signed/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/pki-get-signed/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/pki-get-signed/meta/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/pki-get-signed/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/pki-get-signed/vars/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/pki-request-cert/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki-request-cert/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki-request-cert/meta/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki-request-cert/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki-request-cert/vars/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki-sign-csr/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/unused/pki-sign-csr/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/unused/pki-sign-csr/meta/main.yml	1;"	F	language:Yaml	epoch:1676118741
+main.yml	roles/unused/pki-sign-csr/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki-sign-csr/vars/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki/meta/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/pki/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/pki/vars/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/trust-certs/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/trust-certs/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/trust-certs/meta/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/trust-certs/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/trust-certs/vars/main.yml	1;"	F	language:Yaml	epoch:1676118743
+main.yml	roles/unused/vault/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/vault/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/vault/meta/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/vault/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118742
+main.yml	roles/unused/zabbix-client/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/zabbix-client/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/zabbix-client/meta/main.yml	1;"	F	language:Yaml	epoch:1676118744
+main.yml	roles/unused/zabbix-client/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/zabbix-server/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/zabbix-server/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/zabbix-server/meta/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/zabbix-server/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/unused/zabbix-server/vars/main.yml	1;"	F	language:Yaml	epoch:1676118745
+main.yml	roles/update-pkgs/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/update-pkgs/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/update-pkgs/meta/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/update-pkgs/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/update-pkgs/vars/main.yml	1;"	F	language:Yaml	epoch:1676118751
+main.yml	roles/virtualbox/defaults/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/virtualbox/handlers/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/virtualbox/meta/main.yml	1;"	F	language:Yaml	epoch:1676118752
+main.yml	roles/virtualbox/tasks/main.yml	1;"	F	language:Yaml	epoch:1676118752
+minidlna.yml	inventory/group_vars/all/minidlna.yml	1;"	F	language:Yaml	epoch:1676118737
+mlocate.yml	playbooks/dev/mlocate.yml	1;"	F	language:Yaml	epoch:1676118738
+mlocate.yml	playbooks/dev/std-server/mlocate.yml	1;"	F	language:Yaml	epoch:1676118738
+molecule.yml	roles/gen-locale/molecule/default/molecule.yml	1;"	F	language:Yaml	epoch:1676118739
+myWindowsID	playbooks/windows/scripts/winrm.ps1	/^$myWindowsID=[System.Security.Principal.WindowsIdentity]::GetCurrent()$/;"	v	language:PowerShell
+myWindowsPrincipal	playbooks/windows/scripts/winrm.ps1	/^$myWindowsPrincipal=new-object System.Security.Principal.WindowsPrincipal($myWindowsID)$/;"	v	language:PowerShell
+network.yml	roles/unused/libvirt/tasks/network.yml	1;"	F	language:Yaml	epoch:1676118744
+networkd-resolved.yml	inventory/group_vars/all/networkd-resolved.yml	1;"	F	language:Yaml	epoch:1676118737
+networkd.resolved.yml	inventory/host_vars/honkyo.jinteki.lan/networkd.resolved.yml	1;"	F	language:Yaml	epoch:1676118737
+nmap	playbooks/endpoint/to_sort/files/bookmarks.html	/^                <DT><H3 ADD_DATE="1647577983" LAST_MODIFIED="1647578466">nmap<\/H3>$/;"	j	language:HTML
+nordvpn.sh	roles/nordvpn/files/nordvpn.sh	1;"	F	language:Sh	epoch:1676118752
+nordvpn.yml	playbooks/dev/nordvpn.yml	1;"	F	language:Yaml	epoch:1676118738
+nordvpn_killswitch.sh	playbooks/endpoint/to_sort/files/nordvpn_killswitch.sh	1;"	F	language:Sh	epoch:1676118738
+ns0bb21ed40101	playbooks/windows/scripts/autounattend.xml	/^<unattend xmlns="urn:schemas-microsoft-com:unattend">$/;"	n	language:XML	uri:urn:schemas-microsoft-com:unattend
+ns5f4c598e0101	playbooks/windows/scripts/sysprep.xml	/^<unattend xmlns="urn:schemas-microsoft-com:unattend">$/;"	n	language:XML	uri:urn:schemas-microsoft-com:unattend
+open firewall ports for zabbix agent	roles/unused/zabbix-client/tasks/main.yml	/^- name: open firewall ports for zabbix agent$/;"	p	language:AnsiblePlaybook
+opensshd.yml	inventory/group_vars/all/opensshd.yml	1;"	F	language:Yaml	epoch:1676118737
+opensshd.yml	playbooks/dev/opensshd.yml	1;"	F	language:Yaml	epoch:1676118738
+opensshd.yml	playbooks/dev/std-server/opensshd.yml	1;"	F	language:Yaml	epoch:1676118738
+pacman-key --add usr/share/pacman/keyrings/blackarch.gpg	roles/blackarch/README.md	/^# pacman-key --add usr\/share\/pacman\/keyrings\/blackarch.gpg$/;"	c	language:Markdown
+pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3	roles/blackarch/README.md	/^# pacman-key --lsign-key 4345771566D76038C7FEB43863EC0ADBEA87E4E3$/;"	c	language:Markdown
+pacman.yml	playbooks/dev/std-server/pacman.yml	1;"	F	language:Yaml	epoch:1676118738
+parse_cmdline	roles/rclone-backup/files/rclone-backup.sh	/^parse_cmdline() {$/;"	f	language:Sh
+parse_cmdline	roles/rclone-backup/files/rclone-restore.sh	/^parse_cmdline() {$/;"	f	language:Sh
+pgsql.yml	inventory/group_vars/all/pgsql.yml	1;"	F	language:Yaml	epoch:1676118737
+pki.yml	inventory/host_vars/honbu.jinteki.lan/pki.yml	1;"	F	language:Yaml	epoch:1676118737
+pki.yml	inventory/host_vars/honkyo.jinteki.lan/pki.yml	1;"	F	language:Yaml	epoch:1676118737
+process_ca.yml	roles/unused/trust-certs/tasks/process_ca.yml	1;"	F	language:Yaml	epoch:1676118743
+process_directory	roles/rclone-backup/files/rclone-backup.sh	/^process_directory() {$/;"	f	language:Sh
+process_file	roles/rclone-backup/files/rclone-backup.sh	/^process_file() {$/;"	f	language:Sh
+programming	playbooks/endpoint/to_sort/files/bookmarks.html	/^        <DT><H3 ADD_DATE="1648263379" LAST_MODIFIED="1667460144">programming<\/H3>$/;"	j	language:HTML
+python	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1648263385" LAST_MODIFIED="1650851638">python<\/H3>$/;"	j	language:HTML
+rclone-backup.sh	roles/rclone-backup/files/rclone-backup.sh	1;"	F	language:Sh	epoch:1676118741
+rclone-restore.sh	roles/rclone-backup/files/rclone-restore.sh	1;"	F	language:Sh	epoch:1676118741
+rclone.yml	inventory/group_vars/all/rclone.yml	1;"	F	language:Yaml	epoch:1676118737
+rclone.yml	playbooks/dev/rclone.yml	1;"	F	language:Yaml	epoch:1676118738
+rclone_backup.yml	inventory/group_vars/all/rclone_backup.yml	1;"	F	language:Yaml	epoch:1676118737
+read key and certificate for "{{ cert.name }}"	playbooks/endpoint/to_sort/certs_creator/_haproxy-cert.yml	/^- name: read key and certificate for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+read key and certificate for "{{ cert.name }}"	roles/unused/haproxy/tasks/tls.yml	/^- name: read key and certificate for "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+reboot-required.sh	roles/pacman/files/reboot-required.sh	1;"	F	language:Sh	epoch:1676118750
+recon	playbooks/endpoint/to_sort/files/bookmarks.html	/^            <DT><H3 ADD_DATE="1647206657" LAST_MODIFIED="1667460178">recon<\/H3>$/;"	j	language:HTML
+reflector.yml	inventory/group_vars/all/reflector.yml	1;"	F	language:Yaml	epoch:1676118737
+reflector.yml	playbooks/dev/std-server/reflector.yml	1;"	F	language:Yaml	epoch:1676118738
+request cert "{{ cert.name }}"	playbooks/endpoint/to_sort/certs_creator/_haproxy-csr.yml	/^- name: request cert "{{ cert.name }}"$/;"	p	language:AnsiblePlaybook
+restart bluetooth	roles/bluetooth-headset/handlers/main.yml	/^- name: restart bluetooth$/;"	p	language:AnsiblePlaybook
+restart cups	roles/cups/handlers/main.yml	/^- name: restart cups$/;"	p	language:AnsiblePlaybook
+restart haproxy	roles/unused/haproxy/handlers/main.yml	/^- name: restart haproxy$/;"	p	language:AnsiblePlaybook
+restart ipp-usb	roles/sane/handlers/main.yml	/^- name: restart ipp-usb$/;"	p	language:AnsiblePlaybook
+restart libvirtd	roles/unused/libvirt/handlers/main.yml	/^- name: restart libvirtd$/;"	p	language:AnsiblePlaybook
+restart lightdm	roles/lxde/handlers/main.yml	/^- name: restart lightdm$/;"	p	language:AnsiblePlaybook
+restart pgsql	roles/pgsql/handlers/main.yml	/^- name: restart pgsql$/;"	p	language:AnsiblePlaybook
+restart reflector	roles/reflector/handlers/main.yml	/^- name: restart reflector$/;"	p	language:AnsiblePlaybook
+restart reflector timer	roles/reflector/handlers/main.yml	/^- name: restart reflector timer$/;"	p	language:AnsiblePlaybook
+restart rsyncd	roles/rsyncd/handlers/main.yml	/^- name: restart rsyncd$/;"	p	language:AnsiblePlaybook
+restart sshd	roles/opensshd/handlers/main.yml	/^- name: restart sshd$/;"	p	language:AnsiblePlaybook
+restart timer	roles/rclone-backup/handlers/main.yml	/^- name: restart timer$/;"	p	language:AnsiblePlaybook
+restart timer	roles/rsyncd/handlers/main.yml	/^- name: restart timer$/;"	p	language:AnsiblePlaybook
+restart timer_diff	roles/rsync-backup/handlers/main.yml	/^- name: restart timer_diff$/;"	p	language:AnsiblePlaybook
+restart timer_full	roles/rsync-backup/handlers/main.yml	/^- name: restart timer_full$/;"	p	language:AnsiblePlaybook
+restart updatedb	roles/mlocate/handlers/main.yml	/^- name: restart updatedb$/;"	p	language:AnsiblePlaybook
+restart updatedb	roles/mlocate/tasks/main.yml	/^- name: restart updatedb$/;"	p	language:AnsiblePlaybook
+restart updatedb timer	roles/mlocate/handlers/main.yml	/^- name: restart updatedb timer$/;"	p	language:AnsiblePlaybook
+restart updatedb timer	roles/mlocate/tasks/main.yml	/^- name: restart updatedb timer$/;"	p	language:AnsiblePlaybook
+restart vault	roles/unused/vault/handlers/main.yml	/^- name: restart vault$/;"	p	language:AnsiblePlaybook
+restart virtinterfaced	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtinterfaced$/;"	p	language:AnsiblePlaybook
+restart virtlockd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtlockd$/;"	p	language:AnsiblePlaybook
+restart virtlogd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtlogd$/;"	p	language:AnsiblePlaybook
+restart virtnetworkd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtnetworkd$/;"	p	language:AnsiblePlaybook
+restart virtnodedevd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtnodedevd$/;"	p	language:AnsiblePlaybook
+restart virtnwfilterd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtnwfilterd$/;"	p	language:AnsiblePlaybook
+restart virtproxyd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtproxyd$/;"	p	language:AnsiblePlaybook
+restart virtqemud	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtqemud$/;"	p	language:AnsiblePlaybook
+restart virtsecretd	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtsecretd$/;"	p	language:AnsiblePlaybook
+restart virtstoraged	roles/unused/libvirt/handlers/main.yml	/^- name: restart virtstoraged$/;"	p	language:AnsiblePlaybook
+restart xxx	roles/pacman/handlers/main.yml	/^- name: restart xxx$/;"	p	language:AnsiblePlaybook
+restart xxx	roles/rclone/handlers/main.yml	/^- name: restart xxx$/;"	p	language:AnsiblePlaybook
+restore_list=	roles/rclone-backup/files/rclone-restore.sh	/^restore_list=()$/;"	f	language:Sh
+restrict_to_tunnel	roles/nordvpn/files/nordvpn.sh	/^restrict_to_tunnel() {$/;"	f	language:Sh
+root-create-cert.yml	roles/unused/pki/tasks/root-create-cert.yml	1;"	F	language:Yaml	epoch:1676118743
+root-sign-csr.yml	roles/unused/pki/tasks/root-sign-csr.yml	1;"	F	language:Yaml	epoch:1676118743
+rsync-backup.yml	inventory/group_vars/all/rsync-backup.yml	1;"	F	language:Yaml	epoch:1676118737
+rsync-backup.yml	inventory/host_vars/honbu.jinteki.lan/rsync-backup.yml	1;"	F	language:Yaml	epoch:1676118737
+rsync-backup.yml	playbooks/servers/rsync-backup.yml	1;"	F	language:Yaml	epoch:1676118738
+rsync.yml	inventory/host_vars/honbu.jinteki.lan/rsync.yml	1;"	F	language:Yaml	epoch:1676118738
+rsyncd.yml	inventory/group_vars/all/rsyncd.yml	1;"	F	language:Yaml	epoch:1676118737
+selectorset	playbooks/windows/scripts/winrm.ps1	/^        $selectorset = @{$/;"	v	language:PowerShell
+selectorset	playbooks/windows/scripts/winrm.ps1	/^    $selectorset = @{$/;"	v	language:PowerShell
+servers_ansible.yml	playbooks/servers/servers_ansible.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_blackarch.yml	playbooks/servers/servers_blackarch.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_bt.yml	playbooks/servers/servers_bt.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_cups.yml	playbooks/servers/servers_cups.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_dns-server.yml	playbooks/servers/servers_dns-server.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_docker.yml	playbooks/servers/servers_docker.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_libvirt.yml	playbooks/servers/servers_libvirt.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_lxde.yml	playbooks/servers/servers_lxde.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_minidlna.yml	playbooks/servers/servers_minidlna.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_pgsql.yml	playbooks/servers/servers_pgsql.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_pki.yml	playbooks/servers/servers_pki.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_rclone-backup.yml	playbooks/servers/servers_rclone-backup.yml	1;"	F	language:Yaml	epoch:1676118738
+servers_rsync.yml	playbooks/servers/servers_rsync.yml	1;"	F	language:Yaml	epoch:1676118738
+set-config	roles/unused/zabbix-client/tasks/main.yml	/^- name: set-config$/;"	p	language:AnsiblePlaybook
+set_nord_dns	roles/nordvpn/files/nordvpn.sh	/^set_nord_dns() {$/;"	f	language:Sh
+set_openvpn_server	roles/nordvpn/files/nordvpn.sh	/^set_openvpn_server() {$/;"	f	language:Sh
+setup DC	playbooks/windows/adds_root.yml	/^- name: setup DC$/;"	p	language:AnsiblePlaybook
+setup.ps1	playbooks/windows/scripts/setup.ps1	1;"	F	language:PowerShell	epoch:1676118738
+setup_blue.yml	playbooks/windows/setup_blue.yml	1;"	F	language:Yaml	epoch:1676118738
+smbenable.ps1	playbooks/windows/scripts/smbenable.ps1	1;"	F	language:PowerShell	epoch:1676118738
+soft.yml	inventory/host_vars/blue.jinteki.lan/soft.yml	1;"	F	language:Yaml	epoch:1676118738
+start_openvpn	roles/nordvpn/files/nordvpn.sh	/^start_openvpn() {$/;"	f	language:Sh
+stop_openvpn	roles/nordvpn/files/nordvpn.sh	/^stop_openvpn() {$/;"	f	language:Sh
+sysprep.ps1	playbooks/windows/scripts/sysprep.ps1	1;"	F	language:PowerShell	epoch:1676118738
+sysprep.xml	playbooks/windows/scripts/sysprep.xml	1;"	F	language:XML	epoch:1676118738
+test-terraform-cert.yml	playbooks/endpoint/to_sort/certs_creator/test-terraform-cert.yml	1;"	F	language:Yaml	epoch:1676118738
+test.yml	playbooks/dev/test.yml	1;"	F	language:Yaml	epoch:1676118738
+test.yml	role_skeleton/tests/test.yml	1;"	F	language:Yaml	epoch:1676118739
+test.yml	roles/ansible/tests/test.yml	1;"	F	language:Yaml	epoch:1676118752
+test.yml	roles/aur-install/tests/test.yml	1;"	F	language:Yaml	epoch:1676118740
+test.yml	roles/blackarch/tests/test.yml	1;"	F	language:Yaml	epoch:1676118745
+test.yml	roles/bluetooth-headset/tests/test.yml	1;"	F	language:Yaml	epoch:1676118740
+test.yml	roles/cups/tests/test.yml	1;"	F	language:Yaml	epoch:1676118751
+test.yml	roles/docker/tests/test.yml	1;"	F	language:Yaml	epoch:1676118750
+test.yml	roles/gen-locale/tests/test.yml	1;"	F	language:Yaml	epoch:1676118739
+test.yml	roles/grub/tests/test.yml	1;"	F	language:Yaml	epoch:1676118746
+test.yml	roles/lxde/tests/test.yml	1;"	F	language:Yaml	epoch:1676118741
+test.yml	roles/minidlna/tests/test.yml	1;"	F	language:Yaml	epoch:1676118739
+test.yml	roles/mlocate/tests/test.yml	1;"	F	language:Yaml	epoch:1676118739
+test.yml	roles/nordvpn/tests/test.yml	1;"	F	language:Yaml	epoch:1676118751
+test.yml	roles/opensshd/tests/test.yml	1;"	F	language:Yaml	epoch:1676118740
+test.yml	roles/pacman/tests/test.yml	1;"	F	language:Yaml	epoch:1676118750
+test.yml	roles/pgsql/tests/test.yml	1;"	F	language:Yaml	epoch:1676118740
+test.yml	roles/rclone-backup/tests/test.yml	1;"	F	language:Yaml	epoch:1676118741
+test.yml	roles/rclone/tests/test.yml	1;"	F	language:Yaml	epoch:1676118749
+test.yml	roles/reflector/tests/test.yml	1;"	F	language:Yaml	epoch:1676118740
+test.yml	roles/rsync-backup/tests/test.yml	1;"	F	language:Yaml	epoch:1676118741
+test.yml	roles/rsyncd/tests/test.yml	1;"	F	language:Yaml	epoch:1676118748
+test.yml	roles/sane/tests/test.yml	1;"	F	language:Yaml	epoch:1676118746
+test.yml	roles/time-sync/tests/test.yml	1;"	F	language:Yaml	epoch:1676118745
+test.yml	roles/ufw/tests/test.yml	1;"	F	language:Yaml	epoch:1676118745
+test.yml	roles/unused/dns-server/tests/test.yml	1;"	F	language:Yaml	epoch:1676118743
+test.yml	roles/unused/elasticsearch/tests/test.yml	1;"	F	language:Yaml	epoch:1676118742
+test.yml	roles/unused/haproxy/tests/test.yml	1;"	F	language:Yaml	epoch:1676118745
+test.yml	roles/unused/libvirt/tests/test.yml	1;"	F	language:Yaml	epoch:1676118744
+test.yml	roles/unused/pki-get-signed/tests/test.yml	1;"	F	language:Yaml	epoch:1676118743
+test.yml	roles/unused/pki-request-cert/tests/test.yml	1;"	F	language:Yaml	epoch:1676118742
+test.yml	roles/unused/pki-sign-csr/tests/test.yml	1;"	F	language:Yaml	epoch:1676118741
+test.yml	roles/unused/pki/tests/test.yml	1;"	F	language:Yaml	epoch:1676118742
+test.yml	roles/unused/trust-certs/tests/test.yml	1;"	F	language:Yaml	epoch:1676118743
+test.yml	roles/unused/vault/tests/test.yml	1;"	F	language:Yaml	epoch:1676118742
+test.yml	roles/unused/zabbix-client/tests/test.yml	1;"	F	language:Yaml	epoch:1676118744
+test.yml	roles/unused/zabbix-server/tests/test.yml	1;"	F	language:Yaml	epoch:1676118745
+test.yml	roles/update-pkgs/tests/test.yml	1;"	F	language:Yaml	epoch:1676118751
+test.yml	roles/virtualbox/tests/test.yml	1;"	F	language:Yaml	epoch:1676118752
+test_pkgs.yml	playbooks/test_pkgs.yml	1;"	F	language:Yaml	epoch:1676118738
+tests_pkgs.yml	inventory/host_vars/akamatsu.jinteki.lan/tests_pkgs.yml	1;"	F	language:Yaml	epoch:1676118737
+thumbprint	playbooks/windows/scripts/winrm.ps1	/^        $thumbprint = New-LegacySelfSignedCert -SubjectName $SubjectName -ValidDays $CertValidit/;"	v	language:PowerShell
+thumbprint	playbooks/windows/scripts/winrm.ps1	/^    $thumbprint = New-LegacySelfSignedCert -SubjectName $SubjectName -ValidDays $CertValidityDay/;"	v	language:PowerShell
+time-sync.yml	inventory/group_vars/all/time-sync.yml	1;"	F	language:Yaml	epoch:1676118737
+tls.yml	roles/unused/elasticsearch/tasks/tls.yml	1;"	F	language:Yaml	epoch:1676118742
+tls.yml	roles/unused/haproxy/tasks/tls.yml	1;"	F	language:Yaml	epoch:1676118745
+tls.yml	roles/unused/libvirt/tasks/tls.yml	1;"	F	language:Yaml	epoch:1676118744
+trust-certs.yml	playbooks/dev/std-server/trust-certs.yml	1;"	F	language:Yaml	epoch:1676118738
+trust-certs.yml	playbooks/trust-certs.yml	1;"	F	language:Yaml	epoch:1676118738
+trust-test-certs.yml	playbooks/dev/std-server/trust-test-certs.yml	1;"	F	language:Yaml	epoch:1676118738
+ubuntu.yml	roles/ansible/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118753
+ubuntu.yml	roles/ansible/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118753
+ubuntu.yml	roles/bluetooth-headset/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118741
+ubuntu.yml	roles/bluetooth-headset/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118741
+ubuntu.yml	roles/cups/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118751
+ubuntu.yml	roles/cups/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118751
+ubuntu.yml	roles/docker/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118750
+ubuntu.yml	roles/minidlna/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118739
+ubuntu.yml	roles/minidlna/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118739
+ubuntu.yml	roles/pgsql/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118740
+ubuntu.yml	roles/pgsql/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118740
+ubuntu.yml	roles/rclone-backup/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118741
+ubuntu.yml	roles/rclone-backup/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118741
+ubuntu.yml	roles/rclone/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118750
+ubuntu.yml	roles/rclone/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118750
+ubuntu.yml	roles/reflector/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118740
+ubuntu.yml	roles/rsync-backup/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118741
+ubuntu.yml	roles/rsync-backup/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118741
+ubuntu.yml	roles/rsyncd/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118749
+ubuntu.yml	roles/rsyncd/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118749
+ubuntu.yml	roles/sane/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118746
+ubuntu.yml	roles/sane/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118746
+ubuntu.yml	roles/unused/dns-server/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118743
+ubuntu.yml	roles/unused/dns-server/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118743
+ubuntu.yml	roles/unused/elasticsearch/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118742
+ubuntu.yml	roles/unused/haproxy/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118745
+ubuntu.yml	roles/unused/haproxy/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118745
+ubuntu.yml	roles/unused/libvirt/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118744
+ubuntu.yml	roles/unused/libvirt/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118744
+ubuntu.yml	roles/unused/pki/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118742
+ubuntu.yml	roles/unused/vault/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118742
+ubuntu.yml	roles/unused/vault/vars/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118742
+ubuntu.yml	roles/unused/zabbix-server/tasks/ubuntu.yml	1;"	F	language:Yaml	epoch:1676118745
+udev Template	roles/sane/tasks/main.yml	/^- name: udev Template$/;"	p	language:AnsiblePlaybook
+ufw add ssh in rule	roles/ufw/tasks/main.yml	/^- name: ufw add ssh in rule$/;"	p	language:AnsiblePlaybook
+ufw.yml	inventory/group_vars/all/ufw.yml	1;"	F	language:Yaml	epoch:1676118737
+ufw_frontend.yml	roles/unused/haproxy/tasks/ufw_frontend.yml	1;"	F	language:Yaml	epoch:1676118745
+unset_nord_dns	roles/nordvpn/files/nordvpn.sh	/^unset_nord_dns() {$/;"	f	language:Sh
+update all packages	playbooks/dev/docker.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/elasticsearch.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/mlocate.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/nordvpn.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/opensshd.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/rclone.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/grub.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/mlocate.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/opensshd.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/pacman.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/reflector.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/trust-certs.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/std-server/trust-test-certs.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/test.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/update-pkgs.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/virtualbox.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/dev/zabbix-server.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/akamatsu.jinteki.yaml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/dev-arch.jinteki.lan.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/doppelganger.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/ffox-l.jinteki.lan.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/ffox-r.jinteki.lan.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/hc_vault/hcv_vault.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/honbu.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/honkyo.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/jinteki-bios-kali.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/endpoint/to_sort/yoki.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/init-endpoint.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/install_pkgs.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/rsync-backup.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_ansible.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_blackarch.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_bt.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_cups.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_dns-server.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_docker.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_libvirt.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_lxde.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_minidlna.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_pgsql.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_pki.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_rclone-backup.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/servers/servers_rsync.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/test_pkgs.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/trust-certs.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/windows/setup_blue.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update all packages	playbooks/zenshou.yml	/^- name: update all packages$/;"	p	language:AnsiblePlaybook
+update grub config	roles/grub/handlers/main.yml	/^- name: update grub config$/;"	p	language:AnsiblePlaybook
+update packages	roles/blackarch/handlers/main.yml	/^- name: update packages$/;"	p	language:AnsiblePlaybook
+update-pkgs.yml	playbooks/dev/update-pkgs.yml	1;"	F	language:Yaml	epoch:1676118738
+usage	roles/nordvpn/files/nordvpn.sh	/^function usage()$/;"	f	language:Sh
+usage	roles/rclone-backup/files/rclone-backup.sh	/^function usage()$/;"	f	language:Sh
+usage	roles/rclone-backup/files/rclone-restore.sh	/^function usage()$/;"	f	language:Sh
+valueset	playbooks/windows/scripts/winrm.ps1	/^        $valueset = @{$/;"	v	language:PowerShell
+valueset	playbooks/windows/scripts/winrm.ps1	/^    $valueset = @{$/;"	v	language:PowerShell
+variables.yml	roles/ansible/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118753
+variables.yml	roles/bluetooth-headset/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118741
+variables.yml	roles/cups/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118751
+variables.yml	roles/grub/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118746
+variables.yml	roles/lxde/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118741
+variables.yml	roles/minidlna/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118739
+variables.yml	roles/opensshd/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118740
+variables.yml	roles/pgsql/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118740
+variables.yml	roles/rclone-backup/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118741
+variables.yml	roles/rclone/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118750
+variables.yml	roles/reflector/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118740
+variables.yml	roles/rsync-backup/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118741
+variables.yml	roles/rsyncd/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118749
+variables.yml	roles/sane/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118746
+variables.yml	roles/unused/haproxy/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118745
+variables.yml	roles/unused/libvirt/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118744
+variables.yml	roles/unused/pki-get-signed/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118743
+variables.yml	roles/unused/pki-request-cert/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118742
+variables.yml	roles/unused/pki-sign-csr/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118742
+variables.yml	roles/unused/vault/tasks/variables.yml	1;"	F	language:Yaml	epoch:1676118742
+vbox.yml	inventory/host_vars/honbu.jinteki.lan/vbox.yml	1;"	F	language:Yaml	epoch:1676118738
+vboxservers.yml	inventory/group_vars/all/vboxservers.yml	1;"	F	language:Yaml	epoch:1676118737
+verify.yml	roles/gen-locale/molecule/default/verify.yml	1;"	F	language:Yaml	epoch:1676118739
+virtualbox.yml	playbooks/dev/virtualbox.yml	1;"	F	language:Yaml	epoch:1676118738
+wcm	playbooks/windows/scripts/autounattend.xml	/^            <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicK/;"	n	language:XML	uri:http://schemas.microsoft.com/WMIConfig/2002/State
+wcm	playbooks/windows/scripts/autounattend.xml	/^            <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publi/;"	n	language:XML	uri:http://schemas.microsoft.com/WMIConfig/2002/State
+wcm	playbooks/windows/scripts/autounattend.xml	/^        <component name="Microsoft-Windows-PnpCustomizationsWinPE" publicKeyToken="31bf3856ad364/;"	n	language:XML	uri:http://schemas.microsoft.com/WMIConfig/2002/State
+wcm	playbooks/windows/scripts/autounattend.xml	/^        <component xmlns:wcm="http:\/\/schemas.microsoft.com\/WMIConfig\/2002\/State" xmlns:xsi=/;"	n	language:XML	uri:http://schemas.microsoft.com/WMIConfig/2002/State
+wcm	playbooks/windows/scripts/sysprep.xml	/^        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyT/;"	n	language:XML	uri:http://schemas.microsoft.com/WMIConfig/2002/State
+windows_connection.yml	inventory/group_vars/windows/windows_connection.yml	1;"	F	language:Yaml	epoch:1676118737
+winrm.ps1	playbooks/windows/scripts/winrm.ps1	1;"	F	language:PowerShell	epoch:1676118738
+xsi	playbooks/windows/scripts/autounattend.xml	/^            <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicK/;"	n	language:XML	uri:http://www.w3.org/2001/XMLSchema-instance
+xsi	playbooks/windows/scripts/autounattend.xml	/^            <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publi/;"	n	language:XML	uri:http://www.w3.org/2001/XMLSchema-instance
+xsi	playbooks/windows/scripts/autounattend.xml	/^        <component xmlns:wcm="http:\/\/schemas.microsoft.com\/WMIConfig\/2002\/State" xmlns:xsi=/;"	n	language:XML	uri:http://www.w3.org/2001/XMLSchema-instance
+xsi	playbooks/windows/scripts/sysprep.xml	/^        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyT/;"	n	language:XML	uri:http://www.w3.org/2001/XMLSchema-instance
+yoki.yml	playbooks/endpoint/to_sort/yoki.yml	1;"	F	language:Yaml	epoch:1676118738
+zabbix-client.yml	inventory/group_vars/all/zabbix-client.yml	1;"	F	language:Yaml	epoch:1676118737
+zabbix-server.yml	playbooks/dev/zabbix-server.yml	1;"	F	language:Yaml	epoch:1676118738
+zenshou.yml	playbooks/zenshou.yml	1;"	F	language:Yaml	epoch:1676190445
