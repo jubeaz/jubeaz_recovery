@@ -2,7 +2,7 @@
 - name: assert proper distribution
   assert:
     that:
-      - ansible_distribution in ['Ubuntu', 'Archlinux', 'Kali']
+      - ansible_distribution in ['Archlinux']
     quiet: true
 
 - name: Include OS-specific variables
