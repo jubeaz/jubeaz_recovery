@@ -19,25 +19,25 @@
 
 - name: Install BlackArch
   block:
-    - name: Check multilib status
-      lineinfile:
-        path: /etc/pacman.conf
-        regexp: '^[multilib]'
-        line: '[multilib]'
-      check_mode: true
-      register: __multilib_enabled
-      changed_when: false
-    - name: Enable multilib 
-      blockinfile:
-        dest: /etc/pacman.conf
-        marker_begin: ""
-        marker_end: ""
-        marker: ""
-        block: | 
-          [multilib]
-          Include = /etc/pacman.d/mirrorlist
-        state: present
-      when: __multilib_enabled.msg == 'line added'
+    #    - name: Check multilib status
+    #      lineinfile:
+    #        path: /etc/pacman.conf
+    #        regexp: '^[multilib]'
+    #        line: '[multilib]'
+    #      check_mode: true
+    #      register: __multilib_enabled
+    #      changed_when: false
+    #    - name: Enable multilib 
+    #      blockinfile:
+    #        dest: /etc/pacman.conf
+    #        marker_begin: ""
+    #        marker_end: ""
+    #        marker: ""
+    #        block: | 
+    #          [multilib]
+    #          Include = /etc/pacman.d/mirrorlist
+    #        state: present
+    #      when: __multilib_enabled.msg == 'line added'
 
     - name: Get strap
       get_url:
