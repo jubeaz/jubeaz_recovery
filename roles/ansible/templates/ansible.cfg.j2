@@ -1,11 +1,11 @@
 [defaults]
 
-vault_password_file = $XDG_CONFIG_HOME/ansible.d/vault_password
+vault_password_file = /etc/ansible/inventory/vault_password
 display_skipped_hosts = false
 host_key_checking = False
 roles_path = ~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:~/dev/ansible/roles
 forks = 30
-inventory=~/dev/ansible/inventory/inventory.yml
+inventory=/etc/ansible/inventory/inventory.yml
 
 [ssh_connection]
 #ssh_args = -o ForwardAgent=yes  -o ControlMaster=auto -o ControlPersist=60s -o "StrictHostKeyChecking no PreferredAuthentications=publickey"
@@ -13,6 +13,4 @@ ssh_args = -o ForwardAgent=yes  -o ControlMaster=auto -o ControlPersist=60s -o "
 pipelining = True
 
 [galaxy]
-#role_skeleton=~/.ansible.d/role_skeleton
-role_skeleton=$XDG_CONFIG_HOME/ansible.d/role_skeleton
-
+role_skeleton=/etc/ansible/role_skeleton
