@@ -44,3 +44,27 @@
     append: yes
   with_items: "{{ light_users }}"
 
+- name: Create wallpaper folder
+  ansible.builtin.file:
+    path: /usr/share/wallpaper
+    owner: root
+    group: root
+    state: directory
+    mode: '0755'
+
+- name: Copy greeter bg images
+  copy:
+    dest: "/usr/share/wallpaper/greeter-bg.png"
+    src: "files/greeter-bg.png"
+    owner: root
+    group: root
+    mode: 0655
+
+- name: Copy greeter config
+  copy:
+    dest: "/etc/lightdm/lightdm-gtk-greeter.conf"
+    src: "files/lightdm-gtk-greeter.conf"
+    owner: root
+    group: root
+    mode: 0644
+
