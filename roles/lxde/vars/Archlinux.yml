@@ -10,4 +10,5 @@ lxde_pkgs:
   - rofi
   - light
   - ttf-font-awesome
+  - arandr
     #  - openbox
