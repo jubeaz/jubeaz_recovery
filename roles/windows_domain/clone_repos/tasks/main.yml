@@ -1,0 +1,23 @@
+- name: Install repos
+  ansible.windows.win_powershell:
+    script: |
+      [CmdletBinding()]
+      param (
+        [String]
+        $Repo,
+        [String]
+        $Folder
+      )
+      if (-Not (Test-Path -Path c:\shared\$Folder)) {
+        git clone $Repo c:\shared\$Folder
+      }
+    parameters:
+      Repo: "{{ item[1] }}"
+      Folder: "{{ item[0] }}"
+  loop: "{{ repos }}"
+  vars:
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: "{{ repos_user}}"
+    ansible_become_password: "{{ repos_password }}"
+    ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only

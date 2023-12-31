@@ -1,0 +1,28 @@
+- name: create defender exclusion, disable sample submssion, realtime protection
+  ansible.windows.win_powershell:
+    script: |
+      Add-MpPreference -ExclusionPath 'c:\shared' -AttackSurfaceReductionOnlyExclusions 'c:\shared'
+      Set-MpPreference -SubmitSamplesConsent 2
+      Set-MpPreference -DisableRealtimeMonitoring $true
+      
+- name: Manage Auto-Updates
+  ansible.windows.win_powershell:
+    script: |
+      Set-ItemProperty -Path Registry::HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU -Name "NoAutoUpdate" -Value 0
+      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AutoInstallMinorUpdates" -Value 1
+      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "DetectionFrequency" -Value 22
+      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "DetectionFrequencyEnabled" -Value 1
+      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "ScheduledInstallDay" -Value 0
+      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "ScheduledInstallTime" -Value 22
+      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "RescheduleWaitTime" -Value 20
+
+- name: Install Security, Critical and Rollups Updates and reboot as many times as needed
+  ansible.windows.win_updates:
+    category_names: 
+      - SecurityUpdates
+      - CriticalUpdates
+      - UpdateRollups
+    reboot: true
+  become: true
+  become_method: runas
+  become_user: SYSTEM

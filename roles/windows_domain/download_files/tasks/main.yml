@@ -1,0 +1,6 @@
+
+- name: download some files
+  ansible.windows.win_get_url:
+    url: "{{ item[1] }}"
+    dest: "C:\\tmp\\{{ item[0] }}"
+  loop: "{{ download_files }}"
