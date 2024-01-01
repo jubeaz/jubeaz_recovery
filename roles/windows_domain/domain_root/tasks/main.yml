@@ -5,7 +5,7 @@
 - name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
   ansible.windows.win_shell:
     Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
-  when: dc_level == 0 and two_adapters == "yes"
+  when: dc_level == 0 and two_adapters == true
 
 - name: Ensure that domain exists
   win_domain:
@@ -53,7 +53,7 @@
 
 - name: enable only the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: dnscmd . /resetlistenaddresses {{ hostvars[dict_key].ansible_host }}
-  when: dc_level == 0
+  when: dc_level == 0 and two_adapters == true
 
 - name: Configure DNS Forwarders
   win_dsc:

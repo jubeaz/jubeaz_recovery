@@ -1,6 +1,6 @@
 - name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
   ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
-  when: dc_level == 1 and two_adapters == "yes"
+  when: dc_level == 1 and two_adapters == true
 
 - name: "Set configure dns to {{dns_domain}}"
   win_dns_client:
@@ -97,7 +97,7 @@
 
 - name: enable the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: dnscmd . /resetlistenaddresses {{ hostvars[dict_key].ansible_host }}
-  when: dc_level == 1 and two_adapters == "yes"
+  when: dc_level == 1 and two_adapters == true
 
 - name: "Install XactiveDirectory"
   win_psmodule:
