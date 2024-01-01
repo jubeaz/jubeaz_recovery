@@ -5,7 +5,7 @@
 - name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
   ansible.windows.win_shell:
     Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
-  when: dc_level == "0" and two_adapters == "yes"
+  when: dc_level == 0 and two_adapters == "yes"
 
 - name: Ensure that domain exists
   win_domain:
@@ -13,7 +13,7 @@
     dns_domain_name: "{{domain}}"
     safe_mode_password: "{{domain_password}}"
   register: check_domain
-  when: dc_level == "0"
+  when: dc_level == 0
 
 - name: Reboot to complete domain creation
   win_reboot:
@@ -28,7 +28,7 @@
     domain_admin_password: "{{domain_password}}"
     safe_mode_password: "{{domain_password}}"
     state: domain_controller
-  when: dc_level == "0"
+  when: dc_level == 0
   register: check_domain_controller
 
 - name: Reboot to complete domain controller setup
@@ -49,11 +49,11 @@
   win_psmodule:
     name: xDnsServer
     state: present
-  when: dc_level == "0"
+  when: dc_level == 0
 
 - name: enable only the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: dnscmd . /resetlistenaddresses {{ hostvars[dict_key].ansible_host }}
-  when: dc_level == "0"
+  when: dc_level == 0
 
 - name: Configure DNS Forwarders
   win_dsc:
@@ -63,7 +63,7 @@
     IPAddresses:
       - "1.1.1.1"
       - "9.9.9.9"
-  when: dc_level == "0"
+  when: dc_level == 0
 
 #- name: install nuget
 #  win_shell: install-packageprovider -name nuget -force
@@ -72,7 +72,7 @@
   win_psmodule:
     name: ActiveDirectoryDSC
     state: present
-  when: dc_level == "0" 
+  when: dc_level == 0 
 
 - name: Ensure Administrator is part of Enterprise Admins
   win_domain_group_membership:
@@ -80,7 +80,7 @@
     members:
       - Administrator
     state: present
-  when: dc_level == "0" 
+  when: dc_level == 0 
 
 - name: Ensure Administrator is part of Domain Admins
   win_domain_group_membership:
@@ -88,4 +88,4 @@
     members:
       - Administrator
     state: present
-  when: dc_level == "0"
+  when: dc_level == 0
