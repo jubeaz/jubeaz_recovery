@@ -1,6 +1,6 @@
-- name: "Create OU"
-  win_dsc:
-    resource_name: ADOrganizationalUnit
+- name: Ensure OU is present
+  microsoft.ad.ou:
     name: "{{ item.key }}"
-    path:  "{{ item.value.path }}"
+    path: "{{ item.value.path }}"
+    state: present
   with_dict: "{{ad_ou}}"
