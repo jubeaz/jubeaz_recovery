@@ -1,0 +1,26 @@
+---
+netrunner:
+  children:
+    dc:
+      hosts:
+        dc01: {dc_level: 0}    
+        dc03: {dc_level: 0} 
+        dc02: {dc_level: 1}
+    dc_slave:
+      hosts:
+    trust:
+      hosts:
+        dc01: {}    
+        dc03: {}
+    domain_server:
+      children:
+      hosts:
+        srv01: {}  
+    domain_workstation:  
+      children:
+      hosts:
+  hosts:
+    dc01: {dns_domain: dc01, dict_key: dc01, ansible_host: 192.168.56.10}
+    srv01: {dns_domain: dc01, dict_key: dc01, ansible_host: 192.168.56.11}
+    dc02: {dns_domain: dc02, dict_key: dc02, ansible_host: 192.168.56.20}
+    dc03: {dns_domain: dc03, dict_key: dc03, ansible_host: 192.168.56.30}

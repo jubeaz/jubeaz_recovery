@@ -1,0 +1,12 @@
+---
+- name: "Read data files {{data_path}}/netrunner.json"
+  hosts: dc01
+  tasks:
+    - name: test
+      debug: 
+        msg: "{{ two_adapters }}"
+      when: dc_level == 0 and two_adapters == true
+#    - name: test2
+#      debug: 
+#        var: hostvars[inventory_hostname]
+#      when: dc_level == 0      

@@ -1,0 +1,87 @@
+---
+- import_playbook: netrunner/data.yml
+  vars:
+    data_path: "/etc/ansible/inventory_labs"
+  tags: 'data'
+- import_playbook: netrunner/debug.yml
+
+#- import_playbook: netrunner/build-computers.yml
+#- import_playbook: netrunner/build-domains.yml
+#- import_playbook: netrunner/build-trusts.yml
+
+
+## ##################
+##  USERS...
+## ##################
+#
+##- name: DCs AD data configuration
+##  hosts: dc
+##  roles:
+#    - { role: 'windows_domain/password_policy', tags: 'policy', try_before_lock: "5", pass_length: "5", lock_duration: "00:05:00", lock_observation: "00:05:00", complexity: false}
+#    - { role: 'windows_domain/user_group_ou', tags: 'ad_domain_data' }
+#  vars:
+#    hostname: "{{lab.hosts[dict_key].hostname}}"
+#    domain: "{{lab.hosts[dict_key].domain}}"
+#    domain_username: "{{domain}}\\Administrator"
+#    domain_password: "{{lab.domains[domain].domain_password}}"
+#    domain_server: "{{lab.hosts[dict_key].hostname}}.{{domain}}"
+#    ad_users: "{{lab.domains[lab.hosts[dict_key].domain].users}}"
+#    ad_ou: "{{lab.domains[lab.hosts[dict_key].domain].organisation_units  | default({}) }}"
+#    ad_groups: "{{lab.domains[lab.hosts[dict_key].domain].groups}}"
+
+#
+#- name: "Move to OU"
+#  hosts: dc
+#  roles:
+#    - { role: 'move_to_ou', tags: 'move_to_ou'}
+#  vars:
+#    hosts_dict: "{{lab.hosts}}"
+#    member_domain: "{{lab.hosts[dict_key].domain}}"
+#    domain_password: "{{lab.domains[member_domain].domain_password}}"
+
+# ##################
+#  GMSA...
+# ##################
+
+#- name: GMSA inside AD
+#  hosts: dc
+#  roles:
+#  - { role: 'gmsa', tags: 'gmsa'}
+#  vars:
+#    ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
+#    domain: "{{lab.hosts[dict_key].domain}}"
+#    domain_username: "{{domain}}\\Administrator"
+#    domain_password: "{{lab.domains[domain].domain_password}}"
+#
+#- name: GMSA hosts
+#  hosts: server, workstation
+#  roles:
+#  - { role: 'gmsa_hosts', tags: 'gmsa'}
+#  vars:
+#    ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
+#    domain: "{{lab.hosts[dict_key].domain}}"
+#    domain_username: "{{domain}}\\Administrator"
+#    domain_password: "{{lab.domains[domain].domain_password}}"
+#    hostname: "{{lab.hosts[dict_key].hostname}}"
+
+# ##################
+#  GMSA...
+# ##################
+
+#- name: finish servers
+#  hosts: domain_server
+#  roles:
+#    - { role: 'windows_domain/install_features', tags: 'install_features'}
+#    - { role: 'windows_domain/install_softwares', tags: 'install_softwares' }
+#    #- { role: 'windows_domain/clone_repos', tags: 'repos'}
+#    - { role: 'windows_domain/download_files', tags: 'download_files' }
+#  vars:
+#    hostname: "{{lab.hosts[dict_key].hostname}}"
+#    domain: "{{lab.hosts[dict_key].domain}}"
+#    features: "{{lab.hosts[dict_key].features}}"
+#    softwares: "{{lab.hosts[dict_key].softwares}}"
+#    repos: "{{lab.hosts[dict_key].repos}}"
+#    download_files: "{{lab.hosts[dict_key].download_files}}"
+#    domain_username: "{{domain}}\\Administrator"
+#    domain_password: "{{lab.domains[domain].domain_password}}"
+#    domain_server: "{{lab.hosts[dict_key].hostname}}.{{domain}}"

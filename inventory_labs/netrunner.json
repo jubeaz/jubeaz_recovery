@@ -1,0 +1,418 @@
+{
+"lab" : {
+    "hosts" : {
+        "dc01" : {
+            "hostname" : "dc01",
+            "type" : "dc",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "weyland.local",
+            "path" : "DC=weyland,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
+            },
+            "scripts" : ["sidhistory.ps1"],
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
+        },
+        "srv01" : {
+            "hostname" : "srv01",
+            "type" : "server",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "weyland.local",
+            "path" : "DC=weyland,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ]
+            },
+            "Remote Desktop Users" : [
+            ],
+            "scripts" : [],
+            "vulns" : ["disable_firewall"],
+            "features": ["NET-Framework-Core"],
+            "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
+            "repos": [
+                ["Mimikatz", "https://github.com/gentilkiwi/mimikatz.git"],
+                ["Rubeus", "https://github.com/GhostPack/Rubeus"]
+            ],
+            "repos_user": "",
+            "repos_password": "",
+            "download_files": [
+                ["GRMWDK_EN_7600_1.ISO", "https://download.microsoft.com/download/4/A/2/4A25C7D5-EFBE-4182-B6A9-AE6850409A78/GRMWDK_EN_7600_1.ISO"]
+            ]
+        },
+        "dc02" : {
+            "hostname" : "dc02",
+            "type" : "dc",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "research.weyland.local",
+            "path" : "DC=researh,DC=weyland,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
+            },
+            "scripts" : ["sidhistory.ps1"],
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
+        },
+        "dc03" : {
+            "hostname" : "dc03",
+            "type" : "dc",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "haas.local",
+            "path" : "DC=haas,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
+            },
+            "scripts" : ["sidhistory.ps1"],
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
+        }
+    },
+    "domains" : {
+        "weyland.local" : {
+            "dc": "dc01",
+            "domain_password" : "Jubeaz12345+-",
+            "netbios_name": "WEYLAND",
+            "ca_server": "",
+            "trust" : "weyland.local",
+            "laps_path": "OU=Laps,DC=weyland,DC=local",
+            "organisation_units" : {
+                "researchers"        : { "path" : "DC=weyland,DC=local"},
+                "Executives"        : { "path" : "DC=weyland,DC=local"},
+                "Sales"        : { "path" : "DC=weyland,DC=local"},
+                "Logistics"        : { "path" : "DC=weyland,DC=local"},
+                "Public relationships"        : { "path" : "DC=weyland,DC=local"},
+                "Transparency Initiatives"        : { "path" : "DC=weyland,DC=local"},
+                "Trust Operations"        : { "path" : "DC=weyland,DC=local"},
+                "Black Operations"        : { "path" : "DC=weyland,DC=local"},
+                "Grey Operations"        : { "path" : "DC=weyland,DC=local"},
+                "White Operations"        : { "path" : "DC=weyland,DC=local"}
+            },
+            "laps_readers": [
+                "jubeaz"
+            ],
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                },
+                "domainlocal" : {
+                }
+            },
+            "multi_domain_groups_member" : {
+            },
+            "gmsa" : {
+            },
+            "acls" : {
+            },
+            "users" : {
+                "arose" : {
+                    "firstname"       : "adm_anson",
+                    "surname"         : "rose",
+                    "password"        : "z77w_TeCUCD_wLrD", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "acorrea" : {
+                    "firstname"       : "adm_Angelique",
+                    "surname"         : "correa",
+                    "password"        : "xx_9cryfn3dF5KW4", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "bstinson" : {
+                    "firstname"       : "root_Bryan",
+                    "surname"         : "Stinson",
+                    "password"        : "tf4ZEHz_NKj7Ezuh", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                }                
+            }
+        },
+        "research.weyland.local" : {
+            "dc": "dc02",
+            "domain_password" : "Jubeaz12345+-",
+            "netbios_name": "RESEARCH",
+            "ca_server": "",
+            "trust" : "weyland.local",
+            "laps_path": "OU=Laps,DC=weyland,DC=local",
+            "organisation_units" : {
+                "IT Department"        : { "path" : "DC=research,DC=weyland,DC=local"}
+            },
+            "laps_readers": [
+                "jubeaz"
+            ],
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                },
+                "domainlocal" : {
+                }
+            },
+            "multi_domain_groups_member" : {
+            },
+            "gmsa" : {
+            },
+            "acls" : {
+            },
+            "users" : {
+                "adm_arose" : {
+                    "firstname"       : "adm_anson",
+                    "surname"         : "rose",
+                    "password"        : "z77w_TeCUCD_wLrD", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "adm_acorrea" : {
+                    "firstname"       : "adm_Angelique",
+                    "surname"         : "correa",
+                    "password"        : "xx_9cryfn3dF5KW4", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "root_bstinson" : {
+                    "firstname"       : "root_Bryan",
+                    "surname"         : "Stinson",
+                    "password"        : "tf4ZEHz_NKj7Ezuh", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "cslee" : {
+                    "firstname"       : "Chief",
+                    "surname"         : "Slee",
+                    "password"        : "v7pE_CSj3eD4MVCj", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "crite" : {
+                    "firstname"       : "Clyde",
+                    "surname"         : "Van Ritee",
+                    "password"        : "KN5_pJqwYEN_Rf3k", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "emills" : {
+                    "firstname"       : "Elizabeth",
+                    "surname"         : "Mills",
+                    "password"        : "Xy_Y4HuUnqh5JyFy", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "klynn" : {
+                    "firstname"       : "K. P.",
+                    "surname"         : "Lynn",
+                    "password"        : "U54U4thUFarTD_La", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "myale" : {
+                    "firstname"       : "Mark",
+                    "surname"         : "Yale",
+                    "password"        : "rA7g_eVz_MmZZWE4", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "mstone" : {
+                    "firstname"       : "Mr.",
+                    "surname"         : "Stone",
+                    "password"        : "ysMJvvjxNjjgY_R5", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "sdiego" : {
+                    "firstname"       : "Simone",
+                    "surname"         : "Diego",
+                    "password"        : "7gPR_JpoUPnxj_5R", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "yavdakov" : {
+                    "firstname"       : "Yakov Erikovich",
+                    "surname"         : "Avdakov",
+                    "password"        : "CXNpg7Ut7nc_rMq_", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "zjudge" : {
+                    "firstname"       : "Zealous",
+                    "surname"         : "Judge",
+                    "password"        : "_jcX7F97MiWV4kxT", 
+                    "city"            : "",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                }
+            }
+        },
+        "haas.local" : {
+            "dc": "dc03",
+            "domain_password" : "Jubeaz12345+-",
+            "netbios_name": "HAAS",
+            "ca_server": "",
+            "trust" : "weyland.local",
+            "laps_path": "OU=Laps,DC=haas,DC=local",
+            "organisation_units" : {
+                "Developers"        : { "path" : "DC=haas,DC=local"}
+            },
+            "laps_readers": [
+                "jubeaz"
+            ],
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                },
+                "domainlocal" : {
+                }
+            },
+            "multi_domain_groups_member" : {
+            },
+            "gmsa" : {
+            },
+            "acls" : {
+            },
+            "users" : {
+                "emoon" : {
+                    "firstname"       : "Estelle",
+                    "surname"         : "Moon",
+                    "password"        : "Nps4ffWx7omDc5_h", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "imcguire" : {
+                    "firstname"       : "Isabel",
+                    "surname"         : "McGuire",
+                    "password"        : "zazc9DN_KpftZAvn", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "mbellamy" : {
+                    "firstname"       : "Mason",
+                    "surname"         : "Bellamy",
+                    "password"        : "b_QNoDKoVJTjU3gq", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "mhendrik" : {
+                    "firstname"       : "Mr.",
+                    "surname"         : "Hendrik",
+                    "password"        : "b_QNoDKoVJTjU3gq", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "rknight" : {
+                    "firstname"       : "Ryon",
+                    "surname"         : "Knight",
+                    "password"        : "5jqkKJJjmqup_o_E", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "thaas" : {
+                    "firstname"       : "Thomas",
+                    "surname"         : "Haas",
+                    "password"        : "s_yrPbrqtHbc3n7a", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : {
+                        "add": ["Domain Admins"]
+                    },
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                }
+            }
+        }
+    }
+}
+}
