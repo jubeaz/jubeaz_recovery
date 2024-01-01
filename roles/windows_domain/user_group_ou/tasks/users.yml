@@ -41,5 +41,5 @@
     domain_username: "{{domain_username}}"
     domain_password: "{{domain_password}}"
   with_dict: "{{ ad_users }}"
-  register: usercreate
   when: item.value.spns is defined
+  register: usercreate
