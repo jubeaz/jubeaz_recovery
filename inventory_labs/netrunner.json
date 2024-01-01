@@ -91,7 +91,7 @@
             "domain_password" : "Jubeaz12345+-",
             "netbios_name": "WEYLAND",
             "ca_server": "",
-            "trust" : "weyland.local",
+            "trust" : "haas.local",
             "laps_path": "OU=Laps,DC=weyland,DC=local",
             "organisation_units" : {
                 "researchers"        : { "path" : "DC=weyland,DC=local"},
@@ -162,7 +162,7 @@
             "domain_password" : "Jubeaz12345+-",
             "netbios_name": "RESEARCH",
             "ca_server": "",
-            "trust" : "weyland.local",
+            "trust" : "",
             "laps_path": "OU=Laps,DC=weyland,DC=local",
             "organisation_units" : {
                 "IT Department"        : { "path" : "DC=research,DC=weyland,DC=local"}

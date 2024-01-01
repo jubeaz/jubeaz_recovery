@@ -1,19 +1,20 @@
-#- name: Root DC AD configuration
-#  hosts: dc
-#  tags: 'build_domains_parents_domains'
-#  roles:
-#    - { role: 'windows_domain/domain_root', tags: 'dc_main_domains'}
-#  vars:
-#    domain: "{{lab.hosts[dict_key].domain}}"
-#    domain_password: "{{lab.domains[domain].domain_password}}"
-#    netbios_name: "{{lab.domains[domain].netbios_name}}"
+- name: Root DC AD configuration
+  hosts: dc
+  tags: 'build_domains_parents_domains'
+  roles:
+    - { role: 'windows_domain/domain_root', tags: 'dc_main_domains', when: "dc_level == 0"}
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    netbios_name: "{{lab.domains[domain].netbios_name}}"
 
 - name: Child DC AD configuration
   hosts: dc
   tags: 'build_domains_child_domains'
   roles:
-    - { role: 'windows_domain/domain_child', tags: 'child_domain'}
-    - { role: 'windows_domain/dns_conditional_forwarder', tags: 'dns_conditional_forwarder' }
+    - { role: 'windows_domain/domain_child', tags: 'child_domain', when: "dc_level == 1"}
+    # child forward parent zone
+    - { role: 'windows_domain/dns_conditional_forwarder', tags: 'dns_conditional_forwarder', when: "dc_level == 1" }
   vars:
     domain: "{{lab.hosts[dict_key].domain}}"
     domain_password: "{{lab.domains[domain].domain_password}}"

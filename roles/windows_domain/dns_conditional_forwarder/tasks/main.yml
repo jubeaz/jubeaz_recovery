@@ -5,4 +5,3 @@
     replication: "{{replication}}"
     dns_servers:
       - "{{master_server}}"
-  when: dc_level == 1

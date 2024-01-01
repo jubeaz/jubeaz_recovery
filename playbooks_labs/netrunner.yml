@@ -3,12 +3,14 @@
   vars:
     data_path: "/etc/ansible/inventory_labs"
   tags: 'data'
-- import_playbook: netrunner/debug.yml
+#- import_playbook: netrunner/debug.yml
 
 #- import_playbook: netrunner/build-computers.yml
-#- import_playbook: netrunner/build-domains.yml
+- import_playbook: netrunner/build-domains.yml
 #- import_playbook: netrunner/build-trusts.yml
-
+##############
+#fatal: [dc02]: FAILED! => {"changed": true, "cmd": "dnscmd . /resetlistenaddresses 192.168.56.20", "delta": "0:00:02.423715", "end": "2024-01-01 11:58:11.821821", "msg": "non-zero return code", "rc": 1, "start": "2024-01-01 11:58:09.398105", "stderr": "dnscmd : The term 'dnscmd' is not recognized as the name of a cmdlet, function, script file, or operable program. \r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.\r\nAt line:1 char:65\r\n+ ... ::InputEncoding = New-Object Text.UTF8Encoding $false; dnscmd . /rese ...\r\n+                                                            ~~~~~~\r\n    + CategoryInfo          : ObjectNotFound: (dnscmd:String) [], CommandNotFoundException\r\n    + FullyQualifiedErrorId : CommandNotFoundException", "stderr_lines": ["dnscmd : The term 'dnscmd' is not recognized as the name of a cmdlet, function, script file, or operable program. ", "Check the spelling of the name, or if a path was included, verify that the path is correct and try again.", "At line:1 char:65", "+ ... ::InputEncoding = New-Object Text.UTF8Encoding $false; dnscmd . /rese ...", "+                                                            ~~~~~~", "    + CategoryInfo          : ObjectNotFound: (dnscmd:String) [], CommandNotFoundException", "    + FullyQualifiedErrorId : CommandNotFoundException"], "stdout": "", "stdout_lines": []}
+##############
 
 ## ##################
 ##  USERS...

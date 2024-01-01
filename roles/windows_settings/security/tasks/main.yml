@@ -1,20 +1,54 @@
-- name: create defender exclusion, disable sample submssion, realtime protection
-  ansible.windows.win_powershell:
-    script: |
-      Add-MpPreference -ExclusionPath 'c:\shared' -AttackSurfaceReductionOnlyExclusions 'c:\shared'
-      Set-MpPreference -SubmitSamplesConsent 2
-      Set-MpPreference -DisableRealtimeMonitoring $true
-      
-- name: Manage Auto-Updates
-  ansible.windows.win_powershell:
-    script: |
-      Set-ItemProperty -Path Registry::HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU -Name "NoAutoUpdate" -Value 0
-      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "AutoInstallMinorUpdates" -Value 1
-      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "DetectionFrequency" -Value 22
-      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "DetectionFrequencyEnabled" -Value 1
-      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "ScheduledInstallDay" -Value 0
-      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "ScheduledInstallTime" -Value 22
-      Set-ItemProperty  -Path "HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "RescheduleWaitTime" -Value 20
+#- name: create defender exclusion, disable sample submssion, realtime protection
+#  ansible.windows.win_powershell:
+#    script: |
+#      Add-MpPreference -ExclusionPath 'c:\shared' -AttackSurfaceReductionOnlyExclusions 'c:\shared'
+#      Set-MpPreference -SubmitSamplesConsent 2
+#      Set-MpPreference -DisableRealtimeMonitoring $true
+
+
+- name: Enable Auto Update
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: NoAutoUpdate
+    data: 0
+    type: dword
+- name: Enable  AutoInstallMinorUpdates
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: AutoInstallMinorUpdates
+    data: 1
+    type: dword
+- name: set AutoUpdate DetectionFrequency
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: DetectionFrequency
+    data: 22
+    type: dword
+- name: set AutoUpdate DetectionFrequencyEnabled
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: DetectionFrequencyEnabled
+    data: 1
+    type: dword
+- name: set AutoUpdate ScheduledInstallDay
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: ScheduledInstallDay
+    data: 0
+    type: dword
+- name: set AutoUpdate ScheduledInstallTime
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: ScheduledInstallTime
+    data: 22
+    type: dword
+- name: set AutoUpdate RescheduleWaitTime
+  ansible.windows.win_regedit:
+    path: HKLM:\oftware\Policies\Microsoft\Windows\WindowsUpdate\AU
+    name: RescheduleWaitTime
+    data: 20
+    type: dword
+
 
 - name: Install Security, Critical and Rollups Updates and reboot as many times as needed
   ansible.windows.win_updates:

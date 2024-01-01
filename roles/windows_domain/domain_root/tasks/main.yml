@@ -49,11 +49,11 @@
   win_psmodule:
     name: xDnsServer
     state: present
-  when: dc_level == 0
+
 
 - name: enable only the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: dnscmd . /resetlistenaddresses {{ hostvars[dict_key].ansible_host }}
-  when: dc_level == 0 and two_adapters == true
+  when: two_adapters == true
 
 - name: Configure DNS Forwarders
   win_dsc:
@@ -63,7 +63,6 @@
     IPAddresses:
       - "1.1.1.1"
       - "9.9.9.9"
-  when: dc_level == 0
 
 #- name: install nuget
 #  win_shell: install-packageprovider -name nuget -force
@@ -72,7 +71,6 @@
   win_psmodule:
     name: ActiveDirectoryDSC
     state: present
-  when: dc_level == 0 
 
 - name: Ensure Administrator is part of Enterprise Admins
   win_domain_group_membership:
@@ -80,7 +78,6 @@
     members:
       - Administrator
     state: present
-  when: dc_level == 0 
 
 - name: Ensure Administrator is part of Domain Admins
   win_domain_group_membership:
@@ -88,4 +85,3 @@
     members:
       - Administrator
     state: present
-  when: dc_level == 0
