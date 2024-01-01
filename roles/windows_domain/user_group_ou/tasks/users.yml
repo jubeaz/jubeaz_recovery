@@ -5,6 +5,28 @@
 
 - name: "Create users"
   microsoft.ad.user:
+    sam_account_name: "{{ item.key }}"
+    upn:  "{{ item.key + '@' + domain  }}"
+    name: "{{ item.key }}"
+    firstname: "{{item.value.firstname}}"
+    surname: "{{ item.value.surname | default(item.value.firstname) }}"
+    password: "{{ item.value.password }}"
+    password_never_expires: yes
+    path: "{{item.value.path}}"
+    description: "{{item.value.description | default('-')}}"
+    city: "{{item.value.city | default('-')}}"
+    groups: "{{ item.value.groups}}"
+    state: present
+    domain_username: "{{domain_username}}"
+    domain_password: "{{domain_password}}"
+  with_dict: "{{ ad_users }}"
+  register: usercreate
+  when: item.value.spns is not defined
+
+- name: "Create SPN users"
+  microsoft.ad.user:
+    sam_account_name: "{{ item.key }}"
+    upn:  "{{ item.key + '@' + domain  }}"
     name: "{{ item.key }}"
     firstname: "{{item.value.firstname}}"
     surname: "{{ item.value.surname | default(item.value.firstname) }}"
@@ -20,3 +42,4 @@
     domain_password: "{{domain_password}}"
   with_dict: "{{ ad_users }}"
   register: usercreate
+  when: item.value.spns is defined
