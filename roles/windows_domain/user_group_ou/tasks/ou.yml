@@ -1,6 +1,6 @@
 - name: Ensure OU is present
   microsoft.ad.ou:
-    name: "{{ item.key }}"
+    name: "{{ item.value.name }}"
     path: "{{ item.value.path }}"
     state: present
   with_dict: "{{ad_ou}}"

@@ -1,12 +1,17 @@
 ---
 - name: "Read data files {{data_path}}/netrunner.json"
-  hosts: dc01
+  hosts: netrunner
   tasks:
     - name: test
       debug: 
-        msg: "{{ two_adapters }}"
-      when: dc_level == 0 and two_adapters == true
+        msg: "{{ windows_update }}"
 #    - name: test2
 #      debug: 
 #        var: hostvars[inventory_hostname]
 #      when: dc_level == 0      
+
+#- name: build all computers
+#  hosts: netrunner
+#  tags: 'build_computers_setup_1'
+#  roles:
+#      - { role: 'windows_settings/updates', tags: 'updates', when: "windows_update == true"}

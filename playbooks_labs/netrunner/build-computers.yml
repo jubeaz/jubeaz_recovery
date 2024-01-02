@@ -4,8 +4,8 @@
   roles:
     - { role: 'windows_common/common', tags: 'windows_common', http_proxy: "{{enable_http_proxy}}"}
     - { role: 'windows_settings/keyboard', tags: 'windows_keyboard', layout: "fr-FR" }
-    - { role: 'windows_settings/security', tags: 'windows_keyboard'}
-
+    - { role: 'windows_settings/update_planning', tags: 'windows_keyboard', when: "windows_update == true"}
+    - { role: 'windows_settings/updates', tags: 'updates', when: "windows_update == true"}
 - name: Prepare computers set admin password, set hostname
   hosts: netrunner
   tags: 'build_computers_setup_2'

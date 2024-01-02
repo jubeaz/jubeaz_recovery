@@ -2,6 +2,7 @@ layout: "fr-FR"
 nat_adapter: Ethernet
 domain_adapter: Ethernet 2
 domain_name: netrunner
+windows_update: yes 
 
 force_dns_server: no
 dns_server: x.x.x.x
