@@ -12,7 +12,7 @@
       )
       try {
         $Ansible.Changed = $false
-        $target_ou = Get-ADOrganizationalUnit -Identity $ou_path > $null
+        $target_ou = Get-ADOrganizationalUnit -Identity $ou_path
         $server = Get-AdComputer -Identity $hostname
         $actual_location = ($server.DistinguishedName.split(',')| select -Skip 1) -join ','
         if (($actual_location -eq "CN=Computers," + $target_ou.DistinguishedName) -Or ($actual_location -eq $target_ou.DistinguishedName)) {
@@ -27,5 +27,5 @@
     parameters:
       hostname: "{{item.value.hostname}}"
       ou_path:  "{{item.value.path|default('')}}"
-  when: item.value.type != 'dc' and member_domain == item.value.domain and (item.value.use_laps is not defined or item.value.use_laps != true)
+  when: item.value.type != 'dc' and member_domain == item.value.domain
   with_dict: "{{hosts_dict}}"

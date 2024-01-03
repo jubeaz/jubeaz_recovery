@@ -1,0 +1,6 @@
+
+- name: Add user or group permission to read Laps
+  win_shell: |
+    Set-AdmPwdReadPasswordPermission -OrgUnit "OU={{item.value.name}},{{ item.value.path }}" -AllowedPrincipals "{{principal}}"
+  with_dict: "{{laps_path}}"
+  when: laps_path is defined and laps_path | length > 0

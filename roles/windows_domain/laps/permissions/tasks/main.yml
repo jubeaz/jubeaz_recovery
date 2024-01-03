@@ -1,5 +1,6 @@
-- name: Add user or group permission to read Laps
-  win_shell: |
-    Set-AdmPwdReadPasswordPermission -OrgUnit "{{laps_path}}" -AllowedPrincipals "{{item}}"
+- name: process permssion
+  include_tasks: permission.yml
   with_items: "{{laps_readers}}"
-  when: laps_readers is defined
+  loop_control:
+     loop_var: principal
+  when: laps_readers is defined and laps_path != false and laps_path | length > 0

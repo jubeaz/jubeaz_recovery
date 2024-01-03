@@ -37,7 +37,7 @@
     state: present
     include_management_tools: yes
     include_sub_features: yes
-  register: features
+  register: features_adds
 
 
 - name: Install windows features - RSAT-ADDS
@@ -45,7 +45,7 @@
     name: RSAT-ADDS
     state: present
     include_management_tools: yes
-  register: features
+  register: features_rsat
 
 - name: features | Installing Windows DNS Server
   win_feature:
@@ -53,7 +53,7 @@
     state: present
     include_management_tools: yes
     include_sub_features: yes
-  register: _windows_dns_server
+  register: features_dns
 
 # DNSCHANGE
 # - name: "disable interface {{nat_adapter}} before join domain"
@@ -66,6 +66,12 @@
 #    safe_mode_password: "{{domain_password}}"
 #  register: check_domain
 #  when: dc_level == 0
+
+- name: Reboot
+  win_reboot:
+    reboot_timeout: 900
+    post_reboot_delay: 100
+  when: features_dns.reboot_required or features_rsat.reboot_required or features_adds.reboot_required
 
 - name: add child domain to parent domain
   ansible.windows.win_powershell:
@@ -93,11 +99,11 @@
           [String]
           $DomSafePassword
       )
-      $domainExist=$false
+
       try {
           $child_domain = Get-ADDomain -Identity $NewDomainName
           $domainExist=$true
-      } catch [Microsoft.ActiveDirectory.Management.ADIdentityNotFoundException] {
+      } catch {
           $domainExist=$false
       }
       if (-not $domainExist) {
@@ -124,6 +130,25 @@
     reboot_timeout: 900
     post_reboot_delay: 100
   when: child_result.changed
+
+- name: check child creation
+  ansible.windows.win_powershell:
+    script: |
+      [CmdletBinding()]
+      param (
+          [String]
+          $NewDomainName
+      )
+
+      try {
+          $child_domain = Get-ADDomain -Identity $NewDomainName
+          $Ansible.Failed=$false
+      } catch {
+          $Ansible.Failed=$true
+      }
+    parameters:
+      NewDomainName: "{{domain.split('.')[0]}}"
+  register: child_result
 
 # - name: "enable interface {{nat_adapter}} after domain joined"
 #   win_shell: netsh interface set interface "{{nat_adapter}}" enable

@@ -1,4 +1,10 @@
 ---
+# Load datas
+- import_playbook: data.yml
+  vars:
+    data_path: "/etc/ansible/inventory_labs"
+  tags: 'data'
+
 - name: "play servers AD configuration"
   hosts: domain_server
   roles:

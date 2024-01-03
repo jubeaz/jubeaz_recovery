@@ -7,6 +7,8 @@
     name: "{{ item.key }}"
     scope: universal
     path: "{{item.value.path}}"
+    members: "{{item.value.members}}"
+    managed_by: "{{item.value.managed_by}}"
     state: present
   with_dict: "{{ ad_groups['universal'] }}"
   when: ad_groups['universal'] is defined
@@ -16,6 +18,8 @@
     name: "{{ item.key }}"
     scope: global
     path: "{{item.value.path}}"
+    members: "{{item.value.members}}"
+    managed_by: "{{item.value.managed_by}}"
     state: present
   with_dict: "{{ ad_groups['global'] }}"
   when: ad_groups['global'] is defined
@@ -25,6 +29,8 @@
     name: "{{ item.key }}"
     scope: domainlocal
     path: "{{item.value.path}}"
+    members: "{{item.value.members}}"
+    managed_by: "{{item.value.managed_by}}"
     state: present
   with_dict: "{{ ad_groups['domainlocal'] }}"
   when: ad_groups['domainlocal'] is defined

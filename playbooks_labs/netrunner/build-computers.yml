@@ -1,3 +1,9 @@
+# Load datas
+- import_playbook: data.yml
+  vars:
+    data_path: "/etc/ansible/inventory_labs"
+  tags: 'data'
+
 - name: build all computers
   hosts: netrunner
   tags: 'build_computers_setup_1'

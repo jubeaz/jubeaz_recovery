@@ -1,15 +1,11 @@
 ---
-- name: "Create Laps OU if not exist"
+- name: Ensure OU is present
   microsoft.ad.ou:
-    name: "{{ laps_path.split(',')[0].split('=')[1] }}"
-    path: "{{ ','.join(laps_path.split(',')[1:]) }}"
+    name: "{{ item.value.name }}"
+    path: "{{ item.value.path }}"
     state: present
+  with_dict: "{{laps_path}}"
 
-#- name: "Create Laps OU if not exist"
-#  win_dsc:
-#    resource_name: ADOrganizationalUnit
-#    name: "{{ laps_path.split(',')[0].split('=')[1] }}"
-#    path:  "{{ ','.join(laps_path.split(',')[1:]) }}"
 
 - name: Install LAPS Package on Servers
   ansible.windows.win_package:
@@ -99,7 +95,7 @@
 
 - name: "Apply DACL to OU Containers"
   win_ad_dacl:
-    path: "{{laps_path}}"
+    path: "OU={{item.value.name}},{{ item.value.path }}"
     state: present
     aces:
     - rights:
@@ -116,6 +112,8 @@
       object_type: ms-Mcs-AdmPwd
       access: allow
       account: S-1-5-10
+  with_dict: "{{laps_path}}"
+
 
 - name: Create LAPS GPO
   win_gpo:
@@ -189,7 +187,8 @@
 - name: Ensure GPO is Linked
   win_gpo_link:
     name: '{{ opt_laps_gpo_name }}'
-    target: '{{laps_path}}'
+    target: "OU={{item.value.name}},{{ item.value.path }}"
     state: present
     enforced: True
     enabled: True
+  with_dict: "{{laps_path}}"

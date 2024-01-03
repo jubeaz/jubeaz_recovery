@@ -5,41 +5,17 @@
   tags: 'data'
 #- import_playbook: netrunner/debug.yml
 
-- import_playbook: netrunner/build-computers.yml
-- import_playbook: netrunner/build-domains.yml
-- import_playbook: netrunner/domain-members.yml
-##- import_playbook: netrunner/build-trusts.yml
-#- import_playbook: netrunner/ad-data.yml
+#- import_playbook: netrunner/build-computers.yml
+#- import_playbook: netrunner/build-domains.yml
+#- import_playbook: netrunner/domain-members.yml
+#- import_playbook: netrunner/build-trusts.yml
+- import_playbook: netrunner/ad-data.yml
 #- import_playbook: netrunner/gmsa.yml
 #- import_playbook: netrunner/laps.yml
+#- import_playbook: netrunner/adcs.yml
 
 # ##################
-#  GMSA...
-# ##################
-
-#- name: GMSA inside AD
-#  hosts: dc
-#  roles:
-#  - { role: 'gmsa', tags: 'gmsa'}
-#  vars:
-#    ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
-#    domain: "{{lab.hosts[dict_key].domain}}"
-#    domain_username: "{{domain}}\\Administrator"
-#    domain_password: "{{lab.domains[domain].domain_password}}"
-#
-#- name: GMSA hosts
-#  hosts: server, workstation
-#  roles:
-#  - { role: 'gmsa_hosts', tags: 'gmsa'}
-#  vars:
-#    ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
-#    domain: "{{lab.hosts[dict_key].domain}}"
-#    domain_username: "{{domain}}\\Administrator"
-#    domain_password: "{{lab.domains[domain].domain_password}}"
-#    hostname: "{{lab.hosts[dict_key].hostname}}"
-
-# ##################
-#  GMSA...
+#  TO CONTINUE
 # ##################
 
 #- name: finish servers
