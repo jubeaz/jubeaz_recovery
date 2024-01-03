@@ -1,39 +1,35 @@
 ---
-- import_playbook: netrunner/data.yml
+- import_playbook: playbooks/lab_data.yml
   vars:
-    data_path: "/etc/ansible/inventory_labs"
+    data_path: "/etc/ansible/lab_inventories/{{domain_name}}"
   tags: 'data'
-#- import_playbook: data.yml
-#  vars:
-#    data_path: "../ad/{{domain_name}}/data/"
-#  tags: 'data'
 
-#- import_playbook: netrunner/debug.yml
+#- import_playbook: playbooks/debug.yml
 
-- import_playbook: netrunner/build-computers.yml
-- import_playbook: netrunner/build-domains.yml
-- import_playbook: netrunner/domain-members.yml
-- import_playbook: netrunner/build-trusts.yml
-- import_playbook: netrunner/ad-data.yml
-- import_playbook: netrunner/gmsa.yml
-- import_playbook: netrunner/laps.yml
-- import_playbook: netrunner/adcs.yml
-- import_playbook: netrunner/ad-relations.yml
-- import_playbook: netrunner/ad-acl.yml
-- import_playbook: netrunner/iis.yml
-- import_playbook: netrunner/webdav.yml
+- import_playbook: playbooks/build-computers.yml
+- import_playbook: playbooks/build-domains.yml
+- import_playbook: playbooks/domain-members.yml
+- import_playbook: playbooks/build-trusts.yml
+#- import_playbook: playbooks/ad-data.yml
+#- import_playbook: playbooks/gmsa.yml
+#- import_playbook: playbooks/laps.yml
+#- import_playbook: playbooks/adcs.yml
+#- import_playbook: playbooks/ad-relations.yml
+#- import_playbook: playbooks/ad-acl.yml
+#- import_playbook: playbooks/iis.yml
+#- import_playbook: playbooks/webdav.yml
 
 
-#- import_playbook: netrunner/mssql.yml
+#- import_playbook: playbooks/mssql.yml
 ## SECURITY -----
 # --------------------------------------------------------------------
 # specifics security linked to the scenario are here
-#- import_playbook: netrunner/security.yml
+#- import_playbook: playbooks/security.yml
 # --------------------------------------------------------------------
 # specifics vulns linked to the scenario are here
-#- import_playbook: netrunner/vulnerabilities.yml
+#- import_playbook: playbooks/vulnerabilities.yml
 
-#- import_playbook: netrunner/reboot.yml
+#- import_playbook: playbooks/reboot.yml
 # ##################
 #  TO CONTINUE
 # ##################
