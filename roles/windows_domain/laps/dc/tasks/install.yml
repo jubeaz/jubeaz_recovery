@@ -50,6 +50,7 @@
   become: yes
   become_method: runas
   become_user: SYSTEM
+  when: dc_level == 0
 
 - name: Configure Password Expiry Time
   win_ad_object:
@@ -76,6 +77,7 @@
   become: yes
   become_method: runas
   become_user: SYSTEM
+  when: dc_level == 0
 
 - name: Add LAPS attributes to the Computer Attribute
   win_ad_object:
@@ -92,6 +94,7 @@
   become: yes
   become_method: runas
   become_user: SYSTEM
+  when: dc_level == 0
 
 - name: "Apply DACL to OU Containers"
   win_ad_dacl:

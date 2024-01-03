@@ -1,0 +1,25 @@
+---
+# Load datas
+- name: "SETUP ENABLE DEFENDER"
+  hosts: netrunner
+  roles:
+    - { role: 'windows_settings/windows_defender', tags: 'windows_defender' }
+  vars:
+    script_path: "../ad/{{domain_name}}/scripts"
+
+- name: "SET SENSITIVE ACCOUNTS"
+  hosts: dc
+  roles:
+    - { role: 'windows_domain/sensitive', tags: 'domain_sensitive' }
+  vars:
+    domain: "{{lab.hosts[dict_key].domain}}"
+    sensitive : "{{lab.domains[lab.hosts[dict_key].domain].account_is_sensitive  | default({}) }}"
+    domain_username: "{{domain}}\\Administrator"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+
+- name: "ENABLE RUN AS PPL"
+  hosts: netrunner
+  roles:
+    - { role: 'windows_settings/enable_run_as_ppl', tags: 'run_as_ppl'}
+  vars:
+    run_as_ppl: "{{lab.hosts[dict_key].run_as_ppl if lab.hosts[dict_key].run_as_ppl is defined else false}}"

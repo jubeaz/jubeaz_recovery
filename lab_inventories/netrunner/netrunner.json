@@ -17,10 +17,7 @@
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
-            "security": ["account_is_sensitive"],
-            "security_vars": {
-                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
-            }
+            "run_as_ppl": false
         },
         "srv01" : {
             "hostname" : "archer",
@@ -39,6 +36,7 @@
             ],
             "scripts" : [],
             "vulns" : ["disable_firewall"],
+            "run_as_ppl": false,
             "features": ["NET-Framework-Core"],
             "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
             "repos": [
@@ -97,10 +95,7 @@
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
-            "security": ["account_is_sensitive"],
-            "security_vars": {
-                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
-            }
+            "run_as_ppl": false
         },
         "dc03" : {
             "hostname" : "dc03",
@@ -116,10 +111,7 @@
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
-            "security": ["account_is_sensitive"],
-            "security_vars": {
-                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
-            }
+            "run_as_ppl": false
         },
         "srv02" : {
             "hostname" : "fenris",
@@ -138,6 +130,7 @@
             ],
             "scripts" : [],
             "vulns" : ["disable_firewall"],
+            "run_as_ppl": false,
             "features": ["NET-Framework-Core"],
             "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
             "repos": [
@@ -236,6 +229,7 @@
                 "IT_admins"                 : { "name": "Admins",                    "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"}
             },
             "laps_readers": ["L_LAPS_READER"],
+            "account_is_sensitive": ["bstinson"],
             "groups" : {
                 "universal" : {},
                 "global" : {
@@ -254,9 +248,7 @@
                 }
             },
             "multi_domain_groups_member" : {
-                "L_LAPS_READER" : [
-                    "haas.local\\emoon"
-                ]
+                "L_LAPS_READER" : ["haas.local\\emoon"]
             },
             "gmsa" : {
             },
@@ -325,6 +317,7 @@
                 "IT_workstations" : { "name": "Workstations",   "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"}
             },
             "laps_readers": ["L_LAPS_READER"],
+            "account_is_sensitive": [],
             "organisation_units" : {
                 "Titan"           : { "name": "Titan",          "path" : "DC=research,DC=weyland,DC=local"},
                 "Skorpios"        : { "name": "Skorpios",       "path" : "DC=research,DC=weyland,DC=local"},
@@ -499,6 +492,7 @@
                 "C_workstations"  : { "name": "Workstations",   "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"}
             },
             "laps_readers": ["L_LAPS_READER"],
+            "account_is_sensitive": [],
             "organisation_units" : {
                 "Asa"             : { "name": "Asa",            "path" : "DC=haas,DC=local"},
                 "HQ"              : { "name": "HQ",             "path" : "DC=haas,DC=local"},
@@ -557,7 +551,7 @@
                 }
             },
             "acls" : {
-                "GenericAll_heimdall_drogo" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
+                "GenericAll_heimdall_imcguire" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
             },
             "users" : {
                 "emoon" : {

@@ -11,14 +11,28 @@
   vars:
     ansible_become_pass: "{{domain_password}}"
 
+#- name: "Add a domain user/group from another Domain in the multi-domain forest to a domain group : {{domain_server}}"
+#  microsoft.ad.group:
+#    domain_server: "{{domain_server}}"
+#    domain_username: "{{domain_username}}"
+#    domain_password: "{{domain_password}}"
+#    name: "{{ item.key }}"
+#    members: 
+#      add: "{{item.value}}"
+#  with_dict: "{{ domain_groups_members }}"
+#  register: group_membership
+#  until: "group_membership is not failed"
+#  retries: 3
+#  delay: 60
+
 - name: "Add a domain user/group from another Domain in the multi-domain forest to a domain group : {{domain_server}}"
-  microsoft.ad.group:
+  community.windows.win_domain_group_membership:
     domain_server: "{{domain_server}}"
     domain_username: "{{domain_username}}"
     domain_password: "{{domain_password}}"
-    name: "{{ item.key }}"
-    members: 
-      add: "{{item.value}}"
+    name: "{{item.key}}"
+    members: "{{ item.value }}"
+    state: Present
   with_dict: "{{ domain_groups_members }}"
   register: group_membership
   until: "group_membership is not failed"

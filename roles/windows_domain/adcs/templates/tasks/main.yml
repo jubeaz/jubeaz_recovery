@@ -1,10 +1,19 @@
 - name: Refresh
   ansible.windows.win_command: gpupdate /force
 
-- name: Install ADCSTemplate Module
-  win_copy:
-    src: files/ADCSTemplate
-    dest: "C:\\Program Files\\WindowsPowerShell\\Modules"
+- name: Install windows features - RSAT-ADDS
+  win_feature:
+    name: RSAT-ADDS
+    state: present
+    include_management_tools: yes
+    include_sub_features: yes
+  register: features_rsat
+
+- name: Install ADCSTemplate module
+  win_psmodule:
+    name: ADCSTemplate
+    skip_publisher_check: yes
+    state: present
 
 - name: create a directory for templates
   win_file: 
