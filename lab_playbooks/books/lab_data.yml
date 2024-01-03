@@ -1,0 +1,11 @@
+---
+- name: "Read lab json data files"
+  hosts: all
+  connection: local
+  vars_files:
+    - "{{data_path}}/{{domain_name}}.json"
+  tasks:
+    - name: save {{data_path}}/{{domain_name}}.json data to a Variable as a Fact
+      set_fact:
+        lab: "{{lab}}"
+        cacheable: yes

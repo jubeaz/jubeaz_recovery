@@ -1,0 +1,24 @@
+---
+# Load datas
+
+  
+- name: GMSA inside AD
+  hosts: dc
+  roles:
+  - { role: 'windows_domain/gmsa/gmsa', tags: 'gmsa'}
+  vars:
+    ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{domain}}\\Administrator"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+
+- name: GMSA hosts
+  hosts: domain_server, domain_workstation
+  roles:
+  - { role: 'windows_domain/gmsa/gmsa_hosts', tags: 'gmsa'}
+  vars:
+    ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
+    domain: "{{lab.hosts[dict_key].domain}}"
+    domain_username: "{{domain}}\\Administrator"
+    domain_password: "{{lab.domains[domain].domain_password}}"
+    hostname: "{{lab.hosts[dict_key].hostname}}"
