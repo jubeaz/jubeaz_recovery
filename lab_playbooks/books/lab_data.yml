@@ -1,5 +1,5 @@
 ---
-- name: "Read lab json data files"
+- name: "READ LAB JSON DATA FILES"
   hosts: all
   connection: local
   vars_files:

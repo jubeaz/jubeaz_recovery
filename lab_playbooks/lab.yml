@@ -1,35 +1,35 @@
 ---
-- import_playbook: playbooks/lab_data.yml
+- import_playbook: books/lab_data.yml
   vars:
     data_path: "/etc/ansible/lab_inventories/{{domain_name}}"
   tags: 'data'
 
-#- import_playbook: playbooks/debug.yml
+#- import_playbook: books/debug.yml
 
-- import_playbook: playbooks/build-computers.yml
-- import_playbook: playbooks/build-domains.yml
-- import_playbook: playbooks/domain-members.yml
-- import_playbook: playbooks/build-trusts.yml
-#- import_playbook: playbooks/ad-data.yml
-#- import_playbook: playbooks/gmsa.yml
-#- import_playbook: playbooks/laps.yml
-#- import_playbook: playbooks/adcs.yml
-#- import_playbook: playbooks/ad-relations.yml
-#- import_playbook: playbooks/ad-acl.yml
-#- import_playbook: playbooks/iis.yml
-#- import_playbook: playbooks/webdav.yml
+#- import_playbook: books/build-computers.yml
+#- import_playbook: books/build-domains.yml
+#- import_playbook: books/domain-members.yml
+#- import_playbook: books/build-trusts.yml
+- import_playbook: books/ad-data.yml
+- import_playbook: books/gmsa.yml
+- import_playbook: books/laps.yml
+- import_playbook: books/adcs.yml
+- import_playbook: books/ad-relations.yml
+- import_playbook: books/ad-acl.yml
+#- import_playbook: books/iis.yml
+#- import_playbook: books/webdav.yml
 
 
-#- import_playbook: playbooks/mssql.yml
+#- import_playbook: books/mssql.yml
 ## SECURITY -----
 # --------------------------------------------------------------------
 # specifics security linked to the scenario are here
-#- import_playbook: playbooks/security.yml
+#- import_playbook: books/security.yml
 # --------------------------------------------------------------------
 # specifics vulns linked to the scenario are here
-#- import_playbook: playbooks/vulnerabilities.yml
+#- import_playbook: books/vulnerabilities.yml
 
-#- import_playbook: playbooks/reboot.yml
+#- import_playbook: books/reboot.yml
 # ##################
 #  TO CONTINUE
 # ##################

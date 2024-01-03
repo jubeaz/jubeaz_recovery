@@ -1,7 +1,7 @@
 ---
 # Load datas
 
-- name: "Install MSSQL Express"
+- name: "INSTALL MSSQL EXPRESS"
   hosts: mssql
   roles:
     - { role: 'windows_domain/mssql/mssql', tags: 'mssql'}
@@ -21,7 +21,7 @@
     sa_password: "{{lab.hosts[dict_key].mssql.sa_password}}"
     linked_servers: "{{lab.hosts[dict_key].mssql.linked_servers | default({}) }}"
 
-- name: "Install SQL Server Management Studio"
+- name: "INSTALL SQL SERVER MANAGEMENT STUDIO"
   hosts: mssql_ssms
   roles:
     - { role: 'windows_domain/mssql/mssql_ssms', tags: 'mssql_ssms'}

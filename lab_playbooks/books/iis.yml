@@ -1,7 +1,7 @@
 ---
 # Load datas
 
-- name: "Install IIS"
+- name: "INSTALL IIS"
   hosts: iis
   roles:
     - { role: 'windows_domain/iis', tags: 'iis'}

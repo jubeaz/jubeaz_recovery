@@ -4,7 +4,7 @@
 
 # set AD datas ==================================================================================================
 
-- name: "Adjust rights configuration"
+- name: "ADJUST RIGHTS CONFIGURATION"
   hosts: netrunner
   roles:
     - { role: "windows_settings/adjust_rights", tags: 'adjust_rights'}
@@ -15,7 +15,7 @@
 
 # doesen't work see : https://github.com/ansible-collections/community.windows/blob/main/plugins/modules/win_domain_group_membership.ps1
 # ligne 62 : use the given credentials to distant domain -> wrong
-- name: cross domain groups
+- name: CROSS DOMAIN GROUPS
   hosts: dc
   roles:
   - { role: 'windows_domain/groups_domains', tags: 'groups_domains'}

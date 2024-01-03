@@ -1,7 +1,7 @@
 ---
 # Load datas
 
-- name: "Install Webdav"
+- name: "INSTALL WEBDAV"
   hosts: webdav
   roles:
     - { role: 'windows_domain/webdav', tags: 'webdav'}

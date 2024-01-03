@@ -3,7 +3,7 @@
 
 # set AD datas ==================================================================================================
 
-- name: ACL inside AD
+- name: ACL INSIDE AD
   hosts: dc
   roles:
   - { role: 'windows_domain/acl', tags: 'acl'}

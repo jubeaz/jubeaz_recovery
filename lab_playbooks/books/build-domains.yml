@@ -1,6 +1,6 @@
 # Load datas
 
-- name: Root DC AD configuration
+- name: ROOT DC AD CONFIGURATION
   hosts: dc
   tags: 'build_domains_parents_domains'
   roles:
@@ -10,7 +10,7 @@
     domain_password: "{{lab.domains[domain].domain_password}}"
     netbios_name: "{{lab.domains[domain].netbios_name}}"
 
-- name: Child DC AD configuration
+- name: CHILD DC AD CONFIGURATION
   hosts: dc
   tags: 'build_domains_child_domains'
   roles:

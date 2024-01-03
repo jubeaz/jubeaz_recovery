@@ -1,7 +1,7 @@
 # Load datas
 
   
-- name: Trusts configuration prepare
+- name: TRUSTS CONFIGURATION PREPARE
   hosts: trust
   roles:
     - { role: 'windows_settings/disable_nat_adapter' , tags: 'disable_nat_adapter'}
@@ -15,7 +15,7 @@
     master_server: "{{hostvars[remote_dc].ansible_host}}"
     replication: "forest"
 
-- name: Trusts configuration
+- name: TRUSTS CONFIGURATION
   hosts: trust
   serial: 1 # add one trust at a time to avoid issues
   roles:
@@ -31,14 +31,14 @@
     remote_dc: "{{lab.domains[remote_forest].dc}}"
     master_server: "{{hostvars[remote_dc].ansible_host}}"
 
-- name: Trusts configuration end
+- name: TRUSTS CONFIGURATION END
   hosts: trust
   roles:
     - { role: 'windows_settings/enable_nat_adapter', tags: 'enable_nat_adapter'}
 
 
 # add DNS conditional forwarder on all trust dc for each other subdomains
-- name: Adjust DNS conditional forwarded configuration
+- name: ADJUST DNS CONDITIONAL FORWARDED CONFIGURATION
   hosts: trust
   roles:
     - { role: 'windows_domain/dc_dns_conditional_forwarder', tags: 'dns_conditional_forwarder' }

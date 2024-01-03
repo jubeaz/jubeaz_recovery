@@ -1,7 +1,7 @@
 ---
 
 # set AD datas ==================================================================================================
-- name: DCs AD data configuration
+- name: DCS AD DATA CONFIGURATION
   hosts: dc
   roles:
     - { role: 'windows_domain/password_policy', tags: 'policy', try_before_lock: "5", pass_length: "5", lock_duration: "00:05:00", lock_observation: "00:05:00", complexity: false}
@@ -16,7 +16,7 @@
     ad_ou: "{{lab.domains[lab.hosts[dict_key].domain].organisation_units  | default({}) }}"
     ad_groups: "{{lab.domains[lab.hosts[dict_key].domain].groups}}"
 
-- name: "Move to OU"
+- name: "MOVE TO OU"
   hosts: dc
   roles:
     - { role: 'windows_domain/move_to_ou', tags: 'move_to_ou'}

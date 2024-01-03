@@ -2,7 +2,7 @@
 # Load datas
 
   
-- name: GMSA inside AD
+- name: GMSA INSIDE AD
   hosts: dc
   roles:
   - { role: 'windows_domain/gmsa/gmsa', tags: 'gmsa'}
@@ -12,7 +12,7 @@
     domain_username: "{{domain}}\\Administrator"
     domain_password: "{{lab.domains[domain].domain_password}}"
 
-- name: GMSA hosts
+- name: GMSA HOSTS
   hosts: domain_server, domain_workstation
   roles:
   - { role: 'windows_domain/gmsa/gmsa_hosts', tags: 'gmsa'}
