@@ -16,7 +16,13 @@
   ansible.windows.win_feature:
     name: ADCS-Web-Enrollment
     state: present
-  when: ca_web_enrollment
+  when: ca_vulns is defined and "'ESC8' in ca_vulns"
+
+- name: Install pspki
+  win_psmodule:
+    name: pspki
+    skip_publisher_check: yes
+    state: present
 
 - name: Install-ADCSCertificationAuthority-PS
   ansible.windows.win_powershell:
@@ -59,7 +65,7 @@
       } catch {
         $Ansible.Changed = $false
       }
-  when: ca_web_enrollment
+  when: ca_vulns is defined and "'ESC8' in ca_vulns"
 
 - name: Refresh
   ansible.windows.win_command: gpupdate /force

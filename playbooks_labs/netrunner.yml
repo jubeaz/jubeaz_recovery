@@ -3,17 +3,37 @@
   vars:
     data_path: "/etc/ansible/inventory_labs"
   tags: 'data'
+#- import_playbook: data.yml
+#  vars:
+#    data_path: "../ad/{{domain_name}}/data/"
+#  tags: 'data'
+
 #- import_playbook: netrunner/debug.yml
 
-#- import_playbook: netrunner/build-computers.yml
-#- import_playbook: netrunner/build-domains.yml
-#- import_playbook: netrunner/domain-members.yml
-#- import_playbook: netrunner/build-trusts.yml
+- import_playbook: netrunner/build-computers.yml
+- import_playbook: netrunner/build-domains.yml
+- import_playbook: netrunner/domain-members.yml
+- import_playbook: netrunner/build-trusts.yml
 - import_playbook: netrunner/ad-data.yml
-#- import_playbook: netrunner/gmsa.yml
-#- import_playbook: netrunner/laps.yml
-#- import_playbook: netrunner/adcs.yml
+- import_playbook: netrunner/gmsa.yml
+- import_playbook: netrunner/laps.yml
+- import_playbook: netrunner/adcs.yml
+- import_playbook: netrunner/ad-relations.yml
+- import_playbook: netrunner/ad-acl.yml
+- import_playbook: netrunner/iis.yml
+- import_playbook: netrunner/webdav.yml
 
+
+#- import_playbook: netrunner/mssql.yml
+## SECURITY -----
+# --------------------------------------------------------------------
+# specifics security linked to the scenario are here
+#- import_playbook: netrunner/security.yml
+# --------------------------------------------------------------------
+# specifics vulns linked to the scenario are here
+#- import_playbook: netrunner/vulnerabilities.yml
+
+#- import_playbook: netrunner/reboot.yml
 # ##################
 #  TO CONTINUE
 # ##################

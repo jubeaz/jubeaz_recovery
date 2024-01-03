@@ -7,7 +7,8 @@
     name: "{{ item.key }}"
     scope: universal
     path: "{{item.value.path}}"
-    members: "{{item.value.members}}"
+    members: 
+      add: "{{item.value.members}}"
     managed_by: "{{item.value.managed_by}}"
     state: present
   with_dict: "{{ ad_groups['universal'] }}"
@@ -18,7 +19,8 @@
     name: "{{ item.key }}"
     scope: global
     path: "{{item.value.path}}"
-    members: "{{item.value.members}}"
+    members: 
+      add: "{{item.value.members}}"
     managed_by: "{{item.value.managed_by}}"
     state: present
   with_dict: "{{ ad_groups['global'] }}"
@@ -29,7 +31,8 @@
     name: "{{ item.key }}"
     scope: domainlocal
     path: "{{item.value.path}}"
-    members: "{{item.value.members}}"
+    members: 
+      add: "{{item.value.members}}"
     managed_by: "{{item.value.managed_by}}"
     state: present
   with_dict: "{{ ad_groups['domainlocal'] }}"

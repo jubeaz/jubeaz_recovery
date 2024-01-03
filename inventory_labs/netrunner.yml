@@ -14,13 +14,29 @@ netrunner:
         dc03: {}
     domain_server:
       children:
+          adcs:
+            hosts:
+              srv01: {cert_templates: ["ESC1", "ESC2"], ca_vulns: ["ESC6", "ESC8"]}
+          iis:
+            hosts:
+              srv02: {}
+          mssql:
+            hosts:
+              srv02: {}
+              srv01: {}           
+          mssql_ssms:
+            hosts:              
+          webdav:
+            hosts:          
+              srv02: {}
+              srv01: {}                   
       hosts:
-        srv01: {}  
     domain_workstation:  
       children:
       hosts:
   hosts:
     dc01: {dns_domain: dc01, dict_key: dc01, ansible_host: 192.168.56.10}
     srv01: {dns_domain: dc01, dict_key: srv01, ansible_host: 192.168.56.11}
-    dc02: {dns_domain: dc02, dict_key: dc02, ansible_host: 192.168.56.20}
+    dc02: {dns_domain: dc01, dict_key: dc02, ansible_host: 192.168.56.20}
     dc03: {dns_domain: dc03, dict_key: dc03, ansible_host: 192.168.56.30}
+    srv02: {dns_domain: dc03, dict_key: srv02, ansible_host: 192.168.56.31}

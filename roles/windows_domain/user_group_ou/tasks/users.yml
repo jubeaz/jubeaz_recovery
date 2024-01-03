@@ -15,7 +15,8 @@
     path: "{{item.value.path}}"
     description: "{{item.value.description | default('-')}}"
     city: "{{item.value.city | default('-')}}"
-    groups: "{{ item.value.groups}}"
+    groups: 
+      add: "{{ item.value.groups}}"
     state: present
     domain_username: "{{domain_username}}"
     domain_password: "{{domain_password}}"
@@ -35,8 +36,10 @@
     path: "{{item.value.path}}"
     description: "{{item.value.description | default('-')}}"
     city: "{{item.value.city | default('-')}}"
-    groups: "{{ item.value.groups}}"
-    spn: "{{item.value.spns}}"
+    groups: 
+      add: "{{ item.value.groups}}"
+    spn: 
+      add: "{{item.value.spns}}"
     state: present
     domain_username: "{{domain_username}}"
     domain_password: "{{domain_password}}"

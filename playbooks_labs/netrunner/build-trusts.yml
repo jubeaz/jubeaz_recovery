@@ -1,8 +1,4 @@
 # Load datas
-- import_playbook: data.yml
-  vars:
-    data_path: "/etc/ansible/inventory_labs"
-  tags: 'data'
 
   
 - name: Trusts configuration prepare

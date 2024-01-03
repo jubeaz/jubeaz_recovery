@@ -1,14 +1,11 @@
 ---
 # Load datas
-- import_playbook: data.yml
-  vars:
-    data_path: "/etc/ansible/inventory_labs"
-  tags: 'data'
+
   
 - name: GMSA inside AD
   hosts: dc
   roles:
-  - { role: 'windows_domain/gmsa', tags: 'gmsa'}
+  - { role: 'windows_domain/gmsa/gmsa', tags: 'gmsa'}
   vars:
     ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
     domain: "{{lab.hosts[dict_key].domain}}"
@@ -18,7 +15,7 @@
 - name: GMSA hosts
   hosts: domain_server, domain_workstation
   roles:
-  - { role: 'windows_domain/gmsa_hosts', tags: 'gmsa'}
+  - { role: 'windows_domain/gmsa/gmsa_hosts', tags: 'gmsa'}
   vars:
     ad_gmsa: "{{lab.domains[lab.hosts[dict_key].domain].gmsa | default({})}}"
     domain: "{{lab.hosts[dict_key].domain}}"

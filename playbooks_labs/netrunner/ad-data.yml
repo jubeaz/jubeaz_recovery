@@ -1,9 +1,5 @@
 ---
-# Load datas
-- import_playbook: data.yml
-  vars:
-    data_path: "/etc/ansible/inventory_labs"
-  tags: 'data'
+
 # set AD datas ==================================================================================================
 - name: DCs AD data configuration
   hosts: dc
