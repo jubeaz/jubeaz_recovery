@@ -14,12 +14,13 @@
 #- import_playbook: books/gmsa.yml
 #- import_playbook: books/laps.yml
 #- import_playbook: books/adcs.yml
-#- import_playbook: books/ad-relations.yml
+#- import_playbook: books/local-groups-users-rights.yml
+#- import_playbook: books/ad-groups-foreign-members.yml
 #- import_playbook: books/ad-acl.yml
 #- import_playbook: books/iis.yml
 #- import_playbook: books/mssql.yml
 #- import_playbook: books/webdav.yml
-#- import_playbook: books/security.yml
+- import_playbook: books/security.yml
 
 
 # specifics vulns linked to the scenario are here

@@ -35,8 +35,8 @@ netrunner:
       children:
       hosts:
   hosts:
-    dc01: {dns_domain: dc01, dict_key: dc01, ansible_host: 192.168.56.10, windows_defender: true}
-    srv01: {dns_domain: dc01, dict_key: srv01, ansible_host: 192.168.56.11, windows_defender: true}
-    dc02: {dns_domain: dc01, dict_key: dc02, ansible_host: 192.168.56.20, windows_defender: true}
-    dc03: {dns_domain: dc03, dict_key: dc03, ansible_host: 192.168.56.30, windows_defender: true}
-    srv02: {dns_domain: dc03, dict_key: srv02, ansible_host: 192.168.56.31, windows_defender: true}
+    dc01: {dns_domain: dc01, dict_key: dc01, ansible_host: 192.168.56.10}
+    srv01: {dns_domain: dc01, dict_key: srv01, ansible_host: 192.168.56.11}
+    dc02: {dns_domain: dc01, dict_key: dc02, ansible_host: 192.168.56.20}
+    dc03: {dns_domain: dc03, dict_key: dc03, ansible_host: 192.168.56.30}
+    srv02: {dns_domain: dc03, dict_key: srv02, ansible_host: 192.168.56.31}

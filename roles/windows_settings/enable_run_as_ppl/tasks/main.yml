@@ -4,4 +4,4 @@
     name: RunAsPPL
     data: 1
     type: dword
-  when: run_as_ppl == true    
+  when: params == true

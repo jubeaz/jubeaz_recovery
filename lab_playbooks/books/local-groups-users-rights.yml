@@ -1,0 +1,11 @@
+---
+# Load datas
+- name: "ADJUST RIGHTS CONFIGURATION"
+  hosts: netrunner
+  roles:
+    - { role: "windows_settings/users", tags: 'adjust_rights'}
+    - { role: "windows_settings/groups", tags: 'adjust_rights'}
+    - { role: "windows_settings/user_rights", tags: 'adjust_rights'}
+  vars:
+    local_groups: "{{lab.hosts[dict_key].local_groups  | default({}) }}"
+    local_users: "{{lab.hosts[dict_key].local_users  | default({}) }}"

@@ -1,0 +1,20 @@
+- name: enable UAC
+  win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+    name: EnableLUA
+    data: "{{1 if params.status == 'on' else 0}}"
+    type: dword
+
+# 0: UAC won't prompt (like disabled)                                                                                                                                                                  │
+# 1: ask for username and password to execute the binary with high rights (on Secure Desktop)                                                                                                          │
+# 2: Always notify me ask for confirmation to the administrator when he tries to execute something with high privileges (on Secure Desktop)                                                            │
+# 3: like 1 but not necessary on Secure Desktop                                                                                                                                                        │
+# 4: like 2 but not necessary on Secure Desktop                                                                                                                                                        │
+# 5: ask the administrator to confirm to run non Windows binaries with high privileges     
+- name: set ConsentPromptBehaviorAdmin
+  win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+    name: ConsentPromptBehaviorAdmin
+    data: "{{params.level | default (1)}}"
+    type: dword
+  when: params.status == 'on'

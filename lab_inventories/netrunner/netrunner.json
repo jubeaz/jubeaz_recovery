@@ -8,16 +8,17 @@
             "domain" : "weyland.local",
             "path" : "DC=weyland,DC=local",
             "local_groups" : {
-                "Administrators" : [
-                ],
-                "Remote Desktop Users" : [
-                ],
-                "Remote Management Users": [
-                ]
+                "Administrators" : [],
+                "Remote Desktop Users" : [],
+                "Remote Management Users": []
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
-            "run_as_ppl": false
+            "local_security": {
+                "uac": { "status": "on", "level": "5" },
+                "enable_run_as_ppl" : true,
+                "windows_defender": true
+            }
         },
         "srv01" : {
             "hostname" : "archer",
@@ -26,17 +27,20 @@
             "domain" : "weyland.local",
             "path" : "OU=Servers,OU=IT,OU=Argus,DC=weyland,DC=local",
             "use_laps": false,
-            "local_groups" : {
-                "Administrators" : [
-                ],
-                "Remote Management Users": [
-                ]
+            "local_users": {
+                "arose" : {
+                    "password"        : "z77w_TeCUCD_wLrD", 
+                    "groups"          : ["Remote Management Users", "Administrators"]
+                }
+            },
+            "local_groups": {
+                "Administrators" : [],
+                "Remote Management Users": ["weyland.local\\arose"]
             },
             "Remote Desktop Users" : [
             ],
             "scripts" : [],
             "vulns" : ["disable_firewall"],
-            "run_as_ppl": false,
             "features": ["NET-Framework-Core"],
             "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
             "repos": [
@@ -77,6 +81,11 @@
                         ]
                     }
                 }
+            },
+            "local_security": {
+                "uac": { "status": "on" },
+                "enable_run_as_ppl" : true,
+                "windows_defender": true
             }
         },
         "dc02" : {
@@ -86,16 +95,12 @@
             "domain" : "research.weyland.local",
             "path" : "DC=researh,DC=weyland,DC=local",
             "local_groups" : {
-                "Administrators" : [
-                ],
-                "Remote Desktop Users" : [
-                ],
-                "Remote Management Users": [
-                ]
+                "Administrators" : [],
+                "Remote Desktop Users" : [],
+                "Remote Management Users": []
             },
             "scripts" : ["sidhistory.ps1"],
-            "vulns" : ["disable_firewall"],
-            "run_as_ppl": false
+            "vulns" : ["disable_firewall"]
         },
         "dc03" : {
             "hostname" : "dc03",
@@ -104,14 +109,12 @@
             "domain" : "haas.local",
             "path" : "DC=haas,DC=local",
             "local_groups" : {
-                "Administrators" : [
-                ],
-                "Remote Desktop Users" : [
-                ]
+                "Administrators" : [],
+                "Remote Desktop Users" : [],
+                "Remote Management Users": []
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
-            "run_as_ppl": false
         },
         "srv02" : {
             "hostname" : "fenris",
@@ -121,16 +124,14 @@
             "path" : "OU=Servers,OU=Cybernetics,OU=Argus,DC=haas,DC=local",
             "use_laps": false,
             "local_groups" : {
-                "Administrators" : [
-                ],
-                "Remote Management Users": [
-                ]
+                "Administrators" : [],
+                "Remote Desktop Users" : [],
+                "Remote Management Users": []
             },
             "Remote Desktop Users" : [
             ],
             "scripts" : [],
             "vulns" : ["disable_firewall"],
-            "run_as_ppl": false,
             "features": ["NET-Framework-Core"],
             "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
             "repos": [
