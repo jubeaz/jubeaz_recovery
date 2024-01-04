@@ -7,7 +7,7 @@
 - name: "ADJUST RIGHTS CONFIGURATION"
   hosts: netrunner
   roles:
-    - { role: "windows_settings/adjust_rights", tags: 'adjust_rights'}
+    - { role: "windows_settings/local_groups", tags: 'adjust_rights'}
     - { role: "windows_settings/user_rights", tags: 'adjust_rights'}
   vars:
     local_groups: "{{lab.hosts[dict_key].local_groups  | default({}) }}"
