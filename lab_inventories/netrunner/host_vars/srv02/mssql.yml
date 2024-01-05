@@ -1,0 +1,28 @@
+mssql: { 
+    "sa_password": "ftrum_Ya5d7DCQQN",
+    "svcaccount" : "bran",
+    "sysadmins" : ["HAAS\\mhendrik"],
+    "executeaslogin" : {
+        "HAAS\\rknight" : "sa"
+        },
+    "executeasuser" : {
+        "master_dbo": {
+            "user": "HAAS\\mhendrik",
+            "db"  : "master",
+            "impersonate" : "dbo"
+            },
+        "dbms_dbo": {
+            "user": "HAAS\\mhendrik",
+            "db"  : "msdb",
+            "impersonate" : "dbo"
+            }
+        },
+    "linked_servers": {
+        "archer" : {
+            "data_src": "archer.weyland.local",
+            "users_mapping": [
+                {"local_login": "HAAS\\mhendrik","remote_login": "WEYLAND\\anson", "remote_password": "z77w_TeCUCD_wLrD"}
+                ]
+            }
+        }
+    }

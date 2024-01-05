@@ -38,13 +38,22 @@
   ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
   when: two_adapters == true
 
-- name: "Set configure dns to {{dns_domain}}"
+- name: debug
+  ansible.builtin.debug:
+    msg:
+      - "domain_parent_source_dc: {{domain_parent_dc_name}}.{{domain_parent_domain_name}}"
+      - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
+
+- name: "Set configure dns to {{domain_parent_dc_name}} {{domain_parent_dc_ip}}"
   win_dns_client:
     adapter_names: "{{domain_adapter}}"
     ipv4_addresses:
-      - "{{hostvars[dns_domain].ansible_host}}"
+      - "{{domain_parent_dc_ip}}"
     log_path: C:\dns_log.txt
 
+#- name: fail
+#  ansible.builtin.fail:
+#    msg: STOP
 
 - name: Install windows features - AD Domain Services
   win_feature:
@@ -74,11 +83,11 @@
 # - name: "disable interface {{nat_adapter}} before join domain"
 #   win_shell: netsh interface set interface "{{nat_adapter}}" disable
 
-- name: Reboot
-  win_reboot:
-    reboot_timeout: 900
-    post_reboot_delay: 100
-  when: features_dns.reboot_required or features_rsat.reboot_required or features_adds.reboot_required
+#- name: Reboot
+#  win_reboot:
+#    reboot_timeout: 900
+#    post_reboot_delay: 100
+#  when: features_dns.reboot_required or features_rsat.reboot_required or features_adds.reboot_required
 
 - name: add child domain to parent domain
   ansible.windows.win_powershell:
@@ -116,7 +125,7 @@
       }
       if (-not $domainExist) {
         $Ansible.Changed = $true
-        $pass = ConvertTo-SecureString $Password -AsPlainText -Force
+        $pass = ConvertTo-SecureString $Password -AsPlainText -Force 
         $Cred = New-Object System.Management.Automation.PSCredential ($DomainAdmin, $pass)
         $safePassword = ConvertTo-SecureString $DomSafePassword -AsPlainText -Force
         Install-ADDSDomain -Credential $Cred -SkipPreChecks -NewDomainName $NewDomainName -NewDomainNetbiosName $NewDomainNetbiosName -ParentDomainName $ParentDomainName -ReplicationSourceDC $ReplicationSourceDC -DatabasePath "C:\Windows\NTDS" -SYSVOLPath "C:\Windows\SYSVOL" -LogPath "C:\Windows\Logs" -SafeModeAdministratorPassword $safePassword -Force -NoRebootOnCompletion
@@ -124,13 +133,13 @@
         $Ansible.Changed = $false
       }
     parameters:
-      Password: "{{parent_domain_password}}"
+      Password: "{{domain_parent_domain_password}}"
       DomSafePassword: "{{domain_password}}"
-      DomainAdmin: "Administrator@{{parent_domain}}"
-      ParentDomainName: "{{parent_domain}}"
-      ReplicationSourceDC: "{{source_dc}}"
-      NewDomainNetbiosName: "{{netbios_name}}"
-      NewDomainName: "{{domain.split('.')[0]}}"
+      DomainAdmin: "Administrator@{{domain_parent_domain_name}}"
+      ParentDomainName: "{{domain_parent_domain_name}}"
+      ReplicationSourceDC: "{{domain_parent_dc_name}}.{{domain_parent_domain_name}}"
+      NewDomainNetbiosName: "{{domain_netbios_name}}"
+      NewDomainName: "{{domain_netbios_name | lower}}"
   register: child_result
 
 
@@ -157,7 +166,7 @@
           $Ansible.Failed=$true
       }
     parameters:
-      NewDomainName: "{{domain.split('.')[0]}}"
+      NewDomainName: "{{domain_netbios_name}}"
   register: child_result
 
 # - name: "enable interface {{nat_adapter}} after domain joined"

@@ -1,0 +1,45 @@
+---
+# https://www.middlewareinventory.com/blog/ansible-dict/
+- name: TRUSTS CONFIGURATION PREPARE
+  hosts: trust
+  roles:
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{data_path}}/netrunner.json"
+  tasks:
+    - name: save {{data_path}}/netrunner.json data to a Variable as a Fact
+      set_fact:
+        lab: "{{lab}}"
+        cacheable: yes
+
+    - name: set remote_forest 
+      set_fact:
+        remote_forest: "{{trust}}"
+        cacheable: yes
+      failed_when: remote_forest|default({})|length ==0
+
+    - name: set trust configuration
+      set_fact:
+        lab_trust: "{{lab_trust | default({}) | combine({ item.key : item.value })}}"
+        cacheable: yes
+      with_items: 
+        - { 'key': 'zone_name' , 'value': "{{remote_forest}}"}
+        - { 'key': 'remote_forest' , 'value': "{{remote_forest}}"}
+        - { 'key': 'remote_dc' , 'value': "{{lab.domains[remote_forest].dc}}"}
+        - { 'key': 'master_server' , 'value': "{{hostvars[lab.domains[remote_forest].dc].ansible_host}}"}
+        - { 'key': 'remote_admin_password' , 'value': "{{lab.domains[remote_forest].domain_password}}"}
+      failed_when: lab_trust|default({})|length ==0
+      
+    - name: print trust configuration
+      debug:
+        var: lab_trust
+
+#
+#
+#
+#    - name: clear lab
+#      set_fact:
+#        lab: {}
+#        cacheable: yes
+#      failed_when: lab|default({})|length !=0

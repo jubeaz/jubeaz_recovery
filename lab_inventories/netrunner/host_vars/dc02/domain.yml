@@ -1,0 +1,17 @@
+domain_dc_ansible_inventory_key: "dc02" # ansible inventory name
+domain_password : "Jubeaz12345+-"
+#domain_password: "Research.weyland.local+-"
+domain_netbios_name: "RESEARCH"
+domain_name: "research.weyland.local"
+domain_ca_server: ""
+domain_trust_dc : ""
+parent_domain_dc_ansible_inventory_key: "dc01" # ansible inventory name
+
+
+
+account_is_sensitive: []
+
+
+gmsa : {}
+acls : {}
+

@@ -1,0 +1,40 @@
+hostname: "archer"
+
+type: "server" 
+local_admin_password: "Jubeaz12345+-"
+
+local_users: {
+    "arose" : {
+        "password"        : "z77w_TeCUCD_wLrD", 
+        "groups"          : ["Remote Management Users", "Administrators"]
+        }
+    }
+local_groups: {
+    "Administrators" : [],
+    "Remote Management Users": ["weyland.local\\arose"],
+    "Remote Desktop Users" : [],
+   }
+
+
+
+domain_dc_ansible_inventory_key: "dc01" # ansible inventory name
+path: "OU=Servers,OU=IT,OU=Argus,DC=weyland,DC=local"
+use_laps: false
+
+
+scripts : ["sidhistory.ps1"]
+vulns: ["disable_firewall"]
+local_security: {}
+
+features: ["NET-Framework-Core"]
+softwares: [  "git", "visualstudio2022community", "notepadplusplus"]
+repos: [
+    ["Mimikatz", "https://github.com/gentilkiwi/mimikatz.git"],
+    ["Rubeus", "https://github.com/GhostPack/Rubeus"]
+    ]
+repos_user: ""
+repos_password: ""
+download_files: [
+    ["GRMWDK_EN_7600_1.ISO", "https://download.microsoft.com/download/4/A/2/4A25C7D5-EFBE-4182-B6A9-AE6850409A78/GRMWDK_EN_7600_1.ISO"]
+    ]
+

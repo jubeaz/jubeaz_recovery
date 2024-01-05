@@ -1,0 +1,13 @@
+domain_groups : {
+    "universal" : {},
+    "global" : {},
+    "domainlocal" : {
+        "L_LAPS_READER" : {
+            "managed_by" : "Domain Admins",
+            "path" : "OU=Groups,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local",
+            "members" : []
+            }
+        }
+    }
+    
+multi_domain_groups_member : {}

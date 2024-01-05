@@ -1,15 +1,20 @@
 ---
-- import_playbook: books/lab_data.yml
-  vars:
-    data_path: "/etc/ansible/lab_inventories/{{domain_name}}"
-  tags: 'data'
+- import_playbook: books/test2.yml
+#- import_playbook: books/test.yml
+#  vars:
+#    data_path: "/etc/ansible/lab_inventories/netrunner"
+#  tags: 'data'
+#- import_playbook: books/lab_data.yml
 
 #- import_playbook: books/debug.yml
 
-#- import_playbook: books/build-computers.yml
-#- import_playbook: books/build-domains.yml
-#- import_playbook: books/domain-members.yml
+#- import_playbook: books/computers-build.yml
+#- import_playbook: books/domains-build.yml
+#- import_playbook: books/domains-add-members.yml
+##### IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 #- import_playbook: books/build-trusts.yml
+
+
 #- import_playbook: books/ad-data.yml
 #- import_playbook: books/gmsa.yml
 #- import_playbook: books/laps.yml
@@ -20,10 +25,12 @@
 #- import_playbook: books/iis.yml
 #- import_playbook: books/mssql.yml
 #- import_playbook: books/webdav.yml
-- import_playbook: books/security.yml
+
+## TO DO DEFENDER + APPOCKER
+#- import_playbook: books/security.yml
 
 
-# specifics vulns linked to the scenario are here
+# TO DO
 #- import_playbook: books/vulnerabilities.yml
 
 #- import_playbook: books/reboot.yml

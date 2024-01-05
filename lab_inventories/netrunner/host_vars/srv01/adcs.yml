@@ -1,0 +1,2 @@
+cert_templates: ["ESC1", "ESC2"]
+ca_vulns: ["ESC6", "ESC8"]

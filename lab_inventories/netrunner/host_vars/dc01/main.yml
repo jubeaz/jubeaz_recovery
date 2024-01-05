@@ -1,0 +1,26 @@
+hostname: "dc01"
+type: "dc"
+local_admin_password: "Jubeaz12345+-"
+path: "DC=weyland,DC=local"
+
+local_users: {}
+local_groups: {
+    "Administrators" : [],
+    "Remote Desktop Users" : [],
+    "Remote Management Users": []
+    }
+
+scripts: ["sidhistory.ps1"]
+vulns: ["disable_firewall"]
+local_security: {
+    "uac": { "status": "on", "level": "5" },
+    "enable_run_as_ppl" : true,
+    "windows_defender": true
+    }
+
+features: []
+softwares: []
+repos: []
+repos_user: ""
+repos_password: ""
+download_files: []

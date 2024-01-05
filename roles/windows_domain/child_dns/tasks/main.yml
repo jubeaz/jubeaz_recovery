@@ -1,0 +1,22 @@
+#- name: Create A record for child domain in parent domain
+#  community.windows.win_dns_record:
+#    name: "{{lab.hosts[dc].hostname}}.{{item.split('.')[0]}}"
+#    type: "A"
+#    values:
+#      - "{{hostvars[dc].ansible_host}}"
+#    zone: "{{domain}}"
+#  vars:
+#    dc: "{{lab.domains[item].dc}}"
+#  loop: "{{ domains }}"
+#  when: domain == '.'.join(item.split('.')[1:])
+
+
+- name: Create A record for child domain in parent domain
+  community.windows.win_dns_record:
+    name: "{{item[1]}}.{{item[2]}}"
+    type: "A"
+    values:
+      - "{{hostvars[item[0]].ansible_host}}"
+    zone: "{{domain_name}}"
+  loop: "{{ child_domains }}"
+  when: child_domains is defined

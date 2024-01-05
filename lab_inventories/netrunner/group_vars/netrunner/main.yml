@@ -1,4 +1,3 @@
-layout: "fr-FR"
 nat_adapter: Ethernet
 domain_adapter: Ethernet 2
 domain_name: netrunner

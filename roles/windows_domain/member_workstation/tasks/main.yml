@@ -8,13 +8,13 @@
   win_dns_client:
     adapter_names: "{{domain_adapter}}"
     ipv4_addresses:
-      - "{{hostvars[dns_domain].ansible_host}}"
+      - "{{domain_dc_ip:}}"
     log_path: C:\dns_log.txt
 
-- name: "Add workstation to {{member_domain}}"
+- name: "Add workstation to {{domain_name}}"
   win_domain_membership:
-    dns_domain_name: "{{member_domain}}"
-    domain_admin_user: "Administrator@{{member_domain}}"
+    dns_domain_name: "{{domain_name}}"
+    domain_admin_user: "Administrator@{{domain_name}}"
     domain_admin_password: "{{domain_password}}"
 #    domain_ou_path: "{{member_domain_ou_path}}"
     state: domain

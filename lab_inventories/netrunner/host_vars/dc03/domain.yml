@@ -1,0 +1,25 @@
+domain_dc_ansible_inventory_key: "dc03" # ansible inventory name
+domain_password : "Jubeaz12345+-"
+#domain_password: "Haas.local+-"
+domain_netbios_name: "HAAS"
+domain_name : "haas.local"
+domain_ca_server: ""
+trust_domain_dc_ansible_inventory_key : "dc01" # ansible inventory name
+
+
+account_is_sensitive: []
+
+
+gmsa : {
+  "gmsa_account": {
+    "gMSA_Name" : "heimdall",
+    "gMSA_FQDN" : "heimdall.haas.local",
+    "gMSA_SPNs" : ["HTTP/fenris", "HTTP/fenris.haas.local"],
+    "gMSA_HostNames" : ["fenris"]
+    }
+}
+
+acls : {
+  "GenericAll_heimdall_imcguire" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
+  }
+

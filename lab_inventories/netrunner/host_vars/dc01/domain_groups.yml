@@ -1,0 +1,21 @@
+domain_groups : {
+    "universal" : {},
+    "global" : {
+        "G_LAPS_READER" : {
+            "managed_by" : "Domain Admins",
+            "path" : "OU=Groups,OU=IT,OU=Argus,DC=weyland,DC=local",
+            "members" : []
+            }
+        },
+    "domainlocal" : {
+        "L_LAPS_READER" : {
+            "managed_by" : "Domain Admins",
+            "path" : "OU=Groups,OU=IT,OU=Argus,DC=weyland,DC=local",
+            "members" : ["G_LAPS_READER"]
+            }
+        }
+    }
+    
+multi_domain_groups_member : {
+    "L_LAPS_READER" : ["haas.local\\emoon"]
+    }

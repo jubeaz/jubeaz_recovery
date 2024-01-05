@@ -1,0 +1,18 @@
+domain_dc_ansible_inventory_key: "dc01" # ansible inventory name
+domain_password: "Jubeaz12345+-"
+#domain_password: "Weyland.local+-"
+domain_netbios_name: "WEYLAND"
+domain_name: "weyland.local"
+domain_ca_server: "archer"
+domain_ca_name: "internal-ca"
+trust_domain_dc_ansible_inventory_key : "dc03" # ansible inventory name
+
+
+account_is_sensitive: ["bstinson"]
+
+
+gmsa : {}
+acls : {
+  "forcechangepassword_arose_acorrea" : {"for": "arose", "to": "acorrea", "right": "Ext-User-Force-Change-Password", "inheritance": "None"}
+  }
+

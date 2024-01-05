@@ -8,16 +8,18 @@
             "domain" : "weyland.local",
             "path" : "DC=weyland,DC=local",
             "local_groups" : {
-                "Administrators" : [],
-                "Remote Desktop Users" : [],
-                "Remote Management Users": []
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ],
+                "Remote Management Users": [
+                ]
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
-            "local_security": {
-                "uac": { "status": "on", "level": "5" },
-                "enable_run_as_ppl" : true,
-                "windows_defender": true
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
             }
         },
         "srv01" : {
@@ -27,15 +29,11 @@
             "domain" : "weyland.local",
             "path" : "OU=Servers,OU=IT,OU=Argus,DC=weyland,DC=local",
             "use_laps": false,
-            "local_users": {
-                "arose" : {
-                    "password"        : "z77w_TeCUCD_wLrD", 
-                    "groups"          : ["Remote Management Users", "Administrators"]
-                }
-            },
-            "local_groups": {
-                "Administrators" : [],
-                "Remote Management Users": ["weyland.local\\arose"]
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Management Users": [
+                ]
             },
             "Remote Desktop Users" : [
             ],
@@ -81,11 +79,6 @@
                         ]
                     }
                 }
-            },
-            "local_security": {
-                "uac": { "status": "on" },
-                "enable_run_as_ppl" : true,
-                "windows_defender": true
             }
         },
         "dc02" : {
@@ -95,12 +88,19 @@
             "domain" : "research.weyland.local",
             "path" : "DC=researh,DC=weyland,DC=local",
             "local_groups" : {
-                "Administrators" : [],
-                "Remote Desktop Users" : [],
-                "Remote Management Users": []
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ],
+                "Remote Management Users": [
+                ]
             },
             "scripts" : ["sidhistory.ps1"],
-            "vulns" : ["disable_firewall"]
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
         },
         "dc03" : {
             "hostname" : "dc03",
@@ -109,12 +109,17 @@
             "domain" : "haas.local",
             "path" : "DC=haas,DC=local",
             "local_groups" : {
-                "Administrators" : [],
-                "Remote Desktop Users" : [],
-                "Remote Management Users": []
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
             },
             "scripts" : ["sidhistory.ps1"],
             "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
         },
         "srv02" : {
             "hostname" : "fenris",
@@ -124,9 +129,10 @@
             "path" : "OU=Servers,OU=Cybernetics,OU=Argus,DC=haas,DC=local",
             "use_laps": false,
             "local_groups" : {
-                "Administrators" : [],
-                "Remote Desktop Users" : [],
-                "Remote Management Users": []
+                "Administrators" : [
+                ],
+                "Remote Management Users": [
+                ]
             },
             "Remote Desktop Users" : [
             ],
@@ -230,7 +236,6 @@
                 "IT_admins"                 : { "name": "Admins",                    "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"}
             },
             "laps_readers": ["L_LAPS_READER"],
-            "account_is_sensitive": ["bstinson"],
             "groups" : {
                 "universal" : {},
                 "global" : {
@@ -249,7 +254,9 @@
                 }
             },
             "multi_domain_groups_member" : {
-                "L_LAPS_READER" : ["haas.local\\emoon"]
+                "L_LAPS_READER" : [
+                    "haas.local\\emoon"
+                ]
             },
             "gmsa" : {
             },
@@ -318,7 +325,6 @@
                 "IT_workstations" : { "name": "Workstations",   "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"}
             },
             "laps_readers": ["L_LAPS_READER"],
-            "account_is_sensitive": [],
             "organisation_units" : {
                 "Titan"           : { "name": "Titan",          "path" : "DC=research,DC=weyland,DC=local"},
                 "Skorpios"        : { "name": "Skorpios",       "path" : "DC=research,DC=weyland,DC=local"},
@@ -493,7 +499,6 @@
                 "C_workstations"  : { "name": "Workstations",   "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"}
             },
             "laps_readers": ["L_LAPS_READER"],
-            "account_is_sensitive": [],
             "organisation_units" : {
                 "Asa"             : { "name": "Asa",            "path" : "DC=haas,DC=local"},
                 "HQ"              : { "name": "HQ",             "path" : "DC=haas,DC=local"},
@@ -552,7 +557,7 @@
                 }
             },
             "acls" : {
-                "GenericAll_heimdall_imcguire" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
+                "GenericAll_heimdall_drogo" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
             },
             "users" : {
                 "emoon" : {

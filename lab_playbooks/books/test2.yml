@@ -1,0 +1,137 @@
+---
+- name: "COMPUTE DOMAIN INFO ON EACH HOST"
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name:
+      ansible.builtin.set_fact:
+        domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].ansible_host}}" 
+        domain_dc_name: "{{hostvars[domain_dc_ansible_inventory_key].hostname}}"
+    - name:
+      ansible.builtin.set_fact:
+        domain_name:  "{{hostvars[domain_dc_ansible_inventory_key].domain_name}}"
+        domain_password: "{{hostvars[domain_dc_ansible_inventory_key].domain_password}}"
+        domain_netbios_name: "{{hostvars[domain_dc_ansible_inventory_key].domain_netbios_name}}"
+      when: type != 'dc'      
+    - name: print host configuration
+      debug:
+        msg: 
+          - "domain_password: {{domain_password}}"
+          - "domain_name: {{domain_name}}"
+          - "domain_netbios_name: {{domain_netbios_name}}"
+          - "domain_dc_ip: {{domain_dc_ip}}"
+          - "domain_dc_name: {{domain_dc_name}}"
+
+
+- name: "COMPUTE PARENT DOMAIN INFO ON EACH CHILD DC"
+  hosts: dc
+  gather_facts: no
+  tasks:
+    - name: set parent_domain 
+      set_fact:
+        domain_parent_domain_name: "{{'.'.join(domain_name.split('.')[1:])}}"
+        cacheable: yes
+      when: dc_level != 0
+    - name: set parent domain configuration
+      ansible.builtin.set_fact:
+        domain_parent_domain_password: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_password}}"
+        domain_parent_dc_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].hostname}}"
+        domain_parent_dc_ip: "{{hostvars[parent_domain_dc_ansible_inventory_key].ansible_host}}"
+        domain_parent_domain_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_name}}"
+        cacheable: yes
+      when: dc_level != 0
+    - name: print host configuration
+      debug:
+        msg: 
+          - "domain_parent_domain_name: {{domain_parent_domain_name}}"
+          - "domain_parent_domain_password: {{domain_parent_domain_password}}"
+          - "domain_parent_dc_name: {{domain_parent_dc_name}}"
+          - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
+      when: dc_level != 0
+
+- name: "COMPUTE CHILD DOMAIN INFO ON EACH DC"
+  hosts: dc
+  gather_facts: no
+  tasks:
+    - name: search for childs dc
+      ansible.builtin.set_fact:
+        child_domains: "{{child_domains | default([]) + [[ item.key, item.value.hostname, item.value.domain_name ]] }}" 
+      with_dict: "{{ hostvars }}"
+      when: item.value.domain_parent_domain_name is defined and domain_name == item.value.domain_parent_domain_name
+    - name: print child_domains
+      debug:
+        msg: 
+          - "{{item[1]}}.{{item[2]}}"
+          - "{{hostvars[item[0]].ansible_host}}"
+      loop: "{{child_domains}}"
+      when: child_domains is defined 
+
+
+- name: "COMPUTE TRUST DOMAIN INFO ON EACH DC"
+  hosts: trust
+  gather_facts: no
+  tasks:
+    - name: set remote_forest 
+      set_fact:
+        domain_trust_remote_dc_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].hostname}}"
+        domain_trust_remote_dc_ip: "{{hostvars[trust_domain_dc_ansible_inventory_key].ansible_host}}"        
+        domain_trust_remote_domain_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_name}}"
+        domain_trust_remote_domain_password: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_password}}"
+        cacheable: yes
+    - name: print host configuration
+      debug:
+        msg: 
+          - "domain_trust_remote_dc_name: {{domain_trust_remote_dc_name}}"
+          - "domain_trust_remote_dc_ip: {{domain_trust_remote_dc_ip}}"
+          - "domain_trust_remote_domain_name: {{domain_trust_remote_domain_name}}"
+          - "domain_trust_remote_domain_password: {{domain_trust_remote_domain_password}}"
+
+
+- name: "COMPUTE OTHER DOMAIN INFO ON EACH TRUSTING DC"
+  hosts: trust
+  gather_facts: no
+  tasks:
+    - name: search for other domains
+      ansible.builtin.set_fact:
+        transitive_trusts_domains: "{{transitive_trusts_domains | default([]) + [[ item.key, item.value.domain_name ]] }}" 
+      with_dict: "{{ hostvars }}"
+      when: item.value.domain_name != domain_name                           
+        and item.value.domain_name != domain_trust_remote_domain_name       
+        and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name  
+        and item.value.domain_name != '.'.join(domain_name.split('.')[1:])  
+        # same domain
+        # trusted domain
+        # child domain
+        # parent domain
+    - name: print transitive_trusts_domains
+      debug:
+        msg: 
+          - "{{item[1]}}"
+          - "{{hostvars[item[0]].ansible_host}}"
+      loop: "{{transitive_trusts_domains}}"
+      when: transitive_trusts_domains is defined 
+#    - name: search for other domains
+#      ansible.builtin.debug:
+#        msg: " found: {{item.value.domain_name}}" 
+#      with_dict: "{{ hostvars }}"
+#      when: item.value.domain_name != domain_name                           
+#        and item.value.domain_name != domain_trust_remote_domain_name       
+#        and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name  
+#        and item.value.domain_name != '.'.join(domain_name.split('.')[1:])  
+
+
+
+# item != domain and item != trust and item != parent_domain and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name
+#    - name: search for childs dc
+#      ansible.builtin.set_fact:
+#        child_domains: "{{child_domains | default([]) + [[ item.key, item.value.hostname, item.value.domain_name ]] }}" 
+#      with_dict: "{{ hostvars }}"
+#      when: item.value.domain_name
+# item != domain and item != trust and item != parent_domain and '.'.join(item.split('.')[1:]) != domain
+#    - name: print records
+#      debug:
+#        msg: 
+#          - "{{item[1]}}.{{item[2]}}"
+#          - "{{hostvars[item[0]].ansible_host}}"
+#      loop: "{{child_domains}}"
+#      when: child_domains is defined 
