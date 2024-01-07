@@ -1,23 +1,14 @@
 ---
-# Load datas
-
 - name: CONFIGURE LAPS ON DCS
   hosts: dc
   roles:
     - { role: 'windows_domain/laps/dc', tags: 'laps-dc'}
-  vars:
-    domain: "{{lab.hosts[dict_key].domain}}"
-    laps_path: "{{lab.domains[domain].laps_path if lab.domains[domain].laps_path is defined  else false}}"
-    hosts_dict: "{{lab.hosts}}"
 
 - name: CONFIGURE LAPS ON SERVERS
   hosts: domain_server,  domain_workstation
   roles:
     - { role: 'windows_domain/laps/server', tags: 'laps-server'}
-  vars:
-    domain: "{{lab.hosts[dict_key].domain}}"
-    laps_path: "{{lab.domains[domain].laps_path if lab.domains[domain].laps_path is defined else false}}"
-    use_laps: "{{lab.hosts[dict_key].use_laps if lab.hosts[dict_key].use_laps is defined else false}}"
+
 
 
 - name: VERIFY AND SHOW LAPS PASSWORDS
@@ -25,15 +16,10 @@
   roles:
     - { role: 'windows_domain/laps/verify', tags: 'laps-verify'}
   vars:
-    domain: "{{lab.hosts[dict_key].domain}}"
-    laps_path: "{{lab.domains[domain].laps_path if lab.domains[domain].laps_path is defined else false}}"
-    hosts_dict: "{{lab.hosts}}"
+    hosts_dict: "{{hostvars}}"
 
 - name: SET LAPS USERS AND GROUPS PERMISSION
   hosts: dc
   roles:
     - { role: 'windows_domain/laps/permissions', tags: 'laps-permissions'}
-  vars:
-    domain: "{{lab.hosts[dict_key].domain}}"
-    laps_path: "{{lab.domains[domain].laps_path if lab.domains[domain].laps_path is defined else false}}"
-    laps_readers: "{{lab.domains[domain].laps_readers  | default([]) }}"
+

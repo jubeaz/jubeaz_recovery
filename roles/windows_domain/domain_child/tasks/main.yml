@@ -1,38 +1,4 @@
-#- name: Password
-#  debug: 
-#    var: parent_domain_password
-#- name: DomSafePassword
-#  debug: 
-#    var: domain_password
-#- name: ParentDomainName
-#  debug: 
-#    var: parent_domain
-#- name: ReplicationSourceDC
-#  debug: 
-#    var: source_dc
-#- name: NewDomainNetbiosName
-#  debug: 
-#    var: netbios_name
-#- name: NewDomainName
-#  debug: 
-#    var: domain.split('.')[0]
-    
 
-#- name: params
-#  debug: 
-#    msg: 
-#      - "$Password='{{parent_domain_password}}'"
-#      - "$DomSafePassword='{{domain_password}}'"
-#      - "$DomainAdmin='Administrator@{{parent_domain}}'"
-#      - "$ParentDomainName='{{parent_domain}}'"
-#      - "$NewDomainNetbiosName='{{source_dc}}'"
-#      - "$NewDomainNetbiosName='{{netbios_name}}'"
-#      - "$NewDomainName='{{domain.split('.')[0]}}'"
-#      - "dns_domain: {{hostvars[dns_domain].ansible_host}}"
-#
-#- name: debug 
-#  ansible.builtin.fail:
-#    msg: stop.
 
 - name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
   ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
@@ -50,10 +16,6 @@
     ipv4_addresses:
       - "{{domain_parent_dc_ip}}"
     log_path: C:\dns_log.txt
-
-#- name: fail
-#  ansible.builtin.fail:
-#    msg: STOP
 
 - name: Install windows features - AD Domain Services
   win_feature:
@@ -79,15 +41,6 @@
     include_sub_features: yes
   register: features_dns
 
-# DNSCHANGE
-# - name: "disable interface {{nat_adapter}} before join domain"
-#   win_shell: netsh interface set interface "{{nat_adapter}}" disable
-
-#- name: Reboot
-#  win_reboot:
-#    reboot_timeout: 900
-#    post_reboot_delay: 100
-#  when: features_dns.reboot_required or features_rsat.reboot_required or features_adds.reboot_required
 
 - name: add child domain to parent domain
   ansible.windows.win_powershell:
@@ -169,12 +122,6 @@
       NewDomainName: "{{domain_netbios_name}}"
   register: child_result
 
-# - name: "enable interface {{nat_adapter}} after domain joined"
-#   win_shell: netsh interface set interface "{{nat_adapter}}" enable
-#   register: enable_interface
-#   until: "enable_interface is not failed"
-#   retries: 3
-#   delay: 120
 
 - name: enable the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $True

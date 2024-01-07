@@ -2,8 +2,7 @@
   ansible.windows.win_feature:
     name: RSAT-AD-PowerShell 
     state: present
-  when: "hostname in item.value.gMSA_HostNames"
-  with_dict: "{{ ad_gmsa }}"
+  when: installed_gmsa | default([]) | length > 0
 
 - name: Install ADServiceAccount
   ansible.windows.win_powershell:
@@ -15,11 +14,10 @@
       )
       Install-ADServiceAccount -Identity $gMSA_Name
     parameters:
-        gMSA_Name: "{{item.value.gMSA_Name}}"
+        gMSA_Name: "{{item}}"
   vars:
     ansible_become: yes
     ansible_become_method: runas
-    ansible_become_user: "{{domain_username}}"
+    ansible_become_user: "{{domain_name}}\\Administrator"
     ansible_become_password: "{{domain_password}}"
-  when: "hostname in item.value.gMSA_HostNames"
-  with_dict: "{{ ad_gmsa }}"
+  with_items: "{{ installed_gmsa }}"

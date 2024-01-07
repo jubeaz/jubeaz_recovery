@@ -37,9 +37,9 @@
   win_user_right:
     name: SeServiceLogonRight
     users:
-    - '{{ SQLSVCACCOUNT }}'
+      - '{{ SQLSVCACCOUNT }}'
     action: add
-  when: not SQLSVCACCOUNT == "NT AUTHORITY\\NETWORK SERVICE"
+  when: SQLSVCACCOUNT != "NT AUTHORITY\\NETWORK SERVICE" and SQLSVCACCOUNT != "NT AUTHORITY\\SYSTEM"
 
 # - name: Setup service account
 # Set-ADUser -Identity "{{SQLSVCACCOUNT}}" -ServicePrincipalNames @{Add='MSSQLSvc/castelblack.north.sevenkingdoms.local'}
@@ -59,8 +59,8 @@
   vars:
     ansible_become: yes
     ansible_become_method: runas
-    ansible_become_user: "{{domain_admin}}"
-    ansible_become_password: "{{domain_admin_password}}"
+    ansible_become_user: "{{domain_name}}\\Administrator"
+    ansible_become_password: "{{domain_password}}"
     ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
   register: mssqlinstall
   until: "mssqlinstall is not failed"
@@ -75,13 +75,6 @@
     data: 1433
   register: win_reg
 
-# - name: Add or update registry for named pipe
-#   win_regedit:
-#     path: 'HKLM:\Software\Microsoft\Microsoft SQL Server\MSSQL15.{{ sql_instance_name }}\MSSQLServer\SuperSocketNetLib\Np'
-#     name: Enabled
-#     data: 0x00000001
-#     type: dword
-#   register: win_reg
 
 - name: Restart a service
   win_service:
@@ -89,6 +82,12 @@
     force_dependent_services: yes
     state: restarted
   when: win_reg.changed
+
+#################### STOP
+- name: print some vars
+  fail:
+    msg: "stop" 
+
 
 - name: Add MSSQL admin
   win_shell: |

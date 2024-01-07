@@ -1,0 +1,47 @@
+# fenris / srv02
+#path: "OU=Servers,OU=Cybernetics,OU=Asa,DC=haas,DC=local"
+domain_computers: {
+    "fenris": {
+        "name":                     "fenris",
+        "dns_hostname":             "fenris.haas.local",
+        "description":              "mssql",
+#        "delegates":                [],
+#        "spns":                     [],
+#        "trusted_for_delegation":   false
+        "path":                     "OU=Servers,OU=Cybernetics,OU=Asa,DC=haas,DC=local"
+    },
+    "jaguarundi" : {
+        "name":             "jaguarundi",
+        "dns_hostname":     "jaguarundi.haas.local",
+        "description":      "mssql",
+#        "delegates":                [],
+#        "spns":                     [],
+#        "trusted_for_delegation":   false,
+        "spns":             ["MSSQLSvc/Jaguarundi.haas.local:1433","MSSQLSvc/Jaguarundi.haas.local"],
+        "path":             "OU=Servers,OU=Cybernetics,OU=Asa,DC=haas,DC=local"
+    },
+    "ws01" : {
+        "name":             "ws01",
+        "dns_hostname":     "ws01.haas.local",
+#        "delegates":                [],
+#        "spns":                     [],
+#        "trusted_for_delegation":   false,
+        "path":             "OU=Workstations,OU=Cybernetics,OU=Asa,DC=haas,DC=local"
+    },
+    "ws02" : {
+        "name":             "ws02",
+        "dns_hostname":     "ws02.haas.local",
+#        "delegates":                [],
+#        "spns":                     [],
+#        "trusted_for_delegation":   false,
+        "path":             "OU=Workstations,OU=Cybernetics,OU=Asa,DC=haas,DC=local"
+    },
+    "ws03" : {
+        "name":             "ws03",
+        "dns_hostname":     "ws03.haas.local",
+#        "delegates":                [],
+#        "spns":                     [],
+#        "trusted_for_delegation":   false,
+        "path":             "OU=Workstations,OU=Cybernetics,OU=Asa,DC=haas,DC=local"
+    }
+}

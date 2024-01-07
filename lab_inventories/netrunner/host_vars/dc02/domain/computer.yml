@@ -1,0 +1,24 @@
+
+domain_computers: {
+    "ws01" : {
+        "name":             "ws01",
+        "dns_hostname":     "ws01.research.weyland.local",
+#        "delegates":        [],
+#        "spns":             [],
+        "path":             "OU=Workstations,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"
+    },
+    "ws02" : {
+        "name":             "ws02",
+        "dns_hostname":     "ws02.research.weyland.local",
+#        "delegates":        [],
+#        "spns":             [],
+        "path":             "OU=Workstations,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"
+    },
+    "ws03" : {
+        "name":             "ws03",
+        "dns_hostname":     "ws03.research.weyland.local",
+#        "delegates":        [],
+#        "spns":             [],
+        "path":             "OU=Workstations,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"
+    }
+}

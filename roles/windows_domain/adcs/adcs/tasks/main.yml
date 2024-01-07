@@ -48,7 +48,7 @@
       }
     error_action: stop
     parameters:
-      domain_username: "{{domain_username}}"
+      domain_username: "{{domain_name}}\\Administrator"
       domain_password: "{{domain_password}}"
       ca_common_name: "{{ca_common_name}}"
 
@@ -65,7 +65,7 @@
       } catch {
         $Ansible.Changed = $false
       }
-  when: ca_vulns is defined and "'ESC8' in ca_vulns"
+  when: web_enrollment is defined and web_enrollment == true
 
 - name: Refresh
   ansible.windows.win_command: gpupdate /force

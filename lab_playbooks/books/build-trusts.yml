@@ -15,7 +15,7 @@
   gather_facts: no
   serial: 1 # add one trust at a time to avoid issues
   roles:
-    - { role: 'windows_domain/trusts', tags: 'trust' }
+    - { role: 'windows_domain/trusts/trusts', tags: 'trust' }
 
 
 - name: TRUSTS CONFIGURATION END
@@ -28,3 +28,8 @@
   vars:
     replication: "forest"
     forward_info: "{{transitive_trusts_domains}}"
+
+- name: TRUSTS CONFIGURATION
+  hosts: trust
+  roles:
+    - { role: 'windows_domain/trusts/trusts_check', tags: 'trust' }

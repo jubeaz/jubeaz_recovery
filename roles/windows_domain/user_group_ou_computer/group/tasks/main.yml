@@ -1,0 +1,37 @@
+# https://clintboessen.blogspot.com/2010/04/group-scopes.html
+# https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)
+
+
+
+- name: Create domain groups
+  microsoft.ad.group:
+    name: "{{ item.key }}"
+    scope: "{{item.value.scope | default('domainlocal')}}"
+    path: "{{item.value.path}}"
+    managed_by: "{{item.value.managed_by | default('')}}"
+    state: present
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
+  with_dict: "{{ad_groups}}"
+  when: action == "create"
+
+- name: "synchronizes all domains"
+  win_shell: repadmin /syncall /Ade
+  become: yes
+  become_method: runas
+  become_user: "{{domain_name}}\\Administrator"
+  vars:
+    ansible_become_pass: "{{domain_password}}"
+  when: action == "add_members"
+
+- name: Create members to domain groups 
+  microsoft.ad.group:
+    name: "{{ item.key }}"
+    path: "{{item.value.path}}"
+    members: 
+      set: "{{item.value.members}}"
+    state: present
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
+  with_dict: "{{ad_groups}}"
+  when: action == "add_members"

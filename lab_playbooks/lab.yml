@@ -1,30 +1,35 @@
 ---
-- import_playbook: books/test2.yml
-#- import_playbook: books/test.yml
-#  vars:
-#    data_path: "/etc/ansible/lab_inventories/netrunner"
-#  tags: 'data'
-#- import_playbook: books/lab_data.yml
-
+###
+#  ADD THE COMPUTATION OF GMSA Accounts on a computer
+#   Compute the value of installed_gmsa on a computer
+###
+- import_playbook: books/compute-inventory.yml
 #- import_playbook: books/debug.yml
 
 #- import_playbook: books/computers-build.yml
 #- import_playbook: books/domains-build.yml
+#- import_playbook: books/ad-ous.yml
 #- import_playbook: books/domains-add-members.yml
 ##### IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 #- import_playbook: books/build-trusts.yml
-
-
 #- import_playbook: books/ad-data.yml
-#- import_playbook: books/gmsa.yml
-#- import_playbook: books/laps.yml
-#- import_playbook: books/adcs.yml
 #- import_playbook: books/local-groups-users-rights.yml
-#- import_playbook: books/ad-groups-foreign-members.yml
+
+####################################
+# test gmsa with local group including global group including computer
+####################################
+- import_playbook: books/laps.yml
+#- import_playbook: books/gmsa.yml
+
+#- import_playbook: books/adcs.yml
+
 #- import_playbook: books/ad-acl.yml
 #- import_playbook: books/iis.yml
-#- import_playbook: books/mssql.yml
 #- import_playbook: books/webdav.yml
+
+
+################################## ICI
+#- import_playbook: books/mssql.yml
 
 ## TO DO DEFENDER + APPOCKER
 #- import_playbook: books/security.yml

@@ -1,0 +1,27 @@
+
+domain_password : "Jubeaz12345+-"
+domain_netbios_name: "RESEARCH"
+domain_name: "research.weyland.local"
+
+
+trust_domain_dc_ansible_inventory_key : "" # ansible inventory name
+parent_domain_dc_ansible_inventory_key: "dc01" # ansible inventory name
+
+
+
+account_is_sensitive: []
+
+
+gmsa : {}
+acls: "{{ acls_general | union(acls_adcs|default([])) }}"  
+
+acls_adcs: {
+
+}
+
+acls_general: {
+  # 
+  "forcechangepassword_arose_acorrea" : {"for": "arose", "to": "acorrea", "right": "Ext-User-Force-Change-Password", "inheritance": "None"}
+  }
+
+

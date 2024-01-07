@@ -1,8 +1,0 @@
-- name: Ensure OU is present
-  microsoft.ad.ou:
-    name: "{{ item.value.name }}"
-    path: "{{ item.value.path }}"
-    state: present
-    domain_username: "{{domain_name}}\\Administrator"
-    domain_password: "{{domain_password}}"
-  with_dict: "{{ad_ou}}"

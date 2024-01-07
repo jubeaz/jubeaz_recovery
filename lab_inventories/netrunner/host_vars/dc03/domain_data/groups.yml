@@ -1,0 +1,52 @@
+domain_groups : {
+    "U_LAPS_READER" : {
+        "scope": "universal", # universal, global or domainlocal default domainlocal
+        "managed_by" : "Domain Admins",
+        "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
+        "members" : [
+            "G_LAPS_READER",
+            "weyland.local\\G_LAPS_READER",
+            "research.weyland.local\\G_LAPS_READER"
+        ]
+    },
+    "G_LAPS_READER" : {
+        "scope": "global", # universal, global or domainlocal default domainlocal
+        "managed_by" : "Domain Admins",
+        "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
+        "members" : [
+            "emoon",
+        ]
+    },
+    "G_GMSA_ICHI" : {
+        "scope": "global", # universal, global or domainlocal default domainlocal
+        "managed_by" : "Domain Admins",
+        "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
+        "members" : [
+            "fenris$"
+        ]
+    },
+    "L_LAPS_READER" : {
+        "scope": "domainlocal", # universal, global or domainlocal default domainlocal
+        "managed_by" : "Domain Admins",
+        "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
+        "members" : [
+            "U_LAPS_READER"
+        ]
+    },
+    "L_GMSA_ICHI" : {
+        "scope": "domainlocal", # universal, global or domainlocal default domainlocal
+        "managed_by" : "Domain Admins",
+        "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
+        "members" : [
+            "G_GMSA_ICHI"
+        ]
+    } 
+}
+    
+multi_domain_groups_member : {
+    "L_LAPS_READER" : [
+        "weyland.local\\G_LAPS_READER",
+        "research.weyland.local\\G_LAPS_READER"
+    ],
+    "L_GMSA_ICHI" : []
+}

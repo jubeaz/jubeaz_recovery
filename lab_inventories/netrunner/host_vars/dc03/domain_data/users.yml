@@ -1,0 +1,63 @@
+domain_users: "{{domain_users_spn | ansible.builtin.combine(domain_users_regular)}}"
+
+domain_users_spn: {
+    "imcguire" : {
+        "firstname"       : "Isabel",
+        "surname"         : "McGuire",
+        "password"        : "zazc9DN_KpftZAvn", 
+        "city"            : "-",
+        "description"     : "",
+        "groups"          : [], # only built-in
+        "path"            : "CN=Users,DC=haas,DC=local",
+        "spns"            : ["HTTP/archer.weyland.local","HTTP/archer"]
+    },  
+}
+
+domain_users_regular: {
+    "emoon" : {
+        "firstname"       : "Estelle",
+        "surname"         : "Moon",
+        "password"        : "Nps4ffWx7omDc5_h", 
+        "city"            : "-",
+        "description"     : "",
+        "groups"          : [], # only built-in
+        "path"            : "CN=Users,DC=haas,DC=local"
+    },
+
+    "mbellamy" : {
+        "firstname"       : "Mason",
+        "surname"         : "Bellamy",
+        "password"        : "b_QNoDKoVJTjU3gq", 
+        "city"            : "-",
+        "description"     : "",
+        "groups"          : ["Domain Admins"], # only built-in
+        "path"            : "CN=Users,DC=haas,DC=local"
+    },
+    "mhendrik" : {
+        "firstname"       : "Mr.",
+        "surname"         : "Hendrik",
+        "password"        : "b_QNoDKoVJTjU3gq", 
+        "city"            : "-",
+        "description"     : "DB link user",
+        "groups"          : [], # only built-in
+        "path"            : "CN=Users,DC=haas,DC=local"
+    },
+    "rknight" : {
+        "firstname"       : "Ryon",
+        "surname"         : "Knight",
+        "password"        : "5jqkKJJjmqup_o_E", 
+        "city"            : "-",
+        "description"     : "DB admin",
+        "groups"          : [], # only built-in
+        "path"            : "CN=Users,DC=haas,DC=local"
+    },
+    "thaas" : {
+        "firstname"       : "Thomas",
+        "surname"         : "Haas",
+        "password"        : "s_yrPbrqtHbc3n7a", 
+        "city"            : "-",
+        "description"     : "",
+        "groups"          : [], # only built-in
+        "path"            : "CN=Users,DC=haas,DC=local"
+    }
+}

@@ -18,21 +18,62 @@
           $gMSA_SPNs,
 
           [String[]]
-          $gMSA_HostNames
+          $gMSA_HostNames,
+
+          [String[]]
+          $gMSA_Groups
       )
       Import-Module ActiveDirectory
       Set-Location AD:
+      $gMSA_Principals =  @()
       Add-KDSRootKey -EffectiveTime (Get-Date).AddHours(-10)
-      $gMSA_HostsGroup = $gMSA_HostNames | ForEach-Object { Get-ADComputer -Identity $_ }
-      New-ADServiceAccount -Name $gMSA_Name -DNSHostName $gMSA_FQDN -PrincipalsAllowedToRetrieveManagedPassword $gMSA_HostsGroup -ServicePrincipalNames $gMSA_SPNs
+      $gMSA_Principals += $gMSA_HostNames | ForEach-Object { Get-ADComputer -Identity $_ }
+      $gMSA_Principals += $gMSA_Groups | ForEach-Object { Get-ADGroup -Identity $_ }
+      $obj = New-ADServiceAccount -Name $gMSA_Name -DNSHostName $gMSA_FQDN -PrincipalsAllowedToRetrieveManagedPassword $gMSA_Principals -ServicePrincipalNames $gMSA_SPNs
+      Write-Output -InputObject $obj
     parameters:
       gMSA_Name: "{{item.value.gMSA_Name}}"
       gMSA_FQDN: "{{item.value.gMSA_FQDN}}"
       gMSA_SPNs: "{{item.value.gMSA_SPNs}}"
-      gMSA_HostNames: "{{item.value.gMSA_HostNames}}"
+      gMSA_HostNames: "{{item.value.gMSA_HostNames | default([])}}"
+      gMSA_Groups: "{{item.value.gMSA_Groups | default([])}}"
   vars:
     ansible_become: yes
     ansible_become_method: runas
-    ansible_become_user: "{{domain_username}}"
+    ansible_become_user: "{{domain_name}}\\Administrator"
     ansible_become_password: "{{domain_password}}"
   with_dict: "{{ ad_gmsa }}"
+  register:  gmsa_account_result
+
+#- name: Show powershell_get_adtrust result
+#  debug: 
+#    var: gmsa_account_result
+#  when: gmsa_account_result.stdout_lines is defined
+
+#- name: Check GMSA Account
+#  ansible.windows.win_powershell:
+#    script: |
+#      [CmdletBinding()]
+#      param (
+#          [String]
+#          $gMSA_Id
+#      )
+#      Import-Module ActiveDirectory
+#      Set-Location AD:
+#      $obj = Get-ADServiceAccount -Identity $gMSA_Id
+#      Write-Output -InputObject $obj
+#    parameters:
+#      gMSA_Id: "{{item.value.gMSA_Name}}"
+#  vars:
+#    ansible_become: yes
+#    ansible_become_method: runas
+#    ansible_become_user: "{{domain_name}}\\Administrator"
+#    ansible_become_password: "{{domain_password}}"
+#  with_dict: "{{ ad_gmsa }}"
+#  register:  gmsa_account_result
+##  failed_when: gmsa_account_result.skipped == true
+#
+#- name: Show powershell_get_gmsa result
+#  debug: 
+#    var: gmsa_account_result
+#

@@ -1,25 +1,39 @@
 ---
 # Load datas
+- name: "INSTALL MSSQL EXPRESS"
+  hosts: mssql
+  tasks:
+    - name: print some vars
+      debug:
+        msg: 
+          - "SQLSVCACCOUNT_NAME: {{mssql_svcaccount| default('NT AUTHORITY\\NETWORK SERVICE')}}"
+          - "SQLSVCACCOUNT: {{mssql_svcaccount| default('NT AUTHORITY\\NETWORK SERVICE')}}"
+          - "SQLSVCPASSWORD: {{hostvars[domain_dc_ansible_inventory_key].domain_users[mssql_svcaccount].password| default('')}}"
+          - "sql_sysadmins: {{ssql_sysadmins | default([]) }}"
+          - "executeaslogin: {{mssql_executeaslogin  | default({}) }}"
+          - "executeasuser:  {{mssql_executeasuser | default({}) }}"
+          - "sa_password: {{mssql_sa_password}}"
+          - "linked_servers: {{mssql_linked_servers | default({}) }}"
+
+#    - name: print some vars
+#      fail:
+#        msg: "stop" 
+
 
 - name: "INSTALL MSSQL EXPRESS"
   hosts: mssql
   roles:
     - { role: 'windows_domain/mssql/mssql', tags: 'mssql'}
-    - { role: 'windows_domain/mssql/mssql_link', tags: 'mssql, mssql_link'}
+#    - { role: 'windows_domain/mssql/mssql_link', tags: 'mssql, mssql_link'}
   vars:
-    domain: "{{lab.hosts[dict_key].domain}}"
-    SQLSVCACCOUNT_NAME: "{{lab.hosts[dict_key].mssql.svcaccount| default('NT AUTHORITY\\NETWORK SERVICE')}}"
-    SQLSVCACCOUNT_NAMEDOMAIN: "{{domain}}\\{{SQLSVCACCOUNT_NAME}}"
-    SQLSVCACCOUNT: "{{SQLSVCACCOUNT_NAME if SQLSVCACCOUNT_NAME == 'NT AUTHORITY\\NETWORK SERVICE' else SQLSVCACCOUNT_NAMEDOMAIN }}"
-    SQLSVCPASSWORD: "{{lab.domains[domain].users[SQLSVCACCOUNT_NAME].password| default('')}}"
+    SQLSVCACCOUNT: "{{domain_name}}\\{{mssql_svcaccount}}"
+    SQLSVCPASSWORD: "{{hostvars[domain_dc_ansible_inventory_key].domain_users[mssql_svcaccount].password}}"
     SQLYSADMIN: "{{SQLSVCACCOUNT}}"
-    domain_admin: "{{domain}}\\Administrator"
-    domain_admin_password: "{{lab.domains[domain].domain_password}}"
-    sql_sysadmins: "{{lab.hosts[dict_key].mssql.sysadmins | default([]) }}"
-    executeaslogin: "{{lab.hosts[dict_key].mssql.executeaslogin  | default({}) }}"
-    executeasuser:  "{{lab.hosts[dict_key].mssql.executeasuser | default({}) }}"
-    sa_password: "{{lab.hosts[dict_key].mssql.sa_password}}"
-    linked_servers: "{{lab.hosts[dict_key].mssql.linked_servers | default({}) }}"
+    sql_sysadmins: "mssql_sysadmins | default([]) }}"
+    executeaslogin: "{{mssql_executeaslogin  | default({}) }}"
+    executeasuser:  "{{mssql_executeasuser | default({}) }}"
+    sa_password: "{{mssql_sa_password}}"
+    linked_servers: "{{mssql_linked_servers | default({}) }}"
 
 - name: "INSTALL SQL SERVER MANAGEMENT STUDIO"
   hosts: mssql_ssms

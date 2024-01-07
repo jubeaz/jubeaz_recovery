@@ -1,21 +1,13 @@
 ---
-
-# set AD datas ==================================================================================================
 - name: DCS AD DATA CONFIGURATION
   hosts: dc
   roles:
     - { role: 'windows_domain/password_policy', tags: 'policy', try_before_lock: "5", pass_length: "5", lock_duration: "00:05:00", lock_observation: "00:05:00", complexity: false}
-    - { role: 'windows_domain/user_group_ou', tags: 'ad_domain_data' }
+    - { role: 'windows_domain/user_group_ou_computer/group', tags: 'ad_domain_data', action: "create" }
+    - { role: 'windows_domain/user_group_ou_computer/user', tags: 'ad_domain_data' }
+    - { role: 'windows_domain/user_group_ou_computer/computer', tags: 'ad_domain_data' }
+    - { role: 'windows_domain/user_group_ou_computer/group', tags: 'ad_domain_data', action: "add_members" }
   vars:
     ad_users: "{{domain_users}}"
-    ad_ou: "{{ domain_ou }}"
     ad_groups: "{{domain_groups}}"
-
-#- name: "MOVE TO OU"
-#  hosts: dc
-#  roles:
-#    - { role: 'windows_domain/move_to_ou', tags: 'move_to_ou'}
-#  vars:
-#    hosts_dict: "{{lab.hosts}}"
-#    member_domain: "{{lab.hosts[dict_key].domain}}"
-#    domain_password: "{{lab.domains[member_domain].domain_password}}"
+    ad_computers: "{{domain_computers}}"

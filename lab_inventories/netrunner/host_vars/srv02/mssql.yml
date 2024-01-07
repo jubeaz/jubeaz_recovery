@@ -1,28 +1,29 @@
-mssql: { 
-    "sa_password": "ftrum_Ya5d7DCQQN",
-    "svcaccount" : "bran",
-    "sysadmins" : ["HAAS\\mhendrik"],
-    "executeaslogin" : {
-        "HAAS\\rknight" : "sa"
+mssql_sa_password: "ftrum_Ya5d7DCQQN"
+mssql_svcaccount: "bran"
+#mssql_svcaccount: 'NT AUTHORITY\\NETWORK SERVICE'
+#mssql_svcaccount: 'NT AUTHORITY\\SYSTEM'
+
+mssql_sysadmins: ["HAAS\\mhendrik"]
+mssql_executeaslogin: {
+    "HAAS\\rknight" : "sa"
+    }
+mssql_executeasuser: {
+    "master_dbo": {
+        "user": "HAAS\\mhendrik",
+        "db"  : "master",
+        "impersonate" : "dbo"
         },
-    "executeasuser" : {
-        "master_dbo": {
-            "user": "HAAS\\mhendrik",
-            "db"  : "master",
-            "impersonate" : "dbo"
-            },
-        "dbms_dbo": {
-            "user": "HAAS\\mhendrik",
-            "db"  : "msdb",
-            "impersonate" : "dbo"
-            }
-        },
-    "linked_servers": {
-        "archer" : {
-            "data_src": "archer.weyland.local",
-            "users_mapping": [
-                {"local_login": "HAAS\\mhendrik","remote_login": "WEYLAND\\anson", "remote_password": "z77w_TeCUCD_wLrD"}
-                ]
-            }
+    "dbms_dbo": {
+        "user": "HAAS\\mhendrik",
+        "db"  : "msdb",
+        "impersonate" : "dbo"
+        }
+    }
+mssql_linked_servers: {
+    "archer" : {
+        "data_src": "archer.weyland.local",
+        "users_mapping": [
+            {"local_login": "HAAS\\mhendrik","remote_login": "WEYLAND\\anson", "remote_password": "z77w_TeCUCD_wLrD"}
+            ]
         }
     }

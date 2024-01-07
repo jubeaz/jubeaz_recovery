@@ -1,0 +1,38 @@
+# https://clintboessen.blogspot.com/2010/04/group-scopes.html
+# https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)
+
+- name: "Create computers"
+  microsoft.ad.computer:
+    dns_hostname: "{{ item.value.dns_hostname }}"
+    name: "{{ item.key }}"
+    path: "{{item.value.path}}"
+    description: "{{item.value.description | default('-')}}"
+    trusted_for_delegation: "{{item.value.trusted_for_delegation | default(false)}}"
+    state: present
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
+  with_dict: "{{ ad_computers }}"
+
+- name: "Add spn"
+  microsoft.ad.computer:
+    name: "{{ item.key }}"
+    path: "{{item.value.path}}"
+    state: present
+    spn:
+      set: "{{item.value.spns}}"  
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
+  when: item.value.spns | default([]) | length > 0  
+  with_dict: "{{ ad_computers | default({})}}"
+
+- name: "Add delegates"
+  microsoft.ad.computer:
+    name: "{{ item.key }}"
+    path: "{{item.value.path}}"
+    state: present
+    delegates:
+      set: "{{item.value.delegates}}"  
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
+  when: item.value.delegates | default([]) | length > 0  
+  with_dict: "{{ ad_computers | default({})}}"

@@ -8,40 +8,24 @@
   when: two_adapters == true
 
 - name: Ensure that domain exists
-  win_domain:
+  microsoft.ad.domain:
     domain_netbios_name: "{{domain_netbios_name}}"
     dns_domain_name: "{{domain_name}}"
     safe_mode_password: "{{domain_password}}"
+    reboot: true
   register: check_domain
 
-- name: Reboot to complete domain creation
-  win_reboot:
-    reboot_timeout: 900
-    post_reboot_delay: 100
-  when: check_domain.changed
-
 - name: Ensure the server is a domain controller
-  win_domain_controller:
+  microsoft.ad.domain_controller:
     dns_domain_name: "{{domain_name}}"
     domain_admin_user: "Administrator@{{domain_name}}"
     domain_admin_password: "{{domain_password}}"
     safe_mode_password: "{{domain_password}}"
+    install_dns: true
+    reboot: true
     state: domain_controller
   register: check_domain_controller
 
-- name: Reboot to complete domain controller setup
-  win_reboot:
-    reboot_timeout: 900
-    post_reboot_delay: 100
-  when: check_domain_controller.changed
-
-# DNSCHANGE
-# - name: "enable interface {{nat_adapter}} after domain joined"
-#   win_shell: netsh interface set interface "{{nat_adapter}}" enable
-#   register: enable_interface_dc
-#   until: "enable_interface_dc is not failed"
-#   retries: 3
-#   delay: 120
 
 - name: Check for xDnsServer Powershell module
   win_psmodule:
@@ -52,9 +36,6 @@
 - name: enable only the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: dnscmd . /resetlistenaddresses {{ ansible_host }}
   when: two_adapters == true
-#- name: enable the {{domain_adapter}} interface (local) for DNS client requests
-#  ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $True
-#  when: two_adapters == true
 
 
 - name: Configure DNS Forwarders
@@ -66,8 +47,6 @@
       - "1.1.1.1"
       - "9.9.9.9"
 
-#- name: install nuget
-#  win_shell: install-packageprovider -name nuget -force
 
 - name: "Install XactiveDirectory"
   win_psmodule:

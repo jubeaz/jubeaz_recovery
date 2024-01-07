@@ -4,6 +4,8 @@
     name: "{{ item.value.name }}"
     path: "{{ item.value.path }}"
     state: present
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
   with_dict: "{{laps_path}}"
 
 
@@ -95,6 +97,16 @@
   become_method: runas
   become_user: SYSTEM
   when: dc_level == 0
+
+
+- name: "synchronizes all domains"
+  win_shell: repadmin /syncall /Ade
+  become: yes
+  become_method: runas
+  become_user: "{{domain_username}}"
+  vars:
+    ansible_become_pass: "{{domain_password}}"
+
 
 - name: "Apply DACL to OU Containers"
   win_ad_dacl:
