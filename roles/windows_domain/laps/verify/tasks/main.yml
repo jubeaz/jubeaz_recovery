@@ -6,7 +6,7 @@
   register: powershell_password
   vars:
     hostname: "{{item.value.hostname}}"
-  when: item.value.use_laps is defined and item.value.use_laps == true and item.value.domain_name == domain_name
+  when: item.value.use_laps | default(false) == true and item.value.domain_name == domain_name
   with_dict: "{{hosts_dict}}"
 
 - name: Show new laps password

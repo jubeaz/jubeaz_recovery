@@ -2,24 +2,24 @@
 - name: CONFIGURE LAPS ON DCS
   hosts: dc
   roles:
-    - { role: 'windows_domain/laps/dc', tags: 'laps-dc'}
+    - { role: 'windows_domain/laps/dc', tags: 'laps-dc', when: laps_path  | length > 0}
 
 - name: CONFIGURE LAPS ON SERVERS
   hosts: domain_server,  domain_workstation
   roles:
-    - { role: 'windows_domain/laps/server', tags: 'laps-server'}
+    - { role: 'windows_domain/laps/server', tags: 'laps-server', when: laps_path  | length > 0 and use_laps == true }
 
 
 
 - name: VERIFY AND SHOW LAPS PASSWORDS
   hosts: dc
   roles:
-    - { role: 'windows_domain/laps/verify', tags: 'laps-verify'}
+    - { role: 'windows_domain/laps/verify', tags: 'laps-verify', when: laps_path  | length > 0}
   vars:
     hosts_dict: "{{hostvars}}"
 
 - name: SET LAPS USERS AND GROUPS PERMISSION
   hosts: dc
   roles:
-    - { role: 'windows_domain/laps/permissions', tags: 'laps-permissions'}
+    - { role: 'windows_domain/laps/permissions', tags: 'laps-permissions', when: laps_path  | length > 0}
 

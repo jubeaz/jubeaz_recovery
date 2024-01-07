@@ -9,38 +9,5 @@ parent_domain_dc_ansible_inventory_key: "" # ansible inventory name
 account_is_sensitive: []
 
 
-gmsa : {
-  "heimdall": {
-    "gMSA_Name" : "heimdall",
-    "gMSA_FQDN" : "heimdall.haas.local",
-    "gMSA_SPNs" : ["HTTP/fenris", "HTTP/fenris.haas.local"],
-    "gMSA_HostNames" : ["fenris"], # if set  gMSA_Groups is empty
-    "gMSA_Groups" : [] # if set  gMSA_HostNames is empty
-    },
-  "ichi": {
-    "gMSA_Name" : "ichi",
-    "gMSA_FQDN" : "ichi_v2.haas.local",
-    "gMSA_SPNs" : ["MSSQLSvc/fenris.haas.local:1433","MSSQLSvc/fenris.haas.local"],
-    "gMSA_HostNames" : [],
-    "gMSA_Groups" : ["L_GMSA_ICHI"]
-    },
-  "janus": {
-    "gMSA_Name" : "janus",
-    "gMSA_FQDN" : "janus.haas.local",
-    "gMSA_SPNs" : ["MSSQLSvc/ws03.haas.local:1433","MSSQLSvc/ws03.haas.local"],
-    "gMSA_HostNames" : ["ws03"],
-    "gMSA_Groups" : []
-    }
-}
 
-acls: "{{ acls_general | union(acls_adcs|default([])) }}"  
-
-acls_adcs: {
-
-}
-
-acls_general: {
-  # 
-  "GenericAll_heimdall_imcguire" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
-  }
 

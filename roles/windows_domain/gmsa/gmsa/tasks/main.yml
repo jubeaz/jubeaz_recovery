@@ -3,6 +3,7 @@
 # $gMSA_SPNs = 'http/www', 'http/www.contoso.com'
 # $gMSA_HostNames = 'webServer01', 'webServer02', 'webServer03'
 
+
 - name: Create GMSA Account
   ansible.windows.win_powershell:
     script: |

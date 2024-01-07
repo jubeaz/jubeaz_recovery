@@ -1,27 +1,28 @@
 
 # todo
+
+## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné
 `installed_gmsa: ["ichi", "heimdall"]`
 
 revoir la manière dont est géré les trusts
 
-# laps
-Test sync phase for child domain before applying acl on ou
-in `ssh://yoki/etc/ansible/roles/windows_domain/laps/dc/tasks/install.yml`
+## trust
+IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 
+# bug
+
+## microsoft.ad.group 
+`microsoft.ad.group` fail to add foreign members
+
+```json
+    "L_LAPS_READER" : {
+        "scope": "domainlocal", # universal, global or domainlocal default domainlocal
+        "managed_by" : "Domain Admins",
+        "path" : "OU=Groups,OU=IT,OU=Argus,DC=weyland,DC=local",
+        "members" : [
+            "G_LAPS_READER", 
+            "haas.local\\emoon"
 ```
-- name: "synchronizes all domains"
-  win_shell: repadmin /syncall /Ade
-  become: yes
-  become_method: runas
-  become_user: "{{domain_username}}"
-  vars:
-    ansible_become_pass: "{{domain_password}}"
-```
-
-# gmsa
-
-## to do
 
 
-ichi n'est pas installé sur fenris alors que hemdall oui

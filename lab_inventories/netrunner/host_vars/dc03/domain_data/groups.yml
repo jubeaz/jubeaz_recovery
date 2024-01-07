@@ -5,8 +5,6 @@ domain_groups : {
         "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
         "members" : [
             "G_LAPS_READER",
-            "weyland.local\\G_LAPS_READER",
-            "research.weyland.local\\G_LAPS_READER"
         ]
     },
     "G_LAPS_READER" : {
@@ -38,15 +36,11 @@ domain_groups : {
         "managed_by" : "Domain Admins",
         "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
         "members" : [
-            "G_GMSA_ICHI"
+            "G_GMSA_ICHI",
+            "WEYLAND\\arose",
+            "weyland.local\\G_LAPS_READER",
+            "research.weyland.local\\G_LAPS_READER"
         ]
     } 
 }
-    
-multi_domain_groups_member : {
-    "L_LAPS_READER" : [
-        "weyland.local\\G_LAPS_READER",
-        "research.weyland.local\\G_LAPS_READER"
-    ],
-    "L_GMSA_ICHI" : []
-}
+

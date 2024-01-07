@@ -3,4 +3,3 @@
   with_items: "{{laps_readers}}"
   loop_control:
      loop_var: principal
-  when: laps_readers | default([]) | length > 0 and laps_path | default({}) | length > 0

@@ -10,19 +10,12 @@
 #- import_playbook: books/domains-build.yml
 #- import_playbook: books/ad-ous.yml
 #- import_playbook: books/domains-add-members.yml
-##### IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 #- import_playbook: books/build-trusts.yml
 #- import_playbook: books/ad-data.yml
 #- import_playbook: books/local-groups-users-rights.yml
-
-####################################
-# test gmsa with local group including global group including computer
-####################################
-- import_playbook: books/laps.yml
+#- import_playbook: books/laps.yml
 #- import_playbook: books/gmsa.yml
-
 #- import_playbook: books/adcs.yml
-
 #- import_playbook: books/ad-acl.yml
 #- import_playbook: books/iis.yml
 #- import_playbook: books/webdav.yml
