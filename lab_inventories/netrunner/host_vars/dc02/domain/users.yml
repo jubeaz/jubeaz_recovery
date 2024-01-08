@@ -1,6 +1,6 @@
-domain_users: "{{domain_users_spn | ansible.builtin.combine(domain_users_regular)}}"
+domain_users: "{{domain_service_accounts | ansible.builtin.combine(domain_users_regular)}}"
 
-domain_users_spn: {
+domain_service_accounts: {
 }
 
 domain_users_regular: {
@@ -11,7 +11,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "adm_acorrea" : {
         "firstname"       : "adm_Angelique",
@@ -20,7 +21,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "root_bstinson" : {
         "firstname"       : "root_Bryan",
@@ -29,7 +31,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "cslee" : {
         "firstname"       : "epa_Chief",
@@ -38,7 +41,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "crite" : {
         "firstname"       : "Clyde",
@@ -47,7 +51,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "emills" : {
         "firstname"       : "Elizabeth",
@@ -56,7 +61,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "klynn" : {
         "firstname"       : "K. P.",
@@ -65,7 +71,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "myale" : {
         "firstname"       : "Mark",
@@ -74,7 +81,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "mstone" : {
         "firstname"       : "Mr.",
@@ -83,7 +91,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "sdiego" : {
         "firstname"       : "Simone",
@@ -92,7 +101,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "yavdakov" : {
         "firstname"       : "Yakov Erikovich",
@@ -101,7 +111,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "zjudge" : {
         "firstname"       : "Zealous",
@@ -110,6 +121,7 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : ["Domain Admins"], # only built-in
-        "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=research,DC=weyland,DC=local",
+        "unconstrained"   : false
     }
 }

@@ -1,0 +1,30 @@
+---
+#- name: debug
+#  debug:
+#    var: principal
+- name: get object properties 
+  microsoft.ad.object_info:
+    identity: "CN={{ principal.key }},{{principal.value.path}}"
+    properties: 
+      - ObjectGUID
+      - objectSid
+  register: user_prop
+- name: debug
+  debug:
+    var: user_prop.objects
+- name: debug
+  debug:
+    var: user_prop.objects[0].ObjectGUID
+
+- name: set user_sid_mapping
+  set_fact:
+    user_sid_mapping: "{{ user_sid_mapping | default([]) + [{ 'key' : principal.key, 'guid' : user_prop.objects[0].ObjectGUID, 'sid' : user_prop.objects[0].objectSid.Sid }] }}"
+    cacheable: yes		
+#  with_items: 
+#- { 'key': 'parent_domain' , 'value': "{{'.'.join(lab_dom.domain.split('.')[1:])}}"}
+#- { 'key': 'parent_domain_password' , 'value': "{{lab.domains[parent_domain].domain_password}}"}
+#- { 'key': 'source_dc' , 'value': "{{lab.hosts[lab.domains[parent_domain].dc].hostname}}.{{parent_domain}}"}
+#- { 'key': 'parent_domain_password' , 'value': "{{lab.domains[parent_domain].domain_password}}"}
+#- { 'key': 'source_dc' , 'value': "{{lab.hosts[lab.domains[parent_domain].dc].hostname}}.{{parent_domain}}"}
+#when: dc_level != 0
+#  failed_when: lab_cfg_host|default({})|length !=0

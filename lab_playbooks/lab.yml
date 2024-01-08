@@ -11,7 +11,8 @@
 #- import_playbook: books/ad-ous.yml
 #- import_playbook: books/domains-add-members.yml
 #- import_playbook: books/build-trusts.yml
-#- import_playbook: books/ad-data.yml
+- import_playbook: books/ad-data.yml
+#- import_playbook: books/compute-global-mappings.yml
 #- import_playbook: books/local-groups-users-rights.yml
 #- import_playbook: books/laps.yml
 #- import_playbook: books/gmsa.yml

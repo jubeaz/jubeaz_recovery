@@ -1,6 +1,6 @@
-domain_users: "{{domain_users_spn | ansible.builtin.combine(domain_users_regular)}}"
+domain_users: "{{domain_service_accounts | ansible.builtin.combine(domain_users_regular)}}"
 
-domain_users_spn: {
+domain_service_accounts: {
     "eli" : {
         "firstname"   : "eli",
         "surname"     : "v2.0",
@@ -9,7 +9,8 @@ domain_users_spn: {
         "description" : "",
         "groups"      : [], # only built-in
         "path"        : "CN=Users,DC=weyland,DC=local",
-        "spns"        : ["MSSQLSvc/archer.weyland.local:1433","MSSQLSvc/archer.weyland.local"]
+        "spns"        : ["MSSQLSvc/archer.weyland.local:1433","MSSQLSvc/archer.weyland.local"],
+        "unconstrained"   : false
         }
 }
 domain_users_regular: {
@@ -20,7 +21,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "DB user",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "acorrea" : {
         "firstname"       : "Angelique",
@@ -29,7 +31,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "DB admin",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "bstinson" : {
         "firstname"       : "Bryan",
@@ -38,7 +41,8 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : ["Domain Admins"], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=weyland,DC=local",
+        "unconstrained"   : false
     },
     "cslee" : {
         "firstname"       : "Chief",
@@ -47,6 +51,7 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local"
+        "path"            : "CN=Users,DC=weyland,DC=local",
+        "unconstrained"   : false
     }         
 }

@@ -40,6 +40,11 @@ domain_groups : {
             "WEYLAND\\arose",
             "weyland.local\\G_LAPS_READER",
             "research.weyland.local\\G_LAPS_READER"
+        ],
+        "foreign_members" : [
+            "WEYLAND\\arose",
+            "weyland.local\\G_LAPS_READER",
+            "research.weyland.local\\G_LAPS_READER"
         ]
     } 
 }
