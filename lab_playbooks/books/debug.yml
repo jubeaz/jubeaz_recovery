@@ -1,8 +1,0 @@
----
-- name: "DEBUG"
-  hosts: netrunner
-  tasks:
-    - name: print lab
-      debug: 
-        var: lab
-      run_once: true  

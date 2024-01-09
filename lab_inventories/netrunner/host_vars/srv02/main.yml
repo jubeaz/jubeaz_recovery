@@ -18,7 +18,11 @@ local_groups: {
     "test": [".\\arose"]
 }
 
-
+local_security: {
+    "uac": { "status": "on", "level": "5" },
+    "enable_run_as_ppl" : true,
+    "windows_defender": true
+}
 
 scripts : ["sidhistory.ps1"]
 vulns: ["disable_firewall"]

@@ -1,7 +1,8 @@
 ---
 # Load datas
 - name: "SETUP LOCAL SECURITIES"
-  hosts: netrunner
+#  hosts: all
+  hosts: srv02
   tasks:
     - include_role:
         name: "windows_settings/{{item.key}}"

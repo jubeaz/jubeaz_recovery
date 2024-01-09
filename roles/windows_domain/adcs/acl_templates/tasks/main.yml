@@ -4,25 +4,19 @@
       [CmdletBinding()]
       param (
           [String]
-          $CAName,
-          [String]
           $for,
           [String]
           $to,
           [String]
           $right,
           [String]
-          $inheritance,
-          [String]
-          $CAName
+          $inheritance
       )
 
       Import-Module -Name PSPKI
 
       #$c = get-command -Module PSPKI
       #Write-Output "template found : $c"
-      #$CA =  Get-CertificationAuthority -Name $CAName
-      #Write-Output "CA found : $($CA.DistinguishedName)"
 
       $t = Get-CertificateTemplate -Name $to 
       Write-Output "template found : $($t.DistinguishedName)"
@@ -40,7 +34,6 @@
       to: "{{item.value.to}}"
       right: "{{item.value.right}}"
       inheritance: "{{item.value.inheritance}}"
-      CAName: "toto"
   vars:
     ansible_become: yes
     ansible_become_method: runas
@@ -49,8 +42,8 @@
   with_dict: "{{ acls }}"
   register: adcs_acl_template_result
 
-- debug:
-    var: adcs_acl_template_result
+#- debug:
+#    var: adcs_acl_template_result
 
 
 #Add-AdCrl Add-AIA Add-CAAccessControlEntry Add-CAACL Add-CDP Add-OCSPACL Connect-CA Disable-CRLFlag Disable-KRAFlag Enable-CRLFlag Enable-KRAFlag 

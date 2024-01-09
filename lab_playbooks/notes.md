@@ -19,8 +19,10 @@ https://docs.ansible.com/ansible/latest/collections/microsoft/ad/index.html
 # inprogress
 
 
+
 # todo
 
+security on srv02
 
 ## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné
