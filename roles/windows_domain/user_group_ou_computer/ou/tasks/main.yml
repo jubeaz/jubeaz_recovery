@@ -7,6 +7,6 @@
     state: present
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
-  with_dict: "{{ad_ous | default({})}}"
+  with_dict: "{{objects | default({})}}"
   register: oucreate
 

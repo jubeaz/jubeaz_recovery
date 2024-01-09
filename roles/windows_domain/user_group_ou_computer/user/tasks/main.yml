@@ -31,73 +31,21 @@
       add: "{{item.value.groups | default([])}}"
     spn: 
       set: "{{item.value.spns | default([])}}"
-    delegates:
-      set: "{{item.value.delegates | default([])}}"
     protect_from_deletion: "{{item.value.sensitive | default(false)}}"
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
-  with_dict: "{{ ad_users | default({})}}"
-  register: usercreate
+  with_dict: "{{ objects | default({})}}"
+  when: action |default('creation') != "add_delegates"
+  register:  user_creation
 
-
-- name: Create Unconstrained
-  ansible.windows.win_powershell:
-    script: |
-      [CmdletBinding()]
-      param (
-          [String]
-          $User
-      )
-      try {
-        Set-ADUser -Identity $User  -TrustedForDelegation $True
-        $Ansible.Changed = $true
-      } catch {
-        $Ansible.Changed = $false
-      }
-    error_action: stop
-    parameters:
-      User: "{{item.key}}"
-  vars:
-    ansible_become: yes
-    ansible_become_method: runas
-    ansible_become_user: "{{domain_name}}\\Administrator"
-    ansible_become_password: "{{domain_password}}"
-  when: item.value.unconstrained is defined and item.value.unconstrained == true
-  with_dict: "{{ ad_users | default({})}}"
-  register: usercreate
-  register:
-    trust_result
-
-- name: Create constrained
-  ansible.windows.win_powershell:
-    script: |
-      [CmdletBinding()]
-      param (
-          [String]
-          $Id,
-          [String[]]
-          $SPN
-      )
-      try {
-        $User = Get-ADUser -Identity $Id
-        # Configure Kerberos to (Use any authentication protocol)
-        Set-ADAccountControl  $User  -TrustedToAuthForDelegation $true
-        $Property = "msDS-AllowedToDelegateTo"
-        $User | Set-ADObject -Add @{$Property=$SPN}
-        $Ansible.Changed = $true
-      } catch {
-        $Ansible.Changed = $false
-      }
-    error_action: stop
-    parameters:
-      Id: "{{item.key}}"
-      SPN: "{{item.value.constrained}}"
-  vars:
-    ansible_become: yes
-    ansible_become_method: runas
-    ansible_become_user: "{{domain_name}}\\Administrator"
-    ansible_become_password: "{{domain_password}}"
-  when: item.value.constrained | default([]) | length > 0
-  with_dict: "{{ ad_users | default({})}}"
-  register: usercreate
-
+- name: "Add Ressource Based Constained Delegation"
+  microsoft.ad.user:
+    name: "{{ item.key }}"
+    path: "{{item.value.path}}"
+    delegates:
+      set: "{{item.value.delegates | default([])}}"
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
+  with_dict: "{{ objects | default({})}}"
+  when: action |default('creation') == "add_delegates"
+  register: user_delegation_result

@@ -9,9 +9,13 @@ domain_service_accounts: {
         "description" : "",
         "groups"      : [], # only built-in
         "path"        : "CN=Users,DC=weyland,DC=local",
-        "spns"        : ["MSSQLSvc/archer.weyland.local:1433","MSSQLSvc/archer.weyland.local"],
-        "unconstrained"   : false
-        }
+        "delegates"       : [], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
+        "delegation_type" : false, # "KCD", "KUD", false
+        "constrained"     : ["cifs/ws01", "cifs/ws01.haas.local"], # KCD / SPN list / msDS-AllowedToDelegateTo
+        "proto_transition": true,  # KCD default false
+        "sensitive"       : false,  
+        "spns"        : ["MSSQLSvc/archer.weyland.local:1433","MSSQLSvc/archer.weyland.local"]
+    }
 }
 domain_users_regular: {
     "arose" : {
@@ -21,8 +25,7 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "DB user",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local",
-        "unconstrained"   : false
+        "path"            : "CN=Users,DC=weyland,DC=local"
     },
     "acorrea" : {
         "firstname"       : "Angelique",
@@ -31,8 +34,7 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "DB admin",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local",
-        "unconstrained"   : false
+        "path"            : "CN=Users,DC=weyland,DC=local"
     },
     "bstinson" : {
         "firstname"       : "Bryan",
@@ -41,8 +43,7 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : ["Domain Admins"], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local",
-        "unconstrained"   : false
+        "path"            : "CN=Users,DC=weyland,DC=local"
     },
     "cslee" : {
         "firstname"       : "Chief",
@@ -51,7 +52,6 @@ domain_users_regular: {
         "city"            : "-",
         "description"     : "",
         "groups"          : [], # only built-in
-        "path"            : "CN=Users,DC=weyland,DC=local",
-        "unconstrained"   : false
+        "path"            : "CN=Users,DC=weyland,DC=local"
     }         
 }

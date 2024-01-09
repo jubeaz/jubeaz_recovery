@@ -7,32 +7,23 @@
     name: "{{ item.key }}"
     path: "{{item.value.path}}"
     description: "{{item.value.description | default('-')}}"
-    trusted_for_delegation: "{{item.value.trusted_for_delegation | default(false)}}"
     state: present
+    spn: 
+      set: "{{item.value.spns | default([])}}"
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
-  with_dict: "{{ ad_computers }}"
+  with_dict: "{{ objects }}"
+  when: action |default('creation') != "add_delegates"
+  register:  computer_creation
 
-- name: "Add spn"
+- name: "Add Ressource Based Constained Delegation"
   microsoft.ad.computer:
     name: "{{ item.key }}"
     path: "{{item.value.path}}"
-    state: present
-    spn:
-      set: "{{item.value.spns}}"  
-    domain_username: "{{domain_name}}\\Administrator"
-    domain_password: "{{domain_password}}"
-  when: item.value.spns | default([]) | length > 0  
-  with_dict: "{{ ad_computers | default({})}}"
-
-- name: "Add delegates"
-  microsoft.ad.computer:
-    name: "{{ item.key }}"
-    path: "{{item.value.path}}"
-    state: present
     delegates:
-      set: "{{item.value.delegates}}"  
+      set: "{{item.value.delegates | default([])}}"
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
-  when: item.value.delegates | default([]) | length > 0  
-  with_dict: "{{ ad_computers | default({})}}"
+  with_dict: "{{ objects | default({})}}"
+  when: action |default('creation') == "add_delegates"
+  register: computer_delegation_result

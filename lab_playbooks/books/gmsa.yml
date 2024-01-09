@@ -1,12 +1,5 @@
 ---
-- name: GMSA INSIDE AD
-  hosts: dc
-  roles:
-  - { role: 'windows_domain/gmsa/gmsa', tags: 'gmsa'}
-  vars:
-    ad_gmsa: "{{gmsa | default({})}}"
-
 - name: GMSA HOSTS
   hosts: domain_server, domain_workstation
   roles:
-  - { role: 'windows_domain/gmsa/gmsa_hosts', tags: 'gmsa'}
+    - { role: 'windows_domain/gmsa/gmsa_hosts', tags: 'gmsa'}
