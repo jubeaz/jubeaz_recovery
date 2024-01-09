@@ -4,6 +4,11 @@
 ```powershell
 $id = (get-adcomputer -identity ws01).DistinguishedName
 (ActiveDirectory\Get-ADObject -Identity $Id  -properties msDS-AllowedToActOnBehalfOfOtherIdentity).'msDS-AllowedToActOnBehalfOfOtherIdentity'.Access
+
+# Get the user object and retrieve the UserAccountControl attribute
+$userObject = ActiveDirectory\Get-ADObject -Identity $Id  -Properties UserAccountControl
+# Display the UserAccountControl attribute value
+Write-Host "UserAccountControl for $($userObject.SamAccountName): $($userObject.UserAccountControl)"
 ```
 
 # docs
@@ -16,15 +21,6 @@ https://docs.ansible.com/ansible/latest/collections/microsoft/ad/index.html
 
 # todo
 
-## OTHER UAC
-
-Set-ADAccountControl 
- - DoesNotRequirePreAuth:$true
- - AllowReversiblePasswordEncryption
- - CannotChangePassword
- - PasswordNeverExpires
- - PasswordNotRequired
- - AccountNotDelegated
 
 ## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné

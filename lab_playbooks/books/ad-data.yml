@@ -19,6 +19,7 @@
     - { role: 'windows_domain/kerberos_delegation',             tags: 'ad_domain_data', objects: "{{domain_service_accounts}}"}
     - { role: 'windows_domain/kerberos_delegation',             tags: 'ad_domain_data', objects: "{{domain_gmsa}}"}
     - { role: 'windows_domain/kerberos_delegation',             tags: 'ad_domain_data', objects: "{{domain_computers}}"}
-
-# $id = (get-adcomputer -identity ws01).DistinguishedName
-# (ActiveDirectory\Get-ADObject -Identity $Id  -properties msDS-AllowedToActOnBehalfOfOtherIdentity).'msDS-AllowedToActOnBehalfOfOtherIdentity'.Access
+# AD Account Control
+    - { role: 'windows_domain/ad_account_control',              tags: 'ad_domain_data', objects: "{{domain_gmsa}}"}
+    - { role: 'windows_domain/ad_account_control',              tags: 'ad_domain_data', objects: "{{domain_users}}"}
+    - { role: 'windows_domain/ad_account_control',              tags: 'ad_domain_data', objects: "{{domain_computers}}"}

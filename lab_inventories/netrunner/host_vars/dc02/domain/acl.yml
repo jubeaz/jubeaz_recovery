@@ -1,13 +1,10 @@
 
 
-acls: "{{ acls_general | combine(acls_adcs|default({})) }}"  
+#acls: "{{ acls_general | combine(acls_adcs|default({})) }}"  
 
 
-acls_adcs: {
 
-}
-
-acls_general: {
+acls: {
   # 
   "forcechangepassword_arose_acorrea" : {"for": "arose", "to": "acorrea", "right": "Ext-User-Force-Change-Password", "inheritance": "None"}
   }

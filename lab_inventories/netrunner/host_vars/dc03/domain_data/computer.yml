@@ -10,7 +10,15 @@ domain_computers: {
         "delegation_type" : false, # "KCD", "KUD", false
         "constrained"     : [], # KCD / SPN list / msDS-AllowedToDelegateTo
         "proto_transition": false,  # KCD default false
-        "sensitive"       : false
+        "sensitive"       : false,
+        "ADAC": {
+            "AllowReversiblePasswordEncryption": true,
+            "CannotChangePassword":              true,
+            "PasswordNeverExpires":              true,
+            "PasswordNotRequired":               true,
+            "AccountNotDelegated":               true,
+            "DoesNotRequirePreAuth":             true
+        }  
     },
     "jaguarundi" : {
         "name":             "jaguarundi",

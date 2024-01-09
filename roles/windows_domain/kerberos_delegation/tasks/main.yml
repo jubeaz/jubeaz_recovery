@@ -40,7 +40,7 @@
 
       try {
         $obj = ActiveDirectory\Get-ADObject -Identity $Id
-        Write-Verbose "Object Found: $obj"
+        Write-Output "Object Found: $obj"
         if($DelegationType -eq "KUD"){
           $TrustedForDeleg = $true
           $TrustedToAuth = $false
@@ -58,14 +58,14 @@
         }        
         # object UAC
         Set-ADAccountControl $obj -TrustedForDelegation $TrustedForDeleg -TrustedToAuthForDelegation $TrustedToAuth
-        Write-Verbose "[$type] Set-ADAccountControl: -TrustedForDelegation $TrustedForDeleg -TrustedToAuthForDelegation $TrustedToAuth"
+        Write-Output "[$type] Set-ADAccountControl: -TrustedForDelegation $TrustedForDeleg -TrustedToAuthForDelegation $TrustedToAuth"
       
         if ($DelegationType -eq "KCD"){
           $obj | Set-ADObject -Add @{"msDS-AllowedToDelegateTo"=$DelegateTo}
-          Write-Verbose "Set msDS-AllowedToDelegateTo $DelegateTo"
+          Write-Output "Set msDS-AllowedToDelegateTo $DelegateTo"
         } else {
           $obj | Set-ADObject -Clear 'msDS-AllowedToDelegateTo'
-          Write-Verbose "Cleared msDS-AllowedToDelegateTo"
+          Write-Output "Cleared msDS-AllowedToDelegateTo"
         }      
         $Ansible.Failed = $false
       } catch {
@@ -88,3 +88,5 @@
   with_dict: "{{ objects | default({})}}"
   register: kerberos_delegations
 
+#- debug:
+#    var: kerberos_delegations
