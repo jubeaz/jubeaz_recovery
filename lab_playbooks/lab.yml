@@ -21,7 +21,7 @@
 
 
 #- import_playbook: books/computers-local-groups-users-rights.yml
-#- import_playbook: books/computers-security.yml
+- import_playbook: books/computers-security.yml
 
 #- import_playbook: books/members-iis.yml
 #- import_playbook: books/members-webdav.yml

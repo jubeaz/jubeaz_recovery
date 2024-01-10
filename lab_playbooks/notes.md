@@ -16,6 +16,8 @@ Write-Host "UserAccountControl for $($userObject.SamAccountName): $($userObject.
 # docs
 
 https://docs.ansible.com/ansible/latest/collections/microsoft/ad/index.html
+https://docs.ansible.com/ansible/latest/collections/community/windows/index.html
+https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 
 # inprogress
@@ -37,16 +39,7 @@ IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 
 # bug
 
-## computer
 
-il semble y avoir un soucis avec les vrai ordinateurs lorsque  l'on passe les actions domain-data
-
-essai en changeant 
-```
-  when: action |default('creation') == "add_delegates" and item.value.delegates | default([]) | lenght > 0
-========================================
-  when: action |default('creation') == "add_delegates" and item.value.delegates | default([]) | lenght > 0
-```
 ## microsoft.ad.group 
 `microsoft.ad.group` fail to add foreign members
 

@@ -2,7 +2,7 @@
 # Load datas
 - name: "SETUP LOCAL SECURITIES"
 #  hosts: all
-  hosts: srv02
+  hosts: srv01
   tasks:
     - debug:
         var: local_security

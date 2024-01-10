@@ -1,0 +1,21 @@
+- name: Disable Domain firewall
+  community.windows.win_firewall:
+    state: "{{profile.value.status}}"
+    profiles: "{{profile.value.profiles}}"
+    outbound_action: "{{profile.value.outbound}}"
+    inbound_action: "{{profile.value.inbound}}"
+  with_dict: "{{params.profiles}}"
+  loop_control:
+    loop_var: profile
+
+
+#- name: Firewall rule to allow SMTP on TCP port 25
+#  community.windows.win_firewall_rule:
+#    name: SMTP
+#    localport: 25
+#    action: allow
+#    direction: in
+#    protocol: tcp
+#    state: present
+#    enabled: yes
+#  with_dict
