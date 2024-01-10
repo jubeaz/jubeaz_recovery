@@ -1,0 +1,18 @@
+---
+# Load datas
+- name: "SETUP LOCAL SECURITIES"
+#  hosts: all
+  hosts: srv02
+  tasks:
+    - debug:
+        var: local_security
+    - include_role:
+        name: "windows_settings/{{item.key}}"
+      vars:
+        params : "{{ item.value | default({}) }}"
+        domain: "{{lab.hosts[dict_key].domain}}"
+        domain_username: "{{domain}}\\Administrator"
+        domain_password: "{{lab.domains[domain].domain_password}}"
+      with_dict: "{{local_security | default({}) }}"
+
+

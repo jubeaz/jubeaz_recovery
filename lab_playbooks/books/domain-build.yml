@@ -24,3 +24,4 @@
   hosts: dc
   roles:
     - { role: 'windows_domain/child_dns', tags: 'child_dns'}
+

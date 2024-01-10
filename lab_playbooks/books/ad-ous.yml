@@ -1,7 +1,0 @@
----
-- name: DCS AD OU CONFIGURATION
-  hosts: dc
-  roles:
-    - { role: 'windows_domain/user_group_ou_computer/ou', tags: 'ad_domain_data' }
-  vars:
-    ad_ous: "{{domain_ous}}"

@@ -64,13 +64,3 @@
   when: item.value.ADAC | default({}) | length > 0
   with_dict: "{{ objects | default({})}}"
   register: ad_accountcontrol
-
-#Set-ADAccountControl 
-# - DoesNotRequirePreAuth
-# - AllowReversiblePasswordEncryption
-# - CannotChangePassword
-# - PasswordNeverExpires
-# - PasswordNotRequired
-# - AccountNotDelegated
-#- debug:
-#    var: ad_accountcontrol

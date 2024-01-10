@@ -1,6 +1,8 @@
 # notes
 
 ## usefull commands
+
+rbcd
 ```powershell
 $id = (get-adcomputer -identity ws01).DistinguishedName
 (ActiveDirectory\Get-ADObject -Identity $Id  -properties msDS-AllowedToActOnBehalfOfOtherIdentity).'msDS-AllowedToActOnBehalfOfOtherIdentity'.Access
@@ -17,7 +19,7 @@ https://docs.ansible.com/ansible/latest/collections/microsoft/ad/index.html
 
 
 # inprogress
-
+security
 
 
 # todo
@@ -35,6 +37,16 @@ IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 
 # bug
 
+## computer
+
+il semble y avoir un soucis avec les vrai ordinateurs lorsque  l'on passe les actions domain-data
+
+essai en changeant 
+```
+  when: action |default('creation') == "add_delegates" and item.value.delegates | default([]) | lenght > 0
+========================================
+  when: action |default('creation') == "add_delegates" and item.value.delegates | default([]) | lenght > 0
+```
 ## microsoft.ad.group 
 `microsoft.ad.group` fail to add foreign members
 

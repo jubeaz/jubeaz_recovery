@@ -1,5 +1,0 @@
----
-- name: GMSA HOSTS
-  hosts: domain_server, domain_workstation
-  roles:
-    - { role: 'windows_domain/gmsa/gmsa_hosts', tags: 'gmsa'}

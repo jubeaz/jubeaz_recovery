@@ -1,6 +1,4 @@
 domain_dc_ansible_inventory_key: "dc01" # ansible inventory name
-#path: "OU=Servers,OU=IT,OU=Argus,DC=weyland,DC=local"
-#path: "OU=Workstations,OU=IT,OU=Argus,DC=weyland,DC=local"
 
 use_laps: true
 

@@ -1,17 +1,13 @@
 ---
-netrunner:
+haas:
   children:
     dc:
       hosts:
-        dc01: {dc_level: 0}    
         dc03: {dc_level: 0} 
-        dc02: {dc_level: 1}
     dc_slave:
       hosts:
     trust:
       hosts:
-        dc01: {}    
-        dc03: {}
     domain_server:
       children:
           adcs:
@@ -35,8 +31,6 @@ netrunner:
       children:
       hosts:
   hosts:
-    dc01: {ansible_host: 192.168.56.10}
     srv01: {ansible_host: 192.168.56.11}
-    dc02: {ansible_host: 192.168.56.20}
     dc03: {ansible_host: 192.168.56.30}
     srv02: {ansible_host: 192.168.56.31}

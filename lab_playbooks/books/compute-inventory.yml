@@ -14,7 +14,7 @@
         domain_netbios_name: "{{hostvars[domain_dc_ansible_inventory_key].domain_netbios_name}}"
         domain_gmsa: "{{hostvars[domain_dc_ansible_inventory_key].domain_gmsa}}"
         laps_path: "{{hostvars[domain_dc_ansible_inventory_key].laps_path}}"
-        path: "{{hostvars[domain_dc_ansible_inventory_key].domain_computers[hostname].path}}"
+        path: "{{hostvars[domain_dc_ansible_inventory_key].domain_real_computers[hostname].path}}"
       when: type != 'dc'      
     - name: print host configuration
       debug:
@@ -27,6 +27,8 @@
           - "domain_gmsa: {{domain_gmsa}}"
           - "laps_path: {{laps_path}}"
           - "path: {{path}}"
+
+
 
 
 - name: "COMPUTE PARENT DOMAIN INFO ON EACH CHILD DC"
@@ -109,6 +111,7 @@
         # trusted domain
         # child domain
         # parent domain
+
     - name: print transitive_trusts_domains
       debug:
         msg: 
@@ -116,28 +119,3 @@
           - "{{hostvars[item[0]].ansible_host}}"
       loop: "{{transitive_trusts_domains}}"
       when: transitive_trusts_domains is defined 
-#    - name: search for other domains
-#      ansible.builtin.debug:
-#        msg: " found: {{item.value.domain_name}}" 
-#      with_dict: "{{ hostvars }}"
-#      when: item.value.domain_name != domain_name                           
-#        and item.value.domain_name != domain_trust_remote_domain_name       
-#        and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name  
-#        and item.value.domain_name != '.'.join(domain_name.split('.')[1:])  
-
-
-
-# item != domain and item != trust and item != parent_domain and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name
-#    - name: search for childs dc
-#      ansible.builtin.set_fact:
-#        child_domains: "{{child_domains | default([]) + [[ item.key, item.value.hostname, item.value.domain_name ]] }}" 
-#      with_dict: "{{ hostvars }}"
-#      when: item.value.domain_name
-# item != domain and item != trust and item != parent_domain and '.'.join(item.split('.')[1:]) != domain
-#    - name: print records
-#      debug:
-#        msg: 
-#          - "{{item[1]}}.{{item[2]}}"
-#          - "{{hostvars[item[0]].ansible_host}}"
-#      loop: "{{child_domains}}"
-#      when: child_domains is defined 

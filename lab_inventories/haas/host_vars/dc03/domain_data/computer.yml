@@ -13,7 +13,16 @@ domain_real_computers: {
         "constrained"     : [], # KCD / SPN list / msDS-AllowedToDelegateTo
         "proto_transition": false,  # KCD default false
         "sensitive"       : false
-
+    },
+    "archer": {
+        "name":             "archer",
+        "dns_hostname":     "archer.haas.local",
+        "path":             "OU=Workstations,OU=Cybernetics,OU=Asa,DC=haas,DC=local",          
+        "delegates"       : [], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
+        "delegation_type" : false, # "KCD", "KUD", false
+        "constrained"     : [], # KCD / SPN list / msDS-AllowedToDelegateTo
+        "proto_transition": false,  # KCD default false
+        "sensitive"       : false
     }
 }
 

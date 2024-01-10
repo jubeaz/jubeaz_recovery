@@ -35,7 +35,7 @@
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
   with_dict: "{{ objects | default({})}}"
-  when: action |default('creation') != "add_delegates"
+  when: action |default('create') == "create"
   register:  user_creation
 
 - name: "Add Ressource Based Constained Delegation"
@@ -43,9 +43,9 @@
     name: "{{ item.key }}"
     path: "{{item.value.path}}"
     delegates:
-      set: "{{item.value.delegates | default([])}}"
+      add: "{{item.value.delegates | default([])}}"
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
   with_dict: "{{ objects | default({})}}"
-  when: action |default('creation') == "add_delegates"
+  when: action |default('create') == "add_delegates" and item.value.delegates | default([]) | length > 0
   register: user_delegation_result

@@ -9,6 +9,4 @@ parent_domain_dc_ansible_inventory_key: "dc01" # ansible inventory name
 
 
 
-account_is_sensitive: []
-
 

@@ -1,0 +1,631 @@
+{
+"lab" : {
+    "hosts" : {
+        "dc01" : {
+            "hostname" : "dc01",
+            "type" : "dc",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "weyland.local",
+            "path" : "DC=weyland,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ],
+                "Remote Management Users": [
+                ]
+            },
+            "scripts" : ["sidhistory.ps1"],
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
+        },
+        "srv01" : {
+            "hostname" : "archer",
+            "type" : "server",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "weyland.local",
+            "path" : "OU=Servers,OU=IT,OU=Argus,DC=weyland,DC=local",
+            "use_laps": false,
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Management Users": [
+                ]
+            },
+            "Remote Desktop Users" : [
+            ],
+            "scripts" : [],
+            "vulns" : ["disable_firewall"],
+            "features": ["NET-Framework-Core"],
+            "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
+            "repos": [
+                ["Mimikatz", "https://github.com/gentilkiwi/mimikatz.git"],
+                ["Rubeus", "https://github.com/GhostPack/Rubeus"]
+            ],
+            "repos_user": "",
+            "repos_password": "",
+            "download_files": [
+                ["GRMWDK_EN_7600_1.ISO", "https://download.microsoft.com/download/4/A/2/4A25C7D5-EFBE-4182-B6A9-AE6850409A78/GRMWDK_EN_7600_1.ISO"]
+            ],
+            "mssql":{
+                "sa_password": "_r3QFLi5EnkfQU_4",
+                "svcaccount" : "eli",
+                "sysadmins" : [
+                    "WEYLAND\\acorrea"
+                ],
+                "executeaslogin" : {
+                    "WEYLAND\\anson" :  "WEYLAND\\acorrea"
+                },
+                "executeasuser" : {
+                    "master_dbo": {
+                        "user": "WEYLAND\\acorrea",
+                        "db"  : "master",
+                        "impersonate" : "dbo"
+                    },
+                    "dbms_dbo": {
+                        "user": "WEYLAND\\acorrea",
+                        "db"  : "msdb",
+                        "impersonate" : "dbo"
+                    }
+                },
+                "linked_servers": {
+                    "fenris" : {
+                        "data_src": "fenris.haas.local",
+                        "users_mapping": [
+                            {"local_login": "WEYLAND\\acorrea","remote_login": "sa", "remote_password": "ftrum_Ya5d7DCQQN"}
+                        ]
+                    }
+                }
+            }
+        },
+        "dc02" : {
+            "hostname" : "dc02",
+            "type" : "dc",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "research.weyland.local",
+            "path" : "DC=researh,DC=weyland,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ],
+                "Remote Management Users": [
+                ]
+            },
+            "scripts" : ["sidhistory.ps1"],
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
+        },
+        "dc03" : {
+            "hostname" : "dc03",
+            "type" : "dc",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "haas.local",
+            "path" : "DC=haas,DC=local",
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Desktop Users" : [
+                ]
+            },
+            "scripts" : ["sidhistory.ps1"],
+            "vulns" : ["disable_firewall"],
+            "security": ["account_is_sensitive"],
+            "security_vars": {
+                "account_is_sensitive" : { "renly": {"account" : "renly.baratheon"} }
+            }
+        },
+        "srv02" : {
+            "hostname" : "fenris",
+            "type" : "server",
+            "local_admin_password": "Jubeaz12345+-",
+            "domain" : "haas.local",
+            "path" : "OU=Servers,OU=Cybernetics,OU=Argus,DC=haas,DC=local",
+            "use_laps": false,
+            "local_groups" : {
+                "Administrators" : [
+                ],
+                "Remote Management Users": [
+                ]
+            },
+            "Remote Desktop Users" : [
+            ],
+            "scripts" : [],
+            "vulns" : ["disable_firewall"],
+            "features": ["NET-Framework-Core"],
+            "softwares": [  "git", "visualstudio2022community", "notepadplusplus"],
+            "repos": [
+                ["Mimikatz", "https://github.com/gentilkiwi/mimikatz.git"],
+                ["Rubeus", "https://github.com/GhostPack/Rubeus"]
+            ],
+            "repos_user": "",
+            "repos_password": "",
+            "download_files": [
+                ["GRMWDK_EN_7600_1.ISO", "https://download.microsoft.com/download/4/A/2/4A25C7D5-EFBE-4182-B6A9-AE6850409A78/GRMWDK_EN_7600_1.ISO"]
+            ],
+            "mssql":{
+                "sa_password": "ftrum_Ya5d7DCQQN",
+                "svcaccount" : "bran",
+                "sysadmins" : [
+                    "HAAS\\mhendrik"
+                ],
+                "executeaslogin" : {
+                    "HAAS\\rknight" : "sa"
+                },
+                "executeasuser" : {
+                    "master_dbo": {
+                        "user": "HAAS\\mhendrik",
+                        "db"  : "master",
+                        "impersonate" : "dbo"
+                    },
+                    "dbms_dbo": {
+                        "user": "HAAS\\mhendrik",
+                        "db"  : "msdb",
+                        "impersonate" : "dbo"
+                    }
+                },
+                "linked_servers": {
+                    "archer" : {
+                        "data_src": "archer.weyland.local",
+                        "users_mapping": [
+                            {"local_login": "HAAS\\mhendrik","remote_login": "WEYLAND\\anson", "remote_password": "z77w_TeCUCD_wLrD"}
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "domains" : {
+        "weyland.local" : {
+            "dc": "dc01",
+            "domain_password" : "Jubeaz12345+-",
+            "netbios_name": "WEYLAND",
+            "ca_server": "archer",
+            "ca_name": "internal-ca",
+            "trust" : "haas.local",
+            "laps_path":  {
+                "E_workstations"            : { "name": "Workstations",              "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "S_workstations"            : { "name": "Workstations",              "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "PR_workstations"           : { "name": "Workstations",              "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "TI_workstations"           : { "name": "Workstations",              "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "IT_workstations"           : { "name": "Workstations",              "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"}
+            },
+            "organisation_units" : {
+                "HQ"                        : { "name": "HQ",                        "path" : "DC=weyland,DC=local"},
+                "Argus"                     : { "name": "Argus",                     "path" : "DC=weyland,DC=local"},
+                "Executives"                : { "name": "Executives",                "path" : "OU=Argus,DC=weyland,DC=local"},
+                "E_servers"                 : { "name": "Servers",                   "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "E_workstations"            : { "name": "Workstations",              "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "E_services"                : { "name": "Services",                  "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "E_groups"                  : { "name": "Groups",                    "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "E_users"                   : { "name": "Users",                     "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "E_admins"                  : { "name": "Admins",                    "path" : "OU=Executives,OU=Argus,DC=weyland,DC=local"},
+                "Sales"                     : { "name": "Sales",                     "path" : "OU=Argus,DC=weyland,DC=local"},
+                "S_servers"                 : { "name": "Servers",                   "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "S_workstations"            : { "name": "Workstations",              "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "S_services"                : { "name": "Services",                  "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "S_groups"                  : { "name": "Groups",                    "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "S_users"                   : { "name": "Users",                     "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "S_admins"                  : { "name": "Admins",                    "path" : "OU=Sales,OU=Argus,DC=weyland,DC=local"},
+                "Public relationships"      : { "name": "Public relationships",      "path" : "OU=Argus,DC=weyland,DC=local"},
+                "PR_servers"                : { "name": "Servers",                   "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "PR_workstations"           : { "name": "Workstations",              "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "PR_services"               : { "name": "Services",                  "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "PR_groups"                 : { "name": "Groups",                    "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "PR_users"                  : { "name": "Users",                     "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "PR_admins"                 : { "name": "Admins",                    "path" : "OU=Public relationships,OU=Argus,DC=weyland,DC=local"},
+                "Transparency Initiatives"  : { "name": "Transparency Initiatives",  "path" : "OU=Argus,DC=weyland,DC=local"},
+                "TI_servers"                : { "name": "Servers",                   "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "TI_workstations"           : { "name": "Workstations",              "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "TI_services"               : { "name": "Services",                  "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "TI_groups"                 : { "name": "Groups",                    "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "TI_users"                  : { "name": "Users",                     "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "TI_admins"                 : { "name": "Admins",                    "path" : "OU=Transparency Initiatives,OU=Argus,DC=weyland,DC=local"},
+                "IT"                        : { "name": "IT",                        "path" : "OU=Argus,DC=weyland,DC=local"},
+                "IT_servers"                : { "name": "Servers",                   "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"},
+                "IT_workstations"           : { "name": "Workstations",              "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"},
+                "IT_services"               : { "name": "Services",                  "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"},
+                "IT_groups"                 : { "name": "Groups",                    "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"},
+                "IT_users"                  : { "name": "Users",                     "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"},
+                "IT_admins"                 : { "name": "Admins",                    "path" : "OU=IT,OU=Argus,DC=weyland,DC=local"}
+            },
+            "laps_readers": ["L_LAPS_READER"],
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                    "G_LAPS_READER" : {
+                        "managed_by" : "Domain Admins",
+                        "path" : "OU=Groups,OU=IT,OU=Argus,DC=weyland,DC=local",
+                        "members" : []
+                    }
+                },
+                "domainlocal" : {
+                    "L_LAPS_READER" : {
+                        "managed_by" : "Domain Admins",
+                        "path" : "OU=Groups,OU=IT,OU=Argus,DC=weyland,DC=local",
+                        "members" : ["G_LAPS_READER"]
+                    }
+                }
+            },
+            "multi_domain_groups_member" : {
+                "L_LAPS_READER" : [
+                    "haas.local\\emoon"
+                ]
+            },
+            "gmsa" : {
+            },
+            "acls" : {
+                "forcechangepassword_arose_acorrea" : {"for": "arose", "to": "acorrea", "right": "Ext-User-Force-Change-Password", "inheritance": "None"}
+            },
+            "users" : {
+                "arose" : {
+                    "firstname"       : "anson",
+                    "surname"         : "rose",
+                    "password"        : "z77w_TeCUCD_wLrD", 
+                    "city"            : "-",
+                    "description"     : "DB user",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=weyland,DC=local"
+                },
+                "acorrea" : {
+                    "firstname"       : "Angelique",
+                    "surname"         : "correa",
+                    "password"        : "xx_9cryfn3dF5KW4", 
+                    "city"            : "-",
+                    "description"     : "DB admin",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=weyland,DC=local"
+                },
+                "bstinson" : {
+                    "firstname"       : "Bryan",
+                    "surname"         : "Stinson",
+                    "password"        : "tf4ZEHz_NKj7Ezuh", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : ["Domain Admins"],
+                    "path"            : "CN=Users,DC=weyland,DC=local"
+                },
+                "cslee" : {
+                    "firstname"       : "Chief",
+                    "surname"         : "Slee",
+                    "password"        : "v8sZ_BGvk3d7wsDA", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : ["G_LAPS_READER"],
+                    "path"            : "CN=Users,DC=weyland,DC=local"
+                },
+                "eli" : {
+                    "firstname"   : "eli",
+                    "surname"     : "v2.0",
+                    "password"    : "9Zjpo_mwCMcpgfrE",
+                    "city"        : "-",
+                    "description" : "",
+                    "groups"      : [],
+                    "path"        : "CN=Users,DC=weyland,DC=local",
+                    "spns"        : ["MSSQLSvc/archer.weyland.local:1433","MSSQLSvc/archer.weyland.local"]
+                }                
+            }
+        },
+        "research.weyland.local" : {
+            "dc": "dc02",
+            "domain_password" : "Jubeaz12345+-",
+            "netbios_name": "RESEARCH",
+            "ca_server": "",
+            "trust" : "",
+            "laps_path":  {
+                "BO_workstations" : { "name": "Workstations",   "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_workstations" : { "name": "Workstations",   "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_workstations" : { "name": "Workstations",   "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_workstations" : { "name": "Workstations",   "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"}
+            },
+            "laps_readers": ["L_LAPS_READER"],
+            "organisation_units" : {
+                "Titan"           : { "name": "Titan",          "path" : "DC=research,DC=weyland,DC=local"},
+                "Skorpios"        : { "name": "Skorpios",       "path" : "DC=research,DC=weyland,DC=local"},
+                "Black Ops"       : { "name": "Black Ops",      "path" : "OU=Titan,DC=research,DC=weyland,DC=local"},
+                "BO_servers"      : { "name": "Servers",        "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "BO_workstations" : { "name": "Workstations",   "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "BO_services"     : { "name": "Services",       "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "BO_groups"       : { "name": "Groups",         "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "BO_users"        : { "name": "Users",          "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "BO_admins"       : { "name": "Admins",         "path" : "OU=Black Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "Grey Ops"        : { "name": "Grey Ops",       "path" : "OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_servers"      : { "name": "Servers",        "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_workstations" : { "name": "Workstations",   "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_services"     : { "name": "Services",       "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_groups"       : { "name": "Groups",         "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_users"        : { "name": "Users",          "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "GO_admins"       : { "name": "Admins",         "path" : "OU=Grey Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "White Ops"       : { "name": "White Ops",      "path" : "OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_servers"      : { "name": "Servers",        "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_workstations" : { "name": "Workstations",   "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_services"     : { "name": "Services",       "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_groups"       : { "name": "Groups",         "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_users"        : { "name": "Users",          "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "WO_admins"       : { "name": "Admins",         "path" : "OU=White Ops,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT"              : { "name": "IT",             "path" : "OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_servers"      : { "name": "Servers",        "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_workstations" : { "name": "Workstations",   "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_services"     : { "name": "Services",       "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_groups"       : { "name": "Groups",         "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_users"        : { "name": "Users",          "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"},
+                "IT_admins"       : { "name": "Admins",         "path" : "OU=IT,OU=Titan,DC=research,DC=weyland,DC=local"}
+            },
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                },
+                "domainlocal" : {
+                    "L_LAPS_READER" : {
+                        "managed_by" : "Domain Admins",
+                        "path" : "OU=Groups,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local",
+                        "members" : []
+                    }
+                }
+            },
+            "multi_domain_groups_member" : {
+            },
+            "gmsa" : {
+            },
+            "acls" : {
+            },
+            "users" : {
+                "adm_arose" : {
+                    "firstname"       : "adm_anson",
+                    "surname"         : "rose",
+                    "password"        : "z77w_TeCUCD_wLrD", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "adm_acorrea" : {
+                    "firstname"       : "adm_Angelique",
+                    "surname"         : "correa",
+                    "password"        : "xx_9cryfn3dF5KW4", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "root_bstinson" : {
+                    "firstname"       : "root_Bryan",
+                    "surname"         : "Stinson",
+                    "password"        : "tf4ZEHz_NKj7Ezuh", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "cslee" : {
+                    "firstname"       : "epa_Chief",
+                    "surname"         : "Slee",
+                    "password"        : "v7pE_CSj3eD4MVCj", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : ["L_LAPS_READER"],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "crite" : {
+                    "firstname"       : "Clyde",
+                    "surname"         : "Van Ritee",
+                    "password"        : "KN5_pJqwYEN_Rf3k", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "emills" : {
+                    "firstname"       : "Elizabeth",
+                    "surname"         : "Mills",
+                    "password"        : "Xy_Y4HuUnqh5JyFy", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "klynn" : {
+                    "firstname"       : "K. P.",
+                    "surname"         : "Lynn",
+                    "password"        : "U54U4thUFarTD_La", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "myale" : {
+                    "firstname"       : "Mark",
+                    "surname"         : "Yale",
+                    "password"        : "rA7g_eVz_MmZZWE4", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "mstone" : {
+                    "firstname"       : "Mr.",
+                    "surname"         : "Stone",
+                    "password"        : "ysMJvvjxNjjgY_R5", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "sdiego" : {
+                    "firstname"       : "Simone",
+                    "surname"         : "Diego",
+                    "password"        : "7gPR_JpoUPnxj_5R", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "yavdakov" : {
+                    "firstname"       : "Yakov Erikovich",
+                    "surname"         : "Avdakov",
+                    "password"        : "CXNpg7Ut7nc_rMq_", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                },
+                "zjudge" : {
+                    "firstname"       : "Zealous",
+                    "surname"         : "Judge",
+                    "password"        : "_jcX7F97MiWV4kxT", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : ["Domain Admins"],
+                    "path"            : "CN=Users,DC=research,DC=weyland,DC=local"
+                }
+            }
+        },
+        "haas.local" : {
+            "dc": "dc03",
+            "domain_password" : "Jubeaz12345+-",
+            "netbios_name": "HAAS",
+            "ca_server": "",
+            "trust" : "weyland.local",
+            "laps_path":  {
+                "BO_workstations" : { "name": "Workstations",   "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "GO_workstations" : { "name": "Workstations",   "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "WO_workstations" : { "name": "Workstations",   "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "C_workstations"  : { "name": "Workstations",   "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"}
+            },
+            "laps_readers": ["L_LAPS_READER"],
+            "organisation_units" : {
+                "Asa"             : { "name": "Asa",            "path" : "DC=haas,DC=local"},
+                "HQ"              : { "name": "HQ",             "path" : "DC=haas,DC=local"},
+                "MirrorMorph"     : { "name": "MirrorMorph",    "path" : "DC=haas,DC=local"},
+                "Seidr"           : { "name": "Seidr",          "path" : "DC=haas,DC=local"},
+                "Sportsmetal"     : { "name": "Sportsmetal",    "path" : "DC=haas,DC=local"},
+                "Black Ops"       : { "name": "Black Ops",      "path" : "OU=Asa,DC=haas,DC=local"},
+                "BO_servers"      : { "name": "Servers",        "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "BO_workstations" : { "name": "Workstations",   "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "BO_services"     : { "name": "Services",       "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "BO_groups"       : { "name": "Groups",         "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "BO_users"        : { "name": "Users",          "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "BO_admins"       : { "name": "Admins",         "path" : "OU=Black Ops,OU=Asa,DC=haas,DC=local"},
+                "Grey Ops"        : { "name": "Grey Ops",       "path" : "OU=Asa,DC=haas,DC=local"},
+                "GO_servers"      : { "name": "Servers",        "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "GO_workstations" : { "name": "Workstations",   "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "GO_services"     : { "name": "Services",       "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "GO_groups"       : { "name": "Groups",         "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "GO_users"        : { "name": "Users",          "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "GO_admins"       : { "name": "Admins",         "path" : "OU=Grey Ops,OU=Asa,DC=haas,DC=local"},
+                "White Ops"       : { "name": "White Ops",      "path" : "OU=Asa,DC=haas,DC=local"},
+                "WO_servers"      : { "name": "Servers",        "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "WO_workstations" : { "name": "Workstations",   "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "WO_services"     : { "name": "Services",       "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "WO_groups"       : { "name": "Groups",         "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "WO_users"        : { "name": "Users",          "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "WO_admins"       : { "name": "Admins",         "path" : "OU=White Ops,OU=Asa,DC=haas,DC=local"},
+                "Cybernetics"     : { "name": "Cybernetics",    "path" : "OU=Asa,DC=haas,DC=local"},
+                "C_servers"       : { "name": "Servers",        "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+                "C_workstations"  : { "name": "Workstations",   "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+                "C_services"      : { "name": "Services",       "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+                "C_groups"        : { "name": "Groups",         "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+                "C_users"         : { "name": "Users",          "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+                "C_admins"        : { "name": "Admins",         "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"}
+            },
+            "groups" : {
+                "universal" : {},
+                "global" : {
+                },
+                "domainlocal" : {
+                    "L_LAPS_READER" : {
+                        "managed_by" : "Domain Admins",
+                        "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
+                        "members" : []
+                    }
+                }
+            },
+            "multi_domain_groups_member" : {
+            },
+            "gmsa" : {
+                "gmsa_account": {
+                    "gMSA_Name" : "heimdall",
+                    "gMSA_FQDN" : "heimdall.wayland.local",
+                    "gMSA_SPNs" : ["HTTP/fenris", "HTTP/fenris.haas.local"],
+                    "gMSA_HostNames" : ["fenris"]
+                }
+            },
+            "acls" : {
+                "GenericAll_heimdall_drogo" : {"for": "heimdall$", "to": "imcguire", "right": "GenericAll", "inheritance": "None"}
+            },
+            "users" : {
+                "emoon" : {
+                    "firstname"       : "Estelle",
+                    "surname"         : "Moon",
+                    "password"        : "Nps4ffWx7omDc5_h", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : ["L_LAPS_READER"],
+                    "path"            : "CN=Users,DC=haas,DC=local"
+                },
+                "imcguire" : {
+                    "firstname"       : "Isabel",
+                    "surname"         : "McGuire",
+                    "password"        : "zazc9DN_KpftZAvn", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=haas,DC=local"
+                },
+                "mbellamy" : {
+                    "firstname"       : "Mason",
+                    "surname"         : "Bellamy",
+                    "password"        : "b_QNoDKoVJTjU3gq", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : ["Domain Admins"],
+                    "path"            : "CN=Users,DC=haas,DC=local"
+                },
+                "mhendrik" : {
+                    "firstname"       : "Mr.",
+                    "surname"         : "Hendrik",
+                    "password"        : "b_QNoDKoVJTjU3gq", 
+                    "city"            : "-",
+                    "description"     : "DB link user",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=haas,DC=local"
+                },
+                "rknight" : {
+                    "firstname"       : "Ryon",
+                    "surname"         : "Knight",
+                    "password"        : "5jqkKJJjmqup_o_E", 
+                    "city"            : "-",
+                    "description"     : "DB admin",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=haas,DC=local"
+                },
+                "thaas" : {
+                    "firstname"       : "Thomas",
+                    "surname"         : "Haas",
+                    "password"        : "s_yrPbrqtHbc3n7a", 
+                    "city"            : "-",
+                    "description"     : "",
+                    "groups"          : [],
+                    "path"            : "CN=Users,DC=haas,DC=local"
+                },
+                "bran" : {
+                    "firstname"   : "bran",
+                    "surname"     : "v1.0",
+                    "password"    : "bFgJMREVx_n5mns4",
+                    "city"        : "-",
+                    "description" : "",
+                    "groups"      : [],
+                    "path"        : "CN=Users,DC=haas,DC=local",
+                    "spns"        : ["MSSQLSvc/fenris.haas.local:1433","MSSQLSvc/fenris.haas.local"]
+                }
+            }
+        }
+    }
+}
+}

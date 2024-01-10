@@ -36,9 +36,6 @@
 # https://docs.microsoft.com/en-us/previous-versions/tn-archive/ff405676(v=msdn.10)
 
 
-- name: debug
-  debug:
-    var: ad_acls
 
 - name: set acl 
   ansible.windows.win_powershell:

@@ -1,10 +1,16 @@
+# domain_computers: "{{domain_fake_computers | ansible.builtin.combine(domain_real_computers)}}"
+domain_computers: "{{domain_fake_computers}}"
 
-domain_computers: {
+
+domain_real_computers: {
+}
+
+domain_fake_computers: {
     "ws01" : {
         "name":             "ws01",
         "dns_hostname":     "ws01.research.weyland.local",
         "path":             "OU=Workstations,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local",            
-        "delegates"       : ["CN=emoon,CN=Users,DC=haas,DC=local"], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
+        "delegates"       : [], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
         "delegation_type" : false, # "KCD", "KUD", false
         "constrained"     : [], # KCD / SPN list / msDS-AllowedToDelegateTo
         "proto_transition": false,  # KCD default false
@@ -14,7 +20,7 @@ domain_computers: {
         "name":             "ws02",
         "dns_hostname":     "ws02.research.weyland.local",
         "path":             "OU=Workstations,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local",            
-        "delegates"       : ["CN=emoon,CN=Users,DC=haas,DC=local"], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
+        "delegates"       : [], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
         "delegation_type" : false, # "KCD", "KUD", false
         "constrained"     : [], # KCD / SPN list / msDS-AllowedToDelegateTo
         "proto_transition": false,  # KCD default false
@@ -24,7 +30,7 @@ domain_computers: {
         "name":             "ws03",
         "dns_hostname":     "ws03.research.weyland.local",
         "path":             "OU=Workstations,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local",            
-        "delegates"       : ["CN=emoon,CN=Users,DC=haas,DC=local"], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
+        "delegates"       : [], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
         "delegation_type" : false, # "KCD", "KUD", false
         "constrained"     : [], # KCD / SPN list / msDS-AllowedToDelegateTo
         "proto_transition": false,  # KCD default false
