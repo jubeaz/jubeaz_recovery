@@ -3,22 +3,31 @@
     adapter_names: "{{nat_adapter}}"
     dns_servers: 
       - "{{dns_server}}"
-      - "{{hostvars[dns_domain].ansible_host}}"
-  when: force_dns_server == "yes"
+#      - "{{hostvars[dns_domain].ansible_host}}"
+  when: force_dns_server == true
+
+#- fail:
+#    msg: "stop"
+
+- name: "Set priority to {{domain_adapter}} (Domain)"
+  ansible.windows.win_shell:
+    Set-NetIPInterface -InterfaceAlias {{domain_adapter | ansible.windows.quote(shell='powershell')}} -InterfaceMetric 10
+  when: two_adapters == true
+
 
 - name: Set a proxy for specific protocols
   community.windows.win_http_proxy:
     proxy:
       http: "{{ad_http_proxy}}"
       https: "{{ad_https_proxy}}"
-  when: http_proxy == "yes"
+  when: http_proxy == true
 
 - name: Configure IE to use a specific proxy per protocol
   community.windows.win_inet_proxy:
     proxy:
       http: "{{ad_http_proxy}}"
       https: "{{ad_https_proxy}}"
-  when: http_proxy == "yes"
+  when: http_proxy == true
 
 - name: Upgrade module PowerShellGet to fix accept license issue on last windows ansible version
   win_shell: |

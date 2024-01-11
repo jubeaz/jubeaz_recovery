@@ -1,11 +1,19 @@
 ---
 # Load datas
+#- name: disable
+#  hosts: srv01
+#  roles:
+#    - { role: 'windows_settings/manage_net_adapter' , action: "disable"}
+#
+#- name: enable
+#  hosts: srv01
+#  roles:
+#    - { role: 'windows_settings/manage_net_adapter' , action: "enable", adapter: "{{nat_adapter}}"}
+
 - name: "SETUP LOCAL SECURITIES"
 #  hosts: all
   hosts: srv01
   tasks:
-    - debug:
-        var: local_security
     - include_role:
         name: "windows_settings/{{item.key}}"
       vars:

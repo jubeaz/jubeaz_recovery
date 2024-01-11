@@ -9,60 +9,26 @@ boxes = [
   #{ :name => "blue",  :ip => "192.168.56.13", :box => "StefanScherer/windows_10", :box_version => "2021.12.09", :os => "windows"},
   #{ :name => "blue",  :ip => "192.168.56.13", :box => "StefanScherer/windows_11", :box_version => "2021.12.09", :os => "windows"},
   #{ :name => "blue",  :ip => "192.168.56.13", :box => "StefanScherer/windows_2019", :box_version => "2021.05.15", :os => "windows"},
-  { 
-    :name => "haas_srv01", 
-    :ip => "192.168.2.101",
-    :mask => "255.255.255.0", 
-    :ip_i => "10.0.0.11", 
-    :mask_i => "255.255.0.0", 
-    :gw => "192.168.2.1",
-    :name_inet => "haas", 
-    :box => "gusztavvargadr/windows-server", 
-    :box_version => "2102.0.2310", 
-    :os => "windows", 
-    :ram => 4096, 
-    :cpu => 2
-  },
+  { :name => "srv01",  :ip => "192.168.56.11", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
   #{ :name => "srv01",  :ip => "192.168.56.11", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2},
-##  { :name => "haas_srv02", :ip => "192.168.2.102", :ip_i => "10.0.0.10", :name_i => "haas", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
-  { 
-    :name => "haas_srv02", 
-    :ip => "192.168.2.102",
-    :mask => "255.255.255.0", 
-    :ip_i => "10.0.0.12", 
-    :mask_i => "255.255.0.0", 
-    :gw => "192.168.2.1",
-    :name_inet => "haas", 
-    :box => "gusztavvargadr/windows-server", 
-    :box_version => "2102.0.2310", 
-    :os => "windows", 
-    :ram => 4096, 
-    :cpu => 2
-  },
-  { 
-    :name => "haas_dc", 
-    :ip => "192.168.2.100",
-    :mask => "255.255.255.0", 
-    :ip_i => "10.0.0.1", 
-    :mask_i => "255.255.0.0", 
-    :gw => "192.168.2.1",
-    :name_inet => "haas", 
-    :box => "gusztavvargadr/windows-server", 
-    :box_version => "2102.0.2310", 
-    :os => "windows", 
-    :ram => 4096, 
-    :cpu => 2
-  },
-  #{ :name => "dc01",  :ip => "192.168.56.10", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
+  { :name => "srv02",  :ip => "192.168.56.31", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
+  #{ :name => "srv02",  :ip => "192.168.56.31", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2},
+  { :name => "dc01",  :ip => "192.168.56.10", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
   #{ :name => "dc01",  :ip => "192.168.56.10", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2},
   #{ :name => "dc02",  :ip => "192.168.56.20", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
-  #{ :name => "dc02",  :ip => "192.168.56.20", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2},
+  { :name => "dc02",  :ip => "192.168.56.20", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2},
+  { :name => "dc03",  :ip => "192.168.56.30", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
   #{ :name => "dc03",  :ip => "192.168.56.30", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2}
 ]
 
 
   config.vm.provider "virtualbox" do |v|
     v.cpus = 2
+  end
+
+  config.vm.provider "vmware_desktop" do |v|
+    v.vmx["memsize"] = "4000"
+    v.vmx["numvcpus"] = "2"
   end
 
   # disable rdp forwarded port inherited from StefanScherer box
@@ -99,17 +65,7 @@ boxes = [
       target.vm.synced_folder 'shared/', '/shared', disabled: true
 
       # IP
-      #target.vm.network :private_network, ip: box[:ip]
-      target.vm.network :public_network, bridge: 'br0', ip: box[:ip]
-      target.vm.network :private_network, ip: box[:ip_i], virtualbox__intnet: true, name: [:name_inet]
-
-# https://www.nakivo.com/blog/virtualbox-network-setting-guide/
-      # hos-only network
-      # target.vm.network :private_network, ip: box[:ip]
-      # target.vm.network :private_network, ip: box[:ip], name: "name" # specifying a network
-      # internal network
-      # target.vm.network :private_network, ip: box[:ip], virtualbox__intnet: true, name: "name" # name is not mandatory
-
+      target.vm.network :private_network, ip: box[:ip]
       #target.vm.network :public_network, bridge: 'br0', ip: box[:ip]
       #config.vm.provision "shell",
       #  run: "always",
@@ -119,7 +75,6 @@ boxes = [
       if box[:os] == "windows"
         target.vm.guest = :windows
         target.vm.communicator = "winrm"
-        target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: [box[:ip], box[:mask], box[:gw], box[:ip_i], box[:mask_i]]
         target.vm.provision :shell, :path => "../scripts/Install-WMF3Hotfix.ps1", privileged: false
         target.vm.provision :shell, :path => "../scripts/ConfigureRemotingForAnsible.ps1", privileged: false
 

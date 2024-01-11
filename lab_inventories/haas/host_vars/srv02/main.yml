@@ -19,9 +19,7 @@ local_groups: {
 }
 
 local_security: {
-    "uac": { "status": "off", "level": "5" },
-    "enable_run_as_ppl" : true,
-    "windows_defender": true
+
 }
 
 scripts : ["sidhistory.ps1"]

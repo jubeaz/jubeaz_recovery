@@ -28,12 +28,15 @@ local_security: {
 #    "windows_defender": true,
     "firewall": {
         "profiles": {
-            "INBOUND_BLOCK": {
-                "status":   "enabled", # enabled, disabled
-                "profiles": ["Domain"], # ["Domain", "Private", "Public"],
-                "inbound":   "allow", # "allow", "block", "not_configured"
-                "outbound":   "allow" # "allow", "block", "not_configured"
-            }
+            "Domain": {"status": "enabled", "inbound": "allow", "outbound": "allow"},
+            "Public": {"status": "enabled", "inbound": "allow", "outbound": "allow"},
+            "Private": {"status": "enabled", "inbound": "allow", "outbound": "allow"},
+            # enabled, disabled, # ["Domain", "Private", "Public"], # "allow", "block", "not_configured",  # "allow", "block", "not_configured"
+        },
+        "rules": {
+            "FTP_IN_1": {"enabled": true, "profiles": ["Domain"], "action": "allow", "direction": "in", "lip": "any", "lport": "21", "protocol": "tcp", "rip": "any", "lport": "any"},
+            "FTP_IN_2": {"enabled": true, "profiles": ["Domain"], "action": "allow", "direction": "in", "lip": "any", "lport": "20", "protocol": "tcp", "rip": "any", "lport": "any"}
+            # ["Domain", "Private", "Public"], # allow, block, # in, out # ip or any # port or any, 
         }
     }
 }

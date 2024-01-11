@@ -3,7 +3,7 @@
   hosts: dc
 #  hosts: dc01
   roles:
-    - { role: 'windows_domain/password_policy', tags: 'policy', try_before_lock: "5", pass_length: "5", lock_duration: "00:05:00", lock_observation: "00:05:00", complexity: false}
+    - { role: 'windows_domain/password_policy', tags: 'policy', policy: "{{password_policy.default}}"}
 # CREATE OBJECTS
     - { role: 'windows_domain/user_group_ou_computer/group',    tags: 'ad_domain_data', objects: "{{domain_groups}}",     action: "create" }
     - { role: 'windows_domain/user_group_ou_computer/user',     tags: 'ad_domain_data', objects: "{{domain_users}}",      action: "create" }

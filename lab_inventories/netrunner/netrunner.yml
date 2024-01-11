@@ -35,8 +35,9 @@ netrunner:
       children:
       hosts:
   hosts:
-    dc01: {ansible_host: 192.168.56.10}
-    srv01: {ansible_host: 192.168.56.11}
-    dc02: {ansible_host: 192.168.56.20}
-    dc03: {ansible_host: 192.168.56.30}
-    srv02: {ansible_host: 192.168.56.31}
+    dc01: {ansible_host: 192.168.56.10, domain_ip: 10.0.0.10, domain_prefix: 16, domain_gateway: 10.0.0.1}
+    srv01: {ansible_host: 192.168.56.11, domain_ip: 10.0.0.11, domain_prefix: 16, domain_gateway: 10.0.0.1}
+    dc02: {ansible_host: 192.168.56.20, domain_ip: 10.0.0.20, domain_prefix: 16, domain_gateway: 10.0.0.1}
+    dc03: {ansible_host: 192.168.56.30, domain_ip: 10.0.0.30, domain_prefix: 16, domain_gateway: 10.0.0.1}
+    srv02: {ansible_host: 192.168.56.31, domain_ip: 10.0.0.31, domain_prefix: 16, domain_gateway: 10.0.0.1}
+

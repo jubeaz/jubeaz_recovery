@@ -5,10 +5,10 @@ ca_common_name: "internal-ca"
 
 acls_adcs_templates: {
   # 'FullControl', 'Read', 'Write', 'Enroll', 'Autoenroll'.
-  "fullcontrol_arose_esc1" : {"for": "arose", "to": "ESC1", "right": "FullControl", "inheritance": "None"}
+  "fullcontrol_emoon_esc1" : {"for": "emoon", "to": "ESC1", "right": "FullControl", "inheritance": "None"}
 }
 
 acls_adcs_authority: {
   # 'ManageCA', 'ManageCertificates', 'Read', 'Enroll'
-  "fullcontrol_arose_internal_ca" : {"for": "arose", "to": "{{ca_common_name}}", "right": "ManageCertificates", "inheritance": "None"}
+  "fullcontrol_emoon_internal_ca" : {"for": "emoon", "to": "{{ca_common_name}}", "right": "ManageCertificates", "inheritance": "None"}
 }
