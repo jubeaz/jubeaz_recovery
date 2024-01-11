@@ -25,3 +25,8 @@
   roles:
     - { role: 'windows_domain/child_dns', tags: 'child_dns'}
 
+# # https://petri.com/configure-dns-on-domain-controller-two-ip-addresses/
+- name: "Adjust DNS SERVER TO LISTEN ON DOMAIN IP"
+  hosts: dc
+  roles:
+    - { role: 'windows_domain/dns_listening', tags: 'server'}
