@@ -8,6 +8,9 @@
 
 - include_tasks: "{{ ansible_distribution }}.yml" 
 
+- name: reboot
+  ansible.builtin.reboot:
+
 - name: ufw add ssh in rule
   ufw:
     rule: allow

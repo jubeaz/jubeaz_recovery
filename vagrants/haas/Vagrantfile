@@ -53,6 +53,20 @@ boxes = [
     :ram => 4096, 
     :cpu => 2
   },
+  { 
+    :name => "haas_fw", 
+    :ip => "192.168.2.60",
+    :mask => "255.255.255.0", 
+    :ip_i => "10.0.0.11", 
+    :mask_i => "255.255.0.0", 
+    :gw => "192.168.2.1",
+    :name_inet => "haas", 
+    :box => "archlinux/archlinux", 
+    :box_version => "20240103.204422", 
+    :os => "arch", 
+    :ram => 2048, 
+    :cpu => 2
+  }
   #{ :name => "dc01",  :ip => "192.168.56.10", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
   #{ :name => "dc01",  :ip => "192.168.56.10", :box => "gusztavvargadr/windows-server-core", :box_version => "2102.0.2310", :os => "windows", :ram => 2048, :cpu => 2},
   #{ :name => "dc02",  :ip => "192.168.56.20", :box => "gusztavvargadr/windows-server", :box_version => "2102.0.2310", :os => "windows", :ram => 4096, :cpu => 2},
@@ -130,6 +144,7 @@ boxes = [
 
       else
         target.vm.communicator = "ssh"
+        target.vm.provision :shell, :path => "../scripts/fix_ip.sh", privileged: true, args: [box[:ip], box[:mask], box[:gw], box[:ip_i], box[:mask_i]]
       end
 
       if box.has_key?(:forwarded_port)

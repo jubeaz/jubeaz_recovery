@@ -22,18 +22,6 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 # inprogress
 
-je ne sais pas comment faire pour que le DC prenne son IP interne plutot que son IP publique.
-
-https://petri.com/configure-dns-on-domain-controller-two-ip-addresses/
-
-
-regarder si ce n'est pas cela qui pose problème
-```
-- name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
-  ansible.windows.win_shell:
-    Get-NetAdapter {{nat_adapter | ansible.windows.quote(shell='powershell')}} | Set-DNSClient -RegisterThisConnectionsAddress $False
-  when: two_adapters == true
-  ```
 
 # todo
 

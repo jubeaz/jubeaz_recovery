@@ -1,6 +1,6 @@
 ---
 - name: "COMPUTE DOMAIN INFO ON EACH HOST"
-  hosts: all
+  hosts: domain
   gather_facts: no
   tasks:
     - name:

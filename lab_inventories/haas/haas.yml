@@ -1,35 +1,40 @@
 ---
-haas:
+all:
   children:
-    dc:
+    firewalls:
       hosts:
-        dc03: {dc_level: 0} 
-    dc_slave:
-      hosts:
-    trust:
-      hosts:
-    domain_server:
+        fw: {} 
+    domain:
       children:
-          adcs:
-            hosts:
-              srv02: {}
-          iis:
-            hosts:
-              srv02: {}
-          mssql:
-            hosts:
-              srv02: {}
-              srv01: {}           
-          mssql_ssms:
-            hosts:              
-          webdav:
-            hosts:          
-              srv02: {}
-              srv01: {}                   
-      hosts:
-    domain_workstation:  
-      children:
-      hosts:
+        dc:
+          hosts:
+            dc03: {dc_level: 0} 
+        dc_slave:
+          hosts:
+        trust:
+          hosts:
+        domain_server:
+          children:
+              adcs:
+                hosts:
+                  srv02: {}
+              iis:
+                hosts:
+                  srv02: {}
+              mssql:
+                hosts:
+                  srv02: {}
+                  srv01: {}           
+              mssql_ssms:
+                hosts:              
+              webdav:
+                hosts:          
+                  srv02: {}
+                  srv01: {}                   
+          hosts:
+        domain_workstation:  
+          children:
+          hosts:
   hosts:
 #    srv01: {ansible_host: 192.168.56.11, domain_ip: 10.0.0.1, domain_prefix: 8, domain_gateway: 10.0.0.1}
 #    dc03: {ansible_host: 192.168.56.30, domain_ip: 10.0.0.10, domain_prefix: 8, domain_gateway: 10.0.0.1}
@@ -37,3 +42,4 @@ haas:
     dc03: {ansible_host: 192.168.2.100, domain_ip: 10.0.0.1, domain_prefix: 16, domain_gateway: 10.0.0.1}
     srv02: {ansible_host: 192.168.2.102, domain_ip: 10.0.0.10, domain_prefix: 16, domain_gateway: 10.0.0.1}
     srv01: {ansible_host: 192.168.2.101, domain_ip: 10.0.0.11, domain_prefix: 16, domain_gateway: 10.0.0.1}
+    fw: {ansible_host: 192.168.2.60, domain_ip: 10.0.0.11, domain_prefix: 16, domain_gateway: 10.0.0.1}

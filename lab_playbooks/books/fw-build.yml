@@ -1,0 +1,47 @@
+---
+- name: BASE BUILD FIREWALL
+  hosts: firewalls
+  become: true
+  become_user: root
+  #tags: 'build_computers_setup_1'
+  roles:
+    - { role: mlocate }
+    - { role: pacman, when: "ansible_distribution == 'Archlinux'" }
+    - { role: reflector, when: "ansible_distribution == 'Archlinux'" }
+    - { role: update-pkgs }
+    - { role: time-sync }
+    - { role: gen-locale}
+    - { role: opensshd}
+    #- { role: ufw, ufw_in_ssh_ip: []}
+
+  tasks:
+    - name: disable eth0
+      ansible.builtin.replace:
+        path: /etc/systemd/network/80-dhcp.network 
+        regexp: '[DHCP]'
+        replace: '[Link]'
+    - name: disable eth0
+      ansible.builtin.replace:
+        path: /etc/systemd/network/80-dhcp.network 
+        regexp: 'DHCP=yes'
+        replace: 'Unmanaged=true'
+    - name: Ensure that DNS is set on eth1
+      ansible.builtin.lineinfile:
+        path: /etc/systemd/network/eth1.network
+        regexp: '^DNS='
+        insertafter: '^Gateway='
+        line: 'DNS={{dns_server}}'
+    - name: reboot
+      ansible.builtin.reboot:
+    - name: install packages  
+      community.general.pacman:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ pacman_arch_packages | default([]) }}"
+      register: __pacman
+    - include_role:
+        name: "ufw"
+      vars:
+        ufw_in_ssh_ip: ["192.168.2.0/24"]
+      
+

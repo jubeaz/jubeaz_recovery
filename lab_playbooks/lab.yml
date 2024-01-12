@@ -3,13 +3,13 @@
 #  ADD THE COMPUTATION OF GMSA Accounts on a computer
 #   Compute the value of installed_gmsa on a computer
 ###
+- import_playbook: books/fw-build.yml
 - import_playbook: books/compute-inventory.yml
 #- import_playbook: books/debug.yml
-
 #- import_playbook: books/computers-build.yml
 #- import_playbook: books/domain-build.yml
 #- import_playbook: books/domain-ous.yml
-- import_playbook: books/members-join.yml
+#- import_playbook: books/members-join.yml
 #- import_playbook: books/domain-trusts.yml
 #- import_playbook: books/domain-adcs.yml
 #- import_playbook: books/domain-setup-laps.yml
@@ -18,6 +18,8 @@
 #- import_playbook: books/members-laps-gmsa.yml
 #- import_playbook: books/domain-acl.yml
 #- import_playbook: books/computers-local-groups-users-rights.yml
+
+
 #- import_playbook: books/computers-security.yml
 
 #- import_playbook: books/members-iis.yml
