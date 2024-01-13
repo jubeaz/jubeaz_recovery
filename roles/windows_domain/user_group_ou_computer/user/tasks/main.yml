@@ -3,10 +3,13 @@
 #    reboot_timeout: 1200
 #
 - name: Ensure Administrator is part of Domain Admins
-  win_domain_group_membership:
+  microsoft.ad.group:
+    domain_username: "{{domain_name}}\\Administrator"
+    domain_password: "{{domain_password}}"
     name: "Domain Admins"
     members:
-      - Administrator
+      add: 
+        - Administrator
     state: present
 
 

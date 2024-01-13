@@ -25,12 +25,13 @@
   when: action == "add_members"
 
 - name: "Add members to domain groups"
-  community.windows.win_domain_group_membership:
+  microsoft.ad.group:
     domain_username: "{{domain_name}}\\Administrator"
     domain_password: "{{domain_password}}"
     name: "{{item.key}}"
-    members: "{{item.value.members}}"
-    state: Present
+    path: "{{item.value.path}}"
+    members: 
+      add: "{{item.value.members}}"
   with_dict: "{{ objects }}"
   when: action == "add_members"
   register: group_membership

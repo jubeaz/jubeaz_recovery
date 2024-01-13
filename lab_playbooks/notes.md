@@ -53,6 +53,7 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 # todo
 
 
+```
 #/etc/ufw/before.rules:
 ## ADD BEFORE FILTER
 
@@ -66,6 +67,17 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 ## don't delete the 'COMMIT' line or these nat table rules won't
 ## be processed
 #COMMIT
+```
+bug
+```
+############### TASK [windows_domain/laps/dc : Configure Password Properties] 
+###############     FAILED - RETRYING: [dc01]: Configure Password Properties (3 retries left).
+###############     FAILED - RETRYING: [dc01]: Configure Password Properties (2 retries left).
+###############     FAILED - RETRYING: [dc01]: Configure Password Properties (1 retries left).
+###############     An exception occurred during task execution. To see the full traceback, use -vvv. The error was:    at Microsoft.ActiveDirectory.Management.Commands.ADCmdletBase`1.ProcessRecord()
+###############     fatal: [dc01]: FAILED! => {"attempts": 3, "changed": false, "msg": "Unhandled exception while executing module: The FSMO role ownership could not be verified because its directory partition has not replicated successfully with at least one replication partner"}
+
+```
 
 
 ## gmsa

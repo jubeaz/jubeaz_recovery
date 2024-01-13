@@ -51,17 +51,27 @@
     - enable ufw service
     - enable ufw
 
-#/etc/ufw/before.rules:
-## ADD BEFORE FILTER
 
-## NAT table rules
-#*nat
-#:POSTROUTING ACCEPT [0:0]
-#
-## Forward traffic through eth0 - Change to match you out-interface
-#-A POSTROUTING -s 172.16.0.0/16 -o eth1 -j MASQUERADE
-#
-## don't delete the 'COMMIT' line or these nat table rules won't
-## be processed
-#COMMIT
+- name: "check NAT is enabled"
+  ansible.builtin.lineinfile:
+    name: /etc/ufw/before.rules
+    regexp: '^\*nat'
+    state: absent
+  check_mode: yes
+  register: is_nat_enabled
+  when: ufw_nat
+  changed_when: false
 
+
+- name: Ensure nat is defined
+  ansible.builtin.blockinfile:
+    path: /etc/ufw/before.rules
+    insertbefore: '^\*filter'
+    backup: yes
+    block: |
+      *nat
+      :POSTROUTING ACCEPT [0:0]
+      # BEGIN NAT RULES
+      # END NAT RULES
+      COMMIT
+  when: ufw_nat and is_nat_enabled.found | default(1) == 0
