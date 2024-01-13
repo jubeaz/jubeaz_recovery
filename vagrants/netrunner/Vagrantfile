@@ -20,18 +20,18 @@ Vagrant.configure("2") do |config|
 
   boxes = [
     { 
-      name: "haas_fw", 
+      name: "nrunner_fw", 
     	nets: [
     		{
-    			ip: "10.0.0.254",
+    			ip: "172.16.0.254",
           net: net_defs[:haas], 
     		},
     		{
-    			ip: "10.0.1.254",
+    			ip: "172.16.1.254",
           net: net_defs[:weyland], 
     		},
     		{
-    			ip: "10.0.2.254",
+    			ip: "172.16.2.254",
           net: net_defs[:research], 
     		}
     	],
@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # internal and public
-      name: "haas_srv01", 
+      name: "nrunner_srv01", 
       ip: "172.16.0.11", 
   	  net: net_defs[:haas], 
       ip_p: "192.168.2.101",
@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # internal and public
-      name: "haas_srv02", 
+      name: "nrunner_srv02", 
       ip: "172.16.0.12", 
   	  net: net_defs[:haas], 
       box: "gusztavvargadr/windows-server", 
@@ -70,7 +70,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # internal and public
-      name: "haas_dc03", 
+      name: "nrunner_dc03", 
       ip: "172.16.0.1", 
   	  net: net_defs[:haas], 
       box: "gusztavvargadr/windows-server", 
@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # only internal
-      name: "weyland_dc01", 
+      name: "nrunner_dc01", 
       ip: "172.16.1.1", 
   	  net: net_defs[:weyland], 
       box: "gusztavvargadr/windows-server", 
@@ -92,7 +92,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # only internal
-      name: "research_dc02", 
+      name: "nrunner_dc02", 
       ip: "172.16.2.1", 
   	  net: net_defs[:research], 
       box: "gusztavvargadr/windows-server", 
