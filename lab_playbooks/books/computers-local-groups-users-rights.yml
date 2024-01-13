@@ -1,7 +1,7 @@
 ---
 # Load datas
 - name: "ADJUST RIGHTS CONFIGURATION"
-  hosts: all
+  hosts: domain
   roles:
     - { role: "windows_settings/groups", tags: 'adjust_rights', action: "create"}
     - { role: "windows_settings/users", tags: 'adjust_rights'}

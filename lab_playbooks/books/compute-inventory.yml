@@ -1,14 +1,14 @@
 ---
 - name: "COMPUTE DOMAIN INFO ON EACH HOST"
   hosts: domain
-  gather_facts: no
+#  gather_facts: no
   tasks:
     - name:
       ansible.builtin.set_fact:
         # ICI A MODIFIER 
-        domain_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
+        #domain_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
         #domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].domain_ip}}"
-        ansible_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].ansible_host}}"
+        domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].ansible_host}}"
         domain_dc_name: "{{hostvars[domain_dc_ansible_inventory_key].hostname}}"
     - name:
       ansible.builtin.set_fact:
@@ -26,11 +26,11 @@
           - "domain_name: {{domain_name}}"
           - "domain_netbios_name: {{domain_netbios_name}}"
           - "domain_dc_ip: {{domain_dc_ip}}"
-          - "ansible_dc_ip: {{ansible_dc_ip}}"
           - "domain_dc_name: {{domain_dc_name}}"
           - "domain_gmsa: {{domain_gmsa}}"
           - "laps_path: {{laps_path}}"
           - "path: {{path}}"
+
 
 - name: "COMPUTE PARENT DOMAIN INFO ON EACH CHILD DC"
   hosts: dc
@@ -46,20 +46,19 @@
         domain_parent_domain_password: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_password}}"
         domain_parent_dc_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].hostname}}"
         # ICI A MODIFIER 
-        domain_parent_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
+        #domain_parent_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
         #domain_parent_dc_ip: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_ip}}"
-        ansible_parent_dc_ip: "{{hostvars[parent_domain_dc_ansible_inventory_key].ansible_host}}"
+        domain_parent_dc_ip: "{{hostvars[parent_domain_dc_ansible_inventory_key].ansible_host}}"
         domain_parent_domain_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_name}}"
         cacheable: yes
       when: dc_level != 0
-    - name: print host configuration
+    - name: print parent domain info
       debug:
         msg: 
           - "domain_parent_domain_name: {{domain_parent_domain_name}}"
           - "domain_parent_domain_password: {{domain_parent_domain_password}}"
           - "domain_parent_dc_name: {{domain_parent_dc_name}}"
           - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
-          - "ansible_parent_dc_ip: {{ansible_parent_dc_ip}}"
       when: dc_level != 0
 
 - name: "COMPUTE CHILD DOMAIN INFO ON EACH DC"
@@ -67,6 +66,7 @@
   gather_facts: no
   tasks:
     - name: search for childs dc
+      no_log: true
       ansible.builtin.set_fact:
         child_domains: "{{child_domains | default([]) + [[ item.key, item.value.hostname, item.value.domain_name ]] }}" 
       with_dict: "{{ hostvars }}"
@@ -76,7 +76,6 @@
         msg: 
           - "{{item[1]}}.{{item[2]}}"
           - "{{hostvars[item[0]].ansible_host}}"
-          - "{{hostvars[item[0]].domain_ip}}"
       loop: "{{child_domains}}"
       when: child_domains is defined 
 
@@ -89,32 +88,35 @@
       set_fact:
         domain_trust_remote_dc_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].hostname}}"
         # ICI A MODIFIER 
-        domain_trust_remote_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[trust_domain_dc_ansible_inventory_key].domain_ip,hostvars[trust_domain_dc_ansible_inventory_key].ansible_host)}}" 
+        #domain_trust_remote_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[trust_domain_dc_ansible_inventory_key].domain_ip,hostvars[trust_domain_dc_ansible_inventory_key].ansible_host)}}" 
         #domain_trust_remote_dc_ip: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_ip}}"
-        ansible_trust_remote_dc_ip: "{{hostvars[trust_domain_dc_ansible_inventory_key].ansible_host}}"       
+        domain_trust_remote_dc_ip: "{{hostvars[trust_domain_dc_ansible_inventory_key].ansible_host}}"       
         domain_trust_remote_domain_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_name}}"
         domain_trust_remote_domain_password: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_password}}"
         cacheable: yes
-    - name: print host configuration
+    - name: print trused domain info
       debug:
         msg: 
           - "domain_trust_remote_dc_name: {{domain_trust_remote_dc_name}}"
           - "domain_trust_remote_dc_ip: {{domain_trust_remote_dc_ip}}"
-          - "ansible_trust_remote_dc_ip: {{ansible_trust_remote_dc_ip}}"
           - "domain_trust_remote_domain_name: {{domain_trust_remote_domain_name}}"
           - "domain_trust_remote_domain_password: {{domain_trust_remote_domain_password}}"
+          - "domain_name: {{domain_name}}"
 
 
 
-- name: "COMPUTE OTHER DOMAIN INFO ON EACH TRUSTING DC"
-  hosts: trust
+- name: "COMPUTE TRANSITIVE TRUSTED DOMAINS"
+#  hosts: trust
+  hosts: dc03
   gather_facts: no
   tasks:
     - name: search for other domains
+      no_log: true
       ansible.builtin.set_fact:
         transitive_trusts_domains: "{{transitive_trusts_domains | default([]) + [[ item.key, item.value.domain_name ]] }}" 
       with_dict: "{{ hostvars }}"
-      when: item.value.domain_name != domain_name                           
+      when: item.value.domain_name is defined and
+        item.value.domain_name != domain_name                           
         and item.value.domain_name != domain_trust_remote_domain_name       
         and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name  
         and item.value.domain_name != '.'.join(domain_name.split('.')[1:])  
@@ -128,6 +130,5 @@
         msg: 
           - "{{item[1]}}"
           - "{{hostvars[item[0]].ansible_host}}"
-          - "{{hostvars[item[0]].domain_ip}}"
       loop: "{{transitive_trusts_domains}}"
       when: transitive_trusts_domains is defined 

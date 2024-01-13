@@ -2,6 +2,13 @@
 
 ## usefull commands
 
+```bash
+xfreerdp /cert:ignore /v:172.16.0.1 /u:administrator@haas.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
+xfreerdp /cert:ignore /v:172.16.1.1 /u:administrator@weyland.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
+xfreerdp /cert:ignore /v:172.16.2.1 /u:administrator@research.weyland.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
+```
+
+
 rbcd
 ```powershell
 $id = (get-adcomputer -identity ws01).DistinguishedName
@@ -13,6 +20,25 @@ $userObject = ActiveDirectory\Get-ADObject -Identity $Id  -Properties UserAccoun
 Write-Host "UserAccountControl for $($userObject.SamAccountName): $($userObject.UserAccountControl)"
 ```
 
+# define route to internal networks
+```bash
+sudo ip route add 172.16.0.0/16 via 192.168.2.70 dev br0
+sudo ip route del 10.0.2.0/24 via 192.168.43.223 dev interface
+
+
+sudo ip route add 172.16.0.0/16 via 192.168.2.100
+sudo ip route del 172.16.0.0/16 via 192.168.2.100
+```
+
+# Disable NAT interfaces
+```bash
+vagrant halt
+
+vboxmanage modifyvm nrunner_fw --cableconnected1 off ; vboxmanage modifyvm nrunner_srv01 --cableconnected1 off;vboxmanage modifyvm nrunner_srv02 --cableconnected1 off ; vboxmanage modifyvm nrunner_dc03 --cableconnected1 off; vboxmanage modifyvm nrunner_dc02 --cableconnected1 off; vboxmanage modifyvm nrunner_dc01 --cableconnected1 off
+
+vboxmanage startvm nrunner_fw --type headless ; vboxmanage startvm nrunner_srv01 --type headless; vboxmanage startvm nrunner_srv02 --type headless ; vboxmanage startvm nrunner_dc03 --type headless; vboxmanage startvm nrunner_dc02 --type headless; vboxmanage startvm nrunner_dc01 --type headless
+```
+
 # docs
 
 https://docs.ansible.com/ansible/latest/collections/microsoft/ad/index.html
@@ -20,12 +46,27 @@ https://docs.ansible.com/ansible/latest/collections/community/windows/index.html
 https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 
+
 # inprogress
 
 
 # todo
 
-security on srv02
+
+#/etc/ufw/before.rules:
+## ADD BEFORE FILTER
+
+## NAT table rules
+#*nat
+#:POSTROUTING ACCEPT [0:0]
+#
+## Forward traffic through eth0 - Change to match you out-interface
+#-A POSTROUTING -s 172.16.0.0/16 -o eth1 -j MASQUERADE
+#
+## don't delete the 'COMMIT' line or these nat table rules won't
+## be processed
+#COMMIT
+
 
 ## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné
@@ -54,4 +95,6 @@ https://github.com/ansible-collections/microsoft.ad/issues/56
             "haas.local\\emoon"
 ```
 
+
+{"msg": "The conditional check 'item.value.domain_name != domain_name and item.value.domain_name != domain_trust_remote_domain_name and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name and item.value.domain_name != '.'.join(domain_name.split('.')[1:])' failed. The error was: error while evaluating conditional (item.value.domain_name != domain_name and item.value.domain_name != domain_trust_remote_domain_name and '.'.join(item.value.domain_name.split('.')[1:]) != domain_name and item.value.domain_name != '.'.join(domain_name.split('.')[1:])): 'dict object' has no attribute 'domain_name'. 'dict object' has no attribute 'domain_name'\n\nThe error appears to be in '/etc/ansible/lab_playbooks/books/compute-inventory.yml': line 109, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: search for other domains\n      ^ here\n"}
 

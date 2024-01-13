@@ -1,10 +1,10 @@
 # DNSCHANGE
-# - name: "disable interface {{nat_adapter}} before join domain"
-#   win_shell: netsh interface set interface "{{nat_adapter}}" disable
+# - name: "disable interface {{pub_adapter}} before join domain"
+#   win_shell: netsh interface set interface "{{pub_adapter}}" disable
 
-- name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
+- name: "disable the registration of the {{pub_adapter}} interface (NAT address) in DNS"
   ansible.windows.win_shell:
-    Get-NetAdapter {{nat_adapter | ansible.windows.quote(shell='powershell')}} | Set-DNSClient -RegisterThisConnectionsAddress $False
+    Get-NetAdapter {{pub_adapter | ansible.windows.quote(shell='powershell')}} | Set-DNSClient -RegisterThisConnectionsAddress $False
   when: two_adapters == true
 
 - name: Ensure that domain exists

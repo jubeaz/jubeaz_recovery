@@ -1,5 +1,5 @@
 
-- name: "Enable interface '{{adapter| default(nat_adapter)}}'"
+- name: "Enable interface '{{adapter| default(pub_adapter)}}'"
   win_shell: netsh interface set interface "{{adapter}}" enable
   register: enable_adpter_interface
   until: "enable_adpter_interface is not failed"
@@ -8,6 +8,6 @@
   when: two_adapters == true and action | default('enable') == 'enable'
 
 
-- name: "Disable interface '{{adapter| default(nat_adapter)}}'"
+- name: "Disable interface '{{adapter| default(pub_adapter)}}'"
   win_shell: netsh interface set interface "{{adapter}}" disable
   when: two_adapters == true and action | default('enable') == 'disable'

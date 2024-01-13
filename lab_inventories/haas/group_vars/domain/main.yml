@@ -1,5 +1,6 @@
-nat_adapter: Ethernet 2
-domain_adapter: Ethernet 3
+nat_adapter: Ethernet
+domain_adapter: Ethernet 2
+pub_adapter: Ethernet 3
 #domain_name: netrunner
 #windows_update: yes 
 
@@ -7,7 +8,7 @@ domain_adapter: Ethernet 3
 dc_on_nat: false    # DC ARE REGISTERED ON NAT IP
 force_dns_server: yes
 dns_server: "8.8.8.8"
-two_adapters: yes
+two_adapters: false
 
 
 #ansible_user: vagrant

@@ -34,8 +34,8 @@ local_security: {
             # enabled, disabled, # ["Domain", "Private", "Public"], # "allow", "block", "not_configured",  # "allow", "block", "not_configured"
         },
         "rules": {
-            "FTP_IN_1": {"enabled": true, "profiles": ["Domain"], "action": "allow", "direction": "in", "lip": "any", "lport": "21", "protocol": "tcp", "rip": "any", "lport": "any"},
-            "FTP_IN_2": {"enabled": true, "profiles": ["Domain"], "action": "allow", "direction": "in", "lip": "any", "lport": "20", "protocol": "tcp", "rip": "any", "lport": "any"}
+#            "FTP_IN_1": {"enabled": true, "profiles": ["Domain"], "action": "allow", "direction": "in", "lip": "any", "lport": "21", "protocol": "tcp", "rip": "any", "lport": "any"},
+#            "FTP_IN_2": {"enabled": true, "profiles": ["Domain"], "action": "allow", "direction": "in", "lip": "any", "lport": "20", "protocol": "tcp", "rip": "any", "lport": "any"}
             # ["Domain", "Private", "Public"], # allow, block, # in, out # ip or any # port or any, 
         }
     }

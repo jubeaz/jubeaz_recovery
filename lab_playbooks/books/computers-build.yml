@@ -1,9 +1,8 @@
 ---
 - name: BUILD ALL COMPUTERS
-  hosts: all
+  hosts: domain
   tags: 'build_computers_setup_1'
   roles:
-    - { role: 'windows_settings/manage_net_adapter', tags: 'base_setup', action: "disable", adapter: "Ethernet"}
     - { role: 'windows_settings/base_setup', tags: 'base_setup', http_proxy: "{{enable_http_proxy}}"}
     - { role: 'windows_settings/keyboard', tags: 'windows_keyboard', layout: "fr-FR" }
 #    - { role: 'windows_settings/update_planning', tags: 'update_planning', when: "windows_update == true"}

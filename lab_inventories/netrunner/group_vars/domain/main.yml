@@ -1,11 +1,11 @@
 nat_adapter: Ethernet
 domain_adapter: Ethernet 2
-domain_name: netrunner
+pub_adapter: Ethernet 3
 windows_update: yes 
 
-force_dns_server: no
-dns_server: x.x.x.x
-two_adapters: yes
+force_dns_server: yes
+dns_server: 8.8.8.8
+two_adapters: false
 
 
 #ansible_user: vagrant

@@ -25,6 +25,8 @@
   roles:
     - { role: 'windows_domain/child_dns', tags: 'child_dns'}
 
+
+# NECESSARY ONLY WITH DC HAVING 2 NIC
 # # https://petri.com/configure-dns-on-domain-controller-two-ip-addresses/
 - name: "Adjust DNS SERVER TO LISTEN ON DOMAIN IP"
   hosts: dc

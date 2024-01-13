@@ -1,0 +1,16 @@
+domains_interfaces: ["eth2", "eth3", "eth4"]
+public_interface: "eth1"
+domains: {
+  "HAAS": {
+    "ip": "10.0.0.254",
+    "adapter": "eth2",
+    "rules": [
+      # ufw route allow in on {{adapter}} out on eth1 to domain_range port 80 proto tcp
+    ]
+  }
+}
+
+# "{{hostvars[inventory_hostname].ansible_facts.eth2.ipv4.network}}/{{hostvars[inventory_hostname].ansible_facts.eth2.ipv4.prefix}}"
+
+# hostvars[inventory_hostname].ansible_facts.eth2.ipv4.network
+# hostvars[inventory_hostname].ansible_facts.eth2.ipv4.prefix

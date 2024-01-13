@@ -1,7 +1,7 @@
 
 
-- name: "disable the registration of the {{nat_adapter}} interface (NAT address) in DNS"
-  ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
+- name: "disable the registration of the {{pub_adapter}} interface (PUB address) in DNS"
+  ansible.windows.win_shell: Get-NetAdapter {{pub_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
   when: two_adapters == true
 
 - name: debug
@@ -124,7 +124,7 @@
 
 
 - name: enable the {{domain_adapter}} interface (local) for DNS client requests
-  ansible.windows.win_shell: Get-NetAdapter {{nat_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $True
+  ansible.windows.win_shell: Get-NetAdapter {{pub_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $True
   when: two_adapters == true
 
 - name: "Install XactiveDirectory"
