@@ -36,19 +36,17 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 # inprogress
 
 
+
+
 # todo
 
-bug
-```
-############### TASK [windows_domain/laps/dc : Configure Password Properties] 
-###############     FAILED - RETRYING: [dc01]: Configure Password Properties (3 retries left).
-###############     FAILED - RETRYING: [dc01]: Configure Password Properties (2 retries left).
-###############     FAILED - RETRYING: [dc01]: Configure Password Properties (1 retries left).
-###############     An exception occurred during task execution. To see the full traceback, use -vvv. The error was:    at Microsoft.ActiveDirectory.Management.Commands.ADCmdletBase`1.ProcessRecord()
-###############     fatal: [dc01]: FAILED! => {"attempts": 3, "changed": false, "msg": "Unhandled exception while executing module: The FSMO role ownership could not be verified because its directory partition has not replicated successfully with at least one replication partner"}
+## ACL
+ajouter la possibilité d'avoir des ACL avec des foreigns
+traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml` via Get6ADObject
 
-```
 
+## add group foreign members
+traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml` via Get6ADObject
 
 ## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné

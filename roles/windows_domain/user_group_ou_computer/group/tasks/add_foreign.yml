@@ -15,6 +15,12 @@
 #  with_items: "{{ foreign_objects }}"
 #  when:  "{{ foreign_objects | length > 0 }}"
 
+# ObjectClass
+#    msDS-GroupManagedServiceAccount
+#    group
+#    computer
+#    user
+#  Get-ADObject -Filter {(objectClass -eq "msDS-GroupManagedServiceAccount") -and (Name -eq "ichi") }  -Server 
 
 - name: "Add foreign {{object_type}} to {{local_group_name}}"
   ansible.windows.win_powershell:
@@ -39,16 +45,18 @@
       try {
         Write-Warning "Tryed to add $Identity ($Type) from $DomainName to $GroupName"
         $DC = (Get-ADDomainController -Discover -Domain $DomainName).Name
-        if ($Type -eq "Group") {
+        #Write-Warning "Get-ADObject -Filter {(objectClass -eq $Type) -and (Name -eq $Identity) }  -Server $DC.$DomainName"
+        #$Obj = Get-ADObject -Filter {("objectClass -eq '$Type'") -and ("Name -eq '$Identity'") }  -Server "$DC.$DomainName"
+        if ($Type -eq "group") {
           $Obj = Get-ADGroup -Identity $Identity -Server "$DC.$DomainName"
         }    
-        if ($Type -eq "User") {
+        if ($Type -eq "user") {
           $Obj = Get-ADUser -Identity $Identity -Server "$DC.$DomainName"
         }    
-        if ($Type -eq "GMSA") {
+        if ($Type -eq "msDS-GroupManagedServiceAccount") {
           $Obj = Get-ADServiceAccount -Identity $Identity -Server "$DC.$DomainName"
         }    
-        if ($Type -eq "Computer") {
+        if ($Type -eq "computer") {
           $Obj = Get-ADComputer -Identity $Identity -Server "$DC.$DomainName"
         }    
         Add-ADGroupMember -Identity $GroupName -Members $Obj
