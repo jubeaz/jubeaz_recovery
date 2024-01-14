@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
   boxes = [
     { 
-      name: "haas_fw", 
+      bname: "haas_fw", 
     	nets: [
     		{
     			ip: "172.16.0.254",
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # internal and public
-      name: "haas_srv01", 
+      bname: "haas_srv01", 
       ip: "172.16.0.11", 
   	  net: net_defs[:haas], 
       ip_p: "192.168.2.71",
@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # only internal
-      name: "haas_srv02", 
+      bname: "haas_srv02", 
       ip: "172.16.0.12", 
   	  net: net_defs[:haas], 
       box: "gusztavvargadr/windows-server", 
@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
     },
     { 
       # only internal
-      name: "haas_dc03", 
+      bname: "haas_dc03", 
       ip: "172.16.0.1", 
   	  net: net_defs[:haas], 
       box: "gusztavvargadr/windows-server", 
@@ -98,11 +98,11 @@ Vagrant.configure("2") do |config|
   config.winrm.basic_auth_only = true
 
   boxes.each do |box|
-    config.vm.define box[:name] do |target|
+    config.vm.define box[:bname] do |target|
       # BOX
       target.vm.provider "virtualbox" do |v|
         v.memory = box[:ram]
-        v.name = box[:name]
+        v.name = box[:bname]
         v.cpus = 2
       end
       # Download image

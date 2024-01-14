@@ -2,6 +2,10 @@
 
 ## usefull commands
 
+### rdp
+```bash
+xfreerdp /cert:ignore /v:172.16.0.1 /u:vagrant /p:vagrant /h:1024 /w:1640 /drive:share,./ +drives
+```
 ```bash
 xfreerdp /cert:ignore /v:172.16.0.1 /u:administrator@haas.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
 xfreerdp /cert:ignore /v:172.16.1.1 /u:administrator@weyland.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
@@ -9,7 +13,7 @@ xfreerdp /cert:ignore /v:172.16.2.1 /u:administrator@research.weyland.local /p:'
 ```
 
 
-rbcd
+### rbcd
 ```powershell
 $id = (get-adcomputer -identity ws01).DistinguishedName
 (ActiveDirectory\Get-ADObject -Identity $Id  -properties msDS-AllowedToActOnBehalfOfOtherIdentity).'msDS-AllowedToActOnBehalfOfOtherIdentity'.Access
@@ -20,24 +24,6 @@ $userObject = ActiveDirectory\Get-ADObject -Identity $Id  -Properties UserAccoun
 Write-Host "UserAccountControl for $($userObject.SamAccountName): $($userObject.UserAccountControl)"
 ```
 
-# define route to internal networks
-```bash
-sudo ip route add 172.16.0.0/16 via 192.168.2.70 dev br0
-sudo ip route del 10.0.2.0/24 via 192.168.43.223 dev interface
-
-
-sudo ip route add 172.16.0.0/16 via 192.168.2.100
-sudo ip route del 172.16.0.0/16 via 192.168.2.100
-```
-
-# Disable NAT interfaces
-```bash
-vagrant halt
-
-vboxmanage modifyvm nrunner_fw --cableconnected1 off ; vboxmanage modifyvm nrunner_srv01 --cableconnected1 off;vboxmanage modifyvm nrunner_srv02 --cableconnected1 off ; vboxmanage modifyvm nrunner_dc03 --cableconnected1 off; vboxmanage modifyvm nrunner_dc02 --cableconnected1 off; vboxmanage modifyvm nrunner_dc01 --cableconnected1 off
-
-vboxmanage startvm nrunner_fw --type headless ; vboxmanage startvm nrunner_srv01 --type headless; vboxmanage startvm nrunner_srv02 --type headless ; vboxmanage startvm nrunner_dc03 --type headless; vboxmanage startvm nrunner_dc02 --type headless; vboxmanage startvm nrunner_dc01 --type headless
-```
 
 # docs
 
@@ -52,22 +38,6 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 # todo
 
-
-```
-#/etc/ufw/before.rules:
-## ADD BEFORE FILTER
-
-## NAT table rules
-#*nat
-#:POSTROUTING ACCEPT [0:0]
-#
-## Forward traffic through eth0 - Change to match you out-interface
-#-A POSTROUTING -s 172.16.0.0/16 -o eth1 -j MASQUERADE
-#
-## don't delete the 'COMMIT' line or these nat table rules won't
-## be processed
-#COMMIT
-```
 bug
 ```
 ############### TASK [windows_domain/laps/dc : Configure Password Properties] 

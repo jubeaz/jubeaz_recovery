@@ -37,14 +37,13 @@ domain_groups : {
         "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
         "members" : [
             "G_GMSA_ICHI"
-#            "WEYLAND\\arose",
-#            "weyland.local\\G_LAPS_READER",
-#            "research.weyland.local\\G_LAPS_READER"
         ],
-        "foreign_members" : [
-            "WEYLAND\\arose",
-            "weyland.local\\G_LAPS_READER",
-            "research.weyland.local\\G_LAPS_READER"
+        "foreign_users" : [ 
+            ["arose@weyland.local"]
+        ],
+        "foreign_groups" : [ 
+            "G_LAPS_READER@weyland.local",
+            "G_LAPS_READER@research.weyland.local"
         ]
     } 
 }

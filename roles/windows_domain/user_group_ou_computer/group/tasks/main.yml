@@ -15,26 +15,70 @@
   with_dict: "{{objects}}"
   when: action == "create"
 
-- name: "synchronizes all domains before adding members to groups"
-  win_shell: repadmin /syncall /Ade
-  become: yes
-  become_method: runas
-  become_user: "{{domain_name}}\\Administrator"
-  vars:
-    ansible_become_pass: "{{domain_password}}"
-  when: action == "add_members"
+#- name: "synchronizes all domains before adding members to groups"
+#  win_shell: repadmin /syncall /Ade
+#  become: yes
+#  become_method: runas
+#  become_user: "{{domain_name}}\\Administrator"
+#  vars:
+#    ansible_become_pass: "{{domain_password}}"
+#  when: action == "add_members"
+#
+#- name: "Add members to domain groups"
+#  microsoft.ad.group:
+#    domain_username: "{{domain_name}}\\Administrator"
+#    domain_password: "{{domain_password}}"
+#    name: "{{item.key}}"
+#    path: "{{item.value.path}}"
+#    members: 
+#      add: "{{item.value.members}}"
+#  with_dict: "{{ objects }}"
+#  when: action == "add_members"
+#  register: group_membership
+#  until: "group_membership is not failed"
+#  retries: 3
+#  delay: 60
 
-- name: "Add members to domain groups"
-  microsoft.ad.group:
-    domain_username: "{{domain_name}}\\Administrator"
-    domain_password: "{{domain_password}}"
-    name: "{{item.key}}"
-    path: "{{item.value.path}}"
-    members: 
-      add: "{{item.value.members}}"
+- name: "Add foreign groups to domain group"
+  include_tasks: add_foreign.yml
+  vars:
+    local_group_name: "{{group.key}}"
+    object_type: "Group"
+    foreign_objects: "{{ group.value.foreign_groups | default({}) }}"
   with_dict: "{{ objects }}"
-  when: action == "add_members"
-  register: group_membership
-  until: "group_membership is not failed"
-  retries: 3
-  delay: 60
+  loop_control:
+    loop_var: group
+  when: action == "add_members" 
+
+- name: "Add foreign users to domain group"
+  include_tasks: add_foreign.yml
+  vars:
+    local_group_name: "{{group.key}}"
+    object_type: "User"
+    foreign_objects: "{{ group.value.foreign_users | default({}) }}"
+  with_dict: "{{ objects }}"
+  loop_control:
+    loop_var: group
+  when: action == "add_members" 
+
+- name: "Add foreign GMSA to domain group"
+  include_tasks: add_foreign.yml
+  vars:
+    local_group_name: "{{group.key}}"
+    object_type: "GMSA"
+    foreign_objects: "{{ group.value.foreign_gmsas | default({}) }}"
+  with_dict: "{{ objects }}"
+  loop_control:
+    loop_var: group
+  when: action == "add_members" 
+
+- name: "Add foreign Computer to domain group"
+  include_tasks: add_foreign.yml
+  vars:
+    local_group_name: "{{group.key}}"
+    object_type: "Computer"
+    foreign_objects: "{{ group.value.foreign_computers | default({}) }}"
+  with_dict: "{{ objects }}"
+  loop_control:
+    loop_var: group
+  when: action == "add_members" 

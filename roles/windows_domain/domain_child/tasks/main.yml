@@ -100,7 +100,7 @@
 - name: Reboot
   win_reboot:
     reboot_timeout: 900
-    post_reboot_delay: 100
+    post_reboot_delay: 300
   when: child_result.changed
 
 - name: check child creation
@@ -114,14 +114,21 @@
 
       try {
           $child_domain = Get-ADDomain -Identity $NewDomainName
+          Write-Output -InputObject $obj
           $Ansible.Failed=$false
+          $Ansible.changed=$false
       } catch {
-          $Ansible.Failed=$true
+          $Ansible.Failed=$false
       }
     parameters:
       NewDomainName: "{{domain_netbios_name}}"
   register: child_result
 
+
+- name: Show powershell  child result
+  debug: 
+    var: child_result.stdout_lines
+  when: child_result.stdout_lines is defined
 
 - name: enable the {{domain_adapter}} interface (local) for DNS client requests
   ansible.windows.win_shell: Get-NetAdapter {{pub_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $True

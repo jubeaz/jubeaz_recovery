@@ -1,0 +1,72 @@
+
+#- debug:
+#    msg: "{{item}}"
+#  with_items: "{{ foreign_objects }}"
+#  when:  "{{ foreign_objects | length > 0 }}"
+#- debug:
+#    var: local_group_name
+#  when:  "{{ foreign_objects | length > 0 }}"
+#- debug:
+#    var: object_type
+#  when:  "{{ foreign_objects | length > 0 }}"
+#
+#- debug:
+#    msg: "Trying to add ({{object_type}}) {{item | split('@') | first}} from {{item | split('@') | last}} to {{local_group_name}}"
+#  with_items: "{{ foreign_objects }}"
+#  when:  "{{ foreign_objects | length > 0 }}"
+
+
+- name: "Add foreign {{object_type}} to {{local_group_name}}"
+  ansible.windows.win_powershell:
+    script: |
+      [CmdletBinding()]
+      param (
+          [String]
+          $DomainName,
+
+          [String]
+          $GroupName,
+
+          [String]
+          $Identity,
+
+          [String]
+          $Type
+      )
+
+      Import-Module ActiveDirectory
+      Set-Location AD:
+      try {
+        Write-Warning "Tryed to add $Identity ($Type) from $DomainName to $GroupName"
+        $DC = (Get-ADDomainController -Discover -Domain $DomainName).Name
+        if ($Type -eq "Group") {
+          $Obj = Get-ADGroup -Identity $Identity -Server "$DC.$DomainName"
+        }    
+        if ($Type -eq "User") {
+          $Obj = Get-ADUser -Identity $Identity -Server "$DC.$DomainName"
+        }    
+        if ($Type -eq "GMSA") {
+          $Obj = Get-ADServiceAccount -Identity $Identity -Server "$DC.$DomainName"
+        }    
+        if ($Type -eq "Computer") {
+          $Obj = Get-ADComputer -Identity $Identity -Server "$DC.$DomainName"
+        }    
+        Add-ADGroupMember -Identity $GroupName -Members $Obj
+        $Ansible.Failed = $false
+      } catch {
+          $Ansible.Failed = $true
+          $message = $_
+          Write-Warning "Something happened! $message"
+      }
+    parameters:
+      DomainName: "{{item | split('@') | last}}"
+      GroupName: "{{local_group_name}}"
+      Identity: "{{item | split('@') | first}}"
+      Type: "{{object_type}}"
+  vars:
+    ansible_become: yes
+    ansible_become_method: runas
+    ansible_become_user: "{{domain_name}}\\Administrator"
+    ansible_become_password: "{{domain_password}}"
+  with_items: "{{ foreign_objects }}"
+  when:  foreign_objects | length > 0

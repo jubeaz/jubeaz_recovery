@@ -1,16 +1,30 @@
 ---
+- name: ENSURE DOMAINS ARE REACHABLE
+  hosts: firewalls
+  become: true
+  become_user: root
+  #tags: 'build_computers_setup_1'
+  tasks: 
+    - name: add route
+      include_tasks: ensure-reachable.yml
+      vars:
+        info: "{{hostvars[inventory_hostname].ansible_facts}}"
+        interface: "{{item}}"
+        via: "{{ansible_host}}"
+      with_items: "{{domains_interfaces}}"
+
 - name: "COMPUTE DOMAIN INFO ON EACH HOST"
   hosts: domain
 #  gather_facts: no
-  tasks:
-    - name:
+  tasks: 
+    - name: compute domain dc on all hosts
       ansible.builtin.set_fact:
         # ICI A MODIFIER 
         #domain_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
         #domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].domain_ip}}"
         domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].ansible_host}}"
         domain_dc_name: "{{hostvars[domain_dc_ansible_inventory_key].hostname}}"
-    - name:
+    - name: compute domain info on non DC
       ansible.builtin.set_fact:
         domain_name:  "{{hostvars[domain_dc_ansible_inventory_key].domain_name}}"
         domain_password: "{{hostvars[domain_dc_ansible_inventory_key].domain_password}}"
@@ -19,29 +33,29 @@
         laps_path: "{{hostvars[domain_dc_ansible_inventory_key].laps_path}}"
         path: "{{hostvars[domain_dc_ansible_inventory_key].domain_real_computers[hostname].path}}"
       when: type != 'dc'      
-    - name: print host configuration
-      debug:
-        msg: 
-          - "domain_password: {{domain_password}}"
-          - "domain_name: {{domain_name}}"
-          - "domain_netbios_name: {{domain_netbios_name}}"
-          - "domain_dc_ip: {{domain_dc_ip}}"
-          - "domain_dc_name: {{domain_dc_name}}"
-          - "domain_gmsa: {{domain_gmsa}}"
-          - "laps_path: {{laps_path}}"
-          - "path: {{path}}"
-
+#    - name: print host configuration
+#      debug:
+#        msg: 
+#          - "domain_password: {{domain_password}}"
+#          - "domain_name: {{domain_name}}"
+#          - "domain_netbios_name: {{domain_netbios_name}}"
+#          - "domain_dc_ip: {{domain_dc_ip}}"
+#          - "domain_dc_name: {{domain_dc_name}}"
+#          - "domain_gmsa: {{domain_gmsa}}"
+#          - "laps_path: {{laps_path}}"
+#          - "path: {{path}}"
+#
 
 - name: "COMPUTE PARENT DOMAIN INFO ON EACH CHILD DC"
   hosts: dc
   gather_facts: no
   tasks:
-    - name: set parent_domain 
+    - name: Compute parent domain name on chid DC 
       set_fact:
         domain_parent_domain_name: "{{'.'.join(domain_name.split('.')[1:])}}"
         cacheable: yes
       when: dc_level != 0
-    - name: set parent domain configuration
+    - name: Compute parent domain infos on chid DC
       ansible.builtin.set_fact:
         domain_parent_domain_password: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_password}}"
         domain_parent_dc_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].hostname}}"
@@ -52,39 +66,39 @@
         domain_parent_domain_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_name}}"
         cacheable: yes
       when: dc_level != 0
-    - name: print parent domain info
-      debug:
-        msg: 
-          - "domain_parent_domain_name: {{domain_parent_domain_name}}"
-          - "domain_parent_domain_password: {{domain_parent_domain_password}}"
-          - "domain_parent_dc_name: {{domain_parent_dc_name}}"
-          - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
-      when: dc_level != 0
+#    - name: print parent domain info
+#      debug:
+#        msg: 
+#          - "domain_parent_domain_name: {{domain_parent_domain_name}}"
+#          - "domain_parent_domain_password: {{domain_parent_domain_password}}"
+#          - "domain_parent_dc_name: {{domain_parent_dc_name}}"
+#          - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
+#      when: dc_level != 0
 
 - name: "COMPUTE CHILD DOMAIN INFO ON EACH DC"
   hosts: dc
   gather_facts: no
   tasks:
-    - name: search for childs dc
+    - name: Compute child domain names on parent DC
       no_log: true
       ansible.builtin.set_fact:
         child_domains: "{{child_domains | default([]) + [[ item.key, item.value.hostname, item.value.domain_name ]] }}" 
       with_dict: "{{ hostvars }}"
       when: item.value.domain_parent_domain_name is defined and domain_name == item.value.domain_parent_domain_name
-    - name: print child_domains
-      debug:
-        msg: 
-          - "{{item[1]}}.{{item[2]}}"
-          - "{{hostvars[item[0]].ansible_host}}"
-      loop: "{{child_domains}}"
-      when: child_domains is defined 
+#    - name: print child_domains
+#      debug:
+#        msg: 
+#          - "{{item[1]}}.{{item[2]}}"
+#          - "{{hostvars[item[0]].ansible_host}}"
+#      loop: "{{child_domains}}"
+#      when: child_domains is defined 
 
 
 - name: "COMPUTE TRUST DOMAIN INFO ON EACH DC"
   hosts: trust
   gather_facts: no
   tasks:
-    - name: set remote_forest 
+    - name: Compute trusted domain infos on DC
       set_fact:
         domain_trust_remote_dc_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].hostname}}"
         # ICI A MODIFIER 
@@ -94,14 +108,14 @@
         domain_trust_remote_domain_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_name}}"
         domain_trust_remote_domain_password: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_password}}"
         cacheable: yes
-    - name: print trused domain info
-      debug:
-        msg: 
-          - "domain_trust_remote_dc_name: {{domain_trust_remote_dc_name}}"
-          - "domain_trust_remote_dc_ip: {{domain_trust_remote_dc_ip}}"
-          - "domain_trust_remote_domain_name: {{domain_trust_remote_domain_name}}"
-          - "domain_trust_remote_domain_password: {{domain_trust_remote_domain_password}}"
-          - "domain_name: {{domain_name}}"
+#    - name: print trused domain info
+#      debug:
+#        msg: 
+#          - "domain_trust_remote_dc_name: {{domain_trust_remote_dc_name}}"
+#          - "domain_trust_remote_dc_ip: {{domain_trust_remote_dc_ip}}"
+#          - "domain_trust_remote_domain_name: {{domain_trust_remote_domain_name}}"
+#          - "domain_trust_remote_domain_password: {{domain_trust_remote_domain_password}}"
+#          - "domain_name: {{domain_name}}"
 
 
 
@@ -110,7 +124,7 @@
   hosts: dc03
   gather_facts: no
   tasks:
-    - name: search for other domains
+    - name: Compute transitive trusted domains
       no_log: true
       ansible.builtin.set_fact:
         transitive_trusts_domains: "{{transitive_trusts_domains | default([]) + [[ item.key, item.value.domain_name ]] }}" 
@@ -125,10 +139,10 @@
         # child domain
         # parent domain
 
-    - name: print transitive_trusts_domains
-      debug:
-        msg: 
-          - "{{item[1]}}"
-          - "{{hostvars[item[0]].ansible_host}}"
-      loop: "{{transitive_trusts_domains}}"
-      when: transitive_trusts_domains is defined 
+#    - name: print transitive_trusts_domains
+#      debug:
+#        msg: 
+#          - "{{item[1]}}"
+#          - "{{hostvars[item[0]].ansible_host}}"
+#      loop: "{{transitive_trusts_domains}}"
+#      when: transitive_trusts_domains is defined 
