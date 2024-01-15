@@ -32,11 +32,13 @@ https://docs.ansible.com/ansible/latest/collections/community/windows/index.html
 https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 
-
 # inprogress
 
+## security firewall
 
-
+il faut de manière inconditionnelle faire en sorte que seul ANSIBLE puisse WINRM:
+  - soit transformer la règle de vagrant
+  - soit supprimer la règle et en créer une spécifique.
 
 # todo
 
@@ -44,9 +46,14 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 ajouter la possibilité d'avoir des ACL avec des foreigns
 traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml` via Get6ADObject
 
-
 ## add group foreign members
 traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml` via Get6ADObject
+
+```powershell
+        $DC = (Get-ADDomainController -Discover -Domain $DomainName).Name
+        #Write-Warning "Get-ADObject -Filter {(objectClass -eq $Type) -and (Name -eq $Identity) }  -Server $DC.$DomainName"
+        #$Obj = Get-ADObject -Filter {("objectClass -eq '$Type'") -and ("Name -eq '$Identity'") }  -Server "$DC.$DomainName"
+```
 
 ## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné

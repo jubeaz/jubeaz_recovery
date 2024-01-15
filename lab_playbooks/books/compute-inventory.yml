@@ -1,18 +1,4 @@
 ---
-- name: ENSURE DOMAINS ARE REACHABLE
-  hosts: firewalls
-  become: true
-  become_user: root
-  #tags: 'build_computers_setup_1'
-  tasks: 
-    - name: add route
-      include_tasks: ensure-reachable.yml
-      vars:
-        info: "{{hostvars[inventory_hostname].ansible_facts}}"
-        interface: "{{item}}"
-        via: "{{ansible_host}}"
-      with_items: "{{domains_interfaces}}"
-
 - name: "COMPUTE DOMAIN INFO ON EACH HOST"
   hosts: domain
 #  gather_facts: no

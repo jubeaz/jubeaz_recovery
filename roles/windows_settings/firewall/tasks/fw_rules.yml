@@ -1,0 +1,56 @@
+---
+#- debug:
+#    var: firewall_rules
+
+- name: Create rules for winrm from ansible
+  win_dsc:
+    resource_name:  xFirewall
+    Name:           "ansible_winrm_{{ item | lower }}"
+    Group:          "Windows Remote Management"
+    Ensure:         present
+    Enabled:        True
+    Action:         "Allow"
+    Profile:        "{{item}}"
+    Direction:      "Inbound"
+    Localport:      "5985"
+    Protocol:       "TCP"
+    RemoteAddress:  "{{ansible_controller_ip}}"
+  with_items:
+    - Domain
+    - Public
+    - Private
+#
+#
+#- name: Delete ConfigureRemotingForAnsible.ps1 rules
+#  win_dsc:
+#    resource_name:  xFirewall
+#    Name:           "Windows Remote Management (HTTP-In)"
+#    Group:          "Windows Remote Management"
+#    Ensure:         Absent
+#    Profile:        "{{item}}"
+#    Direction:      "Inbound"
+#    Localport:      "5985"
+#    Protocol:       "TCP"
+#  with_items:
+#    - Domain
+#    - Public
+#    - Private
+
+#https://github.com/dsccommunity/NetworkingDsc/wiki/Firewall
+- name: Create rules for winrm from ansible
+  win_dsc:
+    resource_name:  xFirewall
+    Name:           "{{ item.value.name}}"
+    Ensure:         present
+    Enabled:        "{{item.value.enabled | default(true)}}"
+    Action:         "{{item.value.action | default('Allow')}}"
+    Profile:        "{{item.value.profiles | default([])}}"
+    Direction:      "{{item.value.direction | default('Inbound')}}"
+    LocalAddress:   "{{item.value.localip | default('Any')}}"
+    Localport:      "{{item.value.localport | default('Any')}}"
+    Protocol:       "{{item.value.protocol | default('TCP')}}"
+    RemoteAddress:  "{{item.value.remoteip | default('Any')}}"
+    RemotePort:     "{{item.value.remoteport | default('Any')}}"
+    Group:          "{{item.value.group | default('ansible')}}"
+  with_dict: "{{firewall_rules}}"
+

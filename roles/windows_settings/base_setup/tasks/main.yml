@@ -55,11 +55,18 @@
 - name: Firewall | Allow RDP through Firewall
   win_dsc:
     resource_name: xFirewall
-    Name: "Administrator access for RDP (TCP-In)"
-    Ensure: present
-    Enabled: True
-    Profile: "Domain"
-    Direction: "Inbound"
-    Localport: "3389"
-    Protocol: "TCP"
-    Description: "Opens the listener port for RDP"
+    Name:           "ansible_rdp_{{ item | lower }}"
+    Group:          "Windows Remote Management"
+    Ensure:         present
+    Enabled:        True
+    Action:         "Allow"
+    Profile:        "{{item}}"
+    Direction:      "Inbound"
+    Localport:      "3389"
+    Protocol:       "TCP"
+    RemoteAddress:  "{{ansible_controller_ip}}"
+    Description:    "Opens the listener port for RDP"
+  with_items:
+    - Domain
+#    - Public
+#    - Private
