@@ -1,6 +1,7 @@
 ---
 - name: DCS AD DATA CONFIGURATION
   hosts: dc
+  max_fail_percentage: 0
   tasks:
     - name: clean previously computed glocal mappings
       set_fact:

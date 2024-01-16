@@ -1,6 +1,10 @@
 # notes
 
 ## usefull commands
+### ssh
+```bash
+sshpass -p vagrant ssh vagrant@192.168.2.100
+```
 
 ### rdp
 ```bash
@@ -36,11 +40,27 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 ## security firewall
 
-il faut de manière inconditionnelle faire en sorte que seul ANSIBLE puisse WINRM:
-  - soit transformer la règle de vagrant
-  - soit supprimer la règle et en créer une spécifique.
 
 # todo
+
+## ansible script and firewall
+```bash
+    nrunner_srv01: Running: ../scripts/ConfigureRemotingForAnsible.ps1 as C:\tmp\vagrant-shell.ps1
+    nrunner_srv01: Self-signed SSL certificate generated; thumbprint: 381126557DE765B7BCA4EB7FF3E9E9601CFF3634
+    nrunner_srv01:
+    nrunner_srv01:
+    nrunner_srv01: wxf                 : http://schemas.xmlsoap.org/ws/2004/09/transfer
+    nrunner_srv01: a                   : http://schemas.xmlsoap.org/ws/2004/08/addressing
+    nrunner_srv01: w                   : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+    nrunner_srv01: lang                : en-US
+    nrunner_srv01: Address             : http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous
+    nrunner_srv01: ReferenceParameters : ReferenceParameters
+    nrunner_srv01:
+    nrunner_srv01: Ok.
+    nrunner_srv01:
+    nrunner_srv01:
+    nrunner_srv01:
+```
 
 ## ACL
 ajouter la possibilité d'avoir des ACL avec des foreigns
@@ -59,13 +79,51 @@ traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml
 calculer automatiquement les gmsa accessibles pour un host donné
 `installed_gmsa: ["ichi", "heimdall"]`
 
-revoir la manière dont est géré les trusts
-
 ## trust
 IL Y A ENCORE DES TRUCS A FAIRE SUR LE BIDIRECTIONNEL VS INBOUND
 
 # bug
 
+si les DC ont le même nom a priori il faudrait creer un Site (`New-ADReplicationSite`)
+
+` Install-ADDSDomain
+-SiteName
+
+Specifies the name of an existing site where you can place the new domain controller. The default value is the site that is associated with the subnet that includes the IP address of this server. If no such site exists, the default is the site of the replication source domain controller.
+`
+```json
+            {
+                "category_info": {
+                    "activity": "Install-ADDSDomain",
+                    "category": "NotSpecified",
+                    "category_id": 0,
+                    "reason": "DCPromoExecutionException",
+                    "target_name": "",
+                    "target_type": ""
+                },
+                "error_details": {
+                    "message": "The operation failed because:\r\n\r\nActive Directory Domain Services could not determine if this directory server name CN=NTDS Settings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=weyland,DC=local is unique on the remote directory server dc01.weyland.local. If this name is not unique, rename this directory server.\r\n\r\n\"A domain controller with the specified name already exists.\"\r\n",
+                    "recommended_action": ""
+                },
+                "exception": {
+                    "help_link": null,
+                    "hresult": -2146233088,
+                    "inner_exception": null,
+                    "message": "The operation failed because:\r\n\r\nActive Directory Domain Services could not determine if this directory server name CN=NTDS Settings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=weyland,DC=local is unique on the remote directory server dc01.weyland.local. If this name is not unique, rename this directory server.\r\n\r\n\"A domain controller with the specified name already exists.\"\r\n",
+                    "source": null,
+                    "type": "Microsoft.DirectoryServices.Deployment.DCPromoExecutionException"
+                },
+                "fully_qualified_error_id": "DCPromo.General.54,Microsoft.DirectoryServices.Deployment.PowerShell.Commands.InstallADDSDomainCommand",
+                "output": "Install-ADDSDomain : The operation failed because:\r\n\r\nActive Directory Domain Services could not determine if this directory server name CN=NTDS \r\nSettings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=weyland,DC=local is unique on the \r\nremote directory server dc01.weyland.local. If this name is not unique, rename this directory server.\r\n\r\n\"A domain controller with the specified name already exists.\"\r\n\r\nAt line:37 char:3\r\n+   Install-ADDSDomain -Credential $Cred -SkipPreChecks -NewDomainName  ...\r\n+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : NotSpecified: (:) [Install-ADDSDomain], DCPromoExecutionException\r\n    + FullyQualifiedErrorId : \r\nDCPromo.General.54,Microsoft.DirectoryServices.Deployment.PowerShell.Commands.InstallADDSDomainCommand\r\n",
+                "pipeline_iteration_info": [
+                    0,
+                    1
+                ],
+                "script_stack_trace": "at <ScriptBlock>, <No file>: line 37",
+                "target_object": null
+            }
+
+```
 
 ## microsoft.ad.group 
 `microsoft.ad.group` fail to add foreign members

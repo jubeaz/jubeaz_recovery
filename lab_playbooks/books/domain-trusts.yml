@@ -1,6 +1,7 @@
 ---
 - name: TRUSTS CONFIGURATION PREPARE
   hosts: trust
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_settings/manage_net_adapter' , tags: 'disable_nat_adapter', action: "disable", adapter: pub_adapter}
     # dc forward trusted zone
@@ -12,6 +13,7 @@
 
 - name: TRUSTS CONFIGURATION
   hosts: trust
+  max_fail_percentage: 0
   gather_facts: no
   serial: 1 # add one trust at a time to avoid issues
   roles:
@@ -20,6 +22,7 @@
 
 - name: TRUSTS CONFIGURATION END
   hosts: trust
+  max_fail_percentage: 0
   gather_facts: no
   roles:
     - { role: 'windows_settings/manage_net_adapter' , tags: 'disable_nat_adapter', action: "enable", adapter: pub_adapter}
@@ -31,5 +34,6 @@
 
 - name: TRUSTS CONFIGURATION
   hosts: trust
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_domain/trusts/trusts_check', tags: 'trust' }

@@ -3,5 +3,6 @@
 
 - name: "INSTALL WEBDAV"
   hosts: webdav
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_domain/webdav', tags: 'webdav'}

@@ -3,6 +3,7 @@
   hosts: firewalls
   become: true
   become_user: root
+  max_fail_percentage: 0
   #tags: 'build_computers_setup_1'
   roles:
     - { role: mlocate }
@@ -87,9 +88,12 @@
       with_items: "{{domains_interfaces}}"
 
     - name: Insert NAT rules for domains to local network
-      include_tasks: fw-add-nat.yml
+      include_tasks: tasks/fw-add-nat.yml
       vars:
         info: "{{hostvars[inventory_hostname].ansible_facts}}"
         interface: "{{public_interface}}"
         domain: "{{item}}"
       with_items: "{{domains_interfaces}}"
+
+    - name: reboot
+      ansible.builtin.reboot:

@@ -1,7 +1,7 @@
 ---
 - name: DCS AD DATA CONFIGURATION
   hosts: dc
-#  hosts: dc01
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_domain/password_policy', tags: 'policy', policy: "{{password_policy.default}}"}
 # CREATE OBJECTS

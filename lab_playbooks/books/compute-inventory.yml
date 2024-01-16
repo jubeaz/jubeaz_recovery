@@ -1,13 +1,11 @@
 ---
 - name: "COMPUTE DOMAIN INFO ON EACH HOST"
   hosts: domain
+  max_fail_percentage: 0
 #  gather_facts: no
   tasks: 
     - name: compute domain dc on all hosts
       ansible.builtin.set_fact:
-        # ICI A MODIFIER 
-        #domain_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
-        #domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].domain_ip}}"
         domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].ansible_host}}"
         domain_dc_name: "{{hostvars[domain_dc_ansible_inventory_key].hostname}}"
     - name: compute domain info on non DC
@@ -18,7 +16,7 @@
         domain_gmsa: "{{hostvars[domain_dc_ansible_inventory_key].domain_gmsa}}"
         laps_path: "{{hostvars[domain_dc_ansible_inventory_key].laps_path}}"
         path: "{{hostvars[domain_dc_ansible_inventory_key].domain_real_computers[hostname].path}}"
-      when: type != 'dc'      
+      when: inventory_hostname not in groups['dc']
 #    - name: print host configuration
 #      debug:
 #        msg: 
@@ -34,6 +32,7 @@
 
 - name: "COMPUTE PARENT DOMAIN INFO ON EACH CHILD DC"
   hosts: dc
+  max_fail_percentage: 0
   gather_facts: no
   tasks:
     - name: Compute parent domain name on chid DC 
@@ -45,9 +44,6 @@
       ansible.builtin.set_fact:
         domain_parent_domain_password: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_password}}"
         domain_parent_dc_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].hostname}}"
-        # ICI A MODIFIER 
-        #domain_parent_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[domain_dc_ansible_inventory_key].domain_ip,hostvars[domain_dc_ansible_inventory_key].ansible_host)}}" 
-        #domain_parent_dc_ip: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_ip}}"
         domain_parent_dc_ip: "{{hostvars[parent_domain_dc_ansible_inventory_key].ansible_host}}"
         domain_parent_domain_name: "{{hostvars[parent_domain_dc_ansible_inventory_key].domain_name}}"
         cacheable: yes
@@ -63,6 +59,7 @@
 
 - name: "COMPUTE CHILD DOMAIN INFO ON EACH DC"
   hosts: dc
+  max_fail_percentage: 0
   gather_facts: no
   tasks:
     - name: Compute child domain names on parent DC
@@ -82,14 +79,12 @@
 
 - name: "COMPUTE TRUST DOMAIN INFO ON EACH DC"
   hosts: trust
+  max_fail_percentage: 0
   gather_facts: no
   tasks:
     - name: Compute trusted domain infos on DC
       set_fact:
         domain_trust_remote_dc_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].hostname}}"
-        # ICI A MODIFIER 
-        #domain_trust_remote_dc_ip: "{{(dc_on_nat == false) | ternary(hostvars[trust_domain_dc_ansible_inventory_key].domain_ip,hostvars[trust_domain_dc_ansible_inventory_key].ansible_host)}}" 
-        #domain_trust_remote_dc_ip: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_ip}}"
         domain_trust_remote_dc_ip: "{{hostvars[trust_domain_dc_ansible_inventory_key].ansible_host}}"       
         domain_trust_remote_domain_name: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_name}}"
         domain_trust_remote_domain_password: "{{hostvars[trust_domain_dc_ansible_inventory_key].domain_password}}"
@@ -106,8 +101,8 @@
 
 
 - name: "COMPUTE TRANSITIVE TRUSTED DOMAINS"
-#  hosts: trust
-  hosts: dc03
+  hosts: trust
+  max_fail_percentage: 0
   gather_facts: no
   tasks:
     - name: Compute transitive trusted domains

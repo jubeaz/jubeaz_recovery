@@ -1,7 +1,7 @@
 ---
 - name: "SETUP LOCAL SECURITIES"
-#  hosts: all
-  hosts: srv01
+  hosts: domain
+  max_fail_percentage: 0
   roles:
     - { role: "windows_settings/uac",              tags: 'windows_security'}
     - { role: "windows_settings/windows_defender", tags: 'windows_security'}

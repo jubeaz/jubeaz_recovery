@@ -1,6 +1,5 @@
-domain_dc_ansible_inventory_key: "dc03" # ansible inventory name
+domain_dc_ansible_inventory_key: "dc_haas" # ansible inventory name
 
 use_laps: false
 
-#installed_gmsa: ["ichi", "heimdall"]
 installed_gmsa: ["ichi"]

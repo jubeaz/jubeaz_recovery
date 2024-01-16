@@ -4,11 +4,11 @@
   ansible.windows.win_shell: Get-NetAdapter {{pub_adapter}} | Set-DNSClient -RegisterThisConnectionsAddress $False
   when: two_adapters == true
 
-- name: debug
-  ansible.builtin.debug:
-    msg:
-      - "domain_parent_source_dc: {{domain_parent_dc_name}}.{{domain_parent_domain_name}}"
-      - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
+#- name: debug
+#  ansible.builtin.debug:
+#    msg:
+#      - "domain_parent_source_dc: {{domain_parent_dc_name}}.{{domain_parent_domain_name}}"
+#      - "domain_parent_dc_ip: {{domain_parent_dc_ip}}"
 
 - name: "Set configure dns to {{domain_parent_dc_name}} {{domain_parent_dc_ip}}"
   win_dns_client:
@@ -42,6 +42,7 @@
   register: features_dns
 
 
+
 - name: add child domain to parent domain
   ansible.windows.win_powershell:
     script: |
@@ -63,6 +64,9 @@
           $ReplicationSourceDC,
 
           [String]
+          $SiteName,
+
+          [String]
           $NewDomainName,
 
           [String]
@@ -81,7 +85,16 @@
         $pass = ConvertTo-SecureString $Password -AsPlainText -Force 
         $Cred = New-Object System.Management.Automation.PSCredential ($DomainAdmin, $pass)
         $safePassword = ConvertTo-SecureString $DomSafePassword -AsPlainText -Force
-        Install-ADDSDomain -Credential $Cred -SkipPreChecks -NewDomainName $NewDomainName -NewDomainNetbiosName $NewDomainNetbiosName -ParentDomainName $ParentDomainName -ReplicationSourceDC $ReplicationSourceDC -DatabasePath "C:\Windows\NTDS" -SYSVOLPath "C:\Windows\SYSVOL" -LogPath "C:\Windows\Logs" -SafeModeAdministratorPassword $safePassword -Force -NoRebootOnCompletion
+        Install-ADDSDomain `
+          -Credential $Cred `
+          -SkipPreChecks `
+          -NewDomainName $NewDomainName `
+          -NewDomainNetbiosName $NewDomainNetbiosName `
+          -ParentDomainName $ParentDomainName `
+          -ReplicationSourceDC $ReplicationSourceDC `
+          -DatabasePath "C:\Windows\NTDS" -SYSVOLPath "C:\Windows\SYSVOL" -LogPath "C:\Windows\Logs" `
+          -SafeModeAdministratorPassword $safePassword `
+          -Force -NoRebootOnCompletion
       } else {
         $Ansible.Changed = $false
       }
@@ -93,37 +106,34 @@
       ReplicationSourceDC: "{{domain_parent_dc_name}}.{{domain_parent_domain_name}}"
       NewDomainNetbiosName: "{{domain_netbios_name}}"
       NewDomainName: "{{domain_netbios_name | lower}}"
+      SiteName: "{{domain_site_name}}"
   register: child_result
 
+- debug:
+    msg:
+       - "Password: {{domain_parent_domain_password}}"
+       - "DomSafePassword: {{domain_password}}"
+       - "DomainAdmin: Administrator@{{domain_parent_domain_name}}"
+       - "ParentDomainName: {{domain_parent_domain_name}}"
+       - "ReplicationSourceDC: {{domain_parent_dc_name}}.{{domain_parent_domain_name}}"
+       - "NewDomainNetbiosName: {{domain_netbios_name}}"
+       - "NewDomainName: {{domain_netbios_name | lower}}"
+       - "SiteName: {{domain_site_name}}"
+  when: child_result.error | default([]) | length > 0
 
+- debug:
+    var: child_result
+  when: child_result.error | default([]) | length > 0
+
+- fail:
+    msg: "No domain created"
+  when: child_result.error | default([]) | length > 0
 
 - name: Reboot
   win_reboot:
     reboot_timeout: 900
     post_reboot_delay: 300
   when: child_result.changed
-
-- name: check child creation
-  ansible.windows.win_powershell:
-    script: |
-      [CmdletBinding()]
-      param (
-          [String]
-          $NewDomainName
-      )
-
-      try {
-          $child_domain = Get-ADDomain -Identity $NewDomainName
-          Write-Output -InputObject $obj
-          $Ansible.Failed=$false
-          $Ansible.changed=$false
-      } catch {
-          $Ansible.Failed=$false
-      }
-    parameters:
-      NewDomainName: "{{domain_netbios_name}}"
-  register: child_result
-
 
 - name: Show powershell  child result
   debug: 

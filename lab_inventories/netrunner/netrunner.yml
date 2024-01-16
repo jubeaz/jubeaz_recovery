@@ -8,15 +8,15 @@ all:
       children:
         dc:
           hosts:
-            dc01: {dc_level: 0}    
-            dc03: {dc_level: 0} 
-            dc02: {dc_level: 1}
+            dc_weyland: {dc_level: 0}    
+            dc_haas: {dc_level: 0} 
+            dc_research_weyland: {dc_level: 1}
         dc_slave:
           hosts:
         trust:
           hosts:
-            dc01: {}    
-            dc03: {}
+            dc_weyland: {}    
+            dc_haas: {}
         domain_server:
           children:
               adcs:
@@ -40,9 +40,9 @@ all:
           children:
           hosts:
   hosts:
-    srv01: {two_adapters: true, ansible_host: 172.16.0.11,  public_ip: 192.168.2.101, domain_prefix: 24, domain_gateway: 10.0.0.254}
-    srv02: {                    ansible_host: 172.16.0.12}
-    dc03:  {                    ansible_host: 172.16.0.1}
-    dc02:  {                    ansible_host: 172.16.2.1}
-    dc01:  {                    ansible_host: 172.16.1.1}
-    fw:    {                    ansible_host: 192.168.2.100}
+    srv01:                {two_adapters: true, ansible_host: 172.16.0.11,  public_ip: 192.168.2.101, domain_prefix: 24, domain_gateway: 10.0.0.254}
+    srv02:                {                    ansible_host: 172.16.0.12}
+    dc_haas:              {                    ansible_host: 172.16.0.1}
+    dc_research_weyland:  {                    ansible_host: 172.16.2.1}
+    dc_weyland:           {                    ansible_host: 172.16.1.1}
+    fw:                   {                    ansible_host: 192.168.2.100}

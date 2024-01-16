@@ -3,5 +3,6 @@
 
 - name: "INSTALL IIS"
   hosts: iis
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_domain/iis', tags: 'iis'}

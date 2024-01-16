@@ -5,6 +5,7 @@
 
 - name: AD ACL
   hosts: dc
+  max_fail_percentage: 0
   roles:
   - { role: 'windows_domain/acl', tags: 'acl'}
   vars:
@@ -12,6 +13,7 @@
     
 - name: ADCS ACL
   hosts: adcs
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_domain/adcs/acl_templates', tags: 'adcs_templates', when: acls_adcs_templates   | length >0, acls: "{{acls_adcs_templates}}"}
     - { role: 'windows_domain/adcs/acl_authority', tags: 'adcs_templates', when: acls_adcs_authority   | length >0, acls: "{{acls_adcs_authority}}", CAName: "{{ca_common_name}}"}
@@ -19,6 +21,7 @@
 
 - name: SET LAPS USERS AND GROUPS PERMISSION
   hosts: dc
+  max_fail_percentage: 0
   roles:
     - { role: 'windows_domain/laps/permissions', tags: 'laps-permissions', when: laps_path  | length > 0}
 

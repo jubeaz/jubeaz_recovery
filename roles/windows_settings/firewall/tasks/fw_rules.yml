@@ -37,7 +37,7 @@
 #    - Private
 
 #https://github.com/dsccommunity/NetworkingDsc/wiki/Firewall
-- name: Create rules for winrm from ansible
+- name: Create firewall rules
   win_dsc:
     resource_name:  xFirewall
     Name:           "{{ item.value.name}}"

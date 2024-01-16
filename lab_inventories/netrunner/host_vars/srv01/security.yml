@@ -8,17 +8,7 @@
 #run_as_ppl: false,
 windows_defender: false
 
-#connection_profiles: {
-#  #"domain":  {"interface": "{{domain_adapter}}", "NetworkCategory": "Public", "IPv4Connectivity": "", "IPv6Connectivity": ""}
-#  "public":  {"interface": "{{pub_adapter}}",     "NetworkCategory": "Public", "IPv4Connectivity": "LocalNetwork", "IPv6Connectivity": "Disconnected"}
-#}
 
-#firewall_profiles: {
-#  "Domain": {"status": "enabled", "inbound": "allow", "outbound": "allow"},
-#  "Public": {"status": "enabled", "inbound": "allow", "outbound": "allow"},
-#  "Private": {"status": "enabled", "inbound": "allow", "outbound": "allow"},
-#  # enabled, disabled, # ["Domain", "Private", "Public"], # "allow", "block", "not_configured",  # "allow", "block", "not_configured"
-#}
 
 firewall_rules: {
    "FTP_IN_1": {
