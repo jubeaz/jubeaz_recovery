@@ -63,7 +63,9 @@ Param (
     [switch]$ForceNewSSLCert,
     [switch]$GlobalHttpFirewallAccess,
     [switch]$DisableBasicAuth = $false,
-    [switch]$EnableCredSSP
+    [switch]$EnableCredSSP,
+    [switch]$VerboseMode
+
 )
 
 Function Write-Log
@@ -223,6 +225,11 @@ Trap
     Exit 1
 }
 $ErrorActionPreference = "Stop"
+
+# setup verbosity
+If ($VerboseMode) {
+    $VerbosePreference = "Continue"
+}
 
 # Get the ID and security principal of the current user account
 $myWindowsID=[System.Security.Principal.WindowsIdentity]::GetCurrent()

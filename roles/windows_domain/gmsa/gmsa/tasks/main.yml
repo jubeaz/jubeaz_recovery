@@ -40,7 +40,6 @@
           $obj = New-ADServiceAccount -Name $gMSA_Name -DNSHostName $gMSA_FQDN -PrincipalsAllowedToRetrieveManagedPassword $gMSA_Principals -ServicePrincipalNames $gMSA_SPNs 
           Write-Output -InputObject $obj
           $Ansible.Failed = $false
-          $Ansible.Failed = $true
         } catch {
           $Ansible.Failed = $true
           $message = $_
