@@ -1,6 +1,6 @@
 
-domain_computers: "{{domain_fake_computers | ansible.builtin.combine(domain_real_computers)}}"
-#domain_computers: "{{domain_fake_computers}}"
+#domain_computers: "{{domain_fake_computers | ansible.builtin.combine(domain_real_computers)}}"
+domain_computers: "{{domain_fake_computers}}"
 
 domain_real_computers: {
 #    "fenris": {
