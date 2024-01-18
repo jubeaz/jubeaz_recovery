@@ -56,8 +56,10 @@
       )
       Import-Module ActiveDirectory
       Set-Location AD:
+
       $aclValues = 'AccessSystemSecurity', 'CreateChild', 'Delete', 'DeleteChild', 'DeleteTree', 'ExtendedRight', 'GenericAll', 'GenericExecute', 'GenericRead', 'GenericWrite', 'ListChildren', 'ListObject', 'ReadControl', 'ReadProperty', 'Self', 'Synchronize', 'WriteDacl', 'WriteOwner', 'WriteProperty'
       $aclExtendValues = 'Ext-User-Force-Change-Password', 'Ext-Self-Self-Membership', 'Ext-Write-Self-Membership'
+      
       if ($for.StartsWith("NT AUTHORITY")) {
         $forSID = New-Object System.Security.Principal.NTAccount "$for"
       } else {
@@ -108,6 +110,8 @@
         Set-Acl -AclObject $objAcl -path "$objOU"
         $Ansible.Changed = $true
       }
+
+    error_action: stop
     parameters:
       for: "{{item.value.for}}"
       to: "{{item.value.to}}"
@@ -119,3 +123,4 @@
     ansible_become_user: "{{domain_name}}\\Administrator"
     ansible_become_password: "{{domain_password}}"
   with_dict: "{{ ad_acls }}"
+

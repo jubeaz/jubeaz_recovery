@@ -66,6 +66,7 @@
           $message = $_
           Write-Warning "Something happened! $message"
       }
+    error_action: stop
     parameters:
       DomainName: "{{item | split('@') | last}}"
       GroupName: "{{local_group_name}}"

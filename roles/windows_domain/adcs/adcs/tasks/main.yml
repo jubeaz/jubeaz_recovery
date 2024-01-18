@@ -65,6 +65,7 @@
       } catch {
         $Ansible.Changed = $false
       }
+    error_action: stop
   when: web_enrollment is defined and web_enrollment == true
 
 - name: Refresh

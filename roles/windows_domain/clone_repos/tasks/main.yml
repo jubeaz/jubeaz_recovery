@@ -11,6 +11,7 @@
       if (-Not (Test-Path -Path c:\shared\$Folder)) {
         git clone $Repo c:\shared\$Folder
       }
+    error_action: stop
     parameters:
       Repo: "{{ item[1] }}"
       Folder: "{{ item[0] }}"

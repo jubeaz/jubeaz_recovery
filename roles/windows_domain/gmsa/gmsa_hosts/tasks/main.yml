@@ -13,6 +13,7 @@
           $gMSA_Name
       )
       Install-ADServiceAccount -Identity $gMSA_Name
+    error_action: stop
     parameters:
         gMSA_Name: "{{item}}"
   vars:

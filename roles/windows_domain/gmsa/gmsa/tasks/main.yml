@@ -46,6 +46,7 @@
           Write-Warning "Something happened! $message"
         }
       }
+    error_action: stop
     parameters:
       gMSA_Name: "{{item.value.gMSA_Name}}"
       gMSA_FQDN: "{{item.value.gMSA_FQDN}}"
@@ -93,6 +94,7 @@
         $message = $_
         Write-Warning "Something happened! $message"
       }
+    error_action: stop
     parameters:
       gMSA_Name: "{{item.value.gMSA_Name}}"
       delegates: "{{item.value.delegates | default([])}}"

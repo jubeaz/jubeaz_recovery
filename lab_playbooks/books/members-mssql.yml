@@ -39,7 +39,7 @@
   hosts: mssql
   max_fail_percentage: 0
   roles:
-#    - { role: 'windows_domain/mssql/mssql', tags: 'mssql'}
+    - { role: 'windows_domain/mssql/mssql', tags: 'mssql'}
     - { role: 'windows_domain/mssql/mssql_link', tags: 'mssql, mssql_link'}
   vars:
     ISGMSA: "{{true if mssql_svcaccount_method == 'gmsa' else false}}" 

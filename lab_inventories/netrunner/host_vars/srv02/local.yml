@@ -1,5 +1,5 @@
 local_groups: {
-    "Administrators" : ['HAAS\\rknight'],
+    "Administrators" : ["haas.local\\rknight"]
 #    "Remote Desktop Users" : [],
 #    "Remote Management Users": []
 }

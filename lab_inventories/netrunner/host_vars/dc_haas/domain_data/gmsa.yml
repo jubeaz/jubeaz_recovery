@@ -10,7 +10,7 @@ domain_gmsa : {
     "gMSA_Name" : "ichi",
     "gMSA_FQDN" : "ichi_v2.haas.local",
     "gMSA_SPNs" : ["MSSQLSvc/fenris.haas.local:1433","MSSQLSvc/fenris.haas.local"],
-    "gMSA_HostNames" : [],
+    "gMSA_HostNames" : ["fenris$"],
     "gMSA_Groups" : ["L_GMSA_ICHI"],
     "path"            : "CN=Managed Service Accounts,DC=haas,DC=local",            
     "delegates"       : ["CN=emoon,CN=Users,DC=haas,DC=local", "CN=ws01,OU=Workstations,OU=Cybernetics,OU=Asa,DC=haas,DC=local"], # RBCD / must be DN msDS-AllowedToActOnBehalfOfOtherIdentity
