@@ -20,7 +20,6 @@ domain_groups : {
         "managed_by" : "Domain Admins",
         "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
         "members" : [
-           
         ]
     },
     "L_LAPS_READER" : {
@@ -39,13 +38,11 @@ domain_groups : {
             "G_GMSA_ICHI",
              "fenris$"
         ],
-        "foreign_users" : [ 
-            ["arose@weyland.local"]
-        ],
-        "foreign_groups" : [ 
-            "G_LAPS_READER@weyland.local",
-            "G_LAPS_READER@research.weyland.local"
-        ]
+        "foreign_users": [],
+        "foreign_gmsas": [],
+        "foreign_computers": [],
+        "foreign_groups": ["weyland.local\\G_LAPS_READER"]
     } 
 }
 
+#         "foreign_members": ["weyland.local\\G_LAPS_READER"]

@@ -132,18 +132,9 @@ Config
 ```bash
 ```
 
-## ACL
-ajouter la possibilité d'avoir des ACL avec des foreigns
-traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml` via Get6ADObject
 
 ## add group foreign members
-traiter `roles/windows_domain/user_group_ou_computer/group/tasks/add_foreign.yml` via Get6ADObject
-
-```powershell
-        $DC = (Get-ADDomainController -Discover -Domain $DomainName).Name
-        #Write-Warning "Get-ADObject -Filter {(objectClass -eq $Type) -and (Name -eq $Identity) }  -Server $DC.$DomainName"
-        #$Obj = Get-ADObject -Filter {("objectClass -eq '$Type'") -and ("Name -eq '$Identity'") }  -Server "$DC.$DomainName"
-```
+Problème pour passer par get-adobject
 
 ## gmsa
 calculer automatiquement les gmsa accessibles pour un host donné

@@ -14,14 +14,11 @@ domain_groups : {
         "members" : [
             "G_LAPS_READER", 
         ],
-        "foreign_users" : [
-            ["emoon@haas.local"]
-        ],
-        "foreign_gmsas" : [
-            ["ichi@haas.local"]
-        ],
-        "foreign_computers" : [
-            ["fenris@haas.local"]
-        ]
+        "foreign_users": ["haas.local\\mhendrik"],
+        "foreign_gmsas": [],
+        "foreign_computers": [],
+        "foreign_groups": []
     }
 }
+
+#"foreign_members": ["haas.local\\mhendrik"]

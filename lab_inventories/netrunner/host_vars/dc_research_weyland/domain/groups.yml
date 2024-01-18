@@ -11,7 +11,11 @@ domain_groups : {
         "path" : "OU=Groups,OU=IT,OU=Titan,DC=research,DC=weyland,DC=local",
         "members" : [
             "G_LAPS_READER"
-        ]
+        ],
+        "foreign_users": [],
+        "foreign_gmsas": [],
+        "foreign_computers": [],
+        "foreign_groups": []
     }
 }
     

@@ -47,16 +47,15 @@
 #    computer
 #    user
 #  Get-ADObject -Filter {(objectClass -eq "msDS-GroupManagedServiceAccount") -and (Name -eq "ichi") }  -Server 
-- name: "Add foreign groups to domain group"
-  include_tasks: add_foreign.yml
-  vars:
-    local_group_name: "{{group.key}}"
-    object_type: "group"
-    foreign_objects: "{{ group.value.foreign_groups | default({}) }}"
-  with_dict: "{{ objects }}"
-  loop_control:
-    loop_var: group
-  when: action == "add_members" 
+#- name: "Add foreign members to domain group"
+#  include_tasks: add_foreign.yml
+#  vars:
+#    local_group_name: "{{group.key}}"
+#    foreign_objects: "{{ group.value.foreign_members | default({}) }}"
+#  with_dict: "{{ objects }}"
+#  loop_control:
+#    loop_var: group
+#  when: action == "add_members" 
 
 - name: "Add foreign users to domain group"
   include_tasks: add_foreign.yml
@@ -73,7 +72,7 @@
   include_tasks: add_foreign.yml
   vars:
     local_group_name: "{{group.key}}"
-    object_type: "msDS-GroupManagedServiceAccount"
+    object_type: "gmsa"
     foreign_objects: "{{ group.value.foreign_gmsas | default({}) }}"
   with_dict: "{{ objects }}"
   loop_control:
@@ -86,6 +85,17 @@
     local_group_name: "{{group.key}}"
     object_type: "computer"
     foreign_objects: "{{ group.value.foreign_computers | default({}) }}"
+  with_dict: "{{ objects }}"
+  loop_control:
+    loop_var: group
+  when: action == "add_members" 
+
+- name: "Add foreign groups to domain group"
+  include_tasks: add_foreign.yml
+  vars:
+    local_group_name: "{{group.key}}"
+    object_type: "group"
+    foreign_objects: "{{ group.value.foreign_groups | default({}) }}"
   with_dict: "{{ objects }}"
   loop_control:
     loop_var: group

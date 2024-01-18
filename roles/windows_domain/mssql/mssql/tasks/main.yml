@@ -118,6 +118,11 @@
     name: 'MSSQL${{ sql_instance_name }}'
     force_dependent_services: yes
     state: restarted
+  register: mssql_status
+
+- fail:
+    msg: "mssql not started"
+  when: mssql_status.state != "running"
 
 #- name: Firewall | Allow MSSQL through Firewall
 #  win_dsc:
