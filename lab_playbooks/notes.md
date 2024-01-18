@@ -15,7 +15,9 @@ xfreerdp /cert:ignore /v:172.16.0.1 /u:administrator@haas.local /p:'Jubeaz12345+
 xfreerdp /cert:ignore /v:172.16.1.1 /u:administrator@weyland.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
 xfreerdp /cert:ignore /v:172.16.2.1 /u:administrator@research.weyland.local /p:'Jubeaz12345+-' /h:1024 /w:1640 /drive:share,./ +drives
 ```
-
+```bash
+xfreerdp /cert:ignore /v:172.16.0.12 /u:HAAS\\mhendrik /p:'b_QNoDKoVJTjU3gq' /h:1024 /w:1640 /drive:share,./ +drives
+```
 
 ### rbcd
 ```powershell
@@ -37,43 +39,6 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 
 # inprogress
-
-## mssql
-
-xfreerdp /cert:ignore /v:172.16.0.12 /u:HAAS\\mhendrik /p:'b_QNoDKoVJTjU3gq' /h:1024 /w:1640 /drive:share,./ +drives
-
-
-
-il y a un problème pour start la bdd.
-
-c:\setup\PSExec64.exe -accepterula  -i -u haas\ichi$ -p ~ cmd.exe
-SqlCmd.exe -E -Q "CREATE LOGIN [HAAS\rknight] FROM WINDOWS"
-
-
-c:\setup\PSExec64.exe -accepterula  -i -u haas\ichi$ -p ~ SqlCmd.exe -E -Q "CREATE LOGIN [HAAS\rknight] FROM WINDOWS"
-
-c:\setup\PSExec64.exe -accepterula  -i -u haas\ichi$ -p ~ SqlCmd.exe -E -Q "SELECT name FROM master.dbo.sysdatabases"
-
-failed: [srv02] (item=HAAS\mhendrik) => {"ansible_loop_var": "item", "changed": false, "item": "HAAS\\mhendrik", "msg": "internal error: failed to become user 'haas.local\\ichi$': Exception calling \"CreateProcessAsUser\" with \"9\" argument(s): \"Failed to logon haas.local\\ichi$ (The user name or password is incorrect, Win32ErrorCode 1326 - 0x0000052E)\""}
-
-
-PSExec64.exe -i -u DOMAIN\gMSA-Account$ -p ~ cmd.exe
-
-PSExec64.exe  -u DOMAIN\gMSA-Account$ -p ~ non interactive command
-
-
-```
-- name: Run a cmd.exe command
-  community.windows.psexec:
-    hostname: server
-    connection_username: username
-    connection_password: password
-    executable: cmd.exe
-    arguments: /c echo Hello World
-```
-
-https://download.sysinternals.com/files/PSTools.zip
-
 
 # todo
 

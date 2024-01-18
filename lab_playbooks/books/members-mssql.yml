@@ -37,7 +37,6 @@
 
 - name: "INSTALL MSSQL EXPRESS"
   hosts: mssql
-#  hosts: srv01
   max_fail_percentage: 0
   roles:
 #    - { role: 'windows_domain/mssql/mssql', tags: 'mssql'}

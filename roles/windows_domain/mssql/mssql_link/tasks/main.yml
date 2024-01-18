@@ -9,16 +9,15 @@
   vars:
     ansible_become_pass: "{{SQLSVCPASSWORD}}"
   with_dict: "{{linked_servers}}"
+  when: ISGMSA == false 
 
-#- name: Create logins mapping to specific users
-#  win_shell: |
-#    SqlCmd -E -Q "EXEC master.dbo.sp_addlinkedsrvlogin @rmtsrvname = N'{{item.key}}', @locallogin = N'{{item.value.local_login}}', @useself = N'False', @rmtuser = N'{{item.value.remote_login}}', @rmtpassword = N'{{item.value.remote_password}}'"
-#  become: yes
-#  become_method: runas
-#  become_user: "{{SQLSVCACCOUNT}}"
-#  vars:
-#    ansible_become_pass: "{{SQLSVCPASSWORD}}"
-#  with_dict: "{{linked_servers.users_mapping}}"
+- name: Create SQL Linked server and enable RPC
+  win_shell: |
+    c:\setup\PSExec64.exe -accepteula -i -u {{SQLSVCACCOUNT}} -p ~ SqlCmd -E -Q "EXEC master.dbo.sp_addlinkedserver @server = N'{{item.key}}', @srvproduct=N'', @provider=N'SQLOLEDB', @datasrc=N'{{item.value.data_src}}'"
+    c:\setup\PSExec64.exe -accepteula -i -u {{SQLSVCACCOUNT}} -p ~ SqlCmd -E -Q "EXEC master.dbo.sp_serveroption @server=N'{{item.key}}', @optname=N'rpc', @optvalue=N'true'"
+    c:\setup\PSExec64.exe -accepteula -i -u {{SQLSVCACCOUNT}} -p ~ SqlCmd -E -Q "EXEC master.dbo.sp_serveroption @server=N'{{item.key}}', @optname=N'rpc out', @optvalue=N'true'"
+  with_dict: "{{linked_servers}}"
+  when: ISGMSA 
 
 - name: "create logins"
   include_tasks: logins.yml  
@@ -36,3 +35,10 @@
   vars:
     ansible_become_pass: "{{SQLSVCPASSWORD}}"
   with_dict: "{{linked_servers}}"
+  when: ISGMSA == false 
+
+- name: default login impersonation
+  win_shell: |
+    c:\setup\PSExec64.exe -accepteula -i -u {{SQLSVCACCOUNT}} -p ~ SqlCmd -E -Q "EXEC master.dbo.sp_addlinkedsrvlogin @rmtsrvname = N'{{item.key}}', @locallogin = NULL , @useself = N'True'"
+  with_dict: "{{linked_servers}}"
+  when: ISGMSA 
