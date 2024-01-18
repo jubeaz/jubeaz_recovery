@@ -2,40 +2,6 @@
 #- debug:
 #    var: firewall_rules
 
-- name: Create rules for winrm from ansible
-  win_dsc:
-    resource_name:  xFirewall
-    Name:           "ansible_winrm_{{ item | lower }}"
-    Group:          "Windows Remote Management"
-    Ensure:         present
-    Enabled:        True
-    Action:         "Allow"
-    Profile:        "{{item}}"
-    Direction:      "Inbound"
-    Localport:      "5985"
-    Protocol:       "TCP"
-    RemoteAddress:  "{{ansible_controller_ip}}"
-  with_items:
-    - Domain
-    - Public
-    - Private
-#
-#
-#- name: Delete ConfigureRemotingForAnsible.ps1 rules
-#  win_dsc:
-#    resource_name:  xFirewall
-#    Name:           "Windows Remote Management (HTTP-In)"
-#    Group:          "Windows Remote Management"
-#    Ensure:         Absent
-#    Profile:        "{{item}}"
-#    Direction:      "Inbound"
-#    Localport:      "5985"
-#    Protocol:       "TCP"
-#  with_items:
-#    - Domain
-#    - Public
-#    - Private
-
 #https://github.com/dsccommunity/NetworkingDsc/wiki/Firewall
 - name: Create firewall rules
   win_dsc:

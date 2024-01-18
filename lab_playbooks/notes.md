@@ -38,28 +38,133 @@ https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html
 
 # inprogress
 
-## security firewall
+## mssql
+
+xfreerdp /cert:ignore /v:172.16.0.12 /u:HAAS\\mhendrik /p:'b_QNoDKoVJTjU3gq' /h:1024 /w:1640 /drive:share,./ +drives
+
+
+
+il y a un problème pour start la bdd.
+
+c:\setup\PSExec64.exe -accepterula  -i -u haas\ichi$ -p ~ cmd.exe
+SqlCmd.exe -E -Q "CREATE LOGIN [HAAS\rknight] FROM WINDOWS"
+
+
+c:\setup\PSExec64.exe -accepterula  -i -u haas\ichi$ -p ~ SqlCmd.exe -E -Q "CREATE LOGIN [HAAS\rknight] FROM WINDOWS"
+
+c:\setup\PSExec64.exe -accepterula  -i -u haas\ichi$ -p ~ SqlCmd.exe -E -Q "SELECT name FROM master.dbo.sysdatabases"
+
+failed: [srv02] (item=HAAS\mhendrik) => {"ansible_loop_var": "item", "changed": false, "item": "HAAS\\mhendrik", "msg": "internal error: failed to become user 'haas.local\\ichi$': Exception calling \"CreateProcessAsUser\" with \"9\" argument(s): \"Failed to logon haas.local\\ichi$ (The user name or password is incorrect, Win32ErrorCode 1326 - 0x0000052E)\""}
+
+
+PSExec64.exe -i -u DOMAIN\gMSA-Account$ -p ~ cmd.exe
+
+PSExec64.exe  -u DOMAIN\gMSA-Account$ -p ~ non interactive command
+
+
+```
+- name: Run a cmd.exe command
+  community.windows.psexec:
+    hostname: server
+    connection_username: username
+    connection_password: password
+    executable: cmd.exe
+    arguments: /c echo Hello World
+```
+
+https://download.sysinternals.com/files/PSTools.zip
 
 
 # todo
 
+## mssql gmsa
+
 ## ansible script and firewall
+### windows server
 ```bash
-    nrunner_srv01: Running: ../scripts/ConfigureRemotingForAnsible.ps1 as C:\tmp\vagrant-shell.ps1
-    nrunner_srv01: Self-signed SSL certificate generated; thumbprint: 381126557DE765B7BCA4EB7FF3E9E9601CFF3634
-    nrunner_srv01:
-    nrunner_srv01:
-    nrunner_srv01: wxf                 : http://schemas.xmlsoap.org/ws/2004/09/transfer
-    nrunner_srv01: a                   : http://schemas.xmlsoap.org/ws/2004/08/addressing
-    nrunner_srv01: w                   : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
-    nrunner_srv01: lang                : en-US
-    nrunner_srv01: Address             : http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous
-    nrunner_srv01: ReferenceParameters : ReferenceParameters
-    nrunner_srv01:
-    nrunner_srv01: Ok.
-    nrunner_srv01:
-    nrunner_srv01:
-    nrunner_srv01:
+    nrunner_dc02: Verifying WinRM service.
+    nrunner_dc02: PS Remoting is already enabled.
+    nrunner_dc02: Self-signed SSL certificate generated; thumbprint: ADAF1EF9CE5F9F78C83950BB2EDA479D5FC2BEAA
+    nrunner_dc02: Enabling SSL listener.
+    nrunner_dc02:
+    nrunner_dc02:
+    nrunner_dc02: wxf                 : http://schemas.xmlsoap.org/ws/2004/09/transfer
+    nrunner_dc02: a                   : http://schemas.xmlsoap.org/ws/2004/08/addressing
+    nrunner_dc02: w                   : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+    nrunner_dc02: lang                : en-US
+    nrunner_dc02: Address             : http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous
+    nrunner_dc02: ReferenceParameters : ReferenceParameters
+    nrunner_dc02:
+    nrunner_dc02: Basic auth is already enabled.
+    nrunner_dc02: Adding firewall rule to allow WinRM HTTPS.
+    nrunner_dc02: Ok.
+    nrunner_dc02:
+    nrunner_dc02: HTTP: Disabled | HTTPS: Enabled
+    nrunner_dc02:
+    nrunner_dc02:
+```
+
+avant la jonction au domaine:
+```powershell
+winrm get winrm/config
+
+Config
+    MaxEnvelopeSizekb = 500
+    MaxTimeoutms = 1800000
+    MaxBatchItems = 32000
+    MaxProviderRequests = 4294967295
+    Client
+        NetworkDelayms = 5000
+        URLPrefix = wsman
+        AllowUnencrypted = false
+        Auth
+            Basic = true
+            Digest = true
+            Kerberos = true
+            Negotiate = true
+            Certificate = true
+            CredSSP = false
+        DefaultPorts
+            HTTP = 5985
+            HTTPS = 5986
+        TrustedHosts
+    Service
+        RootSDDL = O:NSG:BAD:P(A;;GA;;;BA)(A;;GR;;;IU)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)
+        MaxConcurrentOperations = 4294967295
+        MaxConcurrentOperationsPerUser = 1500
+        EnumerationTimeoutms = 240000
+        MaxConnections = 300
+        MaxPacketRetrievalTimeSeconds = 120
+        AllowUnencrypted = true
+        Auth
+            Basic = true
+            Kerberos = true
+            Negotiate = true
+            Certificate = false
+            CredSSP = false
+            CbtHardeningLevel = Relaxed
+        DefaultPorts
+            HTTP = 5985
+            HTTPS = 5986
+        IPv4Filter = *
+        IPv6Filter = *
+        EnableCompatibilityHttpListener = false
+        EnableCompatibilityHttpsListener = false
+        CertificateThumbprint
+        AllowRemoteAccess = true
+    Winrs
+        AllowRemoteShellAccess = true
+        IdleTimeout = 7200000
+        MaxConcurrentUsers = 2147483647
+        MaxShellRunTime = 2147483647
+        MaxProcessesPerShell = 2147483647
+        MaxMemoryPerShellMB = 800
+        MaxShellsPerUser = 2147483647
+
+```
+
+### windows 11
+```bash
 ```
 
 ## ACL

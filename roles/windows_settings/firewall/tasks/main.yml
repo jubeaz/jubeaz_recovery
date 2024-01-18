@@ -1,4 +1,10 @@
 ---
+
+- name: Windows | Check for xNetworking Powershell module
+  win_psmodule:
+    name: xNetworking
+    state: present
+
 - include_tasks: fw_rules.yml
 - include_tasks: fw_profiles.yml
 # Change network profile of domainAuthenticated interface 

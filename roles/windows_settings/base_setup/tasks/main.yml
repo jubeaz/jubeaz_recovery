@@ -52,21 +52,33 @@
     name: xNetworking
     state: present
 
-- name: Firewall | Allow RDP through Firewall
+# https://github.com/dsccommunity/NetworkingDsc/wiki/Firewall
+- name: Firewall | Allow RDP for Anasible host
   win_dsc:
     resource_name: xFirewall
-    Name:           "ansible_rdp_{{ item | lower }}"
+    Name:           "ansible_rdp"
     Group:          "Windows Remote Management"
     Ensure:         present
     Enabled:        True
     Action:         "Allow"
-    Profile:        "{{item}}"
+    Profile:        ["Domain", "Public", "Private"]
     Direction:      "Inbound"
     Localport:      "3389"
     Protocol:       "TCP"
     RemoteAddress:  "{{ansible_controller_ip}}"
     Description:    "Opens the listener port for RDP"
-  with_items:
-    - Domain
-#    - Public
-#    - Private
+
+
+- name: Firewall | Allow WinRM for Anasible host
+  win_dsc:
+    resource_name:  xFirewall
+    Name:           "ansible_winrm"
+    Group:          "Windows Remote Management"
+    Ensure:         "Present"
+    Enabled:        True
+    Action:         "Allow"
+    Profile:        ["Domain", "Public", "Private"]
+    Direction:      "Inbound"
+    Localport:      ["5985", "5986"]
+    Protocol:       "TCP"
+    RemoteAddress:  "{{ansible_controller_ip}}"

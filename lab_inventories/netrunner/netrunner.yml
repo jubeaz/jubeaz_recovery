@@ -30,7 +30,8 @@ all:
                   srv02: {}
                   srv01: {}           
               mssql_ssms:
-                hosts:              
+                hosts: 
+                  srv02: {}             
               webdav:
                 hosts:          
                   srv02: {}
