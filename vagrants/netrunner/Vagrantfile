@@ -2,6 +2,7 @@
 #"StefanScherer/windows_10"
 #"StefanScherer/windows_11"
 #"StefanScherer/windows_2019"
+#"gusztavvargadr/windows-10"
 #"gusztavvargadr/windows-server-core"
 #"gusztavvargadr/windows-server"
 #"archlinux/archlinux"
@@ -45,10 +46,21 @@ Vagrant.configure("2") do |config|
       cpu: 2
     },
     { 
+      # only internal
+      bname: "nrunner_dc01", 
+      ip: "172.16.1.1", 
+  	  net: net_defs[:weyland], 
+      box: "gusztavvargadr/windows-server-core", 
+      box_version: "2102.0.2310", 
+      os: "windows", 
+      ram: 2048, 
+      cpu: 2
+    },
+    { 
       # internal and public
       bname: "nrunner_srv01", 
-      ip: "172.16.0.11", 
-  	  net: net_defs[:haas], 
+      ip: "172.16.1.10", 
+  	  net: net_defs[:weyland], 
       ip_p: "192.168.2.101",
       mask_p: "255.255.255.0", 
       box: "gusztavvargadr/windows-server", 
@@ -58,22 +70,22 @@ Vagrant.configure("2") do |config|
       cpu: 2
     },
     { 
-      # internal and public
-      bname: "nrunner_srv02", 
-      ip: "172.16.0.12", 
-  	  net: net_defs[:haas], 
-      box: "gusztavvargadr/windows-server", 
-      box_version: "2102.0.2310", 
-      os: "windows", 
-      ram: 4096, 
-      cpu: 2
-    },
-    { 
-      # internal and public
+      # only internal
       bname: "nrunner_dc03", 
       ip: "172.16.0.1", 
   	  net: net_defs[:haas], 
-      box: "gusztavvargadr/windows-server", 
+      box: "gusztavvargadr/windows-server-core", 
+      box_version: "2102.0.2310", 
+      os: "windows", 
+      ram: 2048, 
+      cpu: 2
+    },
+    { 
+      # only internal
+      bname: "nrunner_ws01", 
+      ip: "172.16.0.20", 
+  	  net: net_defs[:haas], 
+      box: "gusztavvargadr/windows-10", 
       box_version: "2102.0.2310", 
       os: "windows", 
       ram: 4096, 
@@ -81,9 +93,9 @@ Vagrant.configure("2") do |config|
     },
     { 
       # only internal
-      bname: "nrunner_dc01", 
-      ip: "172.16.1.1", 
-  	  net: net_defs[:weyland], 
+      bname: "nrunner_srv02", 
+      ip: "172.16.0.10", 
+  	  net: net_defs[:haas], 
       box: "gusztavvargadr/windows-server", 
       box_version: "2102.0.2310", 
       os: "windows", 
@@ -95,10 +107,10 @@ Vagrant.configure("2") do |config|
       bname: "nrunner_dc02", 
       ip: "172.16.2.1", 
   	  net: net_defs[:research], 
-      box: "gusztavvargadr/windows-server", 
+      box: "gusztavvargadr/windows-server-core", 
       box_version: "2102.0.2310", 
       os: "windows", 
-      ram: 4096, 
+      ram: 2048, 
       cpu: 2
     }
   ]
