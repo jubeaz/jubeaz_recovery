@@ -63,10 +63,10 @@ Vagrant.configure("2") do |config|
   	  net: net_defs[:weyland], 
       ip_p: "192.168.2.101",
       mask_p: "255.255.255.0", 
-      box: "gusztavvargadr/windows-server", 
+      box: "gusztavvargadr/windows-server-core", 
       box_version: "2102.0.2310", 
       os: "windows", 
-      ram: 4096, 
+      ram: 2048, 
       cpu: 2
     },
     { 
@@ -96,10 +96,10 @@ Vagrant.configure("2") do |config|
       bname: "nrunner_srv02", 
       ip: "172.16.0.10", 
   	  net: net_defs[:haas], 
-      box: "gusztavvargadr/windows-server", 
+      box: "gusztavvargadr/windows-server-core", 
       box_version: "2102.0.2310", 
       os: "windows", 
-      ram: 4096, 
+      ram: 2048, 
       cpu: 2
     },
     { 
