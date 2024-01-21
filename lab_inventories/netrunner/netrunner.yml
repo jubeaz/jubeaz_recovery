@@ -29,21 +29,22 @@ all:
                 hosts:
                   srv02: {}
                   srv01: {}           
-              mssql_ssms:
-                hosts: 
-                  srv02: {}             
-              webdav:
-                hosts:          
-                  srv02: {}
-                  srv01: {}                   
           hosts:
+        mssql_ssms:
+          hosts: 
+            ws01: {}             
+        webdav:
+          hosts:          
+            srv02: {}
+            srv01: {}            
         domain_workstation:  
-          children:
           hosts:
+            ws01: {}
   hosts:
-    srv01:                {two_adapters: true, ansible_host: 172.16.0.11,  public_ip: 192.168.2.101, domain_prefix: 24, domain_gateway: 10.0.0.254}
-    srv02:                {                    ansible_host: 172.16.0.12}
-    dc_haas:              {                    ansible_host: 172.16.0.1}
-    dc_research_weyland:  {                    ansible_host: 172.16.2.1}
     dc_weyland:           {                    ansible_host: 172.16.1.1}
+    srv01:                {two_adapters: true, ansible_host: 172.16.1.10,  public_ip: 192.168.2.101, domain_prefix: 24, domain_gateway: 10.0.0.254}
+    dc_haas:              {                    ansible_host: 172.16.0.1}
+    srv02:                {                    ansible_host: 172.16.0.10}
+    ws01:                 {                    ansible_host: 172.16.0.20}
+    dc_research_weyland:  {                    ansible_host: 172.16.2.1}
     fw:                   {                    ansible_host: 192.168.2.100}

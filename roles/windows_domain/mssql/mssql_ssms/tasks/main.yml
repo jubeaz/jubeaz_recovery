@@ -1,3 +1,14 @@
+
+- name: create a directory for installer download
+  win_file: 
+    path: c:\setup
+    state: directory
+    
+- name: create a directory for installer extraction
+  win_file: 
+    path: c:\setup\mssql
+    state: directory
+
 - name: check SQL Server Manager Studio installer exists
   win_stat:
     path: c:\setup\mssql\SSMS_installer.exe

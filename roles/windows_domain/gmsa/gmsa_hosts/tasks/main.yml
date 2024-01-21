@@ -4,6 +4,9 @@
     state: present
   when: installed_gmsa | default([]) | length > 0
 
+- name: refresh krb token
+  win_shell:  klist -li 0x3e7 purge
+
 - name: Install ADServiceAccount
   ansible.windows.win_powershell:
     script: |

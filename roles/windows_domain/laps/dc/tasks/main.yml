@@ -130,6 +130,14 @@
       account: S-1-5-10
   with_dict: "{{laps_path}}"
 
+- name: Install GPO feature
+  win_feature:
+    name: GPMC
+    state: present
+    include_sub_features: yes
+    include_management_tools: yes
+  register: win_feature
+
 
 - name: Create LAPS GPO
   win_gpo:

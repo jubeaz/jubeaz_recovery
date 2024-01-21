@@ -67,8 +67,21 @@
     Protocol:       "TCP"
     RemoteAddress:  "{{ansible_controller_ip}}"
     Description:    "Opens the listener port for RDP"
-
-
+#
+#- name: Firewall | Allow RDP for Anasible host
+#  community.windows.win_firewall_rule:
+#    name: ansible_rdp
+#    group: Windows Remote Management
+#    localport: 3389
+#    action: allow
+#    direction: in
+#    protocol: tcp
+#    state: present
+#    enabled: yes
+#    remoteip: "{{ansible_controller_ip}}"
+#    description: "Opens the listener port for RDP"
+#    profiles: ["Domain", "Public", "Private"]
+#
 - name: Firewall | Allow WinRM for Anasible host
   win_dsc:
     resource_name:  xFirewall
@@ -82,3 +95,31 @@
     Localport:      ["5985", "5986"]
     Protocol:       "TCP"
     RemoteAddress:  "{{ansible_controller_ip}}"
+
+#- name: Firewall | Allow WinRM for Anasible host
+#  community.windows.win_firewall_rule:
+#    name: ansible_winrm
+#    group: Windows Remote Management
+#    localport: 5985
+#    action: allow
+#    direction: in
+#    protocol: tcp
+#    state: present
+#    enabled: yes
+#    remoteip: "{{ansible_controller_ip}}"
+#    description: "Opens the listener port for RDP"
+#    profiles: ["Domain", "Public", "Private"]
+#
+#- name: Firewall | Allow WinRMs for Anasible host
+#  community.windows.win_firewall_rule:
+#    name: ansible_winrms
+#    group: Windows Remote Management
+#    localport: 5986
+#    action: allow
+#    direction: in
+#    protocol: tcp
+#    state: present
+#    enabled: yes
+#    remoteip: "{{ansible_controller_ip}}"
+#    description: "Opens the listener port for RDP"
+#    profiles: ["Domain", "Public", "Private"]

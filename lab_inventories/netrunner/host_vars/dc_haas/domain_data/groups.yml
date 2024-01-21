@@ -36,7 +36,7 @@ domain_groups : {
         "path" : "OU=Groups,OU=Cybernetics,OU=Asa,DC=haas,DC=local",
         "members" : [
             "G_GMSA_ICHI",
-             "fenris$"
+            "fenris$", # computer account must be in the group not in nested groups
         ],
         "foreign_users": [],
         "foreign_gmsas": [],

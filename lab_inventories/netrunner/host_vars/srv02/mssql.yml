@@ -8,7 +8,8 @@ mssql_svcaccount_key: "ichi"
 
 mssql_sysadmins: ["HAAS\\mhendrik"]
 mssql_executeaslogin: {
-    "HAAS\\rknight" : "sa"
+    "HAAS\\rknight" : "sa",
+    "HAAS\\jubeaz" : "sa"
     }
 mssql_executeasuser: {
     "master_dbo": {

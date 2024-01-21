@@ -4,6 +4,22 @@
   max_fail_percentage: 0
 #  gather_facts: no
   tasks: 
+    - name: Check Product name
+      win_shell: |
+        $ProductName = Get-ItemProperty -Path "HKLM:/Software/Microsoft/Windows NT/CurrentVersion" | Select-Object -ExpandProperty "ProductName"
+        Return $ProductName
+      register: product_name
+    - name: register is_server_os
+      ansible.builtin.set_fact: 
+        is_server_os: "{{product_name.stdout_lines[0] is search('Windows Server')}}"       
+    - name: Check InstallationType
+      win_shell: |
+        $InstallationType = Get-ItemProperty -Path "HKLM:/Software/Microsoft/Windows NT/CurrentVersion" | Select-Object -ExpandProperty "InstallationType"
+        Return $InstallationType -eq "Server Core"
+      register: is_server_core
+    - name: register is_core_install
+      ansible.builtin.set_fact: 
+        is_core_install: "{{ is_server_core.stdout_lines[0] }}"      
     - name: compute domain dc on all hosts
       ansible.builtin.set_fact:
         domain_dc_ip: "{{hostvars[domain_dc_ansible_inventory_key].ansible_host}}"
@@ -36,7 +52,7 @@
   gather_facts: no
   tasks:
     - name: Compute parent domain name on chid DC 
-      set_fact:
+      ansible.builtin.set_fact:
         domain_parent_domain_name: "{{'.'.join(domain_name.split('.')[1:])}}"
         cacheable: yes
       when: dc_level != 0

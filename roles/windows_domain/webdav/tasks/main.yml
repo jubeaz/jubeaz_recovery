@@ -3,7 +3,8 @@
     name: WebDAV-Redirector
     state: present
   register: webdav_feature
+  when: is_core_install == false
 
 - name: Reboot after installing WebDAV client feature
   ansible.windows.win_reboot:
-  when: webdav_feature.reboot_required
+  when: is_core_install == false and webdav_feature.reboot_required

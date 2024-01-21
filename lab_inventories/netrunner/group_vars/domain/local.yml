@@ -18,7 +18,9 @@ local_groups: {
 #scripts: ["sidhistory.ps1"]
 #vulns: ["disable_firewall"]
 
-#features: []
+# server: https://learn.microsoft.com/en-us/windows-server/administration/server-core/server-core-roles-and-services
+# worksation: Get-WindowsCapability -Name RSAT* -Online |
+extra_features: []
 #softwares: []
 #repos: []
 #repos_user: ""
