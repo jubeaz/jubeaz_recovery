@@ -15,6 +15,14 @@
     - { role: opensshd}
 
   tasks:
+    - name: disable NAT
+      ansible.builtin.blockinfile:
+        path: /etc/systemd/network/80-dhcp.network
+        append_newline: true
+        prepend_newline: true
+        block: |
+          [Link]
+          Unmanaged=yes
     - name: Ensure that DNS is set on eth1
       ansible.builtin.lineinfile:
         path: /etc/systemd/network/eth1.network

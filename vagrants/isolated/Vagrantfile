@@ -1,0 +1,71 @@
+
+#"StefanScherer/windows_10"
+#"StefanScherer/windows_11"
+#"StefanScherer/windows_2019"
+#"gusztavvargadr/windows-10"
+#"gusztavvargadr/windows-server-core"
+#"gusztavvargadr/windows-server"
+#"archlinux/archlinux"
+
+Vagrant.configure("2") do |config|
+  # Uncomment this depending on the provider you want to use
+  ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+  #ENV['VAGRANT_DEFAULT_PROVIDER'] = 'vmware_desktop'
+  boxes = [
+    { 
+      bname: "ffox", 
+      ip_p: "192.168.2.15",
+      mask_p: "255.255.255.0", 
+  	  gw: "192.168.2.1",
+      box: "archlinux/archlinux", 
+      os: "arch", 
+      ram: 4096, # 8192
+      cpu: 8,
+      box_version: "20240115.207158"
+    }
+  ]
+
+  # no autoupdate if vagrant-vbguest is installed
+  if Vagrant.has_plugin?("vagrant-vbguest") then
+    config.vbguest.auto_update = false
+  end
+  config.vm.boot_timeout = 600
+  config.vm.graceful_halt_timeout = 600
+  config.winrm.retry_limit = 30
+  config.winrm.retry_delay = 10
+  config.winrm.transport = "plaintext"
+  config.winrm.basic_auth_only = true
+
+  boxes.each do |box|
+    config.vm.define box[:bname] do |target|
+      # BOX
+      target.vm.provider "virtualbox" do |v|
+        v.memory = box[:ram]
+        v.name = box[:bname]
+        v.cpus = 2
+        v.customize ["modifyvm", box[:bname], '--audio-driver', 'alsa', '--audio-controller', 'ac97', '--audio-out', 'on'] # choices: hda sb16 ac97
+        v.customize ["modifyvm", box[:bname], '--graphicscontroller', 'vmsvga', '--vram', '128']
+
+      end
+      # Download image
+      target.vm.box_download_insecure = box[:box]
+      target.vm.box = box[:box]
+      if box.has_key?(:box_version)
+        target.vm.box_version = box[:box_version]
+      end
+
+      # issues/49
+#      target.vm.synced_folder '.', '/vagrant', disabled: true
+#      target.vm.synced_folder 'shared/', '/shared', disabled: true
+      # Arch specific
+      if box[:os] == "arch"
+        # Provision a public interface on eth1	
+        target.vm.network :public_network, bridge: 'br0', ip: box[:ip_p]
+        target.vm.communicator = "ssh"
+        # Provision internal networks
+        target.vm.provision :shell, :path => "init.sh", privileged: true, args: [box[:gw]]
+        config.vm.provision "file", source: "./authorized_keys", destination: "/tmp/authorized_keys"
+      end
+    end
+  end
+end

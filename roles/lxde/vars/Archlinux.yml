@@ -8,7 +8,7 @@ lxde_pkgs:
   - lightdm-gtk-greeter
   - i3-wm
   - rofi
-  - light
+  #- light
   - ttf-font-awesome
   - arandr
     #  - openbox
