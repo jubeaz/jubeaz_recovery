@@ -95,7 +95,7 @@
         interface: "{{item}}"
       with_items: "{{domains_interfaces}}"
 
-    - name: Insert NAT rules for domains to local network
+    - name: Insert NAT rules for domains interface to local network
       include_tasks: tasks/fw-add-nat.yml
       vars:
         info: "{{hostvars[inventory_hostname].ansible_facts}}"

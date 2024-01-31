@@ -1,0 +1,10 @@
+domain_ous: {
+    "Asa"             : { "name": "Asa",            "path" : "DC=haas,DC=local"},
+    "Cybernetics"     : { "name": "Cybernetics",    "path" : "OU=Asa,DC=haas,DC=local"},
+    "C_servers"       : { "name": "Servers",        "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+    "C_workstations"  : { "name": "Workstations",   "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+    "C_services"      : { "name": "Services",       "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+    "C_groups"        : { "name": "Groups",         "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+    "C_users"         : { "name": "Users",          "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"},
+    "C_admins"        : { "name": "Admins",         "path" : "OU=Cybernetics,OU=Asa,DC=haas,DC=local"}
+}

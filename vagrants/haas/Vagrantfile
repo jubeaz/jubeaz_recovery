@@ -126,9 +126,9 @@ Vagrant.configure("2") do |config|
         if box.has_key?(:ip_p)
           #  Provision a public interface if needed on Ethernet 3 
           target.vm.network :public_network, bridge: 'br0', ip: box[:ip_p]
-          target.vm.provision :shell, :path => "fix_ip.ps1", privileged: false, args: [box[:ip], n_info[:mask], n_info[:gw], box[:ip_p], box[:mask_p]]
+          target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: [box[:ip], n_info[:mask], n_info[:gw], box[:ip_p], box[:mask_p]]
         else
-          target.vm.provision :shell, :path => "fix_ip.ps1", privileged: false, args: [box[:ip], n_info[:mask], n_info[:gw],"None", "None"]
+          target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: [box[:ip], n_info[:mask], n_info[:gw],"None", "None"]
         end
   #        target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: [box[:ip], box[:mask], box[:gw], box[:ip_i], box[:mask_i]]
         target.vm.provision :shell, :path => "../scripts/Install-WMF3Hotfix.ps1", privileged: false
@@ -145,7 +145,8 @@ Vagrant.configure("2") do |config|
           puts "  Provision Network #{n_info[:name]} with IP #{bn[:ip]}"
           target.vm.network :private_network, ip: bn[:ip], virtualbox__intnet: n_info[:name]
         end
-        target.vm.provision :shell, :path => "fix_ip.sh", privileged: true, args: [box[:gw]]
+        target.vm.provision :shell, :path => "../scripts/fix_ip.sh", privileged: true, args: [box[:gw]]
+        target.vm.provision :shell, :path => "../scripts/arch_python.sh", privileged: true, args: [box[:gw]]
       end
 
       if box.has_key?(:forwarded_port)

@@ -96,6 +96,15 @@
     Protocol:       "TCP"
     RemoteAddress:  "{{ansible_controller_ip}}"
 
+- name: Set explorer show hidden files
+  ansible.windows.win_powershell:
+    script: |
+       Set-ItemProperty hkcu:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name Hidden -Value 1
+
+- name: Set explorer show file extension
+  ansible.windows.win_powershell:
+    script: |
+       Set-ItemProperty hkcu:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name HideFileExt -Value 0
 #- name: Firewall | Allow WinRM for Anasible host
 #  community.windows.win_firewall_rule:
 #    name: ansible_winrm

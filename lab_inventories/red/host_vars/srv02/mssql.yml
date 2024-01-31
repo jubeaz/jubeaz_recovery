@@ -1,0 +1,25 @@
+mssql_instance_name: "{{hostname}}"
+mssql_sa_password: "ftrum_Ya5d7DCQQN"
+mssql_svcaccount_method: 'gmsa' # domain, gmsa, local
+mssql_svcaccount_key: "ichi" 
+#mssql_svcaccount_method: 'local' # domain, gmsa, local
+#mssql_svcaccount_key: "ichi" 
+
+
+mssql_sysadmins: ["HAAS\\jubeaz"]
+mssql_executeaslogin: {
+    "HAAS\\jubeaz" : "sa"
+    }
+mssql_executeasuser: {
+    "master_dbo": {
+        "user": "HAAS\\jubeaz",
+        "db"  : "master",
+        "impersonate" : "dbo"
+        },
+    "dbms_dbo": {
+        "user": "HAAS\\jubeaz",
+        "db"  : "msdb",
+        "impersonate" : "dbo"
+        }
+    }
+mssql_linked_servers: {}
