@@ -9,6 +9,5 @@ ansible_winrm_read_timeout_sec: 500
 ansible_port:  5986
 
 #nat_adapter: Ethernet
-#domain_adapter: Ethernet 2
+domain_adapter: Ethernet 2
 #pub_adapter: Ethernet 3
-domain_adapter: Ethernet 3

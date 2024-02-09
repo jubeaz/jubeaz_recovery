@@ -3,14 +3,13 @@ all:
   children:
     firewalls:
       hosts:
-#        fw: {} 
+        fw: {}
     domain:
       children:
         dc:
           hosts:
 #            dc_weyland: {dc_level: 0}    
             dc_haas: {dc_level: 0} 
-#            dc_research_weyland: {dc_level: 1}
         dc_slave:
           hosts:
         trust:
@@ -43,8 +42,8 @@ all:
   hosts:
 #    dc_weyland:           {                    ansible_host: 172.16.1.1}
 #    srv01:                {two_adapters: true, ansible_host: 172.16.1.10,  public_ip: 192.168.2.101, domain_prefix: 24, domain_gateway: 10.0.0.254}
-    dc_haas:              {                    ansible_host: 192.168.2.20}
-    srv02:                {                    ansible_host: 192.168.2.21}
-    ws01:                 {                    ansible_host: 192.168.2.22}
+    dc_haas:              {                    ansible_host: 172.16.0.1}
+    srv02:                {                    ansible_host: 172.16.0.10}
+    ws01:                 {                    ansible_host: 172.16.0.20}
 #    dc_research_weyland:  {                    ansible_host: 172.16.2.1}
-#    fw:                   {                    ansible_host: 192.168.2.100}
+    fw:                   {                    ansible_host: 192.168.2.20}

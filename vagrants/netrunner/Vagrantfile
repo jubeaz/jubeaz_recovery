@@ -16,7 +16,8 @@ Vagrant.configure("2") do |config|
   net_defs = { 
   	haas:     {name: "haas",     mask: "255.255.255.0", network: "172.16.0.0", gw: "172.16.0.254"},
   	weyland:  {name: "weyland",  mask: "255.255.255.0", network: "172.16.1.0", gw: "172.16.1.254"},
-  	research: {name: "research", mask: "255.255.255.0", network: "172.16.2.0", gw: "172.16.2.254"}
+  	research: {name: "research", mask: "255.255.255.0", network: "172.16.2.0", gw: "172.16.2.254"},
+    bridge: {name: "br0", mask: "255.255.255.0", network: "192.168.2.0", gw: "12.168.2.1"}
   }
 
   boxes = [
@@ -37,8 +38,6 @@ Vagrant.configure("2") do |config|
     		}
     	],
       ip_p: "192.168.2.100",
-      mask_p: "255.255.255.0", 
-  	  gw: "192.168.2.1",
       box: "archlinux/archlinux", 
       box_version: "20240103.204422", 
       os: "arch", 
@@ -62,7 +61,6 @@ Vagrant.configure("2") do |config|
       ip: "172.16.1.10", 
   	  net: net_defs[:weyland], 
       ip_p: "192.168.2.101",
-      mask_p: "255.255.255.0", 
       box: "gusztavvargadr/windows-server-core", 
       box_version: "2102.0.2310", 
       os: "windows", 
@@ -115,10 +113,6 @@ Vagrant.configure("2") do |config|
     }
   ]
 
-  #config.vm.provider "virtualbox" do |v|
-  #  v.cpus = 2
-  #end
-
   # disable rdp forwarded port inherited from StefanScherer box
   config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true, disabled: true
   # no autoupdate if vagrant-vbguest is installed
@@ -158,21 +152,25 @@ Vagrant.configure("2") do |config|
         #  alway provision an internal network on Ethernet 2
         n_info = box[:net]
         target.vm.network :private_network, ip: box[:ip], virtualbox__intnet: n_info[:name]
+        target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: ["Ethernet 2", box[:ip], n_info[:mask], n_info[:gw]]
         if box.has_key?(:ip_p)
+          n_info_p = net_defs[:bridge]
           #  Provision a public interface if needed on Ethernet 3 
-          target.vm.network :public_network, bridge: 'br0', ip: box[:ip_p]
-          target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: [box[:ip], n_info[:mask], n_info[:gw], box[:ip_p], box[:mask_p]]
-        else
-          target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: [box[:ip], n_info[:mask], n_info[:gw],"None", "None"]
+          target.vm.network :public_network, bridge: n_info_p[:name], ip: box[:ip_p]
+          #  Provision a host-only if needed on Ethernet 3 
+          #target.vm.network :private_network, ip: box[:ip_p]
+          target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: ["Ethernet 3",  box[:ip_p], n_info_p[:mask], "None"]
         end
-        target.vm.provision :shell, :path => "../scripts/Install-WMF3Hotfix.ps1", privileged: false
+        target.vm.provision :shell, :path => "../scripts/default_gw.ps1", privileged: false, args: [n_info[:gw]]
+        #target.vm.provision :shell, :path => "../scripts/Install-WMF3Hotfix.ps1", privileged: false
         target.vm.provision :shell, :path => "../scripts/ConfigureRemotingForAnsible.ps1", privileged: false
         target.vm.provision :shell, :path => "../scripts/PowerAction.ps1", privileged: false
       end
       # Arch specific
       if box[:os] == "arch"
         # Provision a public interface on eth1	
-        target.vm.network :public_network, bridge: 'br0', ip: box[:ip_p]
+        n_info_p = net_defs[:bridge]
+        target.vm.network :public_network, bridge: n_info_p[:name], ip: box[:ip_p]
         target.vm.communicator = "ssh"
         # Provision internal networks
         box[:nets].each do |bn|
@@ -180,8 +178,8 @@ Vagrant.configure("2") do |config|
           puts "  Provision Network #{n_info[:name]} with IP #{bn[:ip]}"
           target.vm.network :private_network, ip: bn[:ip], virtualbox__intnet: n_info[:name]
         end
-        target.vm.provision :shell, :path => "../scripts/fix_ip.sh", privileged: true, args: [box[:gw]]
-        target.vm.provision :shell, :path => "../scripts/arch_python.sh", privileged: true, args: [box[:gw]]
+        target.vm.provision :shell, :path => "../scripts/fix_ip.sh", privileged: true, args: [n_info_p[:gw]]
+        target.vm.provision :shell, :path => "../scripts/arch_python.sh", privileged: true, args: [n_info_p[:gw]]
       end
 
       if box.has_key?(:forwarded_port)
