@@ -1,7 +1,10 @@
 #domains_interfaces: ["eth2", "eth3", "eth4"]
 domains_interfaces: ["eth2"]
 public_interface: "eth1"
+nat_interface: "eth0"
 
+disable_nat: false
+internet_interface: "{{public_interface if disable_nat == true else nat_interface}}"
 #domains: {
 #  "HAAS": {
 #    "ip": "10.0.0.254",

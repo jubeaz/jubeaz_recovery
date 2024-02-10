@@ -46,4 +46,4 @@ all:
     srv02:                {                    ansible_host: 172.16.0.10}
     ws01:                 {                    ansible_host: 172.16.0.20}
 #    dc_research_weyland:  {                    ansible_host: 172.16.2.1}
-    fw:                   {                    ansible_host: 192.168.2.20}
+    fw:                   {                    ansible_host: 192.168.58.20}

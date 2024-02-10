@@ -2,6 +2,8 @@ ansible_connection: ssh
 ansible_user: vagrant
 ansible_password: vagrant
 #ansible_python_interpreter: /usr/bin/python3
+
+
 # ######################
 # gen-locale vars
 # ######################

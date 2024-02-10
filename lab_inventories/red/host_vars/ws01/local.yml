@@ -21,7 +21,7 @@ packages:
   - visualstudio2022community
   - notepadplusplus
   - vscode
-  #- visualstudio2017community
+  - visualstudio2017community
   # - visualstudiocommunity2013
   #- powershell
   #- wireshark

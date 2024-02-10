@@ -1,6 +1,6 @@
 ---
-#- import_playbook: books/fw-build.yml
-#- import_playbook: books/domains-reachable.yml
+- import_playbook: books/fw-build.yml
+- import_playbook: books/domains-reachable.yml
 - import_playbook: books/compute-inventory.yml
 #- import_playbook: books/computers-build.yml
 #- import_playbook: books/domain-build.yml
@@ -11,18 +11,15 @@
 #- import_playbook: books/domain-setup-laps.yml
 #- import_playbook: books/domain-data.yml
 ##- import_playbook: books/compute-global-mappings.yml
-#
+
 #- import_playbook: books/members-laps-gmsa.yml
-#
 #- import_playbook: books/domain-acl.yml
 #- import_playbook: books/computers-local-groups-users-rights.yml
-#
 #- import_playbook: books/computers-security.yml
-#
 #- import_playbook: books/members-iis.yml
 #- import_playbook: books/members-webdav.yml
 #- import_playbook: books/members-mssql.yml
-- import_playbook: books/members-user_data.yml
+#- import_playbook: books/members-user_data.yml
 ### TO DO DEFENDER + APPOCKER
 #
 
@@ -30,27 +27,6 @@
 #- import_playbook: books/vulnerabilities.yml
 
 #- import_playbook: books/reboot.yml
-# ##################
-#  TO CONTINUE
-# ##################
-
-#- name: finish servers
-#  hosts: domain_server
-#  roles:
-#    - { role: 'windows_domain/install_features', tags: 'install_features'}
-#    - { role: 'windows_domain/install_softwares', tags: 'install_softwares' }
-#    #- { role: 'windows_domain/clone_repos', tags: 'repos'}
-#    - { role: 'windows_domain/download_files', tags: 'download_files' }
-#  vars:
-#    hostname: "{{lab.hosts[dict_key].hostname}}"
-#    domain: "{{lab.hosts[dict_key].domain}}"
-#    features: "{{lab.hosts[dict_key].features}}"
-#    softwares: "{{lab.hosts[dict_key].softwares}}"
-#    repos: "{{lab.hosts[dict_key].repos}}"
-#    download_files: "{{lab.hosts[dict_key].download_files}}"
-#    domain_username: "{{domain}}\\Administrator"
-#    domain_password: "{{lab.domains[domain].domain_password}}"
-#    domain_server: "{{lab.hosts[dict_key].hostname}}.{{domain}}"
 
 #- name: remove vagrant domain account
 #  hosts: dc

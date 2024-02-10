@@ -15,7 +15,7 @@
     - { role: opensshd}
 
   tasks:
-    - name: disable NAT
+    - name: disable NAT interface
       ansible.builtin.blockinfile:
         path: /etc/systemd/network/80-dhcp.network
         append_newline: true
@@ -23,14 +23,17 @@
         block: |
           [Link]
           Unmanaged=yes
-    - name: Ensure that DNS is set on eth1
+      when: disable_nat == true
+    - name: Ensure that DNS is set on public_interface
       ansible.builtin.lineinfile:
         path: /etc/systemd/network/eth1.network
         regexp: '^DNS='
         insertafter: '^Gateway='
         line: 'DNS={{dns_server}}'
+      when: disable_nat == true
     - name: reboot
       ansible.builtin.reboot:
+      when: disable_nat == true
     - name: install packages  
       community.general.pacman:
         name: "{{ item }}"
@@ -40,7 +43,7 @@
     - include_role:
         name: "ufw"
       vars:
-        ufw_in_ssh_ip: ["192.168.2.0/24"]
+        ufw_in_ssh_ip: ["192.168.0.0/16"]
         ufw_forward: true
         ufw_nat: true
 
@@ -63,9 +66,9 @@
 #        interface: "{{item}}"
 #      with_items: "{{domains_interfaces}}"
 
-    - name: Allow local network to internals 
+    - name: Allow local network to internal networks
       community.general.ufw:
-        comment: "ip forward from {{public_interface}} to {{info[interface].ipv4.network}}/{{info[interface].ipv4.prefix}} on {{interface}}"
+        comment: "[local to internal] ip forward from {{public_interface}} to {{info[interface].ipv4.network}}/{{info[interface].ipv4.prefix}} on {{interface}}"
         #direction: in
         interface_in: "{{public_interface}}" 
         interface_out: "{{interface}}"
@@ -79,12 +82,15 @@
         interface: "{{item}}"
       with_items: "{{domains_interfaces}}"
 
-    - name: allow internals to local network  (go to internet)
+    - debug:
+        var: internet_interface
+#
+    - name: allow internals to internet
       community.general.ufw:
-        comment: "ip forward from {{interface}} to {{public_interface}} "
+        comment: "[internals to internet] ip forward from {{interface}} to {{internet_interface}} "
         #direction: in
         interface_in: "{{interface}}" 
-        interface_out: "{{public_interface}}"
+        interface_out: "{{internet_interface}}"
         proto: tcp
         route: true
         rule: allow
@@ -94,14 +100,14 @@
         info: "{{hostvars[inventory_hostname].ansible_facts}}"
         interface: "{{item}}"
       with_items: "{{domains_interfaces}}"
-
-    - name: Insert NAT rules for domains interface to local network
+#
+    - name: Insert NAT rules for domains interface to internet
       include_tasks: tasks/fw-add-nat.yml
       vars:
         info: "{{hostvars[inventory_hostname].ansible_facts}}"
-        interface: "{{public_interface}}"
+        interface: "{{internet_interface}}"
         domain: "{{item}}"
       with_items: "{{domains_interfaces}}"
-
-    - name: reboot
-      ansible.builtin.reboot:
+#
+#    - name: reboot
+#      ansible.builtin.reboot:
