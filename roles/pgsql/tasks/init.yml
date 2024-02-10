@@ -19,6 +19,7 @@
     path: "{{ _pgsql_data_dir }}/PG_VERSION"
   register: pgdata_dir_version
 
+# initdb -D /var/lib/postgres/data --locale=C.UTF-8 --encoding=UTF8
 - name: Ensure PostgreSQL database is initialized.
   command: "{{ _pgsql_bin_path }}/initdb -D {{ _pgsql_data_dir }}"
   when: not pgdata_dir_version.stat.exists
