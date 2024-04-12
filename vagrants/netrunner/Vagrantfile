@@ -163,7 +163,7 @@ Vagrant.configure("2") do |config|
           #target.vm.network :private_network, ip: box[:ip_p]
           target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: ["Ethernet 3",  box[:ip_p], n_info_p[:mask], "None"]
         end
-        target.vm.provision :shell, :path => "../scripts/default_gw.ps1", privileged: false, args: [n_info[:gw]]
+        #target.vm.provision :shell, :path => "../scripts/default_gw.ps1", privileged: false, args: [n_info[:gw]]
         #target.vm.provision :shell, :path => "../scripts/Install-WMF3Hotfix.ps1", privileged: false
         target.vm.provision :shell, :path => "../scripts/ConfigureRemotingForAnsible.ps1", privileged: false
         target.vm.provision :shell, :path => "../scripts/PowerAction.ps1", privileged: false
