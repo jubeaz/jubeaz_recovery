@@ -153,6 +153,7 @@ Vagrant.configure("2") do |config|
         #  alway provision an internal network on Ethernet 2
         n_info = box[:net]
         target.vm.network :private_network, ip: box[:ip], virtualbox__intnet: n_info[:name]
+        #target.vm.network :private_network, ip: box[:ip]
         target.vm.provision :shell, :path => "../scripts/fix_ip.ps1", privileged: false, args: ["Ethernet 2", box[:ip], n_info[:mask], n_info[:gw]]
         if box.has_key?(:ip_p)
           n_info_p = net_defs[:bridge]
