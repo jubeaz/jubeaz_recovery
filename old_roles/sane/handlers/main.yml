@@ -1,6 +1,0 @@
----
-- name: restart ipp-usb
-  service:
-    name: ipp-usb
-    state: restarted
-    enabled: true

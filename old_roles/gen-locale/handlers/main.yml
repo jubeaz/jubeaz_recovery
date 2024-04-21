@@ -1,4 +1,0 @@
----
-# handlers file for time-sync
-- name: Generate locale
-  command: locale-gen

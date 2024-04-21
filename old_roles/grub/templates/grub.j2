@@ -1,7 +1,0 @@
-{{ ansible_managed | comment }}
-# GRUB boot loader configuration
-
-{% for key,value in grub_config.items() %}
-{{ key }}={{ value }}
-{% endfor %}
-

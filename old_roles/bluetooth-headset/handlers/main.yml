@@ -1,6 +1,0 @@
----
-- name: restart bluetooth
-  service:
-    name: bluetooth
-    state: restarted
-    enabled: true

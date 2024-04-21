@@ -1,3 +1,0 @@
----
-rsyncd_service_name: rsync
-cron_service_name: cron

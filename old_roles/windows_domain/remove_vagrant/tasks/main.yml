@@ -1,6 +1,0 @@
-- name: "remove {{domain_name}}\\vagrant"
-  microsoft.ad.user:
-    identity: vagrant
-    state: absent
-    domain_username: "{{domain_name}}\\Administrator"
-    domain_password: "{{domain_password}}"

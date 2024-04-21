@@ -1,8 +1,0 @@
----
-yubikey_pkgs:
-  - yubikey-manager
-  - yubikey-manager-qt
-  - yubico-pam
-  - pam-u2f
-  - libfido2
-  - yubikey-full-disk-encryption

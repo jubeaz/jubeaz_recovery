@@ -1,7 +1,0 @@
----
-# handlers file for dns-server
-- name: Restart bind
-  service:
-    name: named
-    state: restarted
-    enabled: true

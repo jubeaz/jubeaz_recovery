@@ -1,9 +1,0 @@
----
-sane_pkgs:
-  - sane
-  - sane-utils
-    #sane_additional_pkgs:
-  - gscan2pdf
-  - pdftk
-  - djvulibre-bin
-  - unpaper

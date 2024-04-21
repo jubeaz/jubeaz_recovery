@@ -1,9 +1,0 @@
----
-cups_pkgs:
-  - cups
-  - cups-pdf
-  - usbutils
-  - gutenprint
-  - foomatic-db-gutenprint-ppds
-  - system-config-printer
-
