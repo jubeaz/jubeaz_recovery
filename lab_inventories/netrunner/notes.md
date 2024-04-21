@@ -1,3 +1,9 @@
+# problem
+* LAPS ne mache pas tout de suite pb sur "Configure Password Properties" dc_weyland ne repond pas
+
+
+
+
 # BDD
 
 # HAAS
