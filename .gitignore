@@ -2,4 +2,4 @@ tags
 inventory
 playbooks
 .vagrant
-
+.ansible
