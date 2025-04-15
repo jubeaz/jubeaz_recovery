@@ -1,0 +1,90 @@
+
+#"StefanScherer/windows_10"
+#"StefanScherer/windows_11"
+#"StefanScherer/windows_2019"
+#"gusztavvargadr/windows-10"
+#"gusztavvargadr/windows-11"
+#"gusztavvargadr/windows-server-core"
+#"gusztavvargadr/windows-server"
+#"archlinux/archlinux"
+
+# pour VBS 
+# passer en virtio network card
+  # download the latest stable of windows driver https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
+  # switch network card on virtualbox
+  # remove E1G6032E.sys or offending drivers
+
+
+Vagrant.configure("2") do |config|
+  # Uncomment this depending on the provider you want to use
+  ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+  #ENV['VAGRANT_DEFAULT_PROVIDER'] = 'vmware_desktop'
+  net_defs = { 
+  	haas:     {name: "haas",     mask: "255.255.255.0", network: "172.16.0.0", gw: "172.16.0.254"},
+  	weyland:  {name: "weyland",  mask: "255.255.255.0", network: "172.16.1.0", gw: "172.16.1.254"},
+  	research: {name: "research", mask: "255.255.255.0", network: "172.16.2.0", gw: "172.16.2.254"},
+    bridge: {name: "br0", mask: "255.255.255.0", network: "192.168.2.0", gw: "192.168.2.1"}
+#    bridge: {name: "br1", mask: "255.255.255.0", network: "192.168.58.0", gw: "192.168.2.1"}
+  }
+  
+  boxes = [
+    { 
+      # only internal
+      bname: "wibox", 
+      ip_p: "192.168.2.15", 
+  	  net: net_defs[:bridge], 
+      box: "archlinux/archlinux", 
+      #box_version: "220250412.335217", 
+      os: "arch", 
+      ram: 4*1024,
+      cpu: 4
+    }
+  ]
+
+  # disable rdp forwarded port inherited from gusztavvargadr box
+  config.vm.network :forwarded_port, guest: 3389, host: 53389, id: "tcp53389", auto_correct: true, disabled: true
+  # no autoupdate if vagrant-vbguest is installed
+  if Vagrant.has_plugin?("vagrant-vbguest") then
+    config.vbguest.auto_update = false
+  end
+  config.vm.boot_timeout = 600
+  config.vm.graceful_halt_timeout = 600
+  config.winrm.retry_limit = 30
+  config.winrm.retry_delay = 10
+  config.winrm.transport = "plaintext"
+  config.winrm.basic_auth_only = true
+
+  boxes.each do |box|
+    config.vm.define box[:bname] do |target|
+      # BOX
+      target.vm.provider "virtualbox" do |v|
+        v.memory = box[:ram]
+        v.name = box[:bname]
+        v.cpus = box[:cpu]
+        v.customize ["modifyvm", :id, "--usb", "on"]
+        v.customize ["modifyvm", :id, "--usbehci", "on"]
+        v.customize ['usbfilter', 'add', '0', '--target', :id, '--name', 'EDUP AX3000 (mt7921u)', '--active', 'yes', '--vendorid', '0x0e8d', '--productid', '0x7961']
+        v.customize ['usbfilter', 'add', '1', '--target', :id, '--name', 'Alfa AWUS036ACHM (mt76x0u)', '--active', 'yes', '--vendorid', '0x0e8d', '--productid', '0x7610']
+      end
+      # Download image
+      target.vm.box_download_insecure = box[:box]
+      target.vm.box = box[:box]
+      if box.has_key?(:box_version)
+        target.vm.box_version = box[:box_version]
+      end
+
+      # issues/49
+      target.vm.synced_folder '.', '/vagrant', disabled: true
+      target.vm.synced_folder 'shared/', '/shared', disabled: true
+
+      n_info_p = net_defs[:bridge]
+      target.vm.network :public_network, bridge: n_info_p[:name], ip: box[:ip_p]
+      target.vm.communicator = "ssh"
+      config.vm.provision "file", source: "../../files/authorized_keys", destination: "/tmp/authorized_keys"
+      target.vm.provision :shell, :path => "../../scripts/arch_python.sh", privileged: true, args: ["France"]
+      target.vm.provision :shell, :path => "../../scripts/fix_ip.sh", privileged: true, args: ["routed", n_info_p[:gw]]
+      target.vm.provision :shell, :path => "../../scripts/wifi.sh", privileged: true
+      target.vm.provision :shell, :path => "../../scripts/create_jubeaz.sh", privileged: true
+    end
+  end
+end

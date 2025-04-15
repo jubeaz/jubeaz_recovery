@@ -1,0 +1,1 @@
+pacman -S --noconfirm linux-firmware iwd wireless_tools wireless-regdb usbutils lshw
