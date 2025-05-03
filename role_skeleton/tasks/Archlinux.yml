@@ -1,6 +1,6 @@
 ---
 - name: Install
-  pacman:
+  community.general.pacman:
     name: 
     state: present
     update_cache: true
