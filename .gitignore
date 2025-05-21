@@ -3,3 +3,4 @@ inventory
 playbooks
 .vagrant
 .ansible
+files
