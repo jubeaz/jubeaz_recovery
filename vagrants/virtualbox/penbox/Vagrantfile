@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
       #box: "archlinux/archlinux",
       #box: "file:////home/jubeaz/dev/packer/archlinux/boxes/jubeaz-bios-archlinux-2025.05.16-x86_64.box",
       #box: "file:////home/jubeaz/dev/packer/archlinux/boxes/jubeaz-efi-archlinux-2025.05.16-x86_64.box",
-      box: "jubeaz-efi-archlinux-2025.05.18-x86_64",
+      box: "jubeaz-efi-archlinux-2025.05.28-x86_64",
       os: "arch", 
       ram: 4*1024,
       cpu: 4
