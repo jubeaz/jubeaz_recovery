@@ -4,3 +4,6 @@ playbooks
 .vagrant
 .ansible
 files
+vagrants/ovmf/*
+vagrants/ovmf/.gitkeep
+.continue
