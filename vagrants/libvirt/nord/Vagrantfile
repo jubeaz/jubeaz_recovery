@@ -1,0 +1,183 @@
+# vagrant plugin install vagrant-libvirt
+require 'fileutils'
+
+Vagrant.configure("2") do |config|
+  # Uncomment this depending on the provider you want to use
+  ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+  management_network_prefix = "192.168.121"
+  storage_pool_name = "vms"
+  efi_path='/var/lib/libvirt/images/efi'
+  permissions = 0666  # This is octal for 664
+  bridge = {
+    dev: "br0",
+    name: "virbr_plaber",
+    mask: "255.255.255.0",
+    network: "192.168.10",
+    gw: "192.168.10.254"
+  }
+#   bridge: {name: "br1", mask: "255.255.0.0", network: "192.168.58.0", gw: "192.168.2.1"}
+
+
+  box_defs = [
+
+    { 
+      # only internal
+      role: "member",
+      bname: "nord", 
+      ip_p: "192.168.10.20",
+      #box_img: "qemu-jubeaz-uefi-windows-2022",
+      #box_img: "qemu-jubeaz-uefi-windows-2022-core",
+      box_img: "qemu-jubeaz-uefi-windows-2025",
+      #box_img: "qemu-jubeaz-uefi-windows-2025-core",
+      username: "jubeaz",
+      password: "jubeaz",
+      os: "windows", 
+      ram: 8*1024,
+      cpu: 4,
+      firmware: "uefi"
+    }
+  ]
+
+# NVRAM_PATH="#{config.vm.provider(:libvirt).nvram}"
+  config.trigger.after :destroy do |trigger|
+    trigger.name = "Delete nvram"
+    trigger.warn = "Deleting NVRAM file of #{config.vm.box}"
+#    trigger.run = { inline: <<-SHELL
+#        VM_NAME="#{config.vm.box}"
+#        NVRAM_PATH=$(virsh dumpxml $VM_NAME | grep "nvram" | sed 's/.*nvram="\([^"]*\)".*/\1/')
+#        echo "Deleting NVRAM file at: $NVRAM_PATH"
+#        # Remove the NVRAM file
+#        #rm -f $NVRAM_PATH
+#      SHELL
+#    }
+  end
+
+  # no autoupdate if vagrant-vbguest is installed
+  if Vagrant.has_plugin?("vagrant-vbguest") then
+    config.vbguest.auto_update = false
+  end
+  config.vm.boot_timeout = 600
+  config.vm.graceful_halt_timeout = 600
+  config.winrm.retry_limit = 30
+  config.winrm.retry_delay = 10
+  config.ssh.connect_retry_delay = 10
+  config.ssh.connect_retries = 5
+  config.winrm.ssl_peer_verification = false
+  config.winrm.transport = "plaintext" # negociate, ssl, plaintext
+  config.winrm.basic_auth_only = true  #if true => plaintext transport
+  config.winrm.username = "vagrant"
+  config.winrm.password = "vagrant"
+  config.ssh.insert_key = false
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+
+  config.vm.provider :libvirt do |libvirt|
+    ## Use QEMU session instead of system connection
+    #libvirt.qemu_use_session = true
+    ## URI of QEMU session connection, default is as below
+    #libvirt.uri = 'qemu:///session'
+    ## URI of QEMU system connection, use to obtain IP address for management, default is below
+    #libvirt.system_uri = 'qemu:///system'
+    ## Path to store Libvirt images for the virtual machine, default is as ~/.local/share/libvirt/images
+    #libvirt.storage_pool_path = '/home/user/.local/share/libvirt/images'
+    ## Management network device, default is below
+    #libvirt.management_network_device = 'virbr0'
+    libvirt.management_network_address = "#{management_network_prefix}.0/24"
+    libvirt.management_network_name = "plaber_mgnt"
+    libvirt.management_network_mode = "none"
+    libvirt.storage_pool_name = storage_pool_name
+  end
+
+  box_defs.each do |box_def|
+    config.vm.define box_def[:bname] do |box|
+      box.vm.provider "libvirt" do |box_provider|
+        #box_provider.graphics_type = "vnc"
+        box_provider.default_prefix = "plaber_"
+        box_provider.memory = box_def[:ram]
+        box_provider.cpus = box_def[:cpu]
+        box_provider.keymap = "fr"
+        box_provider.input type:"tablet", bus: "usb" # solve mouse capture of VNC
+        if box_def[:firmware] == "uefi"
+          unless File.exist?("#{efi_path}/OVMF_CODE_4M.ms.fd")
+            FileUtils.cp("../../ovmf/usr/share/OVMF/OVMF_CODE_4M.ms.fd", "#{efi_path}/OVMF_CODE_4M.ms.fd")
+            FileUtils.chmod(permissions, "#{efi_path}/OVMF_CODE_4M.ms.fd")
+          end
+          unless File.exist?("#{efi_path}/#{box_def[:bname]}_OVMF_VARS.4M.ms.fd")
+            FileUtils.cp("../../ovmf/usr/share/OVMF/OVMF_VARS_4M.ms.fd", "#{efi_path}/#{box_def[:bname]}_OVMF_VARS.4M.ms.fd")
+            FileUtils.chmod(permissions, "#{efi_path}/#{box_def[:bname]}_OVMF_VARS.4M.ms.fd")
+          end
+          box_provider.nvram = "#{efi_path}/#{box_def[:bname]}_OVMF_VARS.4M.ms.fd"
+          box_provider.loader = "#{efi_path}/OVMF_CODE_4M.ms.fd"
+          box_provider.machine_type = 'q35'
+          ## Requires swtpm and swtpm-tools
+          box_provider.tpm_model = "tpm-crb"
+          box_provider.tpm_type = "emulator"
+          box_provider.tpm_version = "2.0"
+          # box_provider.tpm_path =
+          box_provider.video_vram = 16384
+          box_provider.graphics_type = "spice"
+          #libvirt.graphics_ip = "0.0.0.0"   # Can be 127.0.0.1 if tunneling only
+          #libvirt.graphics_passwd = "#{graphics_passwd}"
+          box_provider.video_type = "virtio"
+          # https://libvirt.org/formatdomain.html#sound-devices
+          box_provider.sound_type = "ich9"
+
+          #box_provider.launchsecurity :type => 'sev', :cbitpos => 47, :reducedPhysBits => 1, :policy => "0x0003"
+          #box_provider.memtune :type => "hard_limit", :value => 2500000 # Note here the value in kB (not in Mb)
+#          #box_provider.customize ["modifyvm", :id, '--audio-driver', 'alsa', '--audio-controller', 'hda', '--audio-enabled', 'on']
+#          #box_provider.customize ["modifyvm", :id, '--vram', '128']
+#          box_provider.customize ["modifyvm", :id, '--nested-hw-virt', 'on']
+#          box_provider.customize ["modifyvm", :id, '--firmware', 'efi64']
+#          box_provider.customize ["modifynvram", :id, 'inituefivarstore']
+#          box_provider.customize ["modifynvram", :id, 'enrollorclpk']
+#          box_provider.customize ["modifynvram", :id, 'enrollmssignatures']
+        end
+      end
+      if box_def.has_key?(:username)
+        box.ssh.username = box_def[:username] 
+        box.winrm.username = box_def[:username]
+      end
+      if box_def.has_key?(:password)
+        box.ssh.password = box_def[:password]
+        box.winrm.password = box_def[:password]
+      end
+      box.ssh.insert_key = false  # prevent Vagrant from overriding the authorized_keys
+      # Download image
+      box.vm.box_download_insecure = box_def[:box_img]
+      box.vm.box = box_def[:box_img]
+      if box_def.has_key?(:box_img_version)
+        box.vm.box_version = box_def[:box_img_version]
+      end
+      # issue when creating sync folder
+      box.vm.synced_folder '.', '/vagrant', disabled: true
+      ## Network provisionning
+      if box_def[:role] == "member"
+        #  Provision a BRIDGED interface if needed on Ethernet 2 / eth2
+        if box_def.has_key?(:ip_p)
+          box.vm.network :public_network, 
+            dev: bridge[:dev],
+            mode: "bridge",
+            type: "bridge",
+            libvirt__iface_name: bridge[:name],
+            ip: box_def[:ip_p]
+        end
+      end
+      # Windows specific
+      if box_def[:os] == "windows"
+        box.vm.guest = :windows
+        # bypass winrm problems
+        box.vm.communicator = "winssh"
+        config.winssh.shell = 'powershell'
+        #config.vm.communicator = 'winrm'
+        box.vm.provision :shell, :path => "../../scripts/rename-interface.ps1", privileged: false, args: ["-IFName", "mgt", "-NetPrefix", "#{management_network_prefix}*"]
+        if box_def.has_key?(:ip_p)
+          #n_info_p = net_defs[:bridge]
+          box.vm.provision :shell, :path => "../../scripts/rename-interface.ps1", privileged: false, args: ["-IFName", "internet", "-NetPrefix", "#{bridge[:network]}*"]
+          box.vm.provision :shell, :path => "../../scripts/flush-interface.ps1", privileged: false, args: ["-IFName", "internet"]
+          box.vm.provision :shell, :path => "../../scripts/EnableWinRM.ps1", privileged: false
+          box.vm.provision :shell, :path => "../../scripts/default_gw.ps1", privileged: false, args: ["-IFName", "internet","-Gateway", bridge[:gw]]
+        end
+      end
+    end
+  end
+end
