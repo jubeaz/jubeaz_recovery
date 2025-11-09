@@ -1,0 +1,24 @@
+RewriteEngine On
+# ##############################################################
+# 
+# ##############################################################
+RewriteCond %{REQUEST_URI} ^/sharp/(.*)$
+RewriteRule ^sharp/(.*)$ http://127.0.0.1:8881/$1 [P]
+RewriteCond %{REQUEST_URI} ^/win/(.*)$
+RewriteRule ^win/(.*)$ http://127.0.0.1:8882/$1 [P]
+RewriteCond %{REQUEST_URI} ^/lin/(.*)$
+RewriteRule ^lin/(.*)$ http://127.0.0.1:8883/$1 [P]
+RewriteCond %{REQUEST_URI} ^/lab/(.*)$
+RewriteRule ^lab/(.*)$ http://127.0.0.1:8884/$1 [P]
+# ##############################################################
+#  Sliver C2
+# ##############################################################
+# http listener [http --lhost 127.0.0.1 --lport 8890 --persistent] 
+RewriteCond %{REQUEST_URI} ^/sliver/(.*)$
+RewriteRule ^sliver/(.*)$ http://127.0.0.1:8890/$1 [P]
+# stage listernes
+RewriteCond %{REQUEST_URI} ^/s_fh/(.*)$
+RewriteRule ^s_fh/(.*)$ http://127.0.0.1:8870/$1 [P]
+RewriteCond %{REQUEST_URI} ^/s_b_fh/(.*)$
+RewriteRule ^s_b_fh/(.*)$ http://127.0.0.1:8871/$1 [P]
+#RewriteRule ^(.*)$ /tmux-pentest.yml [R=301,L]

@@ -1,9 +1,9 @@
 tags
-inventory
-playbooks
+/inventory
+/playbooks
 .vagrant
 .ansible
-files
-vagrants/ovmf/*
-vagrants/ovmf/.gitkeep
+/files
+/vagrants/ovmf/*
+/vagrants/ovmf/.gitkeep
 .continue

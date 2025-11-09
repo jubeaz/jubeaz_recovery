@@ -1,0 +1,29 @@
+127.0.0.1 localhost
+127.0.1.1 penbox
+
+# The following lines are desirable for IPv6 capable hosts
+::1 localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+
+##############################
+### Netrunner
+##############################
+192.168.10.100   lab_fw
+#127.0.0.2      lab_fw_nat
+172.17.1.2      wld01.weyland.local dc.weyland.local weyland.local
+172.17.1.10     archer.weyland.local archer
+
+172.17.2.2      haas01.haas.local dc.haas.local haas.local
+172.17.2.10     eli.haas.local eli
+172.17.2.20     hypoxia.haas.local hypoxia
+172.17.2.11     bran.haas.local bran
+172.17.2.12     pulse.haas.local pule
+172.17.2.30     bastion.haas.local bastion
+172.17.2.31     am.haas.local am
+
+
+172.17.3.2      rsc01.research.haas.local dc.research.haas.local research.haas.local
+172.17.3.10     fenris.research.haas.local fenris
+172.17.3.20     architect.research.haas.local architect

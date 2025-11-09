@@ -1,0 +1,143 @@
+pacman_aur_arch_packages: 
+  - hostapd-mana-git
+  - rar
+  - mongosh-bin 
+  - powershell-bin
+  - gss-ntlmssp
+  - gnu-netcat
+  - intel-opencl-runtime
+#  - ttf-font-awesome-5 
+#  - otf-font-awesome-5
+pacman_arch_packages:
+# DRIVERS
+#############  - alsa
+#############  - alsa-utils
+# BASE
+#  - yay
+  - woff2-font-awesome
+  - otf-font-awesome
+  - noto-fonts
+  - noto-fonts-emoji
+  - base-devel
+  - iw
+  - iwd
+  - wpa_supplicant
+  - dhclient
+  - impala
+  - fzf
+  - openvpn
+  - zip
+  - unzip
+  - p7zip
+  - file
+  - util-linux             # hexdump
+  - binutils               #strings
+  - firejail
+  - xsel
+  - cdrkit
+  - man-pages
+  - man-db
+  - python-pip
+  - python-pipx
+  - python-setuptools
+  - git
+  - rlwrap   # readline-style editing and history to programs
+  - tmux
+  - gdb
+  - socat
+  - mdcat            
+  - jq               
+  - lsof             
+  - bat                      
+  - macchanger      
+  - smbclient       
+  - nfs-utils       
+  - sshpass          
+  - net-snmp         
+  - grc              
+  - sshpass
+  - putty
+  - rust
+  - go
+  - sqlitebrowser
+  - python-poetry
+  - figlet
+  - code
+  - putty
+# ARCHIVE
+  - p7zip
+# MISC
+  - xorg-xauth
+  - firefox
+  - chromium
+  - freerdp
+  - iperf3         # network speed test
+# NETWORK          
+  - proxychains        
+  - wireshark-cli
+  - wireshark-qt 
+  - nmap              
+  - hping             
+  - masscan           
+  - tcpdump           
+  - iptables
+  - dsniff
+  - dnsmasq
+  - websocat
+#############  - freerdp           
+  - ssh-audit         
+  - hydra             
+#  - python-updog
+  - apache
+# wifi     
+  - aircrack-ng
+  - cowpatty
+  - hcxdumptool
+  - hcxtools
+  - mdk4
+  - reaver
+  - util-linux 
+  - kismet
+# CRACKING
+  - john              
+  - hashcat           
+  - hashcat-utils     
+  - fcrackzip         
+  - pdfcrack          
+# FORENSICS
+#############  - perl-image-exiftool 
+#############  - volatility3         
+# C2
+  - metasploit         
+# Web
+## scanner
+## fuzzer 
+
+# BINARY  
+#############  - mono
+#############  - ghidra             #/ arch                  # Software reverse engineering framework
+#############  - ropper             #/ arch / black
+#############  - ropgadget          #/ arch / black
+#############  - pwntools           #/ arch / black
+#############  - pwndbg             #/ arch / black
+#############  - gef                #/ arch
+#############  - peda               #/ arch / black
+#############  - strace             #/ arch / black
+#############  - ltrace             #/ arch / black
+#############  - radare2            #/ arch
+# KUBERNATES
+#    #/arch
+  - kubectl
+
+
+# DEV
+#############  - mingw-w64-gcc
+#############  - cmake
+
+# Android
+#############  - android-tools
+
+# PENTEST_MISC
+  - exploitdb
+
+

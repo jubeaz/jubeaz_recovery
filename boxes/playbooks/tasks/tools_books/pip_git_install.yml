@@ -1,0 +1,9 @@
+- name: Checkout repo {{ item[1] }}
+  ansible.builtin.git:
+    repo: "{{ item[1] }}"
+    dest: "/opt/{{ item[0] }}"
+
+- name: Upgrade pip
+  become: false
+  ansible.builtin.pip:
+    requirements: "/opt/{{ item[0] }}/requirements.txt"

@@ -1,0 +1,31 @@
+#           [provider_sect]
+#           default = default_sect
+#           legacy = legacy_sect
+#
+#           [default_sect]
+#           activate = 1
+#
+#           [legacy_sect]
+#           activate = 1
+
+#    - name: OpenSSL.cnf Add legacy section reference in provider_sect
+#      ansible.builtin.lineinfile:
+#        path: /etc/ssl/openssl.cnf
+#        line: 'legacy = legacy_sect'       # Line to add
+#        insertafter: '^\[provider_sect\]'  # Regex to find the [provider_sect] block   - name: Ensure nat is defined
+#    - name: OpenSSL.cnf  Insert legacy_sect
+#      ansible.builtin.blockinfile:
+#        path: /etc/ssl/openssl.cnf
+#        insertbefore: '^\[default_sect\]'
+#        backup: true
+#        block: |
+#          [legacy_sect]
+#          activate = 1
+- name: Copy openssl.cnf
+  ansible.builtin.copy:
+    src: "{{ file_transfer_base_path }}/etc/ssl/openssl.cnf"
+    dest: /etc/ssl/openssl.cnf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true

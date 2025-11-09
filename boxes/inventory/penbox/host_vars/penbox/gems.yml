@@ -1,0 +1,3 @@
+gems_packages:
+  - cvs   # for evil-winrm
+  - evil-winrm

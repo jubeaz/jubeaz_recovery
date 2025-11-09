@@ -1,0 +1,23 @@
+git_packages:
+#  - [PayloadsAllTheThings, https://github.com/swisskyrepo/PayloadsAllTheThings]
+#  - [Exegol-images-dev, https://github.com/ShutdownRepo/Exegol-images-dev.git]
+#  - [The-Hacker-Recipes, https://github.com/ShutdownRepo/The-Hacker-Recipes.git]
+#  - [GOAD, https://github.com/Orange-Cyberdefense/GOAD.git]
+  - [windows/SharpCollection, https://github.com/Flangvik/SharpCollection.git]
+  - [windows/windows_weaponize, https://github.com/jubeaz/windows_weaponize.git]
+  - [linux/linux_weaponize, https://github.com/jubeaz/linux_weaponize.git]
+#  - [windows/Exegol-resources, https://github.com/ThePorgs/Exegol-resources.git]
+  - [EAP_buster, https://github.com/blackarrowsec/EAP_buster]
+  - [wpa_sycophant, https://github.com/sensepost/wpa_sycophant]
+
+git_binaries: []
+#  - [cyberark/kubeletctl, kubeletctl_linux_amd64]
+
+git_user_packages:
+  - [tools/GPOwned, https://github.com/X-C3LL/GPOwned.git]
+  - [tools/LdapRelayScan, https://github.com/zyn3rgy/LdapRelayScan]
+  - [tools/noPac, https://github.com/Ridter/noPac]
+  - [tools/PetitPotam, https://github.com/topotam/PetitPotam.git]
+  - [tools/pyGPOAbuse, https://github.com/Hackndo/pyGPOAbuse.git]
+  - [tools/pywerview, https://github.com/the-useless-one/pywerview]
+  - [.config/tmux/plugins/tpm, https://github.com/tmux-plugins/tpm]

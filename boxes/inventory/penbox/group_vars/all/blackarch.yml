@@ -1,0 +1,8 @@
+---
+pacman_extra_args:
+blackarch_countries:
+  - France
+  - Germany
+  - UK
+  - US
+  - Switzerland

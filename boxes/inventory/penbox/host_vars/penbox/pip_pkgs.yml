@@ -1,0 +1,38 @@
+pip_git_packages: []
+# PENTEST_MISC
+#  - [corscanner, https://github.com/chenjj/CORScanner]
+
+pipx_git_packages:
+# PENTEST_MISC
+  - [arsenal-ng, git+https://github.com/jubeaz/arsenal-ng.git]
+  - [shellerator, git+https://github.com/ShutdownRepo/shellerator]
+  - [uberfile, git+https://github.com/ShutdownRepo/uberfile]
+  - [certipy-ad, git+https://github.com/ly4k/Certipy]
+  - [ldeep, git+https://github.com/franc-pentest/ldeep]
+# NETWORK
+#  - [divideandscan, git+https://github.com/snovvcrash/DivideAndScan]
+  - [dploot, git+https://github.com/zblurx/dploot.git]
+  - [lsassy, git+https://github.com/login-securite/lsassy.git]
+  - [impacket, git+https://github.com/fortra/impacket.git@master]
+  - [pywhisker, git+https://github.com/ShutdownRepo/pywhisker.git]
+  - [donpapi, git+https://github.com/login-securite/DonPAPI.git]
+  - [wes, git+https://github.com/bitsadmin/wesng]
+  - [sccmhunter, git+https://github.com/garrettfoster13/sccmhunter/]
+  #- [nxc, git+https://github.com/Pennyw0rth/NetExec]
+  
+
+
+pipx_packages:
+  - git-dumper
+  - bloodyAD
+  - coercer
+# PENTEST_MISC
+  - whatportis
+  - pwncat-cs
+# CRACKING
+  - name-that-hash     #/ pipx    
+# NETWORK
+#############  - updog              # python -m http.server on steroids 
+# dev
+#############  - impacket
+  - uploadserver

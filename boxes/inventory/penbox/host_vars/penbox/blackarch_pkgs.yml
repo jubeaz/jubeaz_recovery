@@ -1,0 +1,121 @@
+git_blackarch_packages:
+  []
+pacman_aur_blackarch_packages:
+  []
+#  - nessus
+pacman_blackarch_packages:
+# PENTEST_MISC
+  - webshells          #/ black
+  - nishang
+  - responder
+# NETWORK
+  - autorecon          #/ black
+  - dnschef            #/ black
+  - chisel             #/ black
+  - dns2tcp            #/ black
+  - fierce             #/ black 
+  - rustscan
+  - ligolo-ng
+
+# WORDLISTS
+  - wordlistctl        #/ black
+  - seclists           #/ black
+  - crunch             #/ black
+  - cewl               #/ black
+#  - cupp               #/ black
+  - username-anarchy   #/ black
+  - pass-station       #/ black                 # CLI & library to search for default credentials among thousands of Products / Vendors
+
+# CRYPTO  
+#############  - rsactftool         #/ black
+
+# C2
+  - msfdb              #/ black
+  - empire
+
+# OSINT
+  - recon-ng             #/ black
+  - sublist3r            #/ black
+  - dnsrecon             #/ black
+  - theharvester         #/ black
+    
+# Web
+## Discovery
+#    #/black 
+#############  - eyewitness          #iWebsite screenshoter
+  
+## scanner
+#    #/black 
+  - nikto               # 
+  - wpscan              # Wordpress scanner
+  - joomscan            # Joomla scanner 
+  - droopescan          # Drupal scanner
+  - drupwn              # Drupal scanner   
+  - linkfinder          # Discovers endpoint in JavaScript files
+  - kadimus             # LFI scanner
+  - fuxploider          # File upload scanner
+## fuzzer 
+#    #/black 
+  - ffuf                # Web fuzzer
+  - dirsearch           # Web fuzzer
+  - gobuster            # Web fuzzer
+  - dirb                # Web fuzzer
+  - whatweb             # Recognises web technologies incl. CMS
+  - ruby-getoptlong     # req for whatweb
+  - ruby-resolv-replace      # req for whatweb
+  - wafw00f             # Waf detector
+  - burpsuite           # 
+  - zaproxy             # 
+  - sqlmap              # SQL injection scanner 
+  - dotdotpwn           # 
+  - nosqli
+#  - nosqlmap
+## other
+#    #/black 
+  - jwt-tool           # Toolkit for validating, forging, scanning and tampering JWT
+#  - gittools           # Dump a git repository from a website 
+
+# wifi
+  - hostapd-wpe
+  - eaphammer          #/ black
+  - evilginx 
+# AD
+## ldap
+  - openldap           # LDAP client and server
+  - cyrus-sasl          # for ldapsearch with kerberos
+  - cyrus-sasl-gssapi    # for ldapsearch with kerberos
+  - cyrus-sasl-ldap     # for ldapsearch with kerberos
+  - windapsearch       # AD enum
+  - bloodhound         # AD cartographer
+  - bloodhound-python  # AD cartographer
+  - bloodhound-ce-python
+#  - aclpwn             # ACL exploiter
+  - adidnsdump
+  - gmsadumper
+  - hekatomb
+  - pkinittools
+  #- impacket           #
+  - ldeep
+  - netexec
+## kerberos
+  - kerbrute           # Kerberos pre-auth bruteforcing
+## WinRM
+#  - evil-winrm          # winrm
+## SMB
+  - enum4linux-ng      # enumerating information from Windows and Samba systems
+  - smbclient          # SMB client
+  - smbmap
+## MITM
+
+# VULN SCANNER
+  - nuclei
+  - nuclei-templates
+
+
+# CODE ANALYZER
+#############  - semgrep
+#  - https://github.com/returntocorp/semgrep-rules
+
+# MAIL
+  - swaks
+  - smtp-user-enum

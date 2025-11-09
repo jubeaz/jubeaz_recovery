@@ -1,0 +1,6 @@
+---
+    # https://community.chocolatey.org/packages
+
+git_win_repos:
+  - [Rubeus, https://github.com/GhostPack/Rubeus.git]
+  - [Mimikatz, https://github.com/gentilkiwi/mimikatz.git]

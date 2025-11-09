@@ -1,0 +1,15 @@
+[Unit]
+Description=start RedTeam SharpCollection http server
+After=network.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+Restart=on-failure
+ExecStart=python3 -m http.server 8881 --bind 127.0.0.1 --directory /opt/windows/SharpCollection/NetFramework_4.7_x64
+WorkingDirectory=/opt/windows/SharpCollection/NetFramework_4.7_x64
+User=http
+
+[Install]
+WantedBy=multi-user.target
+

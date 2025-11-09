@@ -1,0 +1,15 @@
+[Unit]
+Description=start RedTeam lab http server
+After=network.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+Restart=on-failure
+ExecStart=/home/jubeaz/.local/share/pipx/venvs/uploadserver/bin/python /home/jubeaz/.local/share/pipx/venvs/uploadserver/bin/uploadserver --basic-auth-upload jubeaz:LlXVSEK5nveq5agKqo8Ag7zp81vL2Xah -b 127.0.0.1  8884
+WorkingDirectory=/srv/http/upload
+User=jubeaz
+
+[Install]
+WantedBy=multi-user.target
+

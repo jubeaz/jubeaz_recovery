@@ -1,0 +1,42 @@
+with_grub: true
+# ######################
+# grub vars
+# ######################
+grub_resolution: "1920x1080"
+grub_theme_font: "Source Code Pro Regular 30"
+grub_theme_terminal_font: "Source Code Pro Regular 30"
+grub_theme_selected_font: "Source Code Pro Regular 34"
+grub_theme_color: "gainsboro"
+#grub_theme: "cyber_city"
+#grub_theme_selected_color: "#cc66ff"
+#grub_theme: "red_lock"
+#grub_theme_selected_color: "yellow"
+#grub_theme: "bw_lock"
+#grub_theme_selected_color: "red"
+grub_theme: "blue_chip"
+grub_theme_selected_color: "blue"
+
+grub_superuser: "root"
+# password is root
+grub_superuser_password: "grub.pbkdf2.sha512.10000.5A5E6C37697B762608ED1EDFC30AE3ACC82C5E17B87CF61FC8B5F1AF4DF43614CEBDD3DDF2A13A2DCBDE8994897F33F4E562AB7478F0BC97AD3BF58DD79E2339.02E033A64BA9B1BBCBE532C0ADA75AF5E50EAB0AEC6050E08E1FA3C9881F62F7450CDC4381468E4E506069B32D4BD5F4CDC53093AD65C79C2804B55B90B85087"
+
+grub_config:
+  GRUB_DISABLE_SUBMENU: y
+  GRUB_DEFAULT: saved
+  GRUB_SAVEDEFAULT: true
+  GRUB_TIMEOUT: 10
+  GRUB_DISTRIBUTOR: '"Arch"'
+  GRUB_CMDLINE_LINUX_DEFAULT: '"loglevel=3 splash ipv6.disable=0 lsm=landlock,lockdown,yama,apparmor,bpf"'
+  GRUB_CMDLINE_LINUX: '"net.ifnames=0 biosdevname=0"'
+  GRUB_PRELOAD_MODULES: '"part_gpt part_msdos"'
+  GRUB_TIMEOUT_STYLE: "menu"
+  GRUB_TERMINAL_INPUT: "console"
+    #GRUB_GFXMODE: "auto"
+    #GRUB_GFXPAYLOAD_LINUX: "keep"
+  GRUB_DISABLE_RECOVERY: "true"
+  GRUB_BACKGROUND: "/boot/grub/theme/background.png"
+  GRUB_THEME: "/boot/grub/theme/theme.txt"
+  GRUB_GFXMODE: "{{ grub_resolution }}x32"
+  GRUB_GFXPAYLOAD_LINUX: "1024x768x32"
+    #  GRUB_GFXMODE: "1280x1024x32"
+    #  GRUB_GFXPAYLOAD_LINUX: "1024x768x32"

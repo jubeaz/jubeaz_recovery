@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   permissions = 0666  # This is octal for 664
   bridge = {
     dev: "br0",
-    name: "virbr_plaber",
+    name: "jbz_br",
     mask: "255.255.255.0",
     network: "192.168.10",
     gw: "192.168.10.254"
@@ -19,22 +19,34 @@ Vagrant.configure("2") do |config|
 
 
   box_defs = [
-
     { 
       # only internal
       role: "member",
       bname: "nord", 
       ip_p: "192.168.10.20",
-      #box_img: "qemu-jubeaz-uefi-windows-2022",
-      #box_img: "qemu-jubeaz-uefi-windows-2022-core",
-      box_img: "qemu-jubeaz-uefi-windows-2025",
-      #box_img: "qemu-jubeaz-uefi-windows-2025-core",
+      #box_img: "qemu-jubeaz-uefi-windows-2025",
+      box_img: "jubeaz/windows_2022_uefi",
       username: "jubeaz",
       password: "jubeaz",
       os: "windows", 
       ram: 8*1024,
       cpu: 4,
       firmware: "uefi"
+    },
+    { 
+      # only internal
+      role: "member",
+      deployment_type: "routed", # "routed" will exploit bridge interface anything else else will rely on NAT
+      bname: "penbox", 
+      ip_p: "192.168.10.21",
+      #box_img: "qemu-jubeaz-bios-archlinux-x86_64",
+      box_img: "jubeaz/archlinux_x64_bios",
+      username: "jubeaz",
+      password: "jubeaz",
+      os: "arch", 
+      ram: 4*1024,
+      cpu: 4,
+      firmware: "bios"
     }
   ]
 
@@ -83,8 +95,9 @@ Vagrant.configure("2") do |config|
     ## Management network device, default is below
     #libvirt.management_network_device = 'virbr0'
     libvirt.management_network_address = "#{management_network_prefix}.0/24"
-    libvirt.management_network_name = "plaber_mgnt"
+    libvirt.management_network_name = "jubeaz_mgnt"
     libvirt.management_network_mode = "none"
+    libvirt.management_network_autostart = true
     libvirt.storage_pool_name = storage_pool_name
   end
 
@@ -92,12 +105,15 @@ Vagrant.configure("2") do |config|
     config.vm.define box_def[:bname] do |box|
       box.vm.provider "libvirt" do |box_provider|
         #box_provider.graphics_type = "vnc"
-        box_provider.default_prefix = "plaber_"
+        box_provider.default_prefix = "jubeaz_"
         box_provider.memory = box_def[:ram]
         box_provider.cpus = box_def[:cpu]
         box_provider.keymap = "fr"
-        box_provider.input type:"tablet", bus: "usb" # solve mouse capture of VNC
+        if box_def[:os] == "windows"
+          box_provider.input type:"tablet", bus: "usb" # solve mouse capture of VNC
+        end
         if box_def[:firmware] == "uefi"
+          box_provider.nested = true # nested virtualization
           unless File.exist?("#{efi_path}/OVMF_CODE_4M.ms.fd")
             FileUtils.cp("../../ovmf/usr/share/OVMF/OVMF_CODE_4M.ms.fd", "#{efi_path}/OVMF_CODE_4M.ms.fd")
             FileUtils.chmod(permissions, "#{efi_path}/OVMF_CODE_4M.ms.fd")
@@ -158,7 +174,8 @@ Vagrant.configure("2") do |config|
             dev: bridge[:dev],
             mode: "bridge",
             type: "bridge",
-            libvirt__iface_name: bridge[:name],
+            #libvirt__iface_name: bridge[:name]
+            libvirt__iface_name: "#{bridge[:name]}_#{box_def[:bname]}",
             ip: box_def[:ip_p]
         end
       end
@@ -177,6 +194,11 @@ Vagrant.configure("2") do |config|
           box.vm.provision :shell, :path => "../../scripts/EnableWinRM.ps1", privileged: false
           box.vm.provision :shell, :path => "../../scripts/default_gw.ps1", privileged: false, args: ["-IFName", "internet","-Gateway", bridge[:gw]]
         end
+      end
+      if box_def[:os] == "arch"
+        box.vm.communicator = "ssh"
+        box.vm.provision :shell, :path => "../../scripts/fix_ip.sh", privileged: true, args: [box_def[:deployment_type], bridge[:gw]]
+        box.vm.provision :shell, :path => "../../scripts/arch_python.sh", privileged: true, args: ["France"]
       end
     end
   end

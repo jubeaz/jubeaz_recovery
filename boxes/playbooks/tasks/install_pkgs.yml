@@ -1,0 +1,107 @@
+---
+- name: Upgrade packages
+  community.general.pacman:
+    upgrade: true
+    update_cache: true
+    upgrade_extra_args: "{{ pacman_extra_args }}"
+
+- name: Install from Arch
+  community.general.pacman:
+    name: "{{ pacman_arch_packages }}"
+    state: latest
+
+- name: Install from Arch AUR
+  ansible.builtin.include_role:
+    name: aur-install
+  vars:
+    aur_pkg_name: "{{ item }}"
+  loop: "{{ pacman_aur_arch_packages }}"
+
+#- name: Install from Blackarch
+#  community.general.pacman:
+#    name: "{{ pacman_blackarch_packages }}"
+#    state: latest
+
+- name: Install from Blackarch
+  community.general.pacman:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ pacman_blackarch_packages }}"
+  register: blackarch_results
+  ignore_errors: true
+  no_log: true
+  
+- name: Show failed packages nicely
+  ansible.builtin.debug:
+    msg: |
+      The following packages failed to install:
+      {{ blackarch_results.results | selectattr('failed', 'defined') 
+                                   | selectattr('failed', 'equalto', true)
+                                   | map(attribute='item')
+                                   | list | join(', ') }}
+  when: blackarch_results is failed or
+        (blackarch_results.results | selectattr('failed', 'defined') | selectattr('failed', 'equalto', true) | list | length > 0)
+
+- name: Fail the play if any package failed
+  ansible.builtin.fail:
+    msg: "Some packages failed: {{ blackarch_results.results | selectattr('failed', 'defined') 
+                                                  | selectattr('failed', 'equalto', true)
+                                                  | map(attribute='item') | list | join(', ') }}"
+  when: blackarch_results is failed or
+        (blackarch_results.results | selectattr('failed', 'defined') | selectattr('failed', 'equalto', true) | list | length > 0)
+
+- name: Install from Blackarch AUR
+  ansible.builtin.include_role:
+    name: aur-install
+  vars:
+    aur_pkg_name: "{{ item }}"
+  loop: "{{ pacman_aur_blackarch_packages }}"
+
+- name: Pipx install
+  become: false
+  community.general.pipx:
+    name: "{{ item }}"
+  loop: "{{ pipx_packages }}"
+
+- name: Pipx git install
+  become: false
+  community.general.pipx:
+    name: "{{ item[0] }}"
+    source: "{{ item[1] }}"
+  loop: "{{ pipx_git_packages }}"
+
+- name: Gems install
+  become: false
+  community.general.gem:
+    name: "{{ item[0] }}"
+    state: present
+    user_install: true
+  loop: "{{ gems_packages }}"
+
+- name: Cloning repos in /opt
+  ansible.builtin.git:
+    repo: "{{ item[1] }}"
+    dest: "/opt/{{ item[0] }}"
+    recursive: true
+  loop: "{{ git_packages }}"
+  when: git_packages is defined 
+
+- name: pip install git cloned
+  include_tasks: tools_books/pip_git_install.yml
+  loop: "{{ pip_git_packages }}"
+  when: pip_git_packages is defined 
+
+- name: Ensure target directory exists
+  become: false
+  ansible.builtin.file:
+    path: "/home/{{ lookup('env', 'USER') }}/tools"
+    state: directory
+    mode: '0755'
+
+- name: Cloning user repos
+  become: false
+  ansible.builtin.git:
+    repo: "{{ item[1] }}"
+    dest: "/home/{{ lookup('env', 'USER') }}/{{ item[0] }}"
+  loop: "{{ git_user_packages }}"
+  when: git_user_packages is defined

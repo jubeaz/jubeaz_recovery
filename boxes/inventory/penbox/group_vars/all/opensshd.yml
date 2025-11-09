@@ -1,0 +1,35 @@
+
+# ######################
+# opensshd
+# ######################
+openssh_sshd_user_override:
+  jubeaz:
+    X11Forwarding: "yes"
+    X11UseLocalhost: "yes"
+    X11DisplayOffset: "10"
+    AllowAgentForwarding: "yes" 
+    AllowTcpForwarding: "yes"
+    AllowStreamLocalForwarding: "yes"
+
+  #    PermitTTY: no
+  #    ForceCommand: " cvs server"
+openssh_sshd_config:
+  PermitRootLogin: "no"
+  PubkeyAuthentication: "yes"
+  AllowAgentForwarding: "no"
+  AllowTcpForwarding: "no"
+  ClientAliveCountMax: 2
+  Compression: "no"
+  LogLevel: "VERBOSE"
+  MaxAuthTries: 3
+  MaxSessions: 2
+  TCPKeepAlive: "no"
+  Banner: /etc/issue
+  PubkeyAcceptedKeyTypes: "=+ssh-rsa"
+  AuthorizedKeysFile:	.ssh/authorized_keys
+  PasswordAuthentication: "no"
+  KbdInteractiveAuthentication: "no"
+  UsePAM: "yes"
+  PrintMotd: "no" # pam does that
+  Subsystem: "	sftp	/usr/lib/ssh/sftp-server"
+

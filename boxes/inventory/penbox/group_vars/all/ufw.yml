@@ -1,0 +1,10 @@
+# ######################
+# ufw vars
+# ######################
+ufw_in_ssh_ip: 
+  # host-only network
+  - 192.168.10.0/24
+  # NAT interface
+  - 192.168.121.0/24
+ufw_forward: false
+ufw_nat: false
