@@ -16,7 +16,7 @@ plbr_local_groups: {
 }
 
 ## https://community.chocolatey.org/packages
-plbr_softwares: [ "git", "tor", "notepadplusplus", "libreoffice", "7zip"]
+plbr_softwares: [ "openssl", "git", "tor", "notepadplusplus", "libreoffice", "7zip"]
 
 plbr_user_repos: {
     "jubeaz": [ 
