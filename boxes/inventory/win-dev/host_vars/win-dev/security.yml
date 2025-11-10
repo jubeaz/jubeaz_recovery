@@ -1,4 +1,7 @@
-firewall_profiles: {
+plbr_update_initial: true
+plbr_update_continuous: true
+
+plbr_firewall_profiles: {
   "Domain": {"enabled": "False", "inbound": "allow", "outbound": "allow"},
   "Public": {"enabled": "False", "inbound": "allow", "outbound": "allow"},
   "Private": {"enabled": "False", "inbound": "allow", "outbound": "allow"},
@@ -9,7 +12,7 @@ firewall_profiles: {
 # key: ["Domain", "Private", "Public"], 
 
 
-windows_defender: false
+plbr_windows_defender: true
 windows_defender_exclusions: ["c:\\tools", "c:\\users"]
 # 0: UAC won't prompt (like disabled)                                                                                                                                                                  │
 # 1: ask for username and password to execute the binary with high rights (on Secure Desktop)                                                                                                          │
@@ -17,8 +20,8 @@ windows_defender_exclusions: ["c:\\tools", "c:\\users"]
 # 3: like 1 but not necessary on Secure Desktop                                                                                                                                                        │
 # 4: like 2 but not necessary on Secure Desktop                                                                                                                                                        │
 # 5: ask the administrator to confirm to run non Windows binaries with high privileges     
-uac_status_level: 0
+plbr_uac_level: 0
 
-enable_run_as_ppl: false
+plbr_enable_run_as_ppl: false
 
 plbr_cis_hardening: false

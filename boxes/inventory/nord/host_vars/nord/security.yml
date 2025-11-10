@@ -1,5 +1,6 @@
 plbr_update_initial: true
 plbr_update_continuous: true
+
 plbr_firewall_profiles: {
   "Domain": {"enabled": "True", "inbound": "Block", "outbound": "allow"},
   "Public": {"enabled": "True", "inbound": "Block", "outbound": "allow"},

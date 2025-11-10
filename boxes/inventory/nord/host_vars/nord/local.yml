@@ -41,3 +41,11 @@ plbr_files_copy: [
 plbr_private_files_copy: [
     "bookmarks.md"
 ]
+
+
+plbr_extra_capabilities: [
+]
+
+plbr_ps_modules: [
+    "PSWindowsUpdate"
+]
