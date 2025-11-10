@@ -1,0 +1,43 @@
+plbr_hostname: nord
+plbr_is_server_os: true
+plbr_local_admin_password: "Zaebuj12345+-"
+windows_update: true
+
+plbr_local_users: {
+    "jubeaz" : {
+        "password"        : "jubeaz", 
+        }
+}
+
+plbr_local_groups: {
+    "Administrators" : [".\\jubeaz"],
+    "Remote Desktop Users" : [".\\jubeaz"],
+    "Remote Management Users": [".\\jubeaz"]
+}
+
+## https://community.chocolatey.org/packages
+plbr_softwares: [ "git", "tor", "notepadplusplus", "libreoffice", "7zip"]
+
+plbr_user_repos: {
+    "jubeaz": [ 
+#        [HardeningKitty, https://github.com/scipag/HardeningKitty.git]
+    ]
+}
+
+plbr_tools: [
+    [NordInstaller.exe, https://downloads.nordcdn.com/apps/windows/NordVPN/latest/NordInstaller.exe],
+    [virtio-win.iso, https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso]
+]
+
+plbr_user_downloads: {
+    "jubeaz": [ 
+        [MicrosoftEdgeEnterpriseX64.msi, "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/03621605-a301-435a-9b39-49b69e3449b8/MicrosoftEdgeEnterpriseX64.msi"],
+        [MicrosoftEdgePolicyTemplates.cab, "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/fdde4153-c543-4fa2-8720-f4725f3c3520/MicrosoftEdgePolicyTemplates.cab"]
+    ]
+}
+plbr_files_copy: [
+    "edge.html",
+]
+plbr_private_files_copy: [
+    "bookmarks.md"
+]

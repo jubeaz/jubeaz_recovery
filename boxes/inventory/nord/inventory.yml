@@ -1,0 +1,5 @@
+---
+all:
+  hosts:
+    nord: {ansible_host: 192.168.10.20}
+#    win-dev: {ansible_host: 192.168.10.21}

@@ -1,0 +1,189 @@
+---
+- name: Install nord
+  hosts: nord
+  max_fail_percentage: 0
+  tags: 'build_computers_setup_1'
+  tasks:
+    #- name: debug
+    #  ansible.builtin.debug:
+    #   var: ansible_facts
+
+    - name: Base setup
+      ansible.builtin.include_role:
+        name: "windows_cfg_base"
+      when: ansible_hostname != plbr_hostname
+
+    - name: Set NTP
+      ansible.builtin.include_role:
+        name: windows_cfg_ntp
+      when: nsible_hostname != plbr_hostnam
+
+    - name: Keyboard setup
+      ansible.builtin.include_role:
+        name: "windows_cfg_keyboard"
+      when: ansible_hostname != plbr_hostname and plbr_is_server_os
+
+    - name: Update Windows
+      ansible.builtin.include_role:
+        name: "windows_cfg_updates"
+      when: ansible_hostname != plbr_hostname and plbr_update_initial
+
+    - name: Update planning setup
+      ansible.builtin.include_role:
+        name: "windows_cfg_update_planning"
+      when: ansible_hostname != plbr_hostname and plbr_update_continuous
+
+    - name: Prevent update
+      ansible.builtin.include_role:
+        name: "windows_cfg_updates_stop"
+      when: ansible_hostname != plbr_hostname and not plbr_update_continuous
+
+    - name: Admin password setup
+      ansible.builtin.include_role:
+        name: "windows_cfg_admin_password"
+      when: ansible_hostname != plbr_hostname
+
+    - name: Hostname setup
+      ansible.builtin.include_role:
+        name: "windows_cfg_hostname"
+      when: ansible_hostname != plbr_hostname
+
+    - name: Register ansible_hostname for cache
+      ansible.builtin.set_fact:
+        ansible_hostname: "{{ plbr_hostname }}"
+        cacheable: true
+      when: ansible_hostname != plbr_hostname
+
+    - name: Role windows_cfg_group
+      ansible.builtin.include_role:
+        name: "windows_cfg_group"
+
+    - name: Role windows_cfg_user
+      ansible.builtin.include_role:
+        name: "windows_cfg_user"
+
+    - name: Role windows_cfg_user_right
+      ansible.builtin.include_role:
+        name: "windows_cfg_user_right"
+
+
+    - name: Role windows_cfg_windows_defender
+      ansible.builtin.include_role:
+        name: "windows_cfg_windows_defender"
+
+    - name: Role windows_cfg_run_as_ppl
+      ansible.builtin.include_role:
+        name: "windows_cfg_run_as_ppl"
+
+    - name: Role windows_cfg_firewall
+      ansible.builtin.include_role:
+        name: "windows_cfg_firewall"
+
+    - name: Role windows_settings_groups (add_members)
+      ansible.builtin.include_role:
+        name: "windows_cfg_group"
+      vars:
+        w_cfg_group_action: "add_members"
+
+    - name: Role windows_cfg_software_install
+      ansible.builtin.include_role:
+        name: "windows_cfg_software_install"
+      when: plbr_softwares | default([]) | length > 0
+
+    - name: Create C:\Tools directory
+      ansible.windows.win_file:
+        path: C:\tools
+        state: directory
+
+#    - name: "Exclude some path"
+#      win_defender_exclusion:
+#        list:
+#          - "c:\\tools"
+#          - "c:\\users"
+#        type: Path
+#        clean: false
+
+    - name: Download some tools
+      ansible.windows.win_get_url:
+        url: "{{ item[1] }}"
+        dest: "c:\\tools\\{{ item[0] }}"
+      loop: "{{ plbr_tools }}"
+
+    - name: Ensure some path in  global system path
+      ansible.windows.win_path:
+        elements:
+          - 'c:\tools'
+          - 'C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.23110.3-0'
+          - 'C:\users\jubeaz\bin'
+          - 'C:\ProgramData\chocolatey\bin'
+
+    - name: Clone repos
+      ansible.builtin.include_role:
+        name: "windows_domain_git_clone"
+      vars:
+        windows_domain_git_clone_repositories: "{{ u.value }}"
+        windows_domain_git_clone_user: "{{ u.key }}"
+        windows_domain_git_clone_net_bios: "{{ plbr_hostname }}"
+        windows_domain_git_clone_password: "{{ plbr_local_users[u.key].password }}"
+      loop: "{{ plbr_user_repos | dict2items }}"
+      when: plbr_user_repos is defined
+      loop_control:
+        loop_var: u
+
+    - name: Download files
+      ansible.builtin.include_role:
+        name: "windows_domain_download_files"
+      vars:
+        windows_domain_download_files_downloads: "{{ u.value }}"
+        windows_domain_download_files_user: "{{ u.key }}"
+        windows_domain_download_files_net_bios: "{{ plbr_hostname }}"
+        windows_domain_download_files_password: "{{ plbr_local_users[u.key].password }}"
+      loop: "{{ plbr_user_downloads | dict2items }}"
+      loop_control:
+        loop_var: u
+      when: plbr_user_downloads is defined
+
+    - name: Copier le fichier local vers le répertoire distant
+      ansible.windows.win_copy:
+        src: "../files/{{ item }}"
+        dest: "c:\\tools\\{{ item }}"
+      loop: "{{ plbr_files_copy }}"
+
+    - name: Role windows_cfg_uac
+      ansible.builtin.include_role:
+        name: "windows_cfg_uac"
+      vars:
+        w_cfg_uac_level: "{{ plbr_uac_level }}"
+
+    - name: Role CIS
+      ansible.builtin.include_role:
+        name: "windows_settings_CIS"
+#      vars:
+#        w_cfg_uac_level: "{{ plbr_uac_level }}"
+  vars:
+    w_cfg_kbd_layout: "0000040C"
+    w_cfg_base_winrm_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"
+    w_cfg_base_rdp_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"
+    w_cfg_base_any_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"
+    w_cfg_hostname_name: "{{ plbr_hostname }}"
+    w_cfg_base_force_dns_server: "{{ plbr_force_dns_server }}"
+    w_cfg_base_dns_server: "{{ plbr_dns_server }}"
+    w_cfg_base_enable_http_proxy: "{{ plbr_enable_http_proxy }}"
+    w_cfg_base_http_proxy: "{{ plbr_http_proxy }}"
+    w_cfg_base_https_proxy: "{{ plbr_https_proxy }}"
+    w_cfg_base_two_adapters: "{{ plbr_two_adapters }}"
+    w_cfg_base_domain_adapter: "{{ plbr_domain_adapter }}"
+    w_cfg_lap_password: "{{ plbr_local_admin_password }}"
+    w_cfg_group_action: "create"
+    w_cfg_group_groups: "{{ plbr_local_groups }}"
+    w_cfg_user_users: "{{ plbr_local_users }}"
+
+    w_cfg_run_as_ppl: "{{ plbr_run_as_ppl }}"
+    w_cfg_defender_is_server_os: "{{ plbr_is_server_os }}"
+    w_cfg_defender: "{{ plbr_windows_defender }}"
+    w_cfg_firewall_profiles: "{{ plbr_firewall_profiles }}"
+    w_cfg_firewall_rules: "{{ plbr_firewall_rules }}"
+    windows_cfg_software_install_softwares: "{{ plbr_softwares }}"
+    w_cfg_ntp_servers: "{{ plbr_ntp_servers }}"
+    w_cfg_base_timezone: "{{ plbr_timezone }}"
+    windows_settings_CIS_ntp_server_fqdn: "{{ plbr_ntp_servers }}"

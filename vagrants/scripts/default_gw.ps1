@@ -3,5 +3,6 @@
 
 param ([String] $Gateway, [string]$IFName)
  	#route add 0.0.0.0 mask 0.0.0.0 $Gateway
+	Remove-NetRoute -DestinationPrefix "0.0.0.0/0"  -Confirm:$false
 	Write-Output "Setting defaut route on $IFName to $Gateway"
 	New-NetRoute -InterfaceAlias $IFName -DestinationPrefix "0.0.0.0/0" -NextHop $Gateway

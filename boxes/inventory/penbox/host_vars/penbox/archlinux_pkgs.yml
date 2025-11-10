@@ -87,7 +87,7 @@ pacman_arch_packages:
 #############  - freerdp           
   - ssh-audit         
   - hydra             
-#  - python-updog
+  - python-updog
   - apache
 # wifi     
   - aircrack-ng
