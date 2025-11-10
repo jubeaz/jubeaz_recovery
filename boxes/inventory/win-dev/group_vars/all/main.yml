@@ -1,0 +1,38 @@
+plbr_local_admin_password: Jubeaz12345+-
+plbr_force_dns_server: true
+plbr_dns_server: 8.8.8.8
+plbr_two_adapters: "{{ true if public_ip is defined else false}}"
+plbr_ntp_servers: [0.fr.pool.ntp.org 1.fr.pool.ntp.org 2.fr.pool.ntp.org 3.fr.pool.ntp.org]
+plbr_timezone: Romance Standard Time
+
+# proxy settings (the lab need internet for some install, if you are behind a proxy you should set the proxy here)
+plbr_enable_http_proxy: false
+plbr_http_proxy: http://x.x.x.x:xxxx
+plbr_https_proxy: http://x.x.x.x:xxxx
+# https://community.chocolatey.org/packages
+plbr_softwares:
+  - git
+  - visualstudio2022community
+  - visualstudio2022-workload-manageddesktop
+  - visualstudio2022-workload-nativedesktop
+  - reshaper
+  - dotpeek
+  - notepadplusplus
+  #- vscode
+  #- vscode-csharp
+  #- vscode-powershell
+  #- vscode-python
+  - visualstudio2017community
+  - python3
+  - sysinternals
+  #- dnspy 
+
+
+
+  
+  # - visualstudiocommunity2013
+  #- powershell
+  #- wireshark
+  #- nmap
+  #- dotpeek 
+  # 

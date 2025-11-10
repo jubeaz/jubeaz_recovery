@@ -1,0 +1,2 @@
+file_transfer_base_path: /etc/ansible/boxes/files/win-dev
+private_file_transfer_base_path: /etc/ansible/files/win-dev

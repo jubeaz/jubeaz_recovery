@@ -1,6 +1,6 @@
 ---
 - name: Install nord
-  hosts: nord
+  hosts: nord, win-dev
   max_fail_percentage: 0
   tags: 'build_computers_setup_1'
   tasks:
@@ -95,13 +95,14 @@
         path: C:\tools
         state: directory
 
-#    - name: "Exclude some path"
-#      win_defender_exclusion:
-#        list:
-#          - "c:\\tools"
-#          - "c:\\users"
-#        type: Path
-#        clean: false
+    - name: Ensure defender excluded path
+      ansible.windows.win_powershell:
+        script: |
+          param([string]$Path)
+          Add-MpPreference -ExclusionPath $Path -ErrorAction SilentlyContinue
+      loop: "{{ windows_defender_exclusions }}"
+      loop_control:
+        loop_var: path
 
     - name: Download some tools
       ansible.windows.win_get_url:
@@ -158,8 +159,8 @@
     - name: Role CIS
       ansible.builtin.include_role:
         name: "windows_settings_CIS"
-#      vars:
-#        w_cfg_uac_level: "{{ plbr_uac_level }}"
+      when: plbr_cis_hardening is defined and plbr_cis_hardening is true
+
   vars:
     w_cfg_kbd_layout: "0000040C"
     w_cfg_base_winrm_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"

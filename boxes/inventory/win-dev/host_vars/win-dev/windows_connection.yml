@@ -1,0 +1,18 @@
+---
+ansible_user: jubeaz
+ansible_password: "jubeaz"
+ansible_connection: ssh
+#ansible_connection: winrm
+ansible_port:  22
+ansible_shell_type: powershell
+
+ansible_winrm_server_cert_validation: ignore
+ansible_winrm_operation_timeout_sec: 400
+ansible_winrm_read_timeout_sec: 500
+#ansible_winrm_transport: CredSSP
+#ansible_port:  5986
+
+plbr_nat_adapter: lab
+plbr_domain_adapter: internet
+plbr_pub_adapter: internet
+plbr_ansible_controller_ip: 192.168.10.1

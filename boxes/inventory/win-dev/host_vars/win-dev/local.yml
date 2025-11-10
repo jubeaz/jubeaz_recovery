@@ -1,0 +1,58 @@
+plbr_hostname: win-dev
+plbr_is_server_os: false
+plbr_local_admin_password: "Jubeaz12345+-"
+windows_update: true
+
+plbr_local_users: {
+    "jubeaz" : {
+        "password"        : "jubeaz", 
+        }
+}
+
+plbr_local_groups: {
+    "Administrators" : [".\\jubeaz"]
+#    "Remote Desktop Users" : [],
+#    "Remote Management Users": []
+}
+
+## https://community.chocolatey.org/packages
+plbr_softwares: [  "git", "visualstudio2022community", "visualstudio2017community", "notepadplusplus"]
+#  - visualstudio2022-workload-manageddesktop
+#  - visualstudio2022-workload-nativedesktop
+#  - reshaper
+#  - dotpeek
+#  #- vscode
+#  #- vscode-csharp
+#  #- vscode-powershell
+#  #- vscode-python
+#  - visualstudio2017community
+#  - python3
+#  - sysinternals
+#  #- dnspy 
+
+plbr_user_repos: {
+    "jubeaz": [ 
+        [Certify, https://github.com/GhostPack/Certify],
+        [Mimikatz, https://github.com/gentilkiwi/mimikatz.git],
+        [Rubeus, https://github.com/GhostPack/Rubeus],
+        [impacket , https://github.com/fortra/impacket.git],
+        [ThreatCheck , https://github.com/rasta-mouse/ThreatCheck.git],
+        [ThreatCheck_new , https://github.com/PACHAKUTlQ/ThreatCheck.git],
+        [GodPotato, https://github.com/BeichenDream/GodPotato],
+        [PPLcontrol, https://github.com/itm4n/PPLcontrol],
+        [HardeningKitty, https://github.com/scipag/HardeningKitty.git]
+    ]
+}
+
+plbr_tools: [
+    [ThreatCheck_x64.exe, https://github.com/PACHAKUTlQ/ThreatCheck/releases/download/v1.1/ThreatCheck_x64.exe]
+]
+plbr_user_downloads: {
+    "jubeaz": [ 
+        [GRMWDK_EN_7600_1.ISO, https://download.microsoft.com/download/4/A/2/4A25C7D5-EFBE-4182-B6A9-AE6850409A78/GRMWDK_EN_7600_1.ISO],
+        [SysinternalsSuite.zip, https://download.sysinternals.com/files/SysinternalsSuite.zip],
+    ]
+}
+
+plbr_files_copy: []
+plbr_private_files_copy: []
