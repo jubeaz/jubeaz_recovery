@@ -1,0 +1,23 @@
+- name: Check if sliver systemd service file exists
+  ansible.builtin.stat:
+    path: /etc/systemd/system/sliver.service
+  register: sliver_service_stat
+
+- name: Download Sliver install script
+  ansible.builtin.get_url:
+    url: https://sliver.sh/install
+    dest: /tmp/install
+    mode: '0755'
+  when: not sliver_service_stat.stat.exists
+
+- name: Run Sliver install script
+  ansible.builtin.command: /tmp/install
+  register: sliver_install
+  changed_when: my_output.rc != 0
+  when: not sliver_service_stat.stat.exists
+
+- name: Ensure sliver service is running
+  ansible.builtin.service:
+    name: sliver
+    state: started
+    enabled: true

@@ -5,6 +5,14 @@
   become: true
   become_user: root
   tasks:
+    - name: SETUP RUNTIME KERNEL PARAM OVERRIDE
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/sysctl.d/99-sysctl.conf"
+        dest: /etc/sysctl.d/99-sysctl.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: true
     - name: SETUP PLOCATE
       ansible.builtin.include_role:
         name: "plocate"
@@ -61,10 +69,12 @@
         name: "docker"
     - name: INSTALL PACKAGES
       ansible.builtin.include_tasks: tasks/install_pkgs.yml
+    - name: INSTALL SLIVER
+      ansible.builtin.include_tasks: tasks/sliver.yml
 
-    - name: STOP
-      ansible.builtin.fail:
-        msg: STOP
+#    - name: STOP
+#      ansible.builtin.fail:
+#        msg: STOP
     - name: SETUP WIFI AP
       ansible.builtin.include_role:
         name: "wifi_ap"
@@ -220,6 +230,20 @@
         group: jubeaz
         mode: '0600'
         comment: "jubeaz@pentest"
+
+    - name: BACKUP proxychains.conf
+      ansible.builtin.copy:
+        src: /etc/proxychains.conf
+        dest: /etc/proxychains.conf.save
+        remote_src: true
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: DELETE proxychains.conf
+      ansible.builtin.file:
+        path: /etc/proxychains.conf
+        state: absent
 ##########################################
 ## TO DEBUG
 ##########################################

@@ -22,7 +22,7 @@ pacman_blackarch_packages:
   - seclists           #/ black
   - crunch             #/ black
   - cewl               #/ black
-#  - cupp               #/ black
+  - cupp               #/ black
   - username-anarchy   #/ black
   - pass-station       #/ black                 # CLI & library to search for default credentials among thousands of Products / Vendors
 
@@ -69,11 +69,11 @@ pacman_blackarch_packages:
   - sqlmap              # SQL injection scanner 
   - dotdotpwn           # 
   - nosqli
-#  - nosqlmap
+  - nosqlmap
 ## other
 #    #/black 
   - jwt-tool           # Toolkit for validating, forging, scanning and tampering JWT
-#  - gittools           # Dump a git repository from a website 
+  - gittools           # Dump a git repository from a website 
 
 # wifi
   - hostapd-wpe

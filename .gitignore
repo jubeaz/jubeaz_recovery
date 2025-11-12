@@ -7,3 +7,5 @@ tags
 /vagrants/ovmf/*
 /vagrants/ovmf/.gitkeep
 .continue
+/vagrants/libvirt/
+!/vagrants/libvirt/all

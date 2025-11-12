@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
       username: "jubeaz",
       password: "jubeaz",
       os: "arch", 
-      ram: 4*1024,
+      ram: 12*1024,
       cpu: 4,
       firmware: "bios"
     }
@@ -182,6 +182,7 @@ Vagrant.configure("2") do |config|
       end
       # issue when creating sync folder
       box.vm.synced_folder '.', '/vagrant', disabled: true
+      # box.vm.synced_folder "/mnt/box_fs/penbox", "/mnt", type: "9p", disabled: false, accessmode: "mapped", mount: false
       ## Network provisionning
       if box_def[:role] == "member"
         #  Provision a BRIDGED interface if needed on Ethernet 2 / eth2

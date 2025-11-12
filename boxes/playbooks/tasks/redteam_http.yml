@@ -25,6 +25,15 @@
     src: "{{ file_transfer_base_path }}/srv/http/"
     dest: /srv/http/
     archive: true
+
+- name: Assert http directory is 755
+  ansible.builtin.file:
+    path: /srv/http
+    owner: jubeaz
+    group: jubeaz
+    mode: '0755'
+    state: directory
+
 - name: Assert http upload directory exist
   ansible.builtin.file:
     path: /srv/http/upload/lib

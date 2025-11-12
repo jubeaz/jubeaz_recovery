@@ -1,0 +1,9 @@
+---
+- name: Install penbox
+  gather_facts: true
+  hosts: penbox
+  become: true
+  become_user: root
+  tasks:
+
+
