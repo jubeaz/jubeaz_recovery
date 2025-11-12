@@ -8,10 +8,10 @@
     #  ansible.builtin.debug:
     #   var: ansible_facts
 
-#    - name: Base setup
-#      ansible.builtin.include_role:
-#        name: "windows_cfg_base"
-#      when: ansible_facts.hostname != plbr_hostname
+    - name: Base setup
+      ansible.builtin.include_role:
+        name: "windows_cfg_base"
+      when: ansible_facts.hostname != plbr_hostname
 
     - name: Set NTP
       ansible.builtin.include_role:
