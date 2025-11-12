@@ -55,6 +55,9 @@
         password: "!"
         state: present
 
+    - name: SETUP NFS
+      ansible.builtin.include_role:
+        name: "nfs"
     - name: SETUP BLACKARCH
       ansible.builtin.include_role:
         name: "blackarch"

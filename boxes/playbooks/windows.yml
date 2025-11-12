@@ -66,7 +66,6 @@
       ansible.builtin.include_role:
         name: "windows_cfg_user_right"
 
-
     - name: Role windows_cfg_windows_defender
       ansible.builtin.include_role:
         name: "windows_cfg_windows_defender"
@@ -80,6 +79,10 @@
         parameters:
           Path: "{{ item }}"
       loop: "{{ windows_defender_exclusions }}"
+
+    - name: Role windows_cfg_nfs_client
+      ansible.builtin.include_role:
+        name: "windows_cfg_nfs_client"
 
 #    - name: Stop
 #      ansible.builtin.fail:

@@ -1,0 +1,40 @@
+---
+- name: Install Windows
+  hosts: nord, win-dev
+  max_fail_percentage: 0
+  tags: 'build_computers_setup_1'
+  tasks:
+
+    - name: Role windows_cfg_nfs_client
+      ansible.builtin.include_role:
+        name: "windows_cfg_nfs_client"
+  vars:
+    w_cfg_kbd_layout: "0000040C"
+    w_cfg_base_winrm_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"
+    w_cfg_base_rdp_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"
+    w_cfg_base_any_allow_ip: "{{ []  + [plbr_ansible_controller_ip] }}"
+    w_cfg_hostname_name: "{{ plbr_hostname }}"
+    w_cfg_base_force_dns_server: "{{ plbr_force_dns_server }}"
+    w_cfg_base_dns_server: "{{ plbr_dns_server }}"
+    w_cfg_base_enable_http_proxy: "{{ plbr_enable_http_proxy }}"
+    w_cfg_base_http_proxy: "{{ plbr_http_proxy }}"
+    w_cfg_base_https_proxy: "{{ plbr_https_proxy }}"
+    w_cfg_base_two_adapters: "{{ plbr_two_adapters }}"
+    w_cfg_base_domain_adapter: "{{ plbr_domain_adapter }}"
+    w_cfg_lap_password: "{{ plbr_local_admin_password }}"
+    w_cfg_group_action: "create"
+    w_cfg_group_groups: "{{ plbr_local_groups }}"
+    w_cfg_user_users: "{{ plbr_local_users }}"
+
+    w_cfg_run_as_ppl: "{{ plbr_run_as_ppl }}"
+    w_cfg_defender_is_server_os: "{{ plbr_is_server_os }}"
+    w_cfg_defender: "{{ plbr_windows_defender }}"
+    w_cfg_firewall_profiles: "{{ plbr_firewall_profiles }}"
+    w_cfg_firewall_rules: "{{ plbr_firewall_rules }}"
+    windows_cfg_software_install_softwares: "{{ plbr_softwares }}"
+    w_cfg_ntp_servers: "{{ plbr_ntp_servers }}"
+    w_cfg_base_timezone: "{{ plbr_timezone }}"
+    windows_settings_CIS_ntp_server_fqdn: "{{ plbr_ntp_servers }}"
+    w_cfg_nfs_client_anonymous_uid: "{{ plbr_nfs_client_anonymous_uid }}"
+    w_cfg_nfs_client_anonymous_gid: "{{ plbr_nfs_client_anonymous_gid }}"
+    w_cfg_nfs_client_mounts: "{{ plbr_nfs_client_mounts }}"

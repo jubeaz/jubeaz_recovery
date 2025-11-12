@@ -1,0 +1,5 @@
+plbr_nfs_client_anonymous_uid: 1000
+plbr_nfs_client_anonymous_gid: 1000
+plbr_nfs_client_mounts: {
+  J: "\\\\192.168.10.2\\srv\\nfs\\jubeaz"
+}
