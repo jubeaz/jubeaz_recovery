@@ -86,8 +86,8 @@
       ansible.builtin.file:
         path: /etc/nginx/ssl
         state: directory
-        owner: root
-        group: root
+        owner: http
+        group: http
         mode: '0700'
 
     - name: Generate self-signed certificate if missing
@@ -99,33 +99,78 @@
       args:
         creates: /etc/nginx/ssl/redteam.crt
 
+    - name: Change cert perm 
+      ansible.builtin.file:
+        path: /etc/nginx/ssl/redteam.crt
+        owner: http
+        group: http
+        mode: '0644'
+      
+    - name: Change key perm 
+      ansible.builtin.file:
+        path: /etc/nginx/ssl/redteam.key
+        owner: http
+        group: http
+        mode: '0600'
+      
   # create etc/nginx/conf.d/
     - name: Ensure conf.d directory exists
       ansible.builtin.file:
         path: /etc/nginx/conf.d
         state: directory
-        owner: root
-        group: root
+        owner: http
+        group: http
         mode: '0755'
-    - name: Copy services
+
+    - name: Copy nginx conf
       ansible.builtin.copy:
         src: "{{ file_transfer_base_path }}/etc/nginx/nginx.conf"
         dest: "/etc/nginx/nginx.conf"
-        owner: root
-        group: root
+        owner: http
+        group: http
         mode: '0644'
         backup: true
-    - name: Copy services
+
+    - name: Copy nginx sites
       ansible.builtin.copy:
         src: "{{ file_transfer_base_path }}/etc/nginx/conf.d/{{ item }}"
+        dest: "/etc/nginx/conf.d/{{ item }}"
+        owner: http
+        group: http
+        mode: '0644'
+        backup: true
+      with_items:
+        - http.conf
+        - https.conf
+
+
+    - name: Ensure obfuscation app directory exists
+      ansible.builtin.file:
+        path: /opt/obf_server
+        state: directory
+        owner: http
+        group: http
+        mode: '0755'    
+
+    - name: Copy obfuscation app
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/opt/obf_server/obf_server.py"
+        dest: "/opt/obf_server/obf_server.py"
+        owner: http
+        group: http
+        mode: '0755'    
+
+    - name: Copy services
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/systemd/system/{{ item }}"
         dest: "/etc/systemd/system/{{ item }}"
         owner: root
         group: root
         mode: '0644'
         backup: true
       with_items:
-        - http.conf
-        - https.conf
+        - obf_server.service
+        - rt_http-upload.service
 
     - name: Ensure nginx is enabled and running
       ansible.builtin.service:
@@ -141,3 +186,4 @@
       with_items:
         - nginx
         - rt_http-upload.service
+        - obf_server.service

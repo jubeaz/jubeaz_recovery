@@ -1,0 +1,16 @@
+[Unit]
+Description=start RedTeam onfly obfuscator
+After=network.target
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+Restart=on-failure
+ExecStart=/usr/bin/python3 /opt/obf_server/obf_server.py
+WorkingDirectory=/opt/obf_server
+User=http
+Group=http
+
+
+[Install]
+WantedBy=multi-user.target
