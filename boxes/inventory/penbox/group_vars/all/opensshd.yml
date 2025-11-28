@@ -13,10 +13,10 @@ openssh_sshd_user_override:
   rtunnel:
     ForceCommand: internal-sftp
     ChrootDirectory: '%h'
-    PermitTunnel: no
-    AllowTcpForwarding: yes
-    X11Forwarding: no
-    PasswordAuthentication: yes
+    PermitTunnel: "no"
+    AllowTcpForwarding: "yes"
+    X11Forwarding: "no"
+    PasswordAuthentication: "yes"
 
   #    PermitTTY: no
   #    ForceCommand: " cvs server"

@@ -1,5 +1,5 @@
 - name: Setup apache based redteam proxy
-  when: "{{ plbr_http_redteam_mode != 'nginx '}}"
+  when: plbr_http_redteam_mode != 'nginx'
   block:
     - name: Activate modules
       ansible.builtin.lineinfile:
@@ -74,7 +74,7 @@
 
 
 - name: Setup nginx based redteam proxy
-  when: "{{ plbr_http_redteam_mode == 'nginx '}}"
+  when: plbr_http_redteam_mode == 'nginx'
   block:
   # install nginx https://wiki.archlinux.org/title/Nginx
     - name: Install nginx
@@ -117,7 +117,7 @@
         backup: true
     - name: Copy services
       ansible.builtin.copy:
-        src: "{{ file_transfer_base_path }}/etc/nginx/system/{{ item }}"
+        src: "{{ file_transfer_base_path }}/etc/nginx/conf.d/{{ item }}"
         dest: "/etc/systemd/system/{{ item }}"
         owner: root
         group: root
