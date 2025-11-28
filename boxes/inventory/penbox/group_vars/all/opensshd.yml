@@ -10,10 +10,18 @@ openssh_sshd_user_override:
     AllowAgentForwarding: "yes" 
     AllowTcpForwarding: "yes"
     AllowStreamLocalForwarding: "yes"
+  rtunnel:
+    ForceCommand: internal-sftp
+    ChrootDirectory: '%h'
+    PermitTunnel: no
+    AllowTcpForwarding: yes
+    X11Forwarding: no
+    PasswordAuthentication: yes
 
   #    PermitTTY: no
   #    ForceCommand: " cvs server"
 openssh_sshd_config:
+  AllowUsers: jubeaz rtunnel@192.168.10.1
   PermitRootLogin: "no"
   PubkeyAuthentication: "yes"
   AllowAgentForwarding: "no"

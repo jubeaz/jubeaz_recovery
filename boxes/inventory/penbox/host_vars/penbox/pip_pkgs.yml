@@ -18,7 +18,7 @@ pipx_git_packages:
   - [donpapi, git+https://github.com/login-securite/DonPAPI.git]
   - [wes, git+https://github.com/bitsadmin/wesng]
   - [sccmhunter, git+https://github.com/garrettfoster13/sccmhunter/]
-  #- [nxc, git+https://github.com/Pennyw0rth/NetExec]
+  - [nxc, git+https://github.com/Pennyw0rth/NetExec]
   
 
 

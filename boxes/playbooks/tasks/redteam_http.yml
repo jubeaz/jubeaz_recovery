@@ -1,70 +1,143 @@
-- name: Activate modules
-  ansible.builtin.lineinfile:
-    path: /etc/httpd/conf/httpd.conf
-    regexp: "^#(LoadModule {{ item }}.*)"
-    line: '\1'
-    backrefs: true
-  with_items:
-    - rewrite_module
-    - proxy_module
-    - proxy_http_module
-- name: Activate apache setting override
-  ansible.builtin.replace:
-    path: /etc/httpd/conf/httpd.conf
-    regexp: '^\s*AllowOverride\s+None'
-    replace: '    AllowOverride All'
-- name: Add jubeaz to groups
-  ansible.builtin.user:
-    name: jubeaz
-    groups: "{{ item }}"
-    append: true
-  with_items:
-    - http
-- name: Rsync http content
-  ansible.posix.synchronize:
-    src: "{{ file_transfer_base_path }}/srv/http/"
-    dest: /srv/http/
-    archive: true
+- name: Setup apache based redteam proxy
+  when: "{{ plbr_http_redteam_mode != 'nginx '}}"
+  block:
+    - name: Activate modules
+      ansible.builtin.lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "^#(LoadModule {{ item }}.*)"
+        line: '\1'
+        backrefs: true
+      with_items:
+        - rewrite_module
+        - proxy_module
+        - proxy_http_module
+    - name: Activate apache setting override
+      ansible.builtin.replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^\s*AllowOverride\s+None'
+        replace: '    AllowOverride All'
+    - name: Add jubeaz to groups
+      ansible.builtin.user:
+        name: jubeaz
+        groups: "{{ item }}"
+        append: true
+      with_items:
+        - http
+    - name: Rsync http content
+      ansible.posix.synchronize:
+        src: "{{ file_transfer_base_path }}/srv/http/"
+        dest: /srv/http/
+        archive: true
 
-- name: Assert http directory is 755
-  ansible.builtin.file:
-    path: /srv/http
-    owner: jubeaz
-    group: jubeaz
-    mode: '0755'
-    state: directory
+    - name: Assert http directory is 755
+      ansible.builtin.file:
+        path: /srv/http
+        owner: jubeaz
+        group: jubeaz
+        mode: '0755'
+        state: directory
 
-- name: Assert http upload directory exist
-  ansible.builtin.file:
-    path: /srv/http/upload/lib
-    owner: jubeaz
-    group: jubeaz
-    mode: '0755'
-    state: directory
-    recurse: true
+    - name: Assert http upload directory exist
+      ansible.builtin.file:
+        path: /srv/http/upload/lib
+        owner: jubeaz
+        group: jubeaz
+        mode: '0755'
+        state: directory
+        recurse: true
 
-- name: Copy services
-  ansible.builtin.copy:
-    src: "{{ file_transfer_base_path }}/etc/systemd/system/{{ item }}"
-    dest: "/etc/systemd/system/{{ item }}"
-    owner: root
-    group: root
-    mode: '0644'
-    backup: true
-  with_items:
-    - rt_http-lin.service
-    - rt_http-sharp.service
-    - rt_http-win.service
-    - rt_http-upload.service
+    - name: Copy services
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/systemd/system/{{ item }}"
+        dest: "/etc/systemd/system/{{ item }}"
+        owner: root
+        group: root
+        mode: '0644'
+        backup: true
+      with_items:
+        - rt_http-lin.service
+        - rt_http-sharp.service
+        - rt_http-win.service
+        - rt_http-upload.service
 
-- name: Start services
-  ansible.builtin.service:
-    name: "{{ item }}"
-    state: started
-    enabled: true
-  with_items:
-    - rt_http-lin.service
-    - rt_http-sharp.service
-    - rt_http-win.service
-    - rt_http-upload.service
-    - httpd.service
+    - name: Start services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      with_items:
+        - rt_http-lin.service
+        - rt_http-sharp.service
+        - rt_http-win.service
+        - rt_http-upload.service
+        - httpd.service
+
+
+- name: Setup nginx based redteam proxy
+  when: "{{ plbr_http_redteam_mode == 'nginx '}}"
+  block:
+  # install nginx https://wiki.archlinux.org/title/Nginx
+    - name: Install nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    - name: Create SSL directory
+      ansible.builtin.file:
+        path: /etc/nginx/ssl
+        state: directory
+        owner: root
+        group: root
+        mode: '0700'
+
+    - name: Generate self-signed certificate if missing
+      ansible.builtin.command: >
+        openssl req -x509 -nodes -newkey rsa:2048
+        -keyout /etc/nginx/ssl/redteam.key
+        -out /etc/nginx/ssl/redteam.crt
+        -subj "/CN={{ inventory_hostname }}"
+      args:
+        creates: /etc/nginx/ssl/redteam.crt
+
+  # create etc/nginx/conf.d/
+    - name: Ensure conf.d directory exists
+      ansible.builtin.file:
+        path: /etc/nginx/conf.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+    - name: Copy services
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/nginx/nginx.conf"
+        dest: "/etc/nginx/nginx.conf"
+        owner: root
+        group: root
+        mode: '0644'
+        backup: true
+    - name: Copy services
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/nginx/system/{{ item }}"
+        dest: "/etc/systemd/system/{{ item }}"
+        owner: root
+        group: root
+        mode: '0644'
+        backup: true
+      with_items:
+        - http.conf
+        - https.conf
+
+    - name: Ensure nginx is enabled and running
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Start services
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      with_items:
+        - nginx
+        - rt_http-upload.service

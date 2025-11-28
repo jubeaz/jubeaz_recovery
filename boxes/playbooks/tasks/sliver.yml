@@ -21,3 +21,33 @@
     name: sliver
     state: started
     enabled: true
+
+#- name: Ensure MinGW-w64 packages are installed
+#  community.general.pacman:
+#    name:
+#      - mingw-w64-gcc
+#      - mingw-w64-binutils
+#      - mingw-w64-headers
+#      - mingw-w64-crt
+#      - mingw-w64-winpthreads
+#    state: present
+#
+##- name: Clone Sliver Git repository
+##  community.general.git:
+##    repo: 'https://github.com/BishopFox/sliver.git'
+##    dest: '/root/sliver'
+##    force: true
+##
+##- name: Compile Sliver using make
+##  ansible.builtin.command: make
+##  args:
+##    chdir: /root/sliver
+#
+#- name: Copy sliver.sh
+#  ansible.builtin.copy:
+#    src: "{{ file_transfer_base_path }}/root/sliver.sh"
+#    dest: /root/sliver.sh
+#    owner: root
+#    group: root
+#    mode: '0744'
+#    backup: true

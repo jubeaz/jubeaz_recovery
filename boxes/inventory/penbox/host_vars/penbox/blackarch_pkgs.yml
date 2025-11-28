@@ -96,7 +96,7 @@ pacman_blackarch_packages:
   - pkinittools
   #- impacket           #
   - ldeep
-  - netexec
+  #- netexec
 ## kerberos
   - kerbrute           # Kerberos pre-auth bruteforcing
 ## WinRM

@@ -16,7 +16,7 @@ plbr_local_groups: {
 }
 
 ## https://community.chocolatey.org/packages
-plbr_softwares: [  "git", "visualstudio2022community", "visualstudio2017community", "notepadplusplus"]
+plbr_softwares: [  "git", "visualstudio2022community", "visualstudio2017community", "notepadplusplus", ghidra, wireshark]
 #  - visualstudio2022-workload-manageddesktop
 #  - visualstudio2022-workload-nativedesktop
 #  - reshaper
@@ -40,7 +40,7 @@ plbr_user_repos: {
         [ThreatCheck_new , https://github.com/PACHAKUTlQ/ThreatCheck.git],
         [GodPotato, https://github.com/BeichenDream/GodPotato],
         [PPLcontrol, https://github.com/itm4n/PPLcontrol],
-        [HardeningKitty, https://github.com/scipag/HardeningKitty.git]
+        [zlib-win-build, https://github.com/kiyolee/zlib-win-build]
     ]
 }
 
