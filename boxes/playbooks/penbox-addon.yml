@@ -6,5 +6,8 @@
   become_user: root
   tasks:
 
-    - name: SETUP REDTEAM HTTP SERVER
-      ansible.builtin.include_tasks: tasks/redteam_http.yml
+    - name: Add jubeaz to wireshark
+      ansible.builtin.user:
+        name: jubeaz
+        groups: wireshark
+        append: true

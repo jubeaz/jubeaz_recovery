@@ -8,8 +8,22 @@ pacman_aur_arch_packages:
   - intel-opencl-runtime
 #  - ttf-font-awesome-5 
 #  - otf-font-awesome-5
+### AUDIO
+  - pipewire-module-xrdp
 pacman_arch_packages:
 # DRIVERS
+
+## AUDIO
+  - alsa-lib
+  - alsa-firmware
+  - linux-firmware-intel
+  - alsa-utils
+  - pipewire
+  - wireplumber 
+  - pipewire-pulse 
+  - pipewire-alsa 
+  - pipewire-jack 
+  - pavucontrol
 #############  - alsa
 #############  - alsa-utils
 # BASE

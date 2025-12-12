@@ -1,0 +1,21 @@
+- name: Create rtunnel group
+  ansible.builtin.group:
+    name: rtunnel
+    state: present
+
+- name: Add the user rtunnel
+  ansible.builtin.user:
+    name: rtunnel
+    comment: ssh to start a socks proxy (ssh -R 4444 -vN rtunnel@penbox)
+    group: rtunnel
+    create_home: true
+    shell: /bin/bash
+    password_lock: false
+    password: "{{ 'Zaebuj12345+-' | password_hash('sha512', 'jubeazSalt') }}"
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /home/rtunnel
+    owner: root
+    group: root
+    mode: '0755'
+    state: directory

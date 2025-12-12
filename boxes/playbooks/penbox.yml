@@ -77,55 +77,17 @@
       ansible.builtin.include_tasks: tasks/install_pkgs.yml
     - name: INSTALL SLIVER
       ansible.builtin.include_tasks: tasks/sliver.yml
-
-#    - name: STOP
-#      ansible.builtin.fail:
-#        msg: STOP
     - name: SETUP WIFI AP
       ansible.builtin.include_role:
         name: "wifi_ap"
 
-    - name: SETUP OPENSSL FOR LEGACY
-      ansible.builtin.include_tasks: tasks/openssl_legacy.yml
-    - name: SETUP REDTEAM HTTP SERVER
-      ansible.builtin.include_tasks: tasks/redteam_http.yml
+#    - name: STOP
+#      ansible.builtin.fail:
+#        msg: STOP
 
-    - name: COPY LDAP.CONF
-      ansible.builtin.copy:
-        src: "{{ file_transfer_base_path }}/etc/openldap/ldap.conf"
-        dest: /etc/openldap/ldap.conf
-        owner: root
-        group: root
-        mode: '0644'
-        backup: true
-
-    - name: COPY KRB5.CONF
-      ansible.builtin.copy:
-        src: "{{ file_transfer_base_path }}/etc/krb5.conf"
-        dest: /etc/krb5.conf
-        owner: root
-        group: jubeaz
-        mode: '0664'
-        backup: true
-
-    - name: COPY HOSTS
-      ansible.builtin.copy:
-        src: "{{ file_transfer_base_path }}/etc/hosts"
-        dest: /etc/hosts
-        owner: root
-        group: root
-        mode: '0644'
-        backup: true
-
-    - name: COPY RESOLV.CONF
-      ansible.builtin.copy:
-        src: "{{ file_transfer_base_path }}/etc/resolv.conf"
-        dest: /etc/resolv.conf
-        owner: root
-        group: root
-        mode: '0644'
-        backup: true
-
+    - name: SETUP /ETC
+      ansible.builtin.include_tasks: tasks/etc_conf.yml
+ 
     - name: RESPONDER SET CHALLANGE 1122334455667788
       ansible.builtin.lineinfile:
         path: /usr/share/responder/Responder.conf
@@ -150,128 +112,32 @@
         - /opt/evil-winrm/bin
         - /opt/evil-winrm/exchange
 
+    - name: INSTALL jiq
+      become: false
+      ansible.builtin.shell: |
+        go install github.com/fiatjaf/jiq/cmd/jiq@latest
+
     - name: INSTALL EGET
       become: false
       ansible.builtin.shell: |
         go install github.com/zyedidia/eget@latest
 
-    - name: RSYNC JUBEAZ CONTENT
-      become: false
-      ansible.posix.synchronize:
-        src: "{{ file_transfer_base_path }}/home/jubeaz/"
-        dest: /home/jubeaz/
-        archive: true
+    - name: SETUP JUBEAZ
+      ansible.builtin.include_tasks: tasks/jubeaz.yml
 
-    - name: RSYNC JUBEAZ PRIVATE CONTENT
-      become: false
-      ansible.posix.synchronize:
-        src: "{{ private_file_transfer_base_path }}/home/jubeaz/"
-        dest: /home/jubeaz/
-        archive: true
+    - name: SETUP WEAPONIZE
+      ansible.builtin.include_tasks: tasks/weaponize.yml
 
-    - name: MAKE JUBEAZ OWNER OF /OPT/LINUX
-      ansible.builtin.shell: |
-        chown -R "{{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }}" /opt/linux
-
-    - name: MAKE JUBEAZ OWNER OF /OPT/WINDOWS
-      ansible.builtin.shell: |
-        chown -R "{{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }}"  /opt/windows
-
-    - name: INSTALL WINDOWS_WEAPONIZE
-      become: false
-      ansible.builtin.shell:
-        cmd: /opt/windows/windows_weaponize/script.sh
-        chdir: /opt/windows/windows_weaponize/
-      environment:
-        GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
-        PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
-
-    - name: INSTALL LINUX_WEAPONIZE
-      become: false
-      ansible.builtin.shell:
-        cmd:  /opt/linux/linux_weaponize/script.sh
-        chdir: /opt/linux/linux_weaponize/
-      environment:
-        GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
-        PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
-
-#    - name: INSTALL INTEL OPENCL RUNTINE
-#      become: false
-#      community.general.aur:
-#        name: intel-opencl-runtime
-#        use: yay
-#        state: present
-#
-#    - name: INSTALL INTEL OPENCL
-#      community.general.pacman:
-#        name: opencl-clhpp ocl-icd opencl-headers
-#        state: present
-
-    - name: INSTALL SOME WORDLISTS
-      ansible.builtin.shell:
-        cmd:  /usr/bin/wordlistctl fetch -l rockyou --decompress   only_rockyou
-
-    - name: INSTALL TMUX PLUGINS
-      become: false
-      ansible.builtin.shell: /home/jubeaz/.config/tmux/plugins/tpm/scripts/install_plugins.sh
-
+    - name: SETUP AUDIO
+      ansible.builtin.include_tasks: tasks/audio.yml
+    
+    - name: SETUP RTUNNEL ACCOUNT
+      ansible.builtin.include_tasks: tasks/rtunnel.yml
+    
     - name: Clear pacman cache completely
       command: pacman -Scc --noconfirm
 
-    - name: ENSURE .ssh DIRECTORY EXISTS
-      ansible.builtin.file:
-        path: /home/ansible/.ssh
-        state: directory
-        owner: jubeaz
-        group: jubeaz
-        mode: '0700'
 
-    - name: GENERATE SSH KEY PAIR
-      community.crypto.openssh_keypair:
-        path: /home/jubeaz/.ssh/id_pentest
-        backend: cryptography
-        private_key_format: ssh
-        type: ed25519
-        owner: jubeaz
-        group: jubeaz
-        mode: '0600'
-        comment: "jubeaz@pentest"
-
-    - name: BACKUP proxychains.conf
-      ansible.builtin.copy:
-        src: /etc/proxychains.conf
-        dest: /etc/proxychains.conf.save
-        remote_src: true
-        owner: root
-        group: root
-        mode: '0644'
-
-    - name: DELETE proxychains.conf
-      ansible.builtin.file:
-        path: /etc/proxychains.conf
-        state: absent
-
-    - name: Create rtunnel group
-      ansible.builtin.group:
-        name: rtunnel
-        state: present
-
-    - name: Add the user rtunnel
-      ansible.builtin.user:
-        name: rtunnel
-        comment: ssh to start a socks proxy (ssh -R 4444 -vN rtunnel@penbox)
-        group: rtunnel
-        create_home: true
-        shell: /bin/bash
-        password_lock: false
-        password: "{{ 'Zaebuj12345+-' | password_hash('sha512', 'jubeazSalt') }}"
-    - name: Change file ownership, group and permissions
-      ansible.builtin.file:
-        path: /home/rtunnel
-        owner: root
-        group: root
-        mode: '0755'
-        state: directory
 ##########################################
 ## TO DEBUG
 ##########################################

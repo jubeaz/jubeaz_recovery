@@ -3,6 +3,7 @@ git_packages:
 #  - [Exegol-images-dev, https://github.com/ShutdownRepo/Exegol-images-dev.git]
 #  - [The-Hacker-Recipes, https://github.com/ShutdownRepo/The-Hacker-Recipes.git]
 #  - [GOAD, https://github.com/Orange-Cyberdefense/GOAD.git]
+#  - [hacktricks, https://github.com/HackTricks-wiki/hacktricks]
   - [windows/SharpCollection, https://github.com/Flangvik/SharpCollection.git]
   - [windows/windows_weaponize, https://github.com/jubeaz/windows_weaponize.git]
   - [linux/linux_weaponize, https://github.com/jubeaz/linux_weaponize.git]

@@ -76,6 +76,14 @@
 - name: Setup nginx based redteam proxy
   when: plbr_http_redteam_mode == 'nginx'
   block:
+    - name: Assert http upload directory exist
+      ansible.builtin.file:
+        path: /srv/http/upload/lib
+        owner: jubeaz
+        group: jubeaz
+        mode: '0755'
+        state: directory
+        recurse: true
   # install nginx https://wiki.archlinux.org/title/Nginx
     - name: Install nginx
       ansible.builtin.package:

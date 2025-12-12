@@ -1,0 +1,52 @@
+
+- name: Add jubeaz to wireshark
+  ansible.builtin.user:
+    name: jubeaz
+    groups: wireshark
+    append: true
+
+- name: RSYNC JUBEAZ CONTENT
+  become: false
+  ansible.posix.synchronize:
+    src: "{{ file_transfer_base_path }}/home/jubeaz/"
+    dest: /home/jubeaz/
+    archive: true
+
+- name: RSYNC JUBEAZ PRIVATE CONTENT
+  become: false
+  ansible.posix.synchronize:
+    src: "{{ private_file_transfer_base_path }}/home/jubeaz/"
+    dest: /home/jubeaz/
+    archive: true
+
+- name: INSTALL TMUX PLUGINS
+  become: false
+  ansible.builtin.shell: /home/jubeaz/.config/tmux/plugins/tpm/scripts/install_plugins.sh
+
+- name: ENSURE .ssh DIRECTORY EXISTS
+  ansible.builtin.file:
+    path: /home/ansible/.ssh
+    state: directory
+    owner: jubeaz
+    group: jubeaz
+    mode: '0700'
+
+- name: GENERATE SSH KEY PAIR
+  community.crypto.openssh_keypair:
+    path: /home/jubeaz/.ssh/id_pentest
+    backend: cryptography
+    private_key_format: ssh
+    type: ed25519
+    owner: jubeaz
+    group: jubeaz
+    mode: '0600'
+    comment: "jubeaz@pentest"
+
+- name: Enable ssh agent
+  ansible.builtin.systemd:
+    name: ssh-agent.service
+    scope: user
+    enabled: true
+    state: started
+    daemon_reload: true
+  become: false

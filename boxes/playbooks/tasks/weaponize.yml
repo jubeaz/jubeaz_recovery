@@ -1,0 +1,42 @@
+
+- name: MAKE JUBEAZ OWNER OF /OPT/LINUX
+  ansible.builtin.shell: |
+    chown -R "{{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }}" /opt/linux
+
+- name: MAKE JUBEAZ OWNER OF /OPT/WINDOWS
+  ansible.builtin.shell: |
+    chown -R "{{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }}"  /opt/windows
+
+- name: INSTALL WINDOWS_WEAPONIZE
+  become: false
+  ansible.builtin.shell:
+    cmd: /opt/windows/windows_weaponize/script.sh
+    chdir: /opt/windows/windows_weaponize/
+  environment:
+    GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
+    PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
+
+- name: INSTALL LINUX_WEAPONIZE
+  become: false
+  ansible.builtin.shell:
+    cmd:  /opt/linux/linux_weaponize/script.sh
+    chdir: /opt/linux/linux_weaponize/
+  environment:
+    GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
+    PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
+
+#    - name: INSTALL INTEL OPENCL RUNTINE
+#      become: false
+#      community.general.aur:
+#        name: intel-opencl-runtime
+#        use: yay
+#        state: present
+#
+#    - name: INSTALL INTEL OPENCL
+#      community.general.pacman:
+#        name: opencl-clhpp ocl-icd opencl-headers
+#        state: present
+
+- name: INSTALL SOME WORDLISTS
+  ansible.builtin.shell:
+    cmd:  /usr/bin/wordlistctl fetch -l rockyou --decompress   only_rockyou

@@ -9,6 +9,8 @@ vagrant plugin install vagrant-libvirt
 ```bash
 cat /sys/module/kvm_amd/parameters/nested
 cat /sys/module/kvm_intel/parameters/nested
+
+modinfo kvm_amd | grep nested
 ```
 
 if not enabled force it in `/etc/modprobe.d/kvm.conf`
