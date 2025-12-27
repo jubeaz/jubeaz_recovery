@@ -40,9 +40,9 @@
     - name: SETUP UFW
       ansible.builtin.include_role:
         name: "ufw"
-#    - name: SETUP HAPROXY
-#      ansible.builtin.include_role:
-#        name: "haproxy"
+    - name: SETUP HAPROXY
+      ansible.builtin.include_role:
+        name: "haproxy"
 
     - name: Set hostname in /etc/hostname
       ansible.builtin.copy:

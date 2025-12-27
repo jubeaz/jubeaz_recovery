@@ -9,6 +9,7 @@ pipx_git_packages:
   - [uberfile, git+https://github.com/ShutdownRepo/uberfile]
   - [certipy-ad, git+https://github.com/ly4k/Certipy]
   - [ldeep, git+https://github.com/franc-pentest/ldeep]
+  - [penelope, git+https://github.com/brightio/penelope]
 # NETWORK
 #  - [divideandscan, git+https://github.com/snovvcrash/DivideAndScan]
   - [dploot, git+https://github.com/zblurx/dploot.git]

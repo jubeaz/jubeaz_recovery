@@ -22,53 +22,34 @@ haproxy_global_params: []
 haproxy_connect_timeout: 5s
 haproxy_client_timeout: 50s
 haproxy_server_timeout: 50s
+haproxy_tunnel_timeout: 1h
 
 #########################################
 # Frontend settings.
 haproxy_frontends:
-  - name: https_listener
+  - name: jubeaz
     binds:
-      - addr: 10.10.14.6
-        port: 4443
-        extra: "ssl crt /etc/haproxy/bundle/bundle.pem"
-      - addr: 192.168.10.21
-        port: 4443
-        extra: "ssl crt /etc/haproxy/bundle/bundle.pem"
-    firewall_allow: 
-      - any
-    mode: http
-    options: [
-#      option_1: "value",
-#      option_2: "value"
-    ]
-    acl: {
-#      is_https: "req.ssl_hello_type 1",
-    }
-    extra_params: {
-#      default_backend: "backend_http_reject"
-    }
-    use_backends:
-      - "backend_http"
-  - name: https_listener
-    binds:
-      - addr: 10.10.14.6
-        port: 880
-      - addr: 192.168.10.21
-        port: 880
-#      - addr: 10.0.0.1
+      - addr: "*"
+        port: 80
+#      - addr: 10.10.14.17
 #        port: 880
-#        extra: "ssl crt /etc/ssl/certs/haproxy.pem"
+#      - addr: 192.168.10.21
+#        port: 880
     firewall_allow: 
       - any
     mode: tcp
     options:
-#      - name: tcp-request
-#        value: inspect-delay 2s
-#      - name: tcp-request
-##        value: content accept if HTTP
-#        value: content capture req.proto_http len 1
+      - name: log
+        value: global
+      - name: log-format
+        value: '"src=%ci:%cp fe=%f be=%b srv=%s bytes=%B"'
+      - name: tcp-request
+        value: inspect-delay 2s
+      - name: tcp-request
+        value: content accept if { req_len gt 0 }
     acl: {
-#      is_http: "HTTP",
+#      is_http: 'req.payload(0,4) -m str "HTTP"',
+      is_http: req.proto_http,
       from_10net: "src 10.0.0.0/8",
       from_192net: "src 192.168.0.0/16"
     }
@@ -76,70 +57,30 @@ haproxy_frontends:
       default_backend: "backend_tcp_reject"
     }
     use_backends:
-      - "backend_8871 if !is_http from_10net"
-      - "backend_8870 if !is_http from_192net"
-#  - name: mixed_listener
-#    binds:
-#      - addr: 10.10.14.6
-#        port: 880
-#      - addr: 192.168.10.21
-#        port: 880
-##      - addr: 10.0.0.1
-##        port: 880
-##        extra: "ssl crt /etc/ssl/certs/haproxy.pem"
-#    firewall_allow: 
-#      - any
-#    mode: tcp
-#    options:
-#      - name: tcp-request
-#        value: inspect-delay 2s
-#      - name: tcp-request
-##        value: content accept if HTTP
-#        value: content capture req.proto_http len 1
-#    acl: {
-##      is_http: "HTTP",
-#      from_10net: "src 10.0.0.0/8",
-#      from_192net: "src 192.168.0.0/16"
-#    }
-#    extra_params: {
-#      default_backend: "backend_reject"
-#    }
-#    use_backends:
-#      - "backend_http if is_http"
-#      - "backend_8871 if !is_http from_10net"
-#      - "backend_8870 if !is_http from_192net"
+      - 'nginx_backend if is_http'
+      - "penelope_backend if !is_http from_10net"
+      - "penelope_backend if !is_http from_192net"
 
 # Backend settings.
 haproxy_backends:
-  - name: backend_http
-    mode: http
-    option: {
-#      option_1: "value",
-#      option_2: "value"
-    }
+  - name: nginx_backend
+    mode: tcp
+    options: []
     servers: {
-      nginx1: "127.0.0.1:80"
+      nginx1: "127.0.0.1:8880"
     }
     extra_params: {
 #      u: "value",
 #      v: "value"
     }
-  - name: backend_8870
+  - name: penelope_backend
     mode: tcp
     servers: {
-      sl_debug: "127.0.0.1:8870"
+      penelope: "127.0.0.1:4444"
     }
-    option: {
-    }
-    extra_params: {
-    }
-  - name: backend_8871
-    mode: tcp
-    servers: {
-      sl_prod: "127.0.0.1:8871"
-    }
-    option: {
-    }
+    options: 
+      - name: timeout
+        value: tunnel 12h
     extra_params: {
     }
   - name: backend_tcp_reject
@@ -147,8 +88,7 @@ haproxy_backends:
     extra_params: {
 #      errorfile: "503 /etc/haproxy/errors/503.http"
     }
-    option: {
-    }
+    options: []
     servers: {
     }
 #  - name: backend_http_reject

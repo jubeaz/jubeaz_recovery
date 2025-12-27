@@ -64,5 +64,5 @@ def serve_file(category, filename):
         abort(500, description="Internal Server Error")
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8880, debug=False)
+    app.run(host="127.0.0.1", port=8881, debug=False)
 
