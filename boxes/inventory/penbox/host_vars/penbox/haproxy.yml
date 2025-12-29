@@ -83,6 +83,16 @@ haproxy_backends:
         value: tunnel 12h
     extra_params: {
     }
+  - name: msf_backend
+    mode: tcp
+    servers: {
+      penelope: "127.0.0.1:4445"
+    }
+    options: 
+      - name: timeout
+        value: tunnel 12h
+    extra_params: {
+    }
   - name: backend_tcp_reject
     mode: tcp
     extra_params: {
