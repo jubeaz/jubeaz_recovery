@@ -24,9 +24,8 @@ Vagrant.configure("2") do |config|
       role: "member",
       bname: "win-dev", 
       ip_p: "192.168.10.22",
-      #box_img: "qemu-jubeaz-uefi-windows-2025",
-      #box_img: "jubeaz/windows_2022_uefi",
       box_img: "jubeaz/windows_2025_uefi",
+      box_img_version: "2026.04.01",
       username: "jubeaz",
       password: "jubeaz",
       os: "windows", 
@@ -39,9 +38,8 @@ Vagrant.configure("2") do |config|
       role: "member",
       bname: "nord", 
       ip_p: "192.168.10.20",
-      #box_img: "qemu-jubeaz-uefi-windows-2025",
-      #box_img: "jubeaz/windows_2022_uefi",
       box_img: "jubeaz/windows_2025_uefi",
+      box_img_version: "2026.04.01",
       username: "jubeaz",
       password: "jubeaz",
       os: "windows", 
@@ -55,14 +53,20 @@ Vagrant.configure("2") do |config|
       deployment_type: "routed", # "routed" will exploit bridge interface anything else else will rely on NAT
       bname: "penbox", 
       ip_p: "192.168.10.21",
-      #box_img: "qemu-jubeaz-bios-archlinux-x86_64",
       box_img: "jubeaz/archlinux_x64_bios",
+      box_version: "2026.04.01",
       username: "jubeaz",
       password: "jubeaz",
       os: "arch", 
       ram: 12*1024,
       cpu: 4,
-      firmware: "bios"
+      firmware: "bios",
+      usb_devices: [
+        # Alfa AWUS036ACHM (mt76x0u)
+        { vendor: "0x0e8d", product: "0x7610" },
+        # EDUP AX3000 (mt7921u)
+        { vendor: "0x0e8d", product: "0x7961" },
+      ]
     }
   ]
 
@@ -125,6 +129,19 @@ Vagrant.configure("2") do |config|
         box_provider.memory = box_def[:ram]
         box_provider.cpus = box_def[:cpu]
         box_provider.keymap = "fr"
+        box_provider.video_type = "virtio"
+        box_provider.machine_type = 'q35'
+        box_provider.usb_controller :model => "qemu-xhci"
+        if box_def[:usb_devices]
+        #  box_provider.qemuargs :value => "-device"
+        #  box_provider.qemuargs :value => "qemu-xhci,bus=pcie.0,addr=0x5"
+          box_def[:usb_devices].each do |usb|
+            box_provider.usb :vendor => "#{usb[:vendor]}", :product => "#{usb[:product]}", startupPolicy: "optional"
+
+            #box_provider.qemuargs :value => "usb-host,vendorid=#{usb[:vendor]},productid=#{usb[:product]}"
+          end
+        end
+
         if box_def[:os] == "windows"
           box_provider.input type:"tablet", bus: "usb" # solve mouse capture of VNC
         end
