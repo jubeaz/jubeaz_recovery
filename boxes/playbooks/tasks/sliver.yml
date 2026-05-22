@@ -13,7 +13,7 @@
 - name: Run Sliver install script
   ansible.builtin.command: /tmp/install
   register: sliver_install
-  changed_when: my_output.rc != 0
+  changed_when: sliver_install.rc != 0
   when: not sliver_service_stat.stat.exists
 
 - name: Ensure sliver service is running

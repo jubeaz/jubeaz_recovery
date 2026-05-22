@@ -5,6 +5,6 @@
   become: true
   become_user: root
   tasks:
-    - name: SETUP HAPROXY
-      ansible.builtin.include_role:
-        name: "haproxy"
+#    - name: SETUP HAPROXY
+#      ansible.builtin.include_role:
+#        name: "haproxy"

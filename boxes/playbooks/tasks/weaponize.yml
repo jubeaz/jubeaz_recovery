@@ -7,23 +7,23 @@
   ansible.builtin.shell: |
     chown -R "{{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }}"  /opt/windows
 
-- name: INSTALL WINDOWS_WEAPONIZE
-  become: false
-  ansible.builtin.shell:
-    cmd: /opt/windows/windows_weaponize/script.sh
-    chdir: /opt/windows/windows_weaponize/
-  environment:
-    GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
-    PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
-
-- name: INSTALL LINUX_WEAPONIZE
-  become: false
-  ansible.builtin.shell:
-    cmd:  /opt/linux/linux_weaponize/script.sh
-    chdir: /opt/linux/linux_weaponize/
-  environment:
-    GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
-    PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
+#- name: INSTALL WINDOWS_WEAPONIZE
+#  become: false
+#  ansible.builtin.shell:
+#    cmd: /opt/windows/windows_weaponize/script.sh
+#    chdir: /opt/windows/windows_weaponize/
+#  environment:
+#    GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
+#    PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
+#
+#- name: INSTALL LINUX_WEAPONIZE
+#  become: false
+#  ansible.builtin.shell:
+#    cmd:  /opt/linux/linux_weaponize/script.sh
+#    chdir: /opt/linux/linux_weaponize/
+#  environment:
+#    GITHUB_TOKEN_PATH: "{{ lookup('env', 'HOME') }}/eget_github_token"
+#    PATH: "{{ ansible_facts.env.PATH }}:{{ lookup('env', 'HOME') }}/go/bin"
 
 #    - name: INSTALL INTEL OPENCL RUNTINE
 #      become: false

@@ -68,8 +68,8 @@ sliver > profiles
 =================== ============== =============== =========================================== ======= =========== ============= =============
  cybernetics         beacon         windows/amd64   [1] http://10.10.14.17:80/sliver/pwn        false   SHELLCODE   disabled
  cybernetics_https   beacon         windows/amd64   [1] https://10.10.14.17:443/sliver/pwn      false   SHELLCODE   disabled
- jubeaz              beacon         windows/amd64   [1] http://192.168.10.21:80/sliver/pwn      false   SHELLCODE   disabled
- jubeaz_https        beacon         windows/amd64   [1] https://192.168.10.21:443/sliver/pwn    false   SHELLCODE   disabled
+ jubeaz              beacon         windows/amd64   [1] http://192.168.1.21:80/sliver/pwn      false   SHELLCODE   disabled
+ jubeaz_https        beacon         windows/amd64   [1] https://192.168.1.21:443/sliver/pwn    false   SHELLCODE   disabled
 
 sliver > jobs
 

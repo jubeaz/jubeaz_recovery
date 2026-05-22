@@ -8,7 +8,7 @@ nfs_exports: []
 
 
 nfs_mounts:
-  - src: "192.168.10.2:/srv/nfs/jubeaz"
+  - src: "192.168.1.2:/srv/nfs/jubeaz"
     dest: "/mnt/nfs/jubeaz"
     fstype: "nfs4"
     opts: "defaults,_netdev"

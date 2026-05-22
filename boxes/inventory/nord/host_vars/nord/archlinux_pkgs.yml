@@ -1,0 +1,62 @@
+pacman_aur_arch_packages: 
+### AUDIO
+  - pipewire-module-xrdp
+  - yay
+pacman_arch_packages:
+# DRIVERS
+## AUDIO
+  - alsa-lib
+  - alsa-firmware
+  - linux-firmware-intel
+  - alsa-utils
+  - pipewire
+  - wireplumber 
+  - pipewire-pulse 
+  - pipewire-alsa 
+  - pipewire-jack 
+  - pavucontrol
+#############  - alsa
+#############  - alsa-utils
+# BASE
+  - woff2-font-awesome
+  - otf-font-awesome
+  - noto-fonts
+  - noto-fonts-emoji
+  - base-devel
+  - iw
+  - iwd
+  - lshw
+  - openvpn
+  - zip
+  - unzip
+  - p7zip
+  - file
+  - util-linux             # hexdump
+  - binutils               #strings
+  - firejail
+  - xsel
+  - cdrkit
+  - python-pip
+  - python-pipx
+  - python-setuptools
+  - lsof             
+  - grc              
+  - sshpass
+  - rust
+  - go
+  - rbenv
+  - ruby-build
+  - figlet
+  - code
+# MISC
+  - xorg-xauth
+  - firefox
+  - chromium
+  - freerdp
+  - iperf3         # network speed test
+# NETWORK          
+  - iptables
+  - ssh-audit         
+# FORENSICS
+# BINARY  
+

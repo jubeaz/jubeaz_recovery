@@ -1,0 +1,5 @@
+# Alfa AWUS036ACHM (mt76x0u) MediaTek 7610
+SUBSYSTEM=="net", ACTION=="add", ATTRS{idVendor}=="0e8d", ATTRS{idProduct}=="7610", NAME="alfa_wlan"
+
+# EDUP AX3000 (mt7921u) MediaTek 7961 
+SUBSYSTEM=="net", ACTION=="add", ATTRS{idVendor}=="0e8d", ATTRS{idProduct}=="7961", NAME="edup_wlan"

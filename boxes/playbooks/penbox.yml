@@ -4,77 +4,92 @@
   hosts: penbox
   become: true
   become_user: root
+
+  vars:
+    rbenv_root: "/home/jubeaz/.rbenv"
+    ruby_version: "3.2.4"
   tasks:
-    - name: SETUP RUNTIME KERNEL PARAM OVERRIDE
-      ansible.builtin.copy:
-        src: "{{ file_transfer_base_path }}/etc/sysctl.d/99-sysctl.conf"
-        dest: /etc/sysctl.d/99-sysctl.conf
-        owner: root
-        group: root
-        mode: '0644'
-        backup: true
-    - name: SETUP PLOCATE
-      ansible.builtin.include_role:
-        name: "plocate"
-    - name: SETUP PACMAN
-      ansible.builtin.include_role:
-        name: "pacman"
-    - name: SETUP REFLECTOR
-      ansible.builtin.include_role:
-        name: "reflector"
-    - name: PACMAN UPGRADE
-      ansible.builtin.include_role:
-        name: "pacman_upgrade"
-    - name: GEN LOCALE
-      ansible.builtin.include_role:
-        name: "gen-locale"
-    - name: TIME SYNC
-      ansible.builtin.include_role:
-        name: "time-sync"
-    - name: SETUP GRUB
-      ansible.builtin.include_role:
-        name: "grub"
-    - name: SETUP OPENSSHD
-      ansible.builtin.include_role:
-        name: "opensshd"
-    - name: SETUP UFW
-      ansible.builtin.include_role:
-        name: "ufw"
-    - name: SETUP HAPROXY
-      ansible.builtin.include_role:
-        name: "haproxy"
-
-    - name: Set hostname in /etc/hostname
-      ansible.builtin.copy:
-        dest: /etc/hostname
-        content: "{{ shortname }}"
-        owner: root
-        group: root
-        mode: '0644'
-
-    - name: Disable root account (lock password)
-      ansible.builtin.user:
-        name: root
-        password: "!"
-        state: present
-
-    - name: SETUP NFS
-      ansible.builtin.include_role:
-        name: "nfs"
-    - name: SETUP BLACKARCH
-      ansible.builtin.include_role:
-        name: "blackarch"
-    - name: SETUP LXDE
-      ansible.builtin.include_role:
-        name: "lxde"
-    - name: SETUP XRDP
-      ansible.builtin.include_role:
-        name: "xrdp"
+#    - name: SETUP RUNTIME KERNEL PARAM OVERRIDE
+#      ansible.builtin.copy:
+#        src: "{{ file_transfer_base_path }}/etc/sysctl.d/99-sysctl.conf"
+#        dest: /etc/sysctl.d/99-sysctl.conf
+#        owner: root
+#        group: root
+#        mode: '0644'
+#        backup: true
+#    - name: SETUP WLAN INTERFACE NAMES
+#      ansible.builtin.copy:
+#        src: "{{ file_transfer_base_path }}/etc/udev/rules.d/70-wifi-names.rules"
+#        dest: /etc/udev/rules.d/70-wifi-names.rules
+#        owner: root
+#        group: root
+#        mode: '0644'
+#        backup: false
+#        
+#    - name: SETUP PLOCATE
+#      ansible.builtin.include_role:
+#        name: "plocate"
+#    - name: SETUP PACMAN
+#      ansible.builtin.include_role:
+#        name: "pacman"
+#    - name: SETUP REFLECTOR
+#      ansible.builtin.include_role:
+#        name: "reflector"
+#    - name: PACMAN UPGRADE
+#      ansible.builtin.include_role:
+#        name: "pacman_upgrade"
+#    - name: GEN LOCALE
+#      ansible.builtin.include_role:
+#        name: "gen-locale"
+#    - name: TIME SYNC
+#      ansible.builtin.include_role:
+#        name: "time-sync"
+#    - name: SETUP GRUB
+#      ansible.builtin.include_role:
+#        name: "grub"
+#    - name: SETUP OPENSSHD
+#      ansible.builtin.include_role:
+#        name: "opensshd"
+#    - name: SETUP UFW
+#      ansible.builtin.include_role:
+#        name: "ufw"
+#    - name: SETUP HAPROXY
+#      ansible.builtin.include_role:
+#        name: "haproxy"
+#
+#    - name: Set hostname in /etc/hostname
+#      ansible.builtin.copy:
+#        dest: /etc/hostname
+#        content: "{{ shortname }}"
+#        owner: root
+#        group: root
+#        mode: '0644'
+#
+#    - name: Disable root account (lock password)
+#      ansible.builtin.user:
+#        name: root
+#        password: "!"
+#        state: present
+#
+#    - name: SETUP NFS
+#      ansible.builtin.include_role:
+#        name: "nfs"
+#    - name: SETUP BLACKARCH
+#      ansible.builtin.include_role:
+#        name: "blackarch"
+#    - name: SETUP LXDE
+#      ansible.builtin.include_role:
+#        name: "lxde"
+#    - name: SETUP XRDP
+#      ansible.builtin.include_role:
+#        name: "xrdp"
     - name: SETUP DOCKER
       ansible.builtin.include_role:
         name: "docker"
     - name: INSTALL PACKAGES
       ansible.builtin.include_tasks: tasks/install_pkgs.yml
+    - name: SETUP AUDIO
+      ansible.builtin.include_tasks: tasks/audio.yml
     - name: INSTALL SLIVER
       ansible.builtin.include_tasks: tasks/sliver.yml
     - name: SETUP WIFI AP
@@ -94,10 +109,38 @@
         regexp: '^Challenge = Random$'
         line: Challenge = 1122334455667788
 
-    - name: INSTALL EVIL-WINRM
-      become: false
+    - name: Install Ruby {{ ruby_version }}
       ansible.builtin.shell: |
-        gem install winrm winrm-fs stringio logger fileutil csv evil-winrm
+        export RBENV_ROOT="{{ rbenv_root }}"
+        export PATH="$RBENV_ROOT/bin:$PATH"
+        eval "$(rbenv init - bash)"
+        rbenv install -s {{ ruby_version }}
+
+    - name: Set global Ruby version
+      ansible.builtin.shell: |
+        export RBENV_ROOT="{{ rbenv_root }}"
+        export PATH="$RBENV_ROOT/bin:$PATH"
+        eval "$(rbenv init - bash)"
+        rbenv global {{ ruby_version }}
+
+    - name: Install evil-winrm gem
+      ansible.builtin.shell: |
+        export RBENV_ROOT="{{ rbenv_root }}"
+        export PATH="$RBENV_ROOT/bin:$PATH"
+        eval "$(rbenv init - bash)"
+        gem install evil-winrm --no-document
+
+    - name: Rehash rbenv shims
+      ansible.builtin.shell: |
+        export RBENV_ROOT="{{ rbenv_root }}"
+        export PATH="$RBENV_ROOT/bin:$PATH"
+        eval "$(rbenv init - bash)"
+        rbenv rehash
+
+    #- name: INSTALL EVIL-WINRM
+    #  become: false
+    #  ansible.builtin.shell: |
+    #    gem install winrm winrm-fs stringio logger fileutil csv evil-winrm
 
     - name: CREATE EVIL-WINRM FOLDERS
       ansible.builtin.file:
@@ -128,9 +171,6 @@
     - name: SETUP WEAPONIZE
       ansible.builtin.include_tasks: tasks/weaponize.yml
 
-    - name: SETUP AUDIO
-      ansible.builtin.include_tasks: tasks/audio.yml
-    
     - name: SETUP RTUNNEL ACCOUNT
       ansible.builtin.include_tasks: tasks/rtunnel.yml
     

@@ -9,14 +9,26 @@ plbr_local_users: {
         }
 }
 
+
 plbr_local_groups: {
     "Administrators" : [".\\jubeaz"]
 #    "Remote Desktop Users" : [],
 #    "Remote Management Users": []
 }
 
+
+
 ## https://community.chocolatey.org/packages
-plbr_softwares: [  "git", "visualstudio2022community", "visualstudio2017community", "notepadplusplus", ghidra, wireshark]
+plbr_softwares: [  
+    "git", 
+    "visualstudio2022community", 
+    "visualstudio2017community", 
+    "notepadplusplus", 
+    ghidra, 
+    wireshark, 
+    pe-bear,
+    processhacker
+]
 #  - visualstudio2022-workload-manageddesktop
 #  - visualstudio2022-workload-nativedesktop
 #  - reshaper
@@ -61,5 +73,6 @@ plbr_extra_capabilities: [
 ]
 
 plbr_ps_modules: [
-    "PSWindowsUpdate"
+    "PSWindowsUpdate",
+    NtObjectManager
 ]

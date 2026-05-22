@@ -1,0 +1,5 @@
+git_blackarch_packages:
+  []
+pacman_aur_blackarch_packages:
+  []
+pacman_blackarch_packages: []

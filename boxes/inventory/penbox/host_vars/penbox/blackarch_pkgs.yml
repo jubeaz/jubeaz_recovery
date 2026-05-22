@@ -9,7 +9,7 @@ pacman_blackarch_packages:
   - nishang
   - responder
 # NETWORK
-  - autorecon          #/ black
+#  - autorecon          #/ black
   - dnschef            #/ black
   - chisel             #/ black
   - dns2tcp            #/ black

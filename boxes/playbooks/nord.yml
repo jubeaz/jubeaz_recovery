@@ -1,0 +1,147 @@
+---
+- name: Install nord
+  gather_facts: true
+  hosts: nord
+  become: true
+  become_user: root
+
+  vars:
+    rbenv_root: "/home/jubeaz/.rbenv"
+    ruby_version: "3.2.4"
+
+  tasks:
+    - name: SETUP RUNTIME KERNEL PARAM OVERRIDE
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/sysctl.d/99-sysctl.conf"
+        dest: /etc/sysctl.d/99-sysctl.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: true
+    - name: SETUP WLAN INTERFACE NAMES
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/udev/rules.d/70-wifi-names.rules"
+        dest: /etc/udev/rules.d/70-wifi-names.rules
+        owner: root
+        group: root
+        mode: '0644'
+        backup: false
+
+    - name: SETUP PLOCATE
+      ansible.builtin.include_role:
+        name: "plocate"
+
+    - name: SETUP PACMAN
+      ansible.builtin.include_role:
+        name: "pacman"
+    - name: SETUP REFLECTOR
+      ansible.builtin.include_role:
+        name: "reflector"
+    - name: PACMAN UPGRADE
+      ansible.builtin.include_role:
+        name: "pacman_upgrade"
+    - name: GEN LOCALE
+      ansible.builtin.include_role:
+        name: "gen-locale"
+    - name: TIME SYNC
+      ansible.builtin.include_role:
+        name: "time-sync"
+    - name: SETUP GRUB
+      ansible.builtin.include_role:
+        name: "grub"
+    - name: SETUP OPENSSHD
+      ansible.builtin.include_role:
+        name: "opensshd"
+    - name: SETUP UFW
+      ansible.builtin.include_role:
+        name: "ufw"
+
+    - name: Set hostname in /etc/hostname
+      ansible.builtin.copy:
+        dest: /etc/hostname
+        content: "{{ shortname }}"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Disable root account (lock password)
+      ansible.builtin.user:
+        name: root
+        password: "!"
+        state: present
+    - name: SETUP LXDE
+      ansible.builtin.include_role:
+        name: "lxde"
+    - name: SETUP XRDP
+      ansible.builtin.include_role:
+        name: "xrdp"
+    - name: INSTALL PACKAGES
+      ansible.builtin.include_tasks: tasks/install_pkgs.yml
+
+#    - name: STOP
+#      ansible.builtin.fail:
+#        msg: STOP
+
+    - name: COPY RESOLV.CONF
+      ansible.builtin.copy:
+        src: "{{ file_transfer_base_path }}/etc/resolv.conf"
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: true
+
+    #- name: SETUP /ETC
+    #  ansible.builtin.include_tasks: tasks/etc_conf.yml
+    - name: RSYNC JUBEAZ CONTENT
+      become: false
+      ansible.posix.synchronize:
+        src: "{{ file_transfer_base_path }}/home/jubeaz/"
+        dest: /home/jubeaz/
+        archive: true
+
+    - name: RSYNC JUBEAZ PRIVATE CONTENT
+      become: false
+      ansible.posix.synchronize:
+        src: "{{ private_file_transfer_base_path }}/home/jubeaz/"
+        dest: /home/jubeaz/
+        archive: true
+
+    #- name: SETUP JUBEAZ
+    #  ansible.builtin.include_tasks: tasks/jubeaz.yml
+
+    - name: SETUP AUDIO
+      ansible.builtin.include_tasks: tasks/audio.yml
+
+    - name: Clear pacman cache completely
+      command: pacman -Scc --noconfirm
+
+
+##########################################
+## TO DEBUG
+##########################################
+##
+##    - name: UPDATE SEARCHSPLOIT
+##      ansible.builtin.shell: |
+##        searchsploit -u
+##
+##
+##    - name: Clone Pretender repository
+##      ansible.builtin.git:
+##        repo: "https://github.com/RedTeamPentesting/pretender"
+##        dest: "/opt/pretender"
+##        version: "main"
+##        update: true
+##    - name: Build Pretender
+##      ansible.builtin.shell: |
+##        export GOPATH={{ go_path }}
+##        cd {{ install_dir }}
+##        go build -o pretender
+##      args:
+##        executable: /bin/bash
+##
+##    - name: Link Pretender binary to /usr/local/bin
+##      file:
+##        src: "{{ install_dir }}/pretender"
+##        dest: "/usr/local/bin/pretender"
+##        state: link

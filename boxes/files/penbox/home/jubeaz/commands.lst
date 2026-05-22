@@ -1,0 +1,13 @@
+xfreerdp /cert-ignore /v:win-dev /u:jubeaz /p:jubeaz  /floatbar -grab-keyboard  /size:1920x1080 /smart-sizing
+
+sudo tail -f /var/log/nginx/access.log  | grep --line-buffered -vE '/msf'
+
+xfreerdp /cert-ignore /v:win-dev /u:jubeaz /p:jubeaz  /floatbar -grab-keyboard  /size:1920x1080 /smart-sizing
+
+
+
+xfreerdp /cert:ignore /u:jubeaz /p:'jubeaz'  /v:penbox /dynamic-resolution /drive:share,./documents/pentesting-games/htb/pro_lab/cyberntetics +drives  /sound:sys:pulse
+xfreerdp /cert:ignore /u:jubeaz /p:'jubeaz'  /v:nord /dynamic-resolution /drive:share,./tmp +drives  /sound:sys:pulse
+xfreerdp /cert:ignore /u:jubeaz /v:yoki  /size:1920x1080 /smart-sizing
+
+xfreerdp /cert-ignore /v:win-dev /u:jubeaz /p:jubeaz  /floatbar -grab-keyboard  /size:1920x1080 /smart-sizing

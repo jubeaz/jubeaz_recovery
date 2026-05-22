@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     name: "jbz_br",
     mask: "255.255.255.0",
     network: "192.168.10",
-    gw: "192.168.10.254"
+    gw: "1192.168.1.254"
   }
 #   bridge: {name: "br1", mask: "255.255.0.0", network: "192.168.58.0", gw: "192.168.2.1"}
 
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       # only internal
       role: "member",
       bname: "win-dev", 
-      ip_p: "192.168.10.22",
+      ip_p: "1192.168.1.22",
       box_img: "jubeaz/windows_2025_uefi",
       box_img_version: "2026.04.01",
       username: "jubeaz",
@@ -36,8 +36,8 @@ Vagrant.configure("2") do |config|
     { 
       # only internal
       role: "member",
-      bname: "nord", 
-      ip_p: "192.168.10.20",
+      bname: "nord-win", 
+      ip_p: "1192.168.1.20",
       box_img: "jubeaz/windows_2025_uefi",
       box_img_version: "2026.04.01",
       username: "jubeaz",
@@ -51,8 +51,25 @@ Vagrant.configure("2") do |config|
       # only internal
       role: "member",
       deployment_type: "routed", # "routed" will exploit bridge interface anything else else will rely on NAT
+      bname: "nord", 
+      ip_p: "1192.168.1.20",
+      box_img: "jubeaz/archlinux_x64_bios",
+      box_version: "2026.04.01",
+      username: "jubeaz",
+      password: "jubeaz",
+      os: "arch", 
+      ram: 6*1024,
+      cpu: 2,
+      firmware: "bios",
+      usb_devices: [
+      ]
+    },
+    { 
+      # only internal
+      role: "member",
+      deployment_type: "routed", # "routed" will exploit bridge interface anything else else will rely on NAT
       bname: "penbox", 
-      ip_p: "192.168.10.21",
+      ip_p: "1192.168.1.21",
       box_img: "jubeaz/archlinux_x64_bios",
       box_version: "2026.04.01",
       username: "jubeaz",
@@ -62,10 +79,32 @@ Vagrant.configure("2") do |config|
       cpu: 4,
       firmware: "bios",
       usb_devices: [
+        # Realtek usb Ethernet (RTL8153)
+        #{ vendor: "0x0bda", product: "0x8153" },
+        # Genesys usb hub
+        #{ vendor: "0x05e3", product: "0x0626" },
+        #{ vendor: "0x05e3", product: "0x0610" },
         # Alfa AWUS036ACHM (mt76x0u)
-        { vendor: "0x0e8d", product: "0x7610" },
+        #{ vendor: "0x0e8d", product: "0x7610" },
         # EDUP AX3000 (mt7921u)
-        { vendor: "0x0e8d", product: "0x7961" },
+        #{ vendor: "0x0e8d", product: "0x7961" },
+      ]
+    },
+    { 
+      # only internal
+      role: "member",
+      deployment_type: "routed", # "routed" will exploit bridge interface anything else else will rely on NAT
+      bname: "debian", 
+      ip_p: "1192.168.1.23",
+      box_img: "debian/trixie64",
+      box_version: "13.20260121.1",
+      username: "vagrant",
+      #password: "vagrant",
+      os: "debian", 
+      ram: 12*1024,
+      cpu: 4,
+      firmware: "bios",
+      usb_devices: [
       ]
     }
   ]
@@ -131,10 +170,13 @@ Vagrant.configure("2") do |config|
         box_provider.keymap = "fr"
         box_provider.video_type = "virtio"
         box_provider.machine_type = 'q35'
-        box_provider.usb_controller :model => "qemu-xhci"
+        if box_def[:os] == "debian"
+          box_provider.usb_controller :model => "ehci"
+        else
+          box_provider.usb_controller :model => "qemu-xhci"
+        end
         if box_def[:usb_devices]
-        #  box_provider.qemuargs :value => "-device"
-        #  box_provider.qemuargs :value => "qemu-xhci,bus=pcie.0,addr=0x5"
+          box_provider.usb_controller :model => "ehci"
           box_def[:usb_devices].each do |usb|
             box_provider.usb :vendor => "#{usb[:vendor]}", :product => "#{usb[:product]}", startupPolicy: "optional"
 
@@ -170,16 +212,6 @@ Vagrant.configure("2") do |config|
           box_provider.video_type = "virtio"
           # https://libvirt.org/formatdomain.html#sound-devices
           box_provider.sound_type = "ich9"
-
-          #box_provider.launchsecurity :type => 'sev', :cbitpos => 47, :reducedPhysBits => 1, :policy => "0x0003"
-          #box_provider.memtune :type => "hard_limit", :value => 2500000 # Note here the value in kB (not in Mb)
-#          #box_provider.customize ["modifyvm", :id, '--audio-driver', 'alsa', '--audio-controller', 'hda', '--audio-enabled', 'on']
-#          #box_provider.customize ["modifyvm", :id, '--vram', '128']
-#          box_provider.customize ["modifyvm", :id, '--nested-hw-virt', 'on']
-#          box_provider.customize ["modifyvm", :id, '--firmware', 'efi64']
-#          box_provider.customize ["modifynvram", :id, 'inituefivarstore']
-#          box_provider.customize ["modifynvram", :id, 'enrollorclpk']
-#          box_provider.customize ["modifynvram", :id, 'enrollmssignatures']
         end
       end
       if box_def.has_key?(:username)
@@ -235,6 +267,13 @@ Vagrant.configure("2") do |config|
         box.vm.communicator = "ssh"
         box.vm.provision :shell, :path => "../../scripts/fix_ip.sh", privileged: true, args: [box_def[:deployment_type], bridge[:gw]]
         box.vm.provision :shell, :path => "../../scripts/arch_python.sh", privileged: true, args: ["France"]
+      end
+      if box_def[:os] == "debian"
+        box.vm.communicator = "ssh"
+        box.ssh.insert_key = true
+        box.ssh.password = nil      # ❗ important
+        #box.vm.provision :shell, :path => "../../scripts/fix_ip.sh", privileged: true, args: [box_def[:deployment_type], bridge[:gw]]
+        #box.vm.provision :shell, :path => "../../scripts/arch_python.sh", privileged: true, args: ["France"]
       end
     end
   end

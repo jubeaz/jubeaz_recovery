@@ -9,6 +9,7 @@
   community.general.pacman:
     name: "{{ pacman_arch_packages }}"
     state: latest
+    extra_args: "--noconfirm --needed --ask=4"
 
 - name: Install from Arch AUR
   ansible.builtin.include_role:

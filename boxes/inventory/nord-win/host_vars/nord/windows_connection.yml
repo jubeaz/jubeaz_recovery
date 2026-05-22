@@ -15,4 +15,4 @@ ansible_winrm_read_timeout_sec: 500
 plbr_nat_adapter: lab
 plbr_domain_adapter: internet
 plbr_pub_adapter: internet
-plbr_ansible_controller_ip: 192.168.10.1
+plbr_ansible_controller_ip: 192.168.1.4

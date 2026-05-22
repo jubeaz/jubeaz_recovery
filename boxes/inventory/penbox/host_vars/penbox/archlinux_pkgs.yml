@@ -4,12 +4,14 @@ pacman_aur_arch_packages:
   - mongosh-bin 
   - powershell-bin
   - gss-ntlmssp
-  - gnu-netcat
+#  - gnu-netcat
   - intel-opencl-runtime
 #  - ttf-font-awesome-5 
 #  - otf-font-awesome-5
 ### AUDIO
   - pipewire-module-xrdp
+  - yay
+#  - ettercap-gtk
 pacman_arch_packages:
 # DRIVERS
 
@@ -27,7 +29,6 @@ pacman_arch_packages:
 #############  - alsa
 #############  - alsa-utils
 # BASE
-#  - yay
   - woff2-font-awesome
   - otf-font-awesome
   - noto-fonts
@@ -35,6 +36,7 @@ pacman_arch_packages:
   - base-devel
   - iw
   - iwd
+  - lshw
   - wpa_supplicant
   - dhclient
   - impala
@@ -59,7 +61,7 @@ pacman_arch_packages:
   - tmux
   - gdb
   - socat
-  - mdcat            
+#  - mdcat            
   - jq               
   - lsof             
   - bat                      
@@ -73,6 +75,8 @@ pacman_arch_packages:
   - putty
   - rust
   - go
+  - rbenv
+  - ruby-build
   - sqlitebrowser
   - python-poetry
   - figlet
@@ -112,6 +116,7 @@ pacman_arch_packages:
   - reaver
   - util-linux 
   - kismet
+  - bettercap
 # CRACKING
   - john              
   - hashcat           

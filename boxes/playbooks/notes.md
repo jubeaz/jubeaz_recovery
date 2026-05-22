@@ -4,7 +4,7 @@
 ## solve packages
 
 ## to do
-`sudo mount -t nfs -o vers=4 192.168.10.2:/srv/nfs/jubeaz /mnt/nfs/jubeaz`
+`sudo mount -t nfs -o vers=4 192.168.1.2:/srv/nfs/jubeaz /mnt/nfs/jubeaz`
 
 ### add sound
 https://bbs.archlinux.org/viewtopic.php?id=300851
@@ -15,4 +15,4 @@ sudo pacman -S alsa-utils alsa-plugins pipewire pipewire-alsa pipewire-pulse wir
 
 
 # windows
-* NFS mounting does not work :  `New-PSdrive -PSProvider FileSystem -Name J -Root \\192.168.10.2\srv\nfs\jubeaz -Persist`
+* NFS mounting does not work :  `New-PSdrive -PSProvider FileSystem -Name J -Root \\192.168.1.2\srv\nfs\jubeaz -Persist`

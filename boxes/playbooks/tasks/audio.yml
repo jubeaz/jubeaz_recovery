@@ -6,7 +6,7 @@
 
 - name: Enable audio services
   ansible.builtin.systemd:
-    name: {{ item }}
+    name: "{{ item }}"
     scope: user
     enabled: true
     state: started

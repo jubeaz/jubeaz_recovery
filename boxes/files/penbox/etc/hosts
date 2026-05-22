@@ -10,7 +10,7 @@ ff02::2 ip6-allrouters
 ##############################
 ### Netrunner
 ##############################
-192.168.10.100   lab_fw
+192.168.1.100   lab_fw
 #127.0.0.2      lab_fw_nat
 172.17.1.2      wld01.weyland.local dc.weyland.local weyland.local
 172.17.1.10     archer.weyland.local archer
